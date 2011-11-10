@@ -1,0 +1,46 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="user_topo.master.cs" Inherits="Lives.user_topo" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="Estilo.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div id="contentorTopo">
+        <div class="topo">
+            <div class="contentorLogo">
+                <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/logo1.png" 
+                    Height="40px" Width="112px" />
+            </div>
+            <div class="contentorTopoDireita">
+                <div class="userName">
+                    <asp:Label ID="Label1" runat="server" Text="User" CssClass="letraBrancoPeq"></asp:Label><br />
+                    <asp:TextBox CssClass="boxLogin" ID="TxtEmailLogin" runat="server"></asp:TextBox><br />
+                    <div style="position: inherit; top: 30px">
+                    
+                <asp:LinkButton ID="registo" Font-Overline="false"  CssClass="letraAmareloPeq" runat="server">Regista-te</asp:LinkButton>
+                    </div>                    
+                </div>
+                <div class="pass">
+                    <asp:Label ID="Label2" runat="server" Text="Password" CssClass="letraBrancoPeq"></asp:Label><br />
+                    <asp:TextBox CssClass="boxLogin" ID="TxtPassLogin" runat="server" 
+                        TextMode="Password"></asp:TextBox><br />
+                    <div style="position: inherit; top: 30px">
+                    
+                <asp:LinkButton ID="lbtnpass" Font-Overline="false"  CssClass="letraAmareloPeq" runat="server">Esqueceste-te da tua pass?</asp:LinkButton>
+                    </div>
+                </div>
+                <asp:Button class="botaoLogin" ID="btnIniciarSessao" runat="server" 
+                    Text="Iniciar Sessão"/>
+            </div>
+            <asp:Label ID="lblErro" runat="server" Visible="False" Width="1000px"></asp:Label>
+        </div>
+    </div>
+    </form>
+</body>
+</html>
