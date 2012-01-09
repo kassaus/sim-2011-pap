@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{30C67D79-E0CC-4908-9423-897C4E74FEA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Viewer", "Viewer\Viewer.csproj", "{E0B6D508-4759-4087-B6C1-97D1F1B09019}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,10 +31,6 @@ Global
 		{30C67D79-E0CC-4908-9423-897C4E74FEA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30C67D79-E0CC-4908-9423-897C4E74FEA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30C67D79-E0CC-4908-9423-897C4E74FEA0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E0B6D508-4759-4087-B6C1-97D1F1B09019}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E0B6D508-4759-4087-B6C1-97D1F1B09019}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E0B6D508-4759-4087-B6C1-97D1F1B09019}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E0B6D508-4759-4087-B6C1-97D1F1B09019}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

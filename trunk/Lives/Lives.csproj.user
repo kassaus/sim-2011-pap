@@ -20,9 +20,6 @@
           </StartWorkingDirectory>
           <EnableENC>False</EnableENC>
           <AlwaysStartWebServerOnDebug>True</AlwaysStartWebServerOnDebug>
-          <ProjectOutputReferences>
-            <Ref Project="{E0B6D508-4759-4087-B6C1-97D1F1B09019}" Folder="ClientBin">Viewer.xap</Ref>
-          </ProjectOutputReferences>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>
