@@ -1,0 +1,54 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/AdminTopo.Master" AutoEventWireup="true"
+    CodeBehind="AdminLayout.master.cs" Inherits="Lives.AdminLayout" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="Estilo.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        .style1
+        {
+            text-decoration: none;
+        }
+    </style>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <div id="contentorMainMenuCorpo">
+        <div id="contentorMenu">
+            <div class="userState">
+                <h3>
+                    Olá&nbsp;<asp:Label ID="lblNome" runat="server" Text="Paulo Luís"></asp:Label>
+                </h3>
+                <asp:Image ID="imagemLogo" runat="server" CssClass="imagemLogo" ImageUrl="~/images/user.png"
+                    Width="100px" />
+            </div>
+            <div class="listaMenu">
+                <div class="labelOnline">
+                    <asp:Label ID="lblOnline" runat="server" Text="1"></asp:Label>
+                </div>
+                <h3>
+                    Administração</h3>
+                <li>
+                    <asp:Image ID="Image4" runat="server" AlternateText="Users" Height="40px" ImageAlign="Middle"
+                        ImageUrl="~/images/online.png" />
+                    <a href="AdminPage.aspx" rel="nofollow" class="style1">Online</a></li>
+                <li>
+                    <asp:Image ID="Image1" runat="server" AlternateText="Users" Height="40px" ImageAlign="Middle"
+                        ImageUrl="~/images/users.png" />
+                    <a href="AdminUsers.aspx" rel="nofollow" class="style1">Users</a></li>
+                <li>
+                    <asp:Image ID="Image2" runat="server" AlternateText="Categorias" Height="40px" ImageAlign="Middle"
+                        ImageUrl="~/images/categorias.png" />
+                    <a class="style1" href="AdminCategorias.aspx" rel="nofollow">Categorias</a></li>
+                <li>
+                    <asp:Image ID="Image3" runat="server" AlternateText="Listagens" Height="40px" ImageAlign="Middle"
+                        ImageUrl="~/images/listagens.png" />
+                    <a href="AdminListagensVideos.aspx" class="style1">listagens</a></li>
+            </div>
+        </div>
+        <div id="ContentorCorpoInterior">
+            <div id="CorpoInterior">
+                <asp:ContentPlaceHolder ID="corpo" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+    </div>
+</asp:Content>

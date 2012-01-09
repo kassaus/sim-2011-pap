@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="livesModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="livesEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categoria" EntityType="livesModel.Categoria" />
+    <EntitySet Name="EstadoVideo" EntityType="livesModel.Estado" />
+    <EntitySet Name="Subcategoria" EntityType="livesModel.Subcategoria" />
+    <EntitySet Name="Video" EntityType="livesModel.Video" />
+    <AssociationSet Name="EstadoVideoVideo" Association="livesModel.EstadoVideoVideo">
+      <End Role="EstadoVideo" EntitySet="EstadoVideo" />
+      <End Role="Video" EntitySet="Video" />
+    </AssociationSet>
+    <AssociationSet Name="SubcategoriaVideo" Association="livesModel.SubcategoriaVideo">
+      <End Role="Subcategoria" EntitySet="Subcategoria" />
+      <End Role="Video" EntitySet="Video" />
+    </AssociationSet>
+    <AssociationSet Name="CategoriaSubcategoria" Association="livesModel.CategoriaSubcategoria">
+      <End Role="Categoria" EntitySet="Categoria" />
+      <End Role="Subcategoria" EntitySet="Subcategoria" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Categoria">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nome" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Subcategorias" Relationship="livesModel.CategoriaSubcategoria" FromRole="Categoria" ToRole="Subcategoria" />
+  </EntityType>
+  <EntityType Name="Estado">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Videos" Relationship="livesModel.EstadoVideoVideo" FromRole="EstadoVideo" ToRole="Video" />
+    <Property Type="String" Name="estado" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Subcategoria">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nome" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Videos" Relationship="livesModel.SubcategoriaVideo" FromRole="Subcategoria" ToRole="Video" />
+    <NavigationProperty Name="Categoria" Relationship="livesModel.CategoriaSubcategoria" FromRole="Subcategoria" ToRole="Categoria" />
+  </EntityType>
+  <EntityType Name="Video">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descricao" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="url" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Type="DateTime" Name="data" Nullable="false" />
+    <NavigationProperty Name="Estado" Relationship="livesModel.EstadoVideoVideo" FromRole="Video" ToRole="EstadoVideo" />
+    <NavigationProperty Name="Subcategorias" Relationship="livesModel.SubcategoriaVideo" FromRole="Video" ToRole="Subcategoria" />
+    <Property Type="Guid" Name="id_user" Nullable="false" />
+    <Property Type="String" Name="titulo" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="EstadoVideoVideo">
+    <End Type="livesModel.Estado" Role="EstadoVideo" Multiplicity="1" />
+    <End Type="livesModel.Video" Role="Video" Multiplicity="*" />
+  </Association>
+  <Association Name="SubcategoriaVideo">
+    <End Type="livesModel.Subcategoria" Role="Subcategoria" Multiplicity="*" />
+    <End Type="livesModel.Video" Role="Video" Multiplicity="*" />
+  </Association>
+  <Association Name="CategoriaSubcategoria">
+    <End Type="livesModel.Categoria" Role="Categoria" Multiplicity="1" />
+    <End Type="livesModel.Subcategoria" Role="Subcategoria" Multiplicity="*" />
+  </Association>
+</Schema>

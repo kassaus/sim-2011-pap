@@ -1,0 +1,370 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="livesModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="livesModelStoreContainer">
+          <EntitySet Name="Categoria" EntityType="livesModel.Store.Categoria" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EstadoVideo" EntityType="livesModel.Store.EstadoVideo" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Subcategoria" EntityType="livesModel.Store.Subcategoria" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SubcategoriaVideo" EntityType="livesModel.Store.SubcategoriaVideo" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Video" EntityType="livesModel.Store.Video" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_CategoriaSubcategoria" Association="livesModel.Store.FK_CategoriaSubcategoria">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Subcategoria" EntitySet="Subcategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EstadoVideoVideo" Association="livesModel.Store.FK_EstadoVideoVideo">
+            <End Role="EstadoVideo" EntitySet="EstadoVideo" />
+            <End Role="Video" EntitySet="Video" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubcategoriaVideo_Subcategoria" Association="livesModel.Store.FK_SubcategoriaVideo_Subcategoria">
+            <End Role="Subcategoria" EntitySet="Subcategoria" />
+            <End Role="SubcategoriaVideo" EntitySet="SubcategoriaVideo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubcategoriaVideo_Video" Association="livesModel.Store.FK_SubcategoriaVideo_Video">
+            <End Role="Video" EntitySet="Video" />
+            <End Role="SubcategoriaVideo" EntitySet="SubcategoriaVideo" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="EstadoVideo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="estado" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Subcategoria">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Categoria_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubcategoriaVideo">
+          <Key>
+            <PropertyRef Name="Subcategorias_id" />
+            <PropertyRef Name="Videos_id" />
+          </Key>
+          <Property Name="Subcategorias_id" Type="int" Nullable="false" />
+          <Property Name="Videos_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Video">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="descricao" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="url" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="data" Type="datetime" Nullable="false" />
+          <Property Name="id_user" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Estado_id" Type="int" Nullable="false" />
+          <Property Name="titulo" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_CategoriaSubcategoria">
+          <End Role="Categoria" Type="livesModel.Store.Categoria" Multiplicity="1" />
+          <End Role="Subcategoria" Type="livesModel.Store.Subcategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Subcategoria">
+              <PropertyRef Name="Categoria_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EstadoVideoVideo">
+          <End Role="EstadoVideo" Type="livesModel.Store.EstadoVideo" Multiplicity="1" />
+          <End Role="Video" Type="livesModel.Store.Video" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoVideo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Video">
+              <PropertyRef Name="Estado_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubcategoriaVideo_Subcategoria">
+          <End Role="Subcategoria" Type="livesModel.Store.Subcategoria" Multiplicity="1" />
+          <End Role="SubcategoriaVideo" Type="livesModel.Store.SubcategoriaVideo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subcategoria">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SubcategoriaVideo">
+              <PropertyRef Name="Subcategorias_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubcategoriaVideo_Video">
+          <End Role="Video" Type="livesModel.Store.Video" Multiplicity="1" />
+          <End Role="SubcategoriaVideo" Type="livesModel.Store.SubcategoriaVideo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Video">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SubcategoriaVideo">
+              <PropertyRef Name="Videos_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="AlteraEstadoVideo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="estado" Type="int" Mode="In" />
+        </Function>
+        <Function Name="AlteraSubcategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="nome" Type="nvarchar" Mode="In" />
+          <Parameter Name="categoria" Type="int" Mode="In" />
+        </Function>
+        <Function Name="AlteraVideo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="descricao" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="url" Type="nvarchar" Mode="In" />
+          <Parameter Name="estado" Type="int" Mode="In" />
+          <Parameter Name="titulo" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="ApagaSubcategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ApagaVideo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="InsereSubcategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nome" Type="nvarchar" Mode="In" />
+          <Parameter Name="categoria" Type="int" Mode="In" />
+        </Function>
+        <Function Name="InsereVideo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="descricao" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="url" Type="nvarchar" Mode="In" />
+          <Parameter Name="estado" Type="int" Mode="In" />
+          <Parameter Name="id_user" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="titulo" Type="nvarchar" Mode="In" />
+        </Function>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="livesModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="livesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categoria" EntityType="livesModel.Categoria" />
+          <EntitySet Name="EstadoVideo" EntityType="livesModel.Estado" />
+          <EntitySet Name="Subcategoria" EntityType="livesModel.Subcategoria" />
+          <EntitySet Name="Video" EntityType="livesModel.Video" />
+          <AssociationSet Name="EstadoVideoVideo" Association="livesModel.EstadoVideoVideo">
+            <End Role="EstadoVideo" EntitySet="EstadoVideo" />
+            <End Role="Video" EntitySet="Video" />
+          </AssociationSet>
+          <AssociationSet Name="SubcategoriaVideo" Association="livesModel.SubcategoriaVideo">
+            <End Role="Subcategoria" EntitySet="Subcategoria" />
+            <End Role="Video" EntitySet="Video" />
+          </AssociationSet>
+          <AssociationSet Name="CategoriaSubcategoria" Association="livesModel.CategoriaSubcategoria">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Subcategoria" EntitySet="Subcategoria" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Subcategorias" Relationship="livesModel.CategoriaSubcategoria" FromRole="Categoria" ToRole="Subcategoria" />
+        </EntityType>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Videos" Relationship="livesModel.EstadoVideoVideo" FromRole="EstadoVideo" ToRole="Video" />
+          <Property Type="String" Name="estado" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Subcategoria">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Videos" Relationship="livesModel.SubcategoriaVideo" FromRole="Subcategoria" ToRole="Video" />
+          <NavigationProperty Name="Categoria" Relationship="livesModel.CategoriaSubcategoria" FromRole="Subcategoria" ToRole="Categoria" />
+        </EntityType>
+        <EntityType Name="Video">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descricao" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="url" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Type="DateTime" Name="data" Nullable="false" />
+          <NavigationProperty Name="Estado" Relationship="livesModel.EstadoVideoVideo" FromRole="Video" ToRole="EstadoVideo" />
+          <NavigationProperty Name="Subcategorias" Relationship="livesModel.SubcategoriaVideo" FromRole="Video" ToRole="Subcategoria" />
+          <Property Type="Guid" Name="id_user" Nullable="false" />
+          <Property Type="String" Name="titulo" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="EstadoVideoVideo">
+          <End Type="livesModel.Estado" Role="EstadoVideo" Multiplicity="1" />
+          <End Type="livesModel.Video" Role="Video" Multiplicity="*" />
+        </Association>
+        <Association Name="SubcategoriaVideo">
+          <End Type="livesModel.Subcategoria" Role="Subcategoria" Multiplicity="*" />
+          <End Type="livesModel.Video" Role="Video" Multiplicity="*" />
+        </Association>
+        <Association Name="CategoriaSubcategoria">
+          <End Type="livesModel.Categoria" Role="Categoria" Multiplicity="1" />
+          <End Type="livesModel.Subcategoria" Role="Subcategoria" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="livesModelStoreContainer" CdmEntityContainer="livesEntities">
+    <EntitySetMapping Name="Categoria">
+      <EntityTypeMapping TypeName="IsTypeOf(livesModel.Categoria)">
+        <MappingFragment StoreEntitySet="Categoria">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EstadoVideo">
+      <EntityTypeMapping TypeName="IsTypeOf(livesModel.Estado)">
+        <MappingFragment StoreEntitySet="EstadoVideo">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subcategoria">
+      <EntityTypeMapping TypeName="IsTypeOf(livesModel.Subcategoria)">
+        <MappingFragment StoreEntitySet="Subcategoria">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+            <EntityTypeMapping TypeName="livesModel.Subcategoria">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="livesModel.Store.InsereSubcategoria">
+                  <AssociationEnd AssociationSet="CategoriaSubcategoria" From="Subcategoria" To="Categoria">
+                    <ScalarProperty Name="id" ParameterName="categoria" />
+                  </AssociationEnd>
+                  <ScalarProperty Name="nome" ParameterName="nome" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="livesModel.Store.AlteraSubcategoria">
+                  <AssociationEnd AssociationSet="CategoriaSubcategoria" From="Subcategoria" To="Categoria">
+                    <ScalarProperty Name="id" ParameterName="categoria" Version="Current" />
+                  </AssociationEnd>
+                  <ScalarProperty Name="nome" ParameterName="nome" Version="Current" />
+                  <ScalarProperty Name="id" ParameterName="id" Version="Current" />
+                </UpdateFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Video">
+      <EntityTypeMapping TypeName="IsTypeOf(livesModel.Video)">
+        <MappingFragment StoreEntitySet="Video">
+          <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="url" ColumnName="url" />
+          <ScalarProperty Name="data" ColumnName="data" />
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+        </MappingFragment>
+      </EntityTypeMapping>
+            <EntityTypeMapping TypeName="livesModel.Video">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="livesModel.Store.InsereVideo">
+                  <AssociationEnd AssociationSet="EstadoVideoVideo" From="Video" To="EstadoVideo">
+                    <ScalarProperty Name="id" ParameterName="estado" />
+                  </AssociationEnd>
+                  <ScalarProperty Name="titulo" ParameterName="titulo" />
+                  <ScalarProperty Name="id_user" ParameterName="id_user" />
+                  <ScalarProperty Name="url" ParameterName="url" />
+                  <ScalarProperty Name="descricao" ParameterName="descricao" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="livesModel.Store.AlteraVideo">
+                  <ScalarProperty Name="titulo" ParameterName="titulo" Version="Current" />
+                  <AssociationEnd AssociationSet="EstadoVideoVideo" From="Video" To="EstadoVideo">
+                    <ScalarProperty Name="id" ParameterName="estado" Version="Current" />
+                  </AssociationEnd>
+                  <ScalarProperty Name="url" ParameterName="url" Version="Current" />
+                  <ScalarProperty Name="descricao" ParameterName="descricao" Version="Current" />
+                  <ScalarProperty Name="id" ParameterName="id" Version="Current" />
+                </UpdateFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="EstadoVideoVideo" TypeName="livesModel.EstadoVideoVideo" StoreEntitySet="Video">
+      <EndProperty Name="EstadoVideo">
+        <ScalarProperty Name="id" ColumnName="Estado_id" />
+      </EndProperty>
+      <EndProperty Name="Video">
+        <ScalarProperty Name="id" ColumnName="id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="SubcategoriaVideo" TypeName="livesModel.SubcategoriaVideo" StoreEntitySet="SubcategoriaVideo">
+      <EndProperty Name="Subcategoria">
+        <ScalarProperty Name="id" ColumnName="Subcategorias_id" />
+      </EndProperty>
+      <EndProperty Name="Video">
+        <ScalarProperty Name="id" ColumnName="Videos_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CategoriaSubcategoria" TypeName="livesModel.CategoriaSubcategoria" StoreEntitySet="Subcategoria">
+      <EndProperty Name="Categoria">
+        <ScalarProperty Name="id" ColumnName="Categoria_id" />
+      </EndProperty>
+      <EndProperty Name="Subcategoria">
+        <ScalarProperty Name="id" ColumnName="id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="lives_BO" ZoomLevel="68">
+        <EntityTypeShape EntityType="livesModel.Categoria" Width="1.5" PointX="0.625" PointY="1.25" Height="1.2636116536458335" IsExpanded="true" />
+        <EntityTypeShape EntityType="livesModel.Estado" Width="1.5" PointX="8" PointY="1.25" Height="1.427958984375" IsExpanded="true" />
+        <EntityTypeShape EntityType="livesModel.Subcategoria" Width="1.5" PointX="3" PointY="1.25" Height="1.2636116536458335" IsExpanded="true" />
+        <EntityTypeShape EntityType="livesModel.Video" Width="1.5" PointX="5.5" PointY="1.125" Height="2.0853483072916661" IsExpanded="true" />
+        <AssociationConnector Association="livesModel.EstadoVideoVideo">
+          <ConnectorPoint PointX="8" PointY="1.9639794921875" />
+          <ConnectorPoint PointX="7" PointY="1.9639794921875" />
+        </AssociationConnector>
+        <AssociationConnector Association="livesModel.SubcategoriaVideo">
+          <ConnectorPoint PointX="4.5" PointY="2.0461531575520833" />
+          <ConnectorPoint PointX="5.5" PointY="2.0461531575520833" />
+        </AssociationConnector>
+        <AssociationConnector Association="livesModel.CategoriaSubcategoria">
+          <ConnectorPoint PointX="2.125" PointY="1.9639794921875" />
+          <ConnectorPoint PointX="3" PointY="1.9639794921875" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
