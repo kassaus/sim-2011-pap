@@ -19,7 +19,8 @@
                     <p>
                         &nbsp&nbsp&nbsp&nbsp&nbsp<asp:Label ID="CurrentPasswordLabel" runat="server" AssociatedControlID="CurrentPassword"
                             CssClass="labelChangePassword">Password Antiga:</asp:Label>
-                        <asp:TextBox ID="CurrentPassword" runat="server" CssClass="BoxForm" TextMode="Password"></asp:TextBox>
+                        <asp:TextBox ID="CurrentPassword" runat="server" CssClass="BoxForm" 
+                            TextMode="Password" Width="146px"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="CurrentPasswordRequired" runat="server" ControlToValidate="CurrentPassword"
                             CssClass="failureNotification" ErrorMessage="Insira a antiga Password." ToolTip="Old Password is required."
                             ValidationGroup="ChangeUserPasswordValidationGroup">*</asp:RequiredFieldValidator>

@@ -5,7 +5,9 @@ namespace Lives
 {
     public partial class Home : System.Web.UI.Page
     {
-        private string UrlYouTube = "http://youtube.com/v/tnBccuIDTTw";
+        private string
+            UrlYouTube = "http://www.youtube.com/v/eFjjO_lhf9c";
+        //UrlYouTube = "http://youtube.com/v/tnBccuIDTTw";
         protected void Page_Load(object sender, EventArgs e)
         {
             RegisterUser.ContinueDestinationPageUrl = Request.QueryString["ReturnUrl"];
