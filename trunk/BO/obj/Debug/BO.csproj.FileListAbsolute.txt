@@ -22,3 +22,9 @@ C:\Users\Paulo Luis\Documents\Lusofona\3 Ano\SIM\Projecto\Lives\BO\bin\Debug\BO.
 C:\Users\Paulo Luis\Documents\Lusofona\3 Ano\SIM\Projecto\Lives\BO\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Paulo Luis\Documents\Lusofona\3 Ano\SIM\Projecto\Lives\BO\obj\Debug\BO.dll
 C:\Users\Paulo Luis\Documents\Lusofona\3 Ano\SIM\Projecto\Lives\BO\obj\Debug\BO.pdb
+D:\SVN\BO\bin\Debug\BO.dll.config
+D:\SVN\BO\bin\Debug\BO.dll
+D:\SVN\BO\bin\Debug\BO.pdb
+D:\SVN\BO\obj\Debug\ResolveAssemblyReference.cache
+D:\SVN\BO\obj\Debug\BO.dll
+D:\SVN\BO\obj\Debug\BO.pdb

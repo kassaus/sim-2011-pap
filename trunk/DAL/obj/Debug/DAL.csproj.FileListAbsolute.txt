@@ -19,3 +19,10 @@ C:\Users\Paulo Luis\Documents\Lusofona\3 Ano\SIM\Projecto\Lives\DAL\bin\Debug\BO
 C:\Users\Paulo Luis\Documents\Lusofona\3 Ano\SIM\Projecto\Lives\DAL\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Paulo Luis\Documents\Lusofona\3 Ano\SIM\Projecto\Lives\DAL\obj\Debug\DAL.dll
 C:\Users\Paulo Luis\Documents\Lusofona\3 Ano\SIM\Projecto\Lives\DAL\obj\Debug\DAL.pdb
+D:\SVN\DAL\bin\Debug\DAL.dll
+D:\SVN\DAL\bin\Debug\DAL.pdb
+D:\SVN\DAL\bin\Debug\BO.dll
+D:\SVN\DAL\bin\Debug\BO.pdb
+D:\SVN\DAL\obj\Debug\ResolveAssemblyReference.cache
+D:\SVN\DAL\obj\Debug\DAL.dll
+D:\SVN\DAL\obj\Debug\DAL.pdb
