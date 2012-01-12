@@ -1,0 +1,27 @@
+C:\Users\Tiago Costa\Documents\Visual Studio 2010\Projects\Lives\BLL\bin\Debug\BLL.dll
+C:\Users\Tiago Costa\Documents\Visual Studio 2010\Projects\Lives\BLL\bin\Debug\BLL.pdb
+C:\Users\Tiago Costa\Documents\Visual Studio 2010\Projects\Lives\BLL\bin\Debug\BO.dll
+C:\Users\Tiago Costa\Documents\Visual Studio 2010\Projects\Lives\BLL\bin\Debug\DAL.dll
+C:\Users\Tiago Costa\Documents\Visual Studio 2010\Projects\Lives\BLL\bin\Debug\BO.pdb
+C:\Users\Tiago Costa\Documents\Visual Studio 2010\Projects\Lives\BLL\bin\Debug\DAL.pdb
+C:\Users\Tiago Costa\Documents\Visual Studio 2010\Projects\Lives\BLL\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Tiago Costa\Documents\Visual Studio 2010\Projects\Lives\BLL\obj\Debug\BLL.dll
+C:\Users\Tiago Costa\Documents\Visual Studio 2010\Projects\Lives\BLL\obj\Debug\BLL.pdb
+C:\Users\Paulo Luis\Dropbox\Projectos\escola\Lives\BLL\bin\Debug\BLL.dll
+C:\Users\Paulo Luis\Dropbox\Projectos\escola\Lives\BLL\bin\Debug\BLL.pdb
+C:\Users\Paulo Luis\Dropbox\Projectos\escola\Lives\BLL\bin\Debug\BO.dll
+C:\Users\Paulo Luis\Dropbox\Projectos\escola\Lives\BLL\bin\Debug\DAL.dll
+C:\Users\Paulo Luis\Dropbox\Projectos\escola\Lives\BLL\bin\Debug\BO.pdb
+C:\Users\Paulo Luis\Dropbox\Projectos\escola\Lives\BLL\bin\Debug\DAL.pdb
+C:\Users\Paulo Luis\Dropbox\Projectos\escola\Lives\BLL\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Paulo Luis\Dropbox\Projectos\escola\Lives\BLL\obj\Debug\BLL.dll
+C:\Users\Paulo Luis\Dropbox\Projectos\escola\Lives\BLL\obj\Debug\BLL.pdb
+C:\Users\Paulo Luis\Documents\Lusofona\3 Ano\SIM\Projecto_Backup\Lives\BLL\bin\Debug\BLL.dll
+C:\Users\Paulo Luis\Documents\Lusofona\3 Ano\SIM\Projecto_Backup\Lives\BLL\bin\Debug\BLL.pdb
+C:\Users\Paulo Luis\Documents\Lusofona\3 Ano\SIM\Projecto_Backup\Lives\BLL\bin\Debug\BO.dll
+C:\Users\Paulo Luis\Documents\Lusofona\3 Ano\SIM\Projecto_Backup\Lives\BLL\bin\Debug\DAL.dll
+C:\Users\Paulo Luis\Documents\Lusofona\3 Ano\SIM\Projecto_Backup\Lives\BLL\bin\Debug\BO.pdb
+C:\Users\Paulo Luis\Documents\Lusofona\3 Ano\SIM\Projecto_Backup\Lives\BLL\bin\Debug\DAL.pdb
+C:\Users\Paulo Luis\Documents\Lusofona\3 Ano\SIM\Projecto_Backup\Lives\BLL\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Paulo Luis\Documents\Lusofona\3 Ano\SIM\Projecto_Backup\Lives\BLL\obj\Debug\BLL.dll
+C:\Users\Paulo Luis\Documents\Lusofona\3 Ano\SIM\Projecto_Backup\Lives\BLL\obj\Debug\BLL.pdb
