@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UserLayout.master" AutoEventWireup="true"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/User/CorpoUtilizador.master" AutoEventWireup="true"
     CodeBehind="AlterarPassword.aspx.cs" Inherits="Lives.User.AlterarPassword" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="corpo" runat="server">
