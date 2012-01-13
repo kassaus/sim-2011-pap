@@ -14,8 +14,7 @@
     <AssemblyName>Lives</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
-    <SilverlightApplicationList>
-    </SilverlightApplicationList>
+    <SilverlightApplicationList>{FA0FC5E5-EF18-4BA5-B9BD-FF7A62A1E611}|..\VideoViewer\VideoViewer.csproj|ClientBin|True</SilverlightApplicationList>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -81,12 +80,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Account\ChangePassword.aspx" />
-    <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\RecoverPass.aspx" />
-    <Content Include="Account\Register.aspx" />
     <Content Include="Admin\AdminPage.aspx" />
-    <Content Include="ClientBin\Viwer.xap" />
+    <Content Include="ClientBin\Debug\VideoViewer.xap" />
     <Content Include="Silverlight.js" />
     <Content Include="Videos\dancru.wmv" />
     <Content Include="Videos\marinheiro.wmv" />
@@ -112,38 +108,16 @@
     <Content Include="User\AlterarPassword.aspx" />
     <Content Include="User\HomeUser.aspx" />
     <Content Include="User\UserSucessoPassword.aspx" />
-    <Content Include="ViwerTestPage.aspx" />
-    <Content Include="ViwerTestPage.html" />
+    <Content Include="VideoViewerTestPage.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account\ChangePassword.aspx.cs">
-      <DependentUpon>ChangePassword.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Account\ChangePassword.aspx.designer.cs">
-      <DependentUpon>ChangePassword.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Account\ChangePasswordSuccess.aspx.cs">
-      <DependentUpon>ChangePasswordSuccess.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Account\ChangePasswordSuccess.aspx.designer.cs">
-      <DependentUpon>ChangePasswordSuccess.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Account\RecoverPass.aspx.cs">
       <DependentUpon>RecoverPass.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\RecoverPass.aspx.designer.cs">
       <DependentUpon>RecoverPass.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Account\Register.aspx.cs">
-      <DependentUpon>Register.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Account\Register.aspx.designer.cs">
-      <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\CorpoAdministrador.master.cs">
       <DependentUpon>CorpoAdministrador.master</DependentUpon>
@@ -217,12 +191,7 @@
       <DependentUpon>TopoAutenticacao.Master</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Account\Web.config" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="TopoAutenticacao.Master" />
   </ItemGroup>
