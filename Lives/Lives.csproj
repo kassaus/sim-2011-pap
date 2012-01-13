@@ -83,12 +83,12 @@
     <Content Include="Account\RecoverPass.aspx" />
     <Content Include="Admin\AdminPage.aspx" />
     <Content Include="ClientBin\Debug\VideoViewer.xap" />
+    <Content Include="Default.aspx" />
     <Content Include="Silverlight.js" />
     <Content Include="Videos\dancru.wmv" />
     <Content Include="Videos\marinheiro.wmv" />
     <Content Include="Videos\Shark.wmv" />
     <Content Include="Estilo.css" />
-    <Content Include="Default.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="images\categorias.png" />
     <Content Include="images\Diabo.png" />
@@ -133,16 +133,19 @@
     <Compile Include="Admin\AdminPage.aspx.designer.cs">
       <DependentUpon>AdminPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="TopoComumAutenticado.Master.cs">
       <DependentUpon>TopoComumAutenticado.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="TopoComumAutenticado.Master.designer.cs">
       <DependentUpon>TopoComumAutenticado.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
