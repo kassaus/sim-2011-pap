@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.Security;
-using BO;
-using BLL;
 using System.Text;
+using System.Web.Security;
+using System.Web.UI.WebControls;
+using BLL;
+using BO;
 
 namespace Lives.Users
 {
@@ -62,15 +58,15 @@ namespace Lives.Users
 
         protected void lbtnEditar_Click(object sender, EventArgs e)
         {
-            
+
             Video videoEditar;
             LinkButton editar = sender as LinkButton;
             GridViewRow row = (GridViewRow)editar.NamingContainer;
             GridView Videos = (GridView)row.NamingContainer;
             string VideoId = Convert.ToString(Videos.DataKeys[row.RowIndex].Value);
             StringBuilder chaves = new StringBuilder();
-            
-            
+
+
 
             MultiViewVideos.ActiveViewIndex = 1;
             if (CheckBox1.Checked || CheckBox1.Checked || CheckBox1.Checked)
@@ -85,14 +81,14 @@ namespace Lives.Users
             CheckBox3.Enabled = false;
 
             VideoBO videoBO = new VideoBO();
-            videoEditar = videoBO.obterVideo(Int32.Parse(VideoId));
+            videoEditar = videoBO.obterVideo(int.Parse(VideoId));
             txtBoxTitulo_TextBoxWatermarkExtender.WatermarkText = videoEditar.titulo;
 
             foreach (Subcategoria subCat in videoEditar.Subcategorias)
             {
                 chaves.Append(", ");
                 chaves.Append(subCat.nome);
-                               
+
             }
             if (chaves.Length > 0)
             {
@@ -101,7 +97,7 @@ namespace Lives.Users
 
             lblChaves.Text = chaves.ToString();
 
-            
+
         }
 
 
@@ -116,7 +112,7 @@ namespace Lives.Users
             string VideoId = Convert.ToString(Videos.DataKeys[row.RowIndex].Value);
 
             VideoBO videoBO = new VideoBO();
-            bool teste = videoBO.removeVideo(Int32.Parse(VideoId));
+            bool teste = videoBO.removeVideo(int.Parse(VideoId));
 
             ListaVideos.DataBind();
 
@@ -128,32 +124,24 @@ namespace Lives.Users
         protected void btnCategorizar_Click(object sender, EventArgs e)
         {
             string subCat = null;
-            
+
 
             SubcategoriaBO subCatBO = new SubcategoriaBO();
             subCat = subCatBO.obterSubCategoriaId(Convert.ToInt32(ddlSubcategorias.SelectedValue)).nome;
             lblErro.Visible = true;
             lblErro.Text = "É necessário escolher uma categoria!";
 
-            //if (!lblChaves.Text.Equals(""))
-            //{
 
 
-                
-            //    if (lblChaves.Text.Equals(chaves))
-            //        chaves.Append(ddlSubcategorias.DataTextField);
-            //    lblChaves.Text = chaves.ToString();
-            //}
-            //else
-            //{
-            //    lblErro.Visible = true;
-            //    lblErro.Text = "É necessário escolher uma categoria!";
-            //}
+
+
+
+
         }
 
-       
 
-        
+
+
 
         protected void btnApagarSubcat_Click(object sender, EventArgs e)
         {

@@ -15,10 +15,10 @@ namespace Lives.Account
         {
             FormsAuthentication.SetAuthCookie(RegisterUser.UserName, false /* createPersistentCookie */);
 
-            
+
 
             string continueUrl = RegisterUser.ContinueDestinationPageUrl;
-            if (String.IsNullOrEmpty(continueUrl))
+            if (string.IsNullOrEmpty(continueUrl))
             {
                 continueUrl = "~/";
             }

@@ -1,9 +1,8 @@
-﻿using BO;
-using System.Linq;
+﻿using System;
 using System.Collections.Generic;
-using System;
-using System.Data.Objects.DataClasses;
 using System.Data.Objects;
+using System.Linq;
+using BO;
 
 namespace DAL
 {
@@ -93,18 +92,8 @@ namespace DAL
             return lista;
         }
 
-        //public List<Video> obterPorUser(Guid idUser)
-        //{
-        //    List<Video> lista = null;
-        //    try
-        //    {
-        //        lista = (from video in db.Video where video.id_user == idUser select video).ToList<Video>();
-        //    }
-        //    catch { }
-
-        //    return lista;
-        //}
-
+       
+       
        
 
         public List<Video> obterVideosCategoriaUser(int cat, Guid idUser)

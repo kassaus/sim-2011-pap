@@ -10,7 +10,7 @@
 namespace Lives {
     
     
-    public partial class user_topo {
+    public partial class TopoAutenticacao {
         
         /// <summary>
         /// head control.
