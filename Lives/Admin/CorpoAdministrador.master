@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" MasterPageFile="~/AdminTopo.Master" AutoEventWireup="true"
+﻿<%@ Master Language="C#" MasterPageFile="~/TopoComumAutenticado.Master" AutoEventWireup="true"
     CodeBehind="CorpoAdministrador.master.cs" Inherits="Lives.AdminLayout" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UserLayout.master" AutoEventWireup="true"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/User/CorpoUtilizador.master" AutoEventWireup="true"
     CodeBehind="HomeUser.aspx.cs" Inherits="Lives.Users.HomeUser" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
