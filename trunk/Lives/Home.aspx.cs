@@ -29,7 +29,7 @@ namespace Lives
                 Roles.AddUserToRole(user.UserName, "user");
             }
             catch { }
-            if (String.IsNullOrEmpty(continueUrl))
+            if (string.IsNullOrEmpty(continueUrl))
             {
                 continueUrl = "~/Home.aspx";
             }

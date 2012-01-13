@@ -1,5 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="TopoAutenticacao.Master.cs"
-    Inherits="Lives.user_topo" %>
+    Inherits="Lives.TopoAutenticacao" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -18,7 +18,7 @@
                     Width="112px" />
             </div>
             <div style="float: right">
-                <asp:Login ID="Login2" runat="server" DestinationPageUrl="~/ghost.aspx" RenderOuterTable="False"
+                <asp:Login ID="Login2" runat="server" DestinationPageUrl="~/Default.aspx" RenderOuterTable="False"
                     Style="margin-left: 0px; color: #FF0000;" FailureText="O nome de utilizador ou a palavra-passe que introduziu estão incorretos." PasswordRecoveryText="esqueceste a password?">
                     <LayoutTemplate>
                         <table cellpadding="1" cellspacing="0" style="border-collapse: collapse;">

@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using BO;
-using System.Data.Objects.DataClasses;
 
 namespace DAL
 {
@@ -61,7 +59,7 @@ namespace DAL
 
         #region // inserir, alterar e apagar
 
-        public bool insereSubCategoria(Subcategoria novaSubcategoria){
+        public bool insereSubCategoria(Subcategoria novaSubcategoria) {
         bool sucesso = false;
             try
             {

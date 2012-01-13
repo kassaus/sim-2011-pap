@@ -1,27 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using BO;
 
 namespace DAL
-{    
+{
     public class CategoriaDO
     {
         private Entities db { get; set; }
 
-         public CategoriaDO()
+        public CategoriaDO()
         {
             db = new Entities();
         }
 
         #region // SELECT
 
-         public Categoria obterCategoriaId(int idCat)
-         {
+        public Categoria obterCategoriaId(int idCat)
+        {
             Categoria aux = null;
 
-             try
+            try
             {
                 aux = (from cat in db.Categoria
                        where cat.id == idCat
@@ -30,19 +29,19 @@ namespace DAL
             catch (Exception) { }
 
             return aux;
-         }
+        }
 
-         public List<Categoria> obterTodasCategorias()
-         {
-             List<Categoria> lista = null;
-             try
-             {
-                 lista = (from cat in db.Categoria select cat).ToList<Categoria>();
-             }
-             catch { }
+        public List<Categoria> obterTodasCategorias()
+        {
+            List<Categoria> lista = null;
+            try
+            {
+                lista = (from cat in db.Categoria select cat).ToList<Categoria>();
+            }
+            catch { }
 
-             return lista;
-         }
+            return lista;
+        }
 
         #endregion
     }

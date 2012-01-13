@@ -2,29 +2,29 @@
 
 namespace Lives
 {
-    public partial class ghost : System.Web.UI.Page
+    public partial class Default : System.Web.UI.Page
     {
-        //Boolean teste;
+        // Boolean teste;
         protected void Page_Load(object sender, EventArgs e)
         {
-            //teste = Membership.ValidateUser("pauloluis", "123456");
+            // teste = Membership.ValidateUser("pauloluis", "123456");
 
             if (!Request.IsAuthenticated)
             {
                 Response.Redirect("Home.aspx");
-                //"~/Account/Login.aspx"
+                // "~/Account/Login.aspx"
             }
 
             if (User.IsInRole("admin"))
             {
-                
+
                 Response.Redirect("~/Admin/AdminPage.aspx", true);
             }
 
             if (User.IsInRole("user"))
             {
                 Response.Redirect("~/user/HomeUser.aspx", true);
-            }          
+            }
 
 
         }
