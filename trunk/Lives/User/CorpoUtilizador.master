@@ -2,7 +2,7 @@
     CodeBehind="CorpoUtilizador.master.cs" Inherits="Lives.UserLayout" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="Estilo.css" rel="stylesheet" type="text/css" />
+    <link href="../Estilo.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
         .style1
         {
@@ -37,12 +37,8 @@
                     <a class="style1" href="#" rel="nofollow">upload Vídeos</a></li>
                 
             </div>
-        </div>
-        <div id="ContentorCorpoInterior">
-            <div id="CorpoInterior">
+        </div>  
                 <asp:ContentPlaceHolder ID="corpo" runat="server">
                 </asp:ContentPlaceHolder>
-            </div>
-        </div>
     </div>
 </asp:Content>

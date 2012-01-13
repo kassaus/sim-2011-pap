@@ -44,11 +44,7 @@
                     <a href="AdminListagensVideos.aspx" class="style1">listagens</a></li>
             </div>
         </div>
-        <div id="ContentorCorpoInterior">
-            <div id="CorpoInterior">
                 <asp:ContentPlaceHolder ID="corpo" runat="server">
                 </asp:ContentPlaceHolder>
-            </div>
-        </div>
     </div>
 </asp:Content>
