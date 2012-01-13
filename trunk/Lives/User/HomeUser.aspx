@@ -53,61 +53,63 @@
             </div>
             <asp:MultiView ID="MultiViewVideos" runat="server" ActiveViewIndex="0">
                 <asp:View ID="View1" runat="server">
-                    <hr />
-                    <h3 class="subtitulo">
-                        Vídeos</h3>
+                    <div style="padding-bottom: 10px; border-top-style: solid; border-top-width: thin;
+                        border-top-color: #666; border-bottom-style: solid; border-bottom-width: thin;
+                        border-bottom-color: #666;">
+                        <h3 class="subtitulo">
+                            Vídeos</h3>
+                    </div>
                     <asp:GridView ID="ListaVideos" runat="server" AutoGenerateColumns="False" GridLines="None"
                         OnRowDataBound="ListaVideos_RowDataBound" ShowHeader="False" DataKeyNames="id"
                         DataSourceID="ODSListaVideos">
                         <Columns>
                             <asp:TemplateField>
                                 <ItemTemplate>
-                                    <div style="border-top-style: solid; border-top-width: thin; border-top-color: #666;">
-                                        <div style="float: left; margin-left: 10px; padding-bottom: 10px;">
-                                            <strong>Título:</strong>&nbsp
-                                            <asp:Label ID="Label1" runat="server" Font-Bold="false" Text='<%# Eval("titulo") %>'></asp:Label><br />
-                                            <div style="margin-top: 5px">
-                                                <object classid="clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95" width="252" height="189"
-                                                    codebase="http://www.microsoft.com/Windows/MediaPlayer/">
-                                                    <param name="Filename" value='<%# Eval("url") %>'>
-                                                    <param name="AutoStart" value="false">
-                                                    <param name="ShowControls" value="true">
-                                                    <param name="BufferingTime" value="2">
-                                                    <param name="ShowStatusBar" value="false">
-                                                    <param name="AutoSize" value="true">
-                                                    <param name="InvokeURLs" value="false">
-                                                    <embed src='<%# "/Videos/" + Eval("url") %>' type="application/x-mplayer2" autostart="0"
-                                                        enabled="1" showstatusbar="0" showdisplay="1" showcontrols="1" pluginspage="http://www.microsoft.com/Windows/MediaPlayer/"
-                                                        codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=6,0,0,0"
-                                                        width="252" height="189"></embed>
-                                                </object>
-                                            </div>
-                                            <div style="margin-top: 5px">
+                                    <div style="position: relative; margin-left: 10px; padding-bottom: 10px; padding-top: 10px; width:500px">
+                                        <strong>Título:</strong>&nbsp
+                                        <asp:Label ID="Label1" runat="server" Font-Bold="false" Text='<%# Eval("titulo") %>'></asp:Label><br />
+                                        <div style="position: relative; margin-top: 5px; border-bottom-style: solid; border-bottom-width: thin;
+                                            border-bottom-color: #666">
+                                            <object classid="clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95" width="252" height="189"
+                                                codebase="http://www.microsoft.com/Windows/MediaPlayer/">
+                                                <param name="Filename" value='<%# Eval("url") %>'>
+                                                <param name="AutoStart" value="false">
+                                                <param name="ShowControls" value="true">
+                                                <param name="BufferingTime" value="2">
+                                                <param name="ShowStatusBar" value="false">
+                                                <param name="AutoSize" value="true">
+                                                <param name="InvokeURLs" value="false">
+                                                <embed src='<%# "/Videos/" + Eval("url") %>' type="application/x-mplayer2" autostart="0"
+                                                    enabled="1" showstatusbar="0" showdisplay="1" showcontrols="1" pluginspage="http://www.microsoft.com/Windows/MediaPlayer/"
+                                                    codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=6,0,0,0"
+                                                    width="252" height="189"></embed>
+                                            </object>
+                                            <div style="position: relative; top: 5px; padding-bottom:20px">
                                                 <span style="font-weight: bold">Publicado:</span>
                                                 <asp:Label ID="Label38" runat="server" Text='<%# Eval("data") %>'></asp:Label><br />
                                                 <span style="font-weight: bold">Descrição:</span>
                                                 <asp:Label ID="Label2" runat="server" Text='<%# Eval("descricao") %>'></asp:Label><br />
                                             </div>
-                                        </div>
-                                        <div style="float: left; padding-left: 10px; padding-top: 20px">
-                                            <span style="font-weight: bold">Chaves:</span>
-                                            <asp:Repeater runat="server" DataSource='<%# Eval("Subcategorias") %>' ID="SubCats">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="Label3" runat="server" Text='<%# Eval("nome") + "  " %>'></asp:Label>
-                                                </ItemTemplate>
-                                            </asp:Repeater>
-                                            <div>
-                                                <span style="font-weight: bold">Aprovado?<asp:CheckBox ID="chkbAprovado" runat="server"
-                                                    Text="" Checked='<%# (int) Eval("Estado.id") == 2 %>' Enabled="False" /><br />
-                                                </span>
-                                            </div>
-                                            <div style="position: relative; top: 20px">
-                                                <asp:LinkButton ID="lbtnEditar" CssClass="botaoLogin" Font-Underline="false" Width="80px"
-                                                    runat="server" OnClick="lbtnEditar_Click">Editar</asp:LinkButton>
-                                            </div>
-                                            <div style="position: relative; top: 70px">
-                                                <asp:LinkButton ID="lbtnApagar" CssClass="botaoLogin" Font-Underline="false" ForeColor="red"
-                                                    Width="80px" runat="server" OnClick="lbtnApagarVideo_Click">Apagar</asp:LinkButton>
+                                            <div style="position: absolute; top: 0px; left: 267px; width: 200px;">
+                                                <span style="font-weight: bold">Etiquetas:</span>
+                                                <asp:Repeater runat="server" DataSource='<%# Eval("Subcategorias") %>' ID="SubCats">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="Label3" runat="server" Text='<%# Eval("nome") + "  " %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:Repeater>
+                                                <div>
+                                                    <span style="font-weight: bold">Aprovado?<asp:CheckBox ID="chkbAprovado" runat="server"
+                                                        Text="" Checked='<%# (int) Eval("Estado.id") == 2 %>' Enabled="False" /><br />
+                                                    </span>
+                                                </div>
+                                                <div style="position: relative; top: 20px">
+                                                    <asp:LinkButton ID="lbtnEditar" CssClass="botaoLogin" Font-Underline="false" Width="80px"
+                                                        runat="server" OnClick="lbtnEditar_Click">Editar</asp:LinkButton>
+                                                </div>
+                                                <div style="position: relative; top: 70px">
+                                                    <asp:LinkButton ID="lbtnApagar" CssClass="botaoLogin" Font-Underline="false" ForeColor="red"
+                                                        Width="80px" runat="server" OnClick="lbtnApagarVideo_Click">Apagar</asp:LinkButton>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

@@ -18,8 +18,9 @@ namespace Lives.Users
             MembershipUser user;
             user = Membership.GetUser();
             Guid idUser = new Guid(user.ProviderUserKey.ToString());
-
             idUserHide.Value = idUser.ToString();
+
+
         }
 
 
@@ -49,8 +50,8 @@ namespace Lives.Users
                 LinkButton lbtnEditar = (LinkButton)e.Row.FindControl("lbtnEditar");
                 if (chkbAprovado.Checked)
                 {
-                    lbtnApagar.Enabled = false;
-                    lbtnEditar.Enabled = false;
+                    lbtnApagar.Visible = false;
+                    lbtnEditar.Visible = false;
                 }
             }
 
