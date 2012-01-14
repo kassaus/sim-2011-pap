@@ -9,7 +9,7 @@
 
 html
 {
-	overflow:hidden;
+	overflow: hidden;
 }
 
 /* Alteração dos parâmetros da tag de link */
@@ -83,13 +83,13 @@ html
 
 .BoxForm
 {
-	height:25px;
-	width:200px;
-	left: 0px;    
+	height: 25px;
+	width: 200px;
+	left: 0px;
 	background-color: #FFF;
 	border: thin solid #a1afcb;
 	font-size: 12pt;
-	vertical-align:middle;
+	vertical-align: middle;
 	font-family: "lucida grande";
 	padding-left: 0px;
 	margin-left: 0px;
@@ -139,29 +139,24 @@ html
 
 .home_backoffice
 {
-	position:relative;
-	width:100%;
-	/*height:300px;*/
-	/*background-color:Blue;*/
+	position: relative;
+	width: 100%; /*height:300px;*/ /*background-color:Blue;*/
 }
 
 .home_backoffice_video
 {
-	position:absolute;
-	top:0px;
-	left:0;
-	width:70%;
-	/*height:600px;*/
-	/*background-color:Blue;*/
+	position: absolute;
+	top: 0px;
+	left: 0;
+	width: 70%; /*height:600px;*/ /*background-color:Blue;*/
 }
 
 .home_backoffice_registo
 {
-	position:absolute;
-	top:0px;
-	right:15px;
-	width: 30%;
-	/*background-color:red;*/    
+	position: absolute;
+	top: 0px;
+	right: 15px;
+	width: 30%; /*background-color:red;*/
 }
 
 div#ContentorMenuCabecalho
@@ -330,7 +325,7 @@ div#ContentorCorpoInterior
 	width: 24px;
 }
 
-hr 
+hr
 {
 	color: #4e4a47;
 }
@@ -344,7 +339,6 @@ hr
 {
 	height: 280px;
 	width: 100%;
-	
 }
 
 .contentorListagemVideosAdmin
@@ -390,12 +384,12 @@ hr
 	right: 398px;
 	height: 20px;
 	width: 95px;
-	font-size: 12px;   
+	font-size: 12px;
 	color: #70ab56;
-	font-weight:bold;
+	font-weight: bold;
 	text-align: center;
-	vertical-align:middle;
-	text-decoration:none;
+	vertical-align: middle;
+	text-decoration: none;
 }
 
 .botaoListagemremover
@@ -411,7 +405,7 @@ hr
 	font-weight: bold;
 	text-align: center;
 	vertical-align: middle;
-	text-decoration:none;
+	text-decoration: none;
 }
 
 .botaoRegisto
@@ -423,46 +417,44 @@ hr
 	font-weight: bold;
 	text-align: center;
 	vertical-align: middle;
-	
 }
 
 .botaoRemoverUser
 {
 	position: absolute;
 	top: 20px;
-	right:200px;
+	right: 200px;
 	width: 120px;
-	height:25px;
+	height: 25px;
 	font-size: 14px;
 	background-color: #FF0000;
-	border: thin solid #3b6e22;    
+	border: thin solid #3b6e22;
 	color: #FFFFFF;
 	font-weight: bold;
 	text-align: center;
 	vertical-align: middle;
-	
 }
 
 .botaoPassUser
 {
 	position: absolute;
 	top: 20px;
-	right:400px;
+	right: 400px;
 	width: 120px;
 	font-size: 14px;
 	background-color: #70ab56;
 	border: thin solid #3b6e22;
 	color: #FFFFFF;
-	font-weight:bold;
+	font-weight: bold;
 	text-align: center;
-	vertical-align:middle; 
+	vertical-align: middle;
 }
 
 .letraCinzentoGrande
 {
 	color: #666;
-	font-size:2.5em;
-	font-weight: bold;    
+	font-size: 2.5em;
+	font-weight: bold;
 }
 
 .letraCinzentoPeq
@@ -480,15 +472,15 @@ hr
 .titulo
 {
 	color: #666;
-	font-size:2em;
-	font-weight: bold;    
+	font-size: 2em;
+	font-weight: bold;
 }
 
 .subtitulo
 {
 	color: #666;
-	font-size:1.5em;
-	font-weight: bold;    
+	font-size: 1.5em;
+	font-weight: bold;
 	margin-bottom: 5px;
 }
 
@@ -496,21 +488,20 @@ hr
 
 .contentorRodaPe
 {
-	position:absolute;
-	width:100%; 
-	bottom:0px;
+	position: absolute;
+	width: 100%;
+	bottom: 0px;
 	border-top-style: solid;
 	border-top-width: thin;
 	border-top-color: #666;
 }
 .rodaPe
 {
-	position:relative;
-	bottom:0px;
+	position: relative;
+	bottom: 0px;
 	width: 100%;
 	height: 20px;
-	margin-left:20px;
-	
+	margin-left: 20px;
 }
 
 .failureNotification
@@ -521,16 +512,16 @@ hr
 
 .labelChangePassword
 {
-	width:300px;
+	width: 300px;
 }
 
-.changePassword 
+.changePassword
 {
 	width: 42%;
-	margin-left:100px;
+	margin-left: 100px;
 }
-	
-	.passAlteradaSucesso
+
+.passAlteradaSucesso
 {
 	border: thin dashed #666;
 	width: 500px;
@@ -545,13 +536,8 @@ hr
 .redError
 {
 	color: #333;
-	background:#ffebe8;
+	background: #ffebe8;
 	border: 1px solid #dd3c10;
-	text-align:center;
-	padding:10px;
-}
-	
-.etiqueta 
-{
-	cursor:pointer;
+	text-align: center;
+	padding: 10px;
 }
