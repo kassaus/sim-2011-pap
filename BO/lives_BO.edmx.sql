@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 01/08/2012 22:06:31
--- Generated from EDMX file: C:\Users\Paulo Luis\Dropbox\Projectos\escola\Lives\BO\lives_BO.edmx
+-- Date Created: 01/14/2012 20:10:07
+-- Generated from EDMX file: D:\Workspaces\Visual Studio 2010\Lives\BO\lives_BO.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -61,8 +61,8 @@ CREATE TABLE [dbo].[Categoria] (
 );
 GO
 
--- Creating table 'EstadoVideo'
-CREATE TABLE [dbo].[EstadoVideo] (
+-- Creating table 'Estado'
+CREATE TABLE [dbo].[Estado] (
     [id] int IDENTITY(1,1) NOT NULL,
     [estado] nvarchar(max)  NOT NULL
 );
@@ -83,6 +83,7 @@ CREATE TABLE [dbo].[Video] (
     [url] nvarchar(255)  NOT NULL,
     [data] datetime  NOT NULL,
     [id_user] uniqueidentifier  NOT NULL,
+    [titulo] nvarchar(50)  NOT NULL,
     [Estado_id] int  NOT NULL
 );
 GO
@@ -104,9 +105,9 @@ ADD CONSTRAINT [PK_Categoria]
     PRIMARY KEY CLUSTERED ([id] ASC);
 GO
 
--- Creating primary key on [id] in table 'EstadoVideo'
-ALTER TABLE [dbo].[EstadoVideo]
-ADD CONSTRAINT [PK_EstadoVideo]
+-- Creating primary key on [id] in table 'Estado'
+ALTER TABLE [dbo].[Estado]
+ADD CONSTRAINT [PK_Estado]
     PRIMARY KEY CLUSTERED ([id] ASC);
 GO
 
@@ -132,11 +133,25 @@ GO
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
 
+-- Creating foreign key on [Categoria_id] in table 'Subcategoria'
+ALTER TABLE [dbo].[Subcategoria]
+ADD CONSTRAINT [FK_CategoriaSubcategoria]
+    FOREIGN KEY ([Categoria_id])
+    REFERENCES [dbo].[Categoria]
+        ([id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CategoriaSubcategoria'
+CREATE INDEX [IX_FK_CategoriaSubcategoria]
+ON [dbo].[Subcategoria]
+    ([Categoria_id]);
+GO
+
 -- Creating foreign key on [Estado_id] in table 'Video'
 ALTER TABLE [dbo].[Video]
 ADD CONSTRAINT [FK_EstadoVideoVideo]
     FOREIGN KEY ([Estado_id])
-    REFERENCES [dbo].[EstadoVideo]
+    REFERENCES [dbo].[Estado]
         ([id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 
@@ -167,20 +182,6 @@ ADD CONSTRAINT [FK_SubcategoriaVideo_Video]
 CREATE INDEX [IX_FK_SubcategoriaVideo_Video]
 ON [dbo].[SubcategoriaVideo]
     ([Videos_id]);
-GO
-
--- Creating foreign key on [Categoria_id] in table 'Subcategoria'
-ALTER TABLE [dbo].[Subcategoria]
-ADD CONSTRAINT [FK_CategoriaSubcategoria]
-    FOREIGN KEY ([Categoria_id])
-    REFERENCES [dbo].[Categoria]
-        ([id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_CategoriaSubcategoria'
-CREATE INDEX [IX_FK_CategoriaSubcategoria]
-ON [dbo].[Subcategoria]
-    ([Categoria_id]);
 GO
 
 -- --------------------------------------------------
