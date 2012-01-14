@@ -130,13 +130,13 @@ namespace Lives.Users {
         protected global::System.Web.UI.WebControls.GridView ListaVideos;
         
         /// <summary>
-        /// ODSListaVideos control.
+        /// ODSVideosByUser control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ODSListaVideos;
+        protected global::System.Web.UI.WebControls.ObjectDataSource ODSVideosByUser;
         
         /// <summary>
         /// VideoEditView control.
