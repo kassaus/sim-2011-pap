@@ -88,19 +88,6 @@ namespace BLL
             return lista;
         }
 
-        public List<Video> obterPorUser(Guid idUser)
-        {
-            List<Video> lista = null;
-            lista = videosDataManager.obterVideosPorUser(idUser);
-
-            if (lista == null)
-            {
-                lista = new List<Video>();
-            }
-
-            return lista;
-        }
-
         public List<Video> obterVideosCategoriaUser(int cat, Guid idUser)
         {
             List<Video> lista = null;
@@ -132,6 +119,10 @@ namespace BLL
             return videosDataManager.obterVideoMaisRecente(estado);
         }
 
+        public List<Video> GetByUser(Guid idUser)
+        {
+			return videosDataManager.obterVideosPorUser(idUser);
+        }
 
         #region // INSERT, DELETE, UPDATE
 
