@@ -134,8 +134,8 @@
                                 PropertyName="Value" />
                         </SelectParameters>
                     </asp:ObjectDataSource>
-                    <asp:DetailsView ID="VideoDetailsView" runat="server" DataSourceID="ODSVideoToEdit">
-                        <HeaderTemplate>
+                    <asp:Repeater ID="VideoDetailsView" runat="server" DataSourceID="ODSVideoToEdit">
+                        <ItemTemplate>
                             <div style="padding-bottom: 10px; border-top-style: solid; border-top-width: thin;
                                 border-top-color: #666; border-bottom-style: solid; border-bottom-width: thin;
                                 border-bottom-color: #666;">
@@ -161,7 +161,8 @@
                                         <span style="margin-left: 50px; font-weight: bold">Etiquetas: </span>
                                         <asp:Repeater ID="TagRepeater" runat="server" DataSource='<%# Eval("Subcategorias") %>'>
                                             <ItemTemplate>
-                                                <asp:LinkButton runat="server" CssClass="etiqueta" Text='<%# Eval("nome") %>' OnClick="labelClickEventHandler" />&nbsp;
+                                                <asp:LinkButton runat="server" Text='<%# Eval("nome") %>' OnClick="labelClickEventHandler"
+                                                    SkinID="EtiquetaRemovivel" />
                                             </ItemTemplate>
                                         </asp:Repeater>
                                         <span style="margin-left: 50px; padding: 10px"></span>
@@ -190,11 +191,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </HeaderTemplate>
-                        <EmptyDataTemplate>
-                            Não foi possível encontrar o vídeo que seleccionou, por favor contacte um administrador.
-                        </EmptyDataTemplate>
-                    </asp:DetailsView>
+                        </ItemTemplate>
+                    </asp:Repeater>
                 </asp:View>
                 <asp:View ID="View3" runat="server">
                 </asp:View>
