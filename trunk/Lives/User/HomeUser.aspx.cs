@@ -4,11 +4,16 @@ using System.Web.Security;
 using System.Web.UI.WebControls;
 using BLL;
 using BO;
+using System.Windows.Documents;
+using System.Collections.Generic;
 
 namespace Lives.Users
 {
     public partial class HomeUser : System.Web.UI.Page
     {
+        private VideoBO gestorVideos { get; set; }
+        private SubcategoriaBO gestorSubcategorias { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Request.IsAuthenticated)
@@ -20,7 +25,15 @@ namespace Lives.Users
             Guid idUser = new Guid(user.ProviderUserKey.ToString());
             idUserHide.Value = idUser.ToString();
 
+            if (gestorSubcategorias == null)
+            {
+                gestorSubcategorias = new SubcategoriaBO();
+            }
 
+            if (gestorVideos == null)
+            {
+                gestorVideos = new VideoBO();
+            }
         }
 
 
@@ -59,49 +72,29 @@ namespace Lives.Users
 
         protected void lbtnEditar_Click(object sender, EventArgs e)
         {
-
-            Video videoEditar;
-            LinkButton editar = sender as LinkButton;
-            GridViewRow row = (GridViewRow)editar.NamingContainer;
-            GridView Videos = (GridView)row.NamingContainer;
-            string VideoId = Convert.ToString(Videos.DataKeys[row.RowIndex].Value);
-            StringBuilder chaves = new StringBuilder();
-
-
-
+            GridViewRow row = (GridViewRow)(sender as LinkButton).NamingContainer;
+            idVideoToEdit.Value = ((GridView)row.NamingContainer).DataKeys[row.RowIndex].Value.ToString();
+    
             MultiViewVideos.ActiveViewIndex = 1;
-            if (CheckBox1.Checked || CheckBox1.Checked || CheckBox1.Checked)
+            if (CheckBoxVideosAprovados.Checked || CheckBoxVideosAprovados.Checked || CheckBoxVideosAprovados.Checked)
             {
-                CheckBox1.Checked = false;
-                CheckBox2.Checked = false;
-                CheckBox3.Checked = false;
-
-            }
-            CheckBox1.Enabled = false;
-            CheckBox2.Enabled = false;
-            CheckBox3.Enabled = false;
-
-            VideoBO videoBO = new VideoBO();
-            videoEditar = videoBO.obterVideo(int.Parse(VideoId));
-            txtBoxTitulo_TextBoxWatermarkExtender.WatermarkText = videoEditar.titulo;
-
-            foreach (Subcategoria subCat in videoEditar.Subcategorias)
-            {
-                chaves.Append(", ");
-                chaves.Append(subCat.nome);
-
-            }
-            if (chaves.Length > 0)
-            {
-                chaves.Remove(0, 1);
+                CheckBoxVideosAprovados.Checked = false;
+                CheckBoxVideosPorAprovar.Checked = false;
+                CheckBoxTodosVideos.Checked = false;
             }
 
-            lblChaves.Text = chaves.ToString();
-
-
+            CheckBoxVideosAprovados.Enabled = false;
+            CheckBoxVideosPorAprovar.Enabled = false;
+            CheckBoxTodosVideos.Enabled = false;
         }
 
-
+        protected void labelClickEventHandler(object sender, EventArgs e)
+        {
+            LinkButton etiqueta = (LinkButton)sender;
+            Subcategoria subcategoria = gestorSubcategorias.obterSubCategoriaNome(etiqueta.Text);
+            gestorVideos.obterVideo(int.Parse(idVideoToEdit.Value)).Subcategorias.Remove(subcategoria);
+            etiqueta.Parent.DataBind();
+        }
 
         protected void lbtnApagarVideo_Click(object sender, EventArgs e)
         {
@@ -129,8 +122,10 @@ namespace Lives.Users
 
             SubcategoriaBO subCatBO = new SubcategoriaBO();
             subCat = subCatBO.obterSubCategoriaId(Convert.ToInt32(ddlSubcategorias.SelectedValue)).nome;
-            lblErro.Visible = true;
-            lblErro.Text = "É necessário escolher uma categoria!";
+            Button button = (Button)sender;
+            Label erro = (Label)button.Parent.FindControl("lblErro");
+            erro.Visible = true;
+            erro.Text = "É necessário escolher uma categoria!";
 
 
 

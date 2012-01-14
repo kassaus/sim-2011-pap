@@ -15,6 +15,21 @@ namespace DAL
         }
 
         #region // SELECT
+        public Subcategoria obterSubCategoriaNome(string nome)
+        {
+            Subcategoria aux = null;
+
+            try
+            {
+                aux = (from subCat in db.Subcategoria
+                       where subCat.nome == nome
+                       select subCat).FirstOrDefault();
+            }
+            catch (Exception) { }
+
+            return aux;
+        }
+
         public Subcategoria obterSubCategoriaId(int idSubCat)
         {
             Subcategoria aux = null;
@@ -116,6 +131,8 @@ namespace DAL
 
         #endregion
 
+
+        
     }
 
 
