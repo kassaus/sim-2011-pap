@@ -59,7 +59,7 @@ namespace DAL
             List<Video> lista = null;
             try
             {
-                lista = (from video in db.Video where video.id_user == idUser select video).ToList<Video>();
+                lista = (from video in db.Video where video.id_user == idUser && video.Estado.id != 3 select video).ToList<Video>();
             }
             catch { }
 
