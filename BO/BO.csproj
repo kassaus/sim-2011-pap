@@ -56,9 +56,10 @@
       <LastGenOutput>lives_BO.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="App.Config" />
-    <None Include="Properties\DataSources\livesEntities.datasource" />
+    <None Include="Properties\DataSources\Entities.datasource" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="default_values.sql" />
     <Content Include="lives_BO.edmx.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
