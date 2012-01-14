@@ -17,6 +17,11 @@ namespace BLL
 
         #region //Select
 
+        public Subcategoria obterSubCategoriaNome(string nome)
+        {
+            return subCategoriasDataManager.obterSubCategoriaNome(nome);
+        }
+
         public Subcategoria obterSubCategoriaId(int idSubCat)
         {
             return subCategoriasDataManager.obterSubCategoriaId(idSubCat);
@@ -77,5 +82,7 @@ namespace BLL
         }
 
         #endregion
+
+       
     }
 }

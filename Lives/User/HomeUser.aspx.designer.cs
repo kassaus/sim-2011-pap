@@ -31,6 +31,15 @@ namespace Lives.Users {
         protected global::System.Web.UI.WebControls.HiddenField idUserHide;
         
         /// <summary>
+        /// idVideoToEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField idVideoToEdit;
+        
+        /// <summary>
         /// ddlCategorias control.
         /// </summary>
         /// <remarks>
@@ -67,31 +76,31 @@ namespace Lives.Users {
         protected global::System.Web.UI.WebControls.ObjectDataSource OdsSubcategorias;
         
         /// <summary>
-        /// CheckBox1 control.
+        /// CheckBoxVideosAprovados control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox1;
+        protected global::System.Web.UI.WebControls.CheckBox CheckBoxVideosAprovados;
         
         /// <summary>
-        /// CheckBox2 control.
+        /// CheckBoxVideosPorAprovar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox2;
+        protected global::System.Web.UI.WebControls.CheckBox CheckBoxVideosPorAprovar;
         
         /// <summary>
-        /// CheckBox3 control.
+        /// CheckBoxTodosVideos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox3;
+        protected global::System.Web.UI.WebControls.CheckBox CheckBoxTodosVideos;
         
         /// <summary>
         /// MultiViewVideos control.
@@ -130,94 +139,31 @@ namespace Lives.Users {
         protected global::System.Web.UI.WebControls.ObjectDataSource ODSListaVideos;
         
         /// <summary>
-        /// View2 control.
+        /// VideoEditView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View View2;
+        protected global::System.Web.UI.WebControls.View VideoEditView;
         
         /// <summary>
-        /// lblErro control.
+        /// ODSVideoToEdit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblErro;
+        protected global::System.Web.UI.WebControls.ObjectDataSource ODSVideoToEdit;
         
         /// <summary>
-        /// txtBoxTitulo control.
+        /// VideoDetailsView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBoxTitulo;
-        
-        /// <summary>
-        /// txtBoxTitulo_TextBoxWatermarkExtender control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.TextBoxWatermarkExtender txtBoxTitulo_TextBoxWatermarkExtender;
-        
-        /// <summary>
-        /// lblChaves control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblChaves;
-        
-        /// <summary>
-        /// btnCategorizar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCategorizar;
-        
-        /// <summary>
-        /// btnApagarSubcat control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnApagarSubcat;
-        
-        /// <summary>
-        /// FileUpload1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
-        
-        /// <summary>
-        /// Button1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
-        
-        /// <summary>
-        /// Button2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.DetailsView VideoDetailsView;
         
         /// <summary>
         /// View3 control.

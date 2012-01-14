@@ -12,6 +12,7 @@
         }
     </style>
     <asp:HiddenField ID="idUserHide" runat="server" />
+    <asp:HiddenField ID="idVideoToEdit" runat="server" />
     <div id="ContentorCorpoInterior">
         <div class="corpoInterior">
             <h3 class="titulo">
@@ -45,9 +46,9 @@
                 </div>
                 <div style="position: absolute; top: 0px; left: 580px">
                     <p class="letraCinzentoMedia">
-                        <asp:CheckBox ID="CheckBox1" runat="server" AutoPostBack="True" Text="Vídeos aprovados" />&nbsp&nbsp&nbsp&nbsp
-                        <asp:CheckBox ID="CheckBox2" runat="server" AutoPostBack="True" Text="Vídeos reprovados" />&nbsp&nbsp&nbsp&nbsp
-                        <asp:CheckBox ID="CheckBox3" runat="server" AutoPostBack="True" Text="Mostrar todos" />&nbsp&nbsp&nbsp&nbsp
+                        <asp:CheckBox ID="CheckBoxVideosAprovados" runat="server" AutoPostBack="True" Text="Vídeos aprovados" />&nbsp&nbsp&nbsp&nbsp
+                        <asp:CheckBox ID="CheckBoxVideosPorAprovar" runat="server" AutoPostBack="True" Text="Vídeos por aprovar" />&nbsp&nbsp&nbsp&nbsp
+                        <asp:CheckBox ID="CheckBoxTodosVideos" runat="server" AutoPostBack="True" Text="Mostrar todos" />&nbsp&nbsp&nbsp&nbsp
                     </p>
                 </div>
             </div>
@@ -65,7 +66,8 @@
                         <Columns>
                             <asp:TemplateField>
                                 <ItemTemplate>
-                                    <div style="position: relative; margin-left: 10px; padding-bottom: 10px; padding-top: 10px; width:500px">
+                                    <div style="position: relative; margin-left: 10px; padding-bottom: 10px; padding-top: 10px;
+                                        width: 500px">
                                         <strong>Título:</strong>&nbsp
                                         <asp:Label ID="Label1" runat="server" Font-Bold="false" Text='<%# Eval("titulo") %>'></asp:Label><br />
                                         <div style="position: relative; margin-top: 5px; border-bottom-style: solid; border-bottom-width: thin;
@@ -84,7 +86,7 @@
                                                     codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=6,0,0,0"
                                                     width="252" height="189"></embed>
                                             </object>
-                                            <div style="position: relative; top: 5px; padding-bottom:20px">
+                                            <div style="position: relative; top: 5px; padding-bottom: 20px">
                                                 <span style="font-weight: bold">Publicado:</span>
                                                 <asp:Label ID="Label38" runat="server" Text='<%# Eval("data") %>'></asp:Label><br />
                                                 <span style="font-weight: bold">Descrição:</span>
@@ -124,139 +126,75 @@
                         </SelectParameters>
                     </asp:ObjectDataSource>
                 </asp:View>
-                <asp:View ID="View2" runat="server">
-                    <hr />
-                    <h3 class="subtitulo">
-                        Editar Vídeos</h3>
-                    <div style="position: relative; bottom: 1.9em;">
-                        <div style="margin-left: auto; margin-right: auto; width: 300px">
-                            <asp:Label ID="lblErro" CssClass="redError" runat="Server" Visible="false"></asp:Label>
-                        </div>
-                    </div>
-                    <div style="border-top-style: solid; border-top-width: thin; border-top-color: #666;
-                        height: 80px">
-                        <div style="position: relative; top: 0; left: 0; margin-left: 10px; padding-bottom: 10px;">
-                            <p class="letraCinzentoMedia" style="font-weight: bold">
-                                Título:</p>
-                            <div>
-                                <asp:TextBox ID="txtBoxTitulo" runat="server" Columns="50" Width="200px"></asp:TextBox>
-                                <asp:TextBoxWatermarkExtender ID="txtBoxTitulo_TextBoxWatermarkExtender" runat="server"
-                                    Enabled="True" TargetControlID="txtBoxTitulo">
-                                </asp:TextBoxWatermarkExtender>
-                                <span style="margin-left: 50px; font-weight: bold">Chaves: </span>
-                                <asp:Label ID="lblChaves" runat="Server" Text=""></asp:Label>
-                                <span style="margin-left: 50px; padding: 10px"></span>
-                                <asp:Button ID="btnCategorizar" CssClass="botaoLogin" Height="20px" Width="100px"
-                                    runat="server" Text="Classificar" OnClick="btnCategorizar_Click" />
-                                <span style="margin-left: 50px;"></span>
-                                <asp:Button ID="btnApagarSubcat" CssClass="botaoLogin" Height="20px" Width="100px"
-                                    runat="server" Text="Apagar Chaves" OnClick="btnApagarSubcat_Click" />
+                <asp:View ID="VideoEditView" runat="server">
+                    <asp:ObjectDataSource ID="ODSVideoToEdit" runat="server" SelectMethod="obterVideo"
+                        TypeName="BLL.VideoBO">
+                        <SelectParameters>
+                            <asp:ControlParameter ControlID="idVideoToEdit" DbType="Int32" Name="id" ConvertEmptyStringToNull="true"
+                                PropertyName="Value" />
+                        </SelectParameters>
+                    </asp:ObjectDataSource>
+                    <asp:DetailsView ID="VideoDetailsView" runat="server" DataSourceID="ODSVideoToEdit">
+                        <HeaderTemplate>
+                            <div style="padding-bottom: 10px; border-top-style: solid; border-top-width: thin;
+                                border-top-color: #666; border-bottom-style: solid; border-bottom-width: thin;
+                                border-bottom-color: #666;">
+                                <h3 class="subtitulo">
+                                    Editar Vídeos</h3>
                             </div>
-                            <div style="position: relative; top: 0; margin-left: 10px; width: 500px; height: 300px;
-                                background-color: Green">
-                            </div>
-                            <div style="position: relative; top: 0; left: 0; margin-left: 10px; width: 500px;
-                                height: 40px; background-color: red">
-                                <div style="float: left; padding-left: 10px; padding-top: 20px">
-                                    <asp:FileUpload ID="FileUpload1" runat="server" />
-                                </div>
-                                <div style="float: right; padding-top: 20px;">
-                                    <asp:Button ID="Button1" runat="server" CssClass="botaoLogin" Height="20px" Width="100px"
-                                        Text="Cancelar" />
-                                </div>
-                                <div style="float: right; padding-right: 10px; padding-top: 20px">
-                                    <asp:Button ID="Button2" runat="server" CssClass="botaoLogin" Height="20px" Width="100px"
-                                        Text="Confirmar" />
+                            <div style="position: relative; bottom: 1.9em;">
+                                <div style="margin-left: auto; margin-right: auto; width: 300px">
+                                    <asp:Label ID="lblErro" CssClass="redError" runat="Server" Visible="false"></asp:Label>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <%--<table style="width: 100%;">
-                    <tr>
-                        <td>
-                            &nbsp;
-                        </td>
-                        <td>
-                            &nbsp;
-                        </td>
-                        <td>
-                            &nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:CheckBox ID="cbVideoPublico" runat="server" CssClass="letraAzulMedia" Text="Vídeo Publico" />
-                        </td>
-                        <td>
-                            &nbsp;
-                        </td>
-                        <td>
-                            &nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            &nbsp;<asp:TextBox ID="txtLinkYouTube" runat="server" Columns="80" Width="365px">http://www.youtube.com/watch?v=lU5e6bSFnO8</asp:TextBox>
-                            &nbsp;&nbsp;
-                            <asp:Button ID="btnAnexarVideo" runat="server" BackColor="#A1AFCB" ForeColor="White"
-                                OnClick="btnAnexarVideo_Click" Style="font-weight: 700" Text="Anexar" />
-                        </td>
-                        <td>
-                            &nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <asp:Literal ID="Literal2" runat="server"></asp:Literal>
-                        </td>
-                        <td>
-                            &nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" style="text-align: left">
-                            <asp:Label ID="lblErroVideo" runat="server" CssClass="yellowError" Text="Label" Visible="False"></asp:Label>
-                        </td>
-                        <td>
-                            &nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <asp:TextBox ID="txtVideo" runat="server" Columns="80" TextMode="MultiLine">Vá lá escreve alguma coisa, Ex. Estava tão bem...</asp:TextBox>
-                        </td>
-                        <td>
-                            &nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <span style="margin-left: 530px">
-                                <asp:Button ID="btnPartilharVideo1" runat="server" CssClass="botaoRegisto" OnClick="btnPartilharVideo_Click"
-                                    Text="Partilhar" />
-                            </span>
-                        </td>
-                        <td>
-                            &nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            &nbsp;
-                        </td>
-                        <td>
-                            &nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            &nbsp;
-                        </td>
-                        <td>
-                            &nbsp;
-                        </td>
-                    </tr>
-                </table>--%>
+                            <div style="position: relative; margin-left: 10px; padding-bottom: 10px; padding-top: 10px;">
+                                <div style="position: relative; top: 0; left: 0; margin-left: 10px; padding-bottom: 10px;">
+                                    <div>
+                                        <p class="letraCinzentoMedia" style="font-weight: bold">
+                                            Título:
+                                            <asp:TextBox ID="txtBoxTitulo" runat="server" Columns="50" Width="200px"></asp:TextBox></p>
+                                        <asp:TextBoxWatermarkExtender ID="txtBoxTitulo_TextBoxWatermarkExtender" runat="server"
+                                            Enabled="True" TargetControlID="txtBoxTitulo" WatermarkText='<%# Eval("titulo") %>'>
+                                        </asp:TextBoxWatermarkExtender>
+                                    </div>
+                                    <div style="position: absolute; top: 0; left: 220px">
+                                        <span style="margin-left: 50px; font-weight: bold">Etiquetas: </span>
+                                        <asp:Repeater ID="TagRepeater" runat="server" DataSource='<%# Eval("Subcategorias") %>'>
+                                            <ItemTemplate>
+                                                <asp:LinkButton runat="server" CssClass="etiqueta" Text='<%# Eval("nome") %>' OnClick="labelClickEventHandler" />&nbsp;
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+                                        <span style="margin-left: 50px; padding: 10px"></span>
+                                    </div>
+                                    <div>
+                                        <asp:Button ID="btnCategorizar" CssClass="botaoLogin" Height="40px" Width="150px"
+                                            runat="server" Text="Classificar" OnClick="btnCategorizar_Click" />
+                                        <span style="margin-left: 50px;"></span>
+                                        <asp:Button ID="btnApagarSubcat" CssClass="botaoLogin" Height="40px" Width="150px"
+                                            runat="server" Text="Apagar Etiquetas" OnClick="btnApagarSubcat_Click" />
+                                    </div>
+                                    <div style="position: relative; top: 20px; width: 500px; height: 300px; background-color: Green">
+                                    </div>
+                                    <div style="position: relative; top: 10px; width: 500px; height: 40px; background-color: red">
+                                        <div style="position: absolute; top: 5px;">
+                                            <asp:FileUpload ID="FileUpload1" runat="server" />
+                                        </div>
+                                        <div style="position: absolute; top: 5px; right: 120px">
+                                            <asp:Button ID="Button1" runat="server" CssClass="botaoLogin" Height="20px" Width="100px"
+                                                Text="Cancelar" />
+                                        </div>
+                                        <div style="position: absolute; top: 5px; right: 0px">
+                                            <asp:Button ID="Button2" runat="server" CssClass="botaoLogin" Height="20px" Width="100px"
+                                                Text="Confirmar" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </HeaderTemplate>
+                        <EmptyDataTemplate>
+                            Não foi possível encontrar o vídeo que seleccionou, por favor contacte um administrador.
+                        </EmptyDataTemplate>
+                    </asp:DetailsView>
                 </asp:View>
                 <asp:View ID="View3" runat="server">
                 </asp:View>
