@@ -8,18 +8,18 @@
 //------------------------------------------------------------------------------
 
 using System;
-using System.ComponentModel;
-using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Runtime.Serialization;
+using System.Data.EntityClient;
+using System.ComponentModel;
 using System.Xml.Serialization;
+using System.Runtime.Serialization;
 
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
 [assembly: EdmRelationshipAttribute("livesModel", "FK_CategoriaSubcategoria", "Categoria", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(BO.Categoria), "Subcategoria", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(BO.Subcategoria))]
-[assembly: EdmRelationshipAttribute("livesModel", "FK_EstadoVideoVideo", "EstadoVideo", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(BO.EstadoVideo), "Video", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(BO.Video))]
+[assembly: EdmRelationshipAttribute("livesModel", "FK_EstadoVideoVideo", "EstadoVideo", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(BO.Estado), "Video", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(BO.Video))]
 [assembly: EdmRelationshipAttribute("livesModel", "SubcategoriaVideo", "Subcategoria", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(BO.Subcategoria), "Video", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(BO.Video))]
 
 #endregion
@@ -91,18 +91,18 @@ namespace BO
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<EstadoVideo> EstadoVideo
+        public ObjectSet<Estado> Estado
         {
             get
             {
-                if ((_EstadoVideo == null))
+                if ((_Estado == null))
                 {
-                    _EstadoVideo = base.CreateObjectSet<EstadoVideo>("EstadoVideo");
+                    _Estado = base.CreateObjectSet<Estado>("Estado");
                 }
-                return _EstadoVideo;
+                return _Estado;
             }
         }
-        private ObjectSet<EstadoVideo> _EstadoVideo;
+        private ObjectSet<Estado> _Estado;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -148,11 +148,11 @@ namespace BO
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the EstadoVideo EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the Estado EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToEstadoVideo(EstadoVideo estadoVideo)
+        public void AddToEstado(Estado estado)
         {
-            base.AddObject("EstadoVideo", estadoVideo);
+            base.AddObject("Estado", estado);
         }
     
         /// <summary>
@@ -288,24 +288,24 @@ namespace BO
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="livesModel", Name="EstadoVideo")]
+    [EdmEntityTypeAttribute(NamespaceName="livesModel", Name="Estado")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class EstadoVideo : EntityObject
+    public partial class Estado : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new EstadoVideo object.
+        /// Create a new Estado object.
         /// </summary>
         /// <param name="id">Initial value of the id property.</param>
-        /// <param name="estado">Initial value of the estado property.</param>
-        public static EstadoVideo CreateEstadoVideo(global::System.Int32 id, global::System.String estado)
+        /// <param name="estado1">Initial value of the estado property.</param>
+        public static Estado CreateEstado(global::System.Int32 id, global::System.String estado1)
         {
-            EstadoVideo estadoVideo = new EstadoVideo();
-            estadoVideo.id = id;
-            estadoVideo.estado = estado;
-            return estadoVideo;
+            Estado estado = new Estado();
+            estado.id = id;
+            estado.estado = estado1;
+            return estado;
         }
 
         #endregion
@@ -727,15 +727,15 @@ namespace BO
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("livesModel", "FK_EstadoVideoVideo", "EstadoVideo")]
-        public EstadoVideo Estado
+        public Estado Estado
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<EstadoVideo>("livesModel.FK_EstadoVideoVideo", "EstadoVideo").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Estado>("livesModel.FK_EstadoVideoVideo", "EstadoVideo").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<EstadoVideo>("livesModel.FK_EstadoVideoVideo", "EstadoVideo").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Estado>("livesModel.FK_EstadoVideoVideo", "EstadoVideo").Value = value;
             }
         }
         /// <summary>
@@ -743,17 +743,17 @@ namespace BO
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<EstadoVideo> EstadoReference
+        public EntityReference<Estado> EstadoReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<EstadoVideo>("livesModel.FK_EstadoVideoVideo", "EstadoVideo");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Estado>("livesModel.FK_EstadoVideoVideo", "EstadoVideo");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<EstadoVideo>("livesModel.FK_EstadoVideoVideo", "EstadoVideo", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Estado>("livesModel.FK_EstadoVideoVideo", "EstadoVideo", value);
                 }
             }
         }
