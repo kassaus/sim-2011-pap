@@ -62,7 +62,7 @@
                     </div>
                     <asp:GridView ID="ListaVideos" runat="server" AutoGenerateColumns="False" GridLines="None"
                         OnRowDataBound="ListaVideos_RowDataBound" ShowHeader="False" DataKeyNames="id"
-                        DataSourceID="ODSListaVideos">
+                        DataSourceID="ODSVideosByUser">
                         <Columns>
                             <asp:TemplateField>
                                 <ItemTemplate>
@@ -118,9 +118,11 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
+                        <EmptyDataTemplate>
+                            Não tem vídeos publicados.
+                        </EmptyDataTemplate>
                     </asp:GridView>
-                    <asp:ObjectDataSource ID="ODSListaVideos" runat="server" SelectMethod="obterPorUser"
-                        TypeName="BLL.VideoBO">
+                    <asp:ObjectDataSource ID="ODSVideosByUser" runat="server" SelectMethod="GetByUser" TypeName="BLL.VideoBO">
                         <SelectParameters>
                             <asp:ControlParameter ControlID="idUserHide" DbType="Guid" Name="idUser" PropertyName="Value" />
                         </SelectParameters>
@@ -161,8 +163,7 @@
                                         <span style="margin-left: 50px; font-weight: bold">Etiquetas: </span>
                                         <asp:Repeater ID="TagRepeater" runat="server" DataSource='<%# Eval("Subcategorias") %>'>
                                             <ItemTemplate>
-                                                <asp:LinkButton runat="server" Text='<%# Eval("nome") %>' OnClick="labelClickEventHandler"
-                                                    SkinID="EtiquetaRemovivel" />
+                                                <asp:LinkButton runat="server" Text='<%# Eval("nome") %>' OnClick="labelClickEventHandler" />
                                             </ItemTemplate>
                                         </asp:Repeater>
                                         <span style="margin-left: 50px; padding: 10px"></span>
