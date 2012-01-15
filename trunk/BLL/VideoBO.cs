@@ -34,7 +34,7 @@ namespace BLL
 		{
 			List<Video> lista = null;
 
-            lista = videosDataManager.obterVideosPorEstado(2);
+			lista = videosDataManager.obterVideosPorEstado(2);
 
 			if (lista == null)
 			{
@@ -48,7 +48,7 @@ namespace BLL
 		{
 			List<Video> lista = null;
 
-            lista = videosDataManager.obterVideosPorEstado(1);
+			lista = videosDataManager.obterVideosPorEstado(1);
 
 			if (lista == null)
 			{
