@@ -125,8 +125,8 @@ namespace Lives
         public void ListaVideos_OnRowDataBound(object sender, EventArgs e)
         {
             GridView grid = sender as GridView;
-            Video video = row.DataItem as Video;hgjgjh
             GridViewRow row = grid.SelectedRow;
+            Video video = row.DataItem as Video;
 
             Label label = row.FindControl("lblUser") as Label;
 
