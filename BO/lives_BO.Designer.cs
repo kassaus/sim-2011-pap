@@ -19,8 +19,8 @@ using System.Runtime.Serialization;
 #region EDM Relationship Metadata
 
 [assembly: EdmRelationshipAttribute("livesModel", "FK_CategoriaSubcategoria", "Categoria", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(BO.Categoria), "Subcategoria", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(BO.Subcategoria))]
-[assembly: EdmRelationshipAttribute("livesModel", "FK_EstadoVideoVideo", "EstadoVideo", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(BO.Estado), "Video", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(BO.Video))]
 [assembly: EdmRelationshipAttribute("livesModel", "SubcategoriaVideo", "Subcategoria", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(BO.Subcategoria), "Video", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(BO.Video))]
+[assembly: EdmRelationshipAttribute("livesModel", "EstadoVideo", "Estado", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(BO.Estado), "Video", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(BO.Video))]
 
 #endregion
 
@@ -372,18 +372,18 @@ namespace BO
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("livesModel", "FK_EstadoVideoVideo", "Video")]
+        [EdmRelationshipNavigationPropertyAttribute("livesModel", "EstadoVideo", "Video")]
         public EntityCollection<Video> Videos
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Video>("livesModel.FK_EstadoVideoVideo", "Video");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Video>("livesModel.EstadoVideo", "Video");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Video>("livesModel.FK_EstadoVideoVideo", "Video", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Video>("livesModel.EstadoVideo", "Video", value);
                 }
             }
         }
@@ -726,44 +726,6 @@ namespace BO
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("livesModel", "FK_EstadoVideoVideo", "EstadoVideo")]
-        public Estado Estado
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Estado>("livesModel.FK_EstadoVideoVideo", "EstadoVideo").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Estado>("livesModel.FK_EstadoVideoVideo", "EstadoVideo").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Estado> EstadoReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Estado>("livesModel.FK_EstadoVideoVideo", "EstadoVideo");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Estado>("livesModel.FK_EstadoVideoVideo", "EstadoVideo", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("livesModel", "SubcategoriaVideo", "Subcategoria")]
         public EntityCollection<Subcategoria> Subcategorias
         {
@@ -776,6 +738,44 @@ namespace BO
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Subcategoria>("livesModel.SubcategoriaVideo", "Subcategoria", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("livesModel", "EstadoVideo", "Estado")]
+        public Estado Estado
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Estado>("livesModel.EstadoVideo", "Estado").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Estado>("livesModel.EstadoVideo", "Estado").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Estado> EstadoReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Estado>("livesModel.EstadoVideo", "Estado");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Estado>("livesModel.EstadoVideo", "Estado", value);
                 }
             }
         }

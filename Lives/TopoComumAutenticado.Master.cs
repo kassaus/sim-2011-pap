@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Web.Security;
+using System;
 
 namespace Lives.Admin
 {
@@ -16,7 +17,7 @@ namespace Lives.Admin
 
         protected void btnSair_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Home.aspx");
+           Response.Redirect("~/Home.aspx");
         }
     }
 }

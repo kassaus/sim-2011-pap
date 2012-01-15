@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 01/14/2012 20:10:07
--- Generated from EDMX file: D:\Workspaces\Visual Studio 2010\Lives\BO\lives_BO.edmx
+-- Date Created: 01/15/2012 00:34:09
+-- Generated from EDMX file: C:\Users\Paulo Luis\Documents\Lusofona\3 Ano\SIM\Projecto\Lives\BO\lives_BO.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -37,8 +37,8 @@ GO
 IF OBJECT_ID(N'[dbo].[Categoria]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Categoria];
 GO
-IF OBJECT_ID(N'[dbo].[EstadoVideo]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[EstadoVideo];
+IF OBJECT_ID(N'[dbo].[Estado]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Estado];
 GO
 IF OBJECT_ID(N'[dbo].[Subcategoria]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Subcategoria];
@@ -147,20 +147,6 @@ ON [dbo].[Subcategoria]
     ([Categoria_id]);
 GO
 
--- Creating foreign key on [Estado_id] in table 'Video'
-ALTER TABLE [dbo].[Video]
-ADD CONSTRAINT [FK_EstadoVideoVideo]
-    FOREIGN KEY ([Estado_id])
-    REFERENCES [dbo].[Estado]
-        ([id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_EstadoVideoVideo'
-CREATE INDEX [IX_FK_EstadoVideoVideo]
-ON [dbo].[Video]
-    ([Estado_id]);
-GO
-
 -- Creating foreign key on [Subcategorias_id] in table 'SubcategoriaVideo'
 ALTER TABLE [dbo].[SubcategoriaVideo]
 ADD CONSTRAINT [FK_SubcategoriaVideo_Subcategoria]
@@ -182,6 +168,20 @@ ADD CONSTRAINT [FK_SubcategoriaVideo_Video]
 CREATE INDEX [IX_FK_SubcategoriaVideo_Video]
 ON [dbo].[SubcategoriaVideo]
     ([Videos_id]);
+GO
+
+-- Creating foreign key on [Estado_id] in table 'Video'
+ALTER TABLE [dbo].[Video]
+ADD CONSTRAINT [FK_EstadoVideo]
+    FOREIGN KEY ([Estado_id])
+    REFERENCES [dbo].[Estado]
+        ([id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_EstadoVideo'
+CREATE INDEX [IX_FK_EstadoVideo]
+ON [dbo].[Video]
+    ([Estado_id]);
 GO
 
 -- --------------------------------------------------

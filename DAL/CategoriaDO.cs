@@ -1,19 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using BO;
+using System.Linq;
 
 namespace DAL
 {
     public class CategoriaDO
     {
-        private Entities db { get; set; }
-
-        public CategoriaDO()
-        {
-            db = new Entities();
-        }
-
         #region // SELECT
 
         public Categoria obterCategoriaId(int idCat)
@@ -22,7 +15,7 @@ namespace DAL
 
             try
             {
-                aux = (from cat in db.Categoria
+                aux = (from cat in DB.tabelas.Categoria
                        where cat.id == idCat
                        select cat).FirstOrDefault();
             }
@@ -36,7 +29,7 @@ namespace DAL
             List<Categoria> lista = null;
             try
             {
-                lista = (from cat in db.Categoria select cat).ToList<Categoria>();
+                lista = (from cat in DB.tabelas.Categoria select cat).ToList<Categoria>();
             }
             catch { }
 

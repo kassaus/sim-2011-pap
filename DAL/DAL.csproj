@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategoriaDO.cs" />
+    <Compile Include="EstadoDO.cs" />
     <Compile Include="SubcategoriaDO.cs" />
     <Compile Include="VideoDO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

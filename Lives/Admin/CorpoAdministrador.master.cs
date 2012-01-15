@@ -10,7 +10,7 @@ namespace Lives
             if (!Request.IsAuthenticated)
             {
                 Response.Redirect("~/Home.aspx");
-               
+
             }
             else
             {
