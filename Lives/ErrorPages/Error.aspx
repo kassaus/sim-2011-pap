@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/TopoAutenticacao.Master" AutoEventWireup="true"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Guest.Master" AutoEventWireup="true"
     CodeBehind="Error.aspx.cs" Inherits="Lives.ErrorPages.WebForm1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -6,11 +6,12 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="corpo_user" runat="server">
     <div class="error">
-        <p class="errorMessage">
-            Ocorreu um erro na aplicação.<br />Por favor tente mais tarde.
-        </p>
-        <p class="errorNote">
-            Se o problema persistir, contacte um administrador do site. Obrigado.
-        </p>
+        <div class="errorMessage">
+            Ocorreu um erro na aplicação.<br />
+            Por favor tente mais tarde.
+        </div>
+        <div class="errorNote">
+            Se o problema persistir, por favor contacte um administrador do site.<br />Obrigado.
+        </div>
     </div>
 </asp:Content>
