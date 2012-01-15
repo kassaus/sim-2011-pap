@@ -78,11 +78,21 @@ namespace BLL
 
         public bool removeSubcategoria(int idsubcat)
         {
-            return subCategoriasDataManager.removerSubCategoria(obterSubCategoriaId(idsubcat));
+            return removeSubcategoria(obterSubCategoriaId(idsubcat));
+        }
+
+        public bool removeSubcategoria(string nome)
+        {
+            return removeSubcategoria(obterSubCategoriaNome(nome));
+        }
+
+        public bool removeSubcategoria(Subcategoria subcat)
+        {
+            return subCategoriasDataManager.removerSubCategoria(subcat);
         }
 
         #endregion
 
-       
+
     }
 }
