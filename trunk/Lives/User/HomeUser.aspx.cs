@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Text;
 using System.Web.Security;
 using System.Web.UI.WebControls;
 using BLL;
 using BO;
-using System.Windows.Documents;
-using System.Collections.Generic;
 
 namespace Lives.Users
 {
@@ -74,7 +71,7 @@ namespace Lives.Users
         {
             GridViewRow row = (GridViewRow)(sender as LinkButton).NamingContainer;
             idVideoToEdit.Value = ((GridView)row.NamingContainer).DataKeys[row.RowIndex].Value.ToString();
-    
+
             MultiViewVideos.ActiveViewIndex = 1;
             if (CheckBoxVideosAprovados.Checked || CheckBoxVideosAprovados.Checked || CheckBoxVideosAprovados.Checked)
             {

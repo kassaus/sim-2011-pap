@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DB.cs" />
     <Compile Include="lives_BO.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -59,8 +60,9 @@
     <None Include="Properties\DataSources\Entities.datasource" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="default_values.sql" />
+    <Content Include="default_values_own_tables.sql" />
     <Content Include="lives_BO.edmx.sql" />
+    <Content Include="update_estado_para_1.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

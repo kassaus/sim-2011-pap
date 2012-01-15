@@ -15,7 +15,7 @@
             <End Role="Categoria" EntitySet="Categoria" />
             <End Role="Subcategoria" EntitySet="Subcategoria" />
           </AssociationSet>
-          <AssociationSet Name="FK_EstadoVideoVideo" Association="livesModel.Store.FK_EstadoVideoVideo">
+          <AssociationSet Name="FK_EstadoVideo" Association="livesModel.Store.FK_EstadoVideo">
             <End Role="Estado" EntitySet="Estado" />
             <End Role="Video" EntitySet="Video" />
           </AssociationSet>
@@ -82,7 +82,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_EstadoVideoVideo">
+        <Association Name="FK_EstadoVideo">
           <End Role="Estado" Type="livesModel.Store.Estado" Multiplicity="1" />
           <End Role="Video" Type="livesModel.Store.Video" Multiplicity="*" />
           <ReferentialConstraint>
@@ -131,12 +131,12 @@
             <End Role="Categoria" EntitySet="Categoria" />
             <End Role="Subcategoria" EntitySet="Subcategoria" />
           </AssociationSet>
-          <AssociationSet Name="FK_EstadoVideoVideo" Association="livesModel.FK_EstadoVideoVideo">
-            <End Role="EstadoVideo" EntitySet="Estado" />
-            <End Role="Video" EntitySet="Video" />
-          </AssociationSet>
           <AssociationSet Name="SubcategoriaVideo" Association="livesModel.SubcategoriaVideo">
             <End Role="Subcategoria" EntitySet="Subcategoria" />
+            <End Role="Video" EntitySet="Video" />
+          </AssociationSet>
+          <AssociationSet Name="EstadoVideo" Association="livesModel.EstadoVideo">
+            <End Role="Estado" EntitySet="Estado" />
             <End Role="Video" EntitySet="Video" />
           </AssociationSet>
         </EntityContainer>
@@ -154,7 +154,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="estado" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="Videos" Relationship="livesModel.FK_EstadoVideoVideo" FromRole="EstadoVideo" ToRole="Video" />
+          <NavigationProperty Name="Videos" Relationship="livesModel.EstadoVideo" FromRole="Estado" ToRole="Video" />
         </EntityType>
         <EntityType Name="Subcategoria">
           <Key>
@@ -175,19 +175,19 @@
           <Property Name="data" Type="DateTime" Nullable="false" />
           <Property Name="id_user" Type="Guid" Nullable="false" />
           <Property Name="titulo" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="Estado" Relationship="livesModel.FK_EstadoVideoVideo" FromRole="Video" ToRole="EstadoVideo" />
           <NavigationProperty Name="Subcategorias" Relationship="livesModel.SubcategoriaVideo" FromRole="Video" ToRole="Subcategoria" />
+          <NavigationProperty Name="Estado" Relationship="livesModel.EstadoVideo" FromRole="Video" ToRole="Estado" />
         </EntityType>
         <Association Name="FK_CategoriaSubcategoria">
           <End Role="Categoria" Type="livesModel.Categoria" Multiplicity="1" />
           <End Role="Subcategoria" Type="livesModel.Subcategoria" Multiplicity="*" />
         </Association>
-        <Association Name="FK_EstadoVideoVideo">
-          <End Role="EstadoVideo" Type="livesModel.Estado" Multiplicity="1" />
-          <End Role="Video" Type="livesModel.Video" Multiplicity="*" />
-        </Association>
         <Association Name="SubcategoriaVideo">
           <End Type="livesModel.Subcategoria" Role="Subcategoria" Multiplicity="*" />
+          <End Type="livesModel.Video" Role="Video" Multiplicity="*" />
+        </Association>
+        <Association Name="EstadoVideo">
+          <End Type="livesModel.Estado" Role="Estado" Multiplicity="1" />
           <End Type="livesModel.Video" Role="Video" Multiplicity="*" />
         </Association>
       </Schema>
@@ -240,20 +240,20 @@
         <ScalarProperty Name="id" ColumnName="id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="FK_EstadoVideoVideo" TypeName="livesModel.FK_EstadoVideoVideo" StoreEntitySet="Video">
-      <EndProperty Name="EstadoVideo">
-        <ScalarProperty Name="id" ColumnName="Estado_id" />
-      </EndProperty>
-      <EndProperty Name="Video">
-        <ScalarProperty Name="id" ColumnName="id" />
-      </EndProperty>
-    </AssociationSetMapping>
     <AssociationSetMapping Name="SubcategoriaVideo" TypeName="livesModel.SubcategoriaVideo" StoreEntitySet="SubcategoriaVideo">
       <EndProperty Name="Subcategoria">
         <ScalarProperty Name="id" ColumnName="Subcategorias_id" />
       </EndProperty>
       <EndProperty Name="Video">
         <ScalarProperty Name="id" ColumnName="Videos_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="EstadoVideo" TypeName="livesModel.EstadoVideo" StoreEntitySet="Video">
+      <EndProperty Name="Estado">
+        <ScalarProperty Name="id" ColumnName="Estado_id" />
+      </EndProperty>
+      <EndProperty Name="Video">
+        <ScalarProperty Name="id" ColumnName="id" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>
@@ -284,13 +284,13 @@
           <ConnectorPoint PointX="2.25" PointY="5.672841796875" />
           <ConnectorPoint PointX="3" PointY="5.672841796875" />
         </AssociationConnector>
-        <AssociationConnector Association="livesModel.FK_EstadoVideoVideo" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="2.172841796875" />
-          <ConnectorPoint PointX="3" PointY="2.172841796875" />
-        </AssociationConnector>
         <AssociationConnector Association="livesModel.SubcategoriaVideo" >
           <ConnectorPoint PointX="3.75" PointY="4.875" />
           <ConnectorPoint PointX="3.75" PointY="3.5571907552083331" />
+        </AssociationConnector>
+        <AssociationConnector Association="livesModel.EstadoVideo">
+          <ConnectorPoint PointX="2.25" PointY="2.172841796875" />
+          <ConnectorPoint PointX="3" PointY="2.172841796875" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

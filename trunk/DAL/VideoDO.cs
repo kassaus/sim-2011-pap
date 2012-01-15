@@ -1,20 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Objects;
-using System.Linq;
 using BO;
+using System.Linq;
 
 namespace DAL
 {
     public class VideoDO
     {
-        private Entities db { get; set; }
-
-        public VideoDO()
-        {
-            db = new Entities();
-        }
-
         #region // SELECT
 
         public List<Video> obterTodosVideos()
@@ -23,7 +16,7 @@ namespace DAL
 
             try
             {
-                lista = (from video in db.Video select video).ToList<Video>();
+                lista = (from video in DB.tabelas.Video where video.Estado.id != 3 orderby video.Estado.id ascending select video).ToList<Video>();
             }
             catch { }
 
@@ -35,7 +28,7 @@ namespace DAL
             List<Video> lista = null;
             try
             {
-                lista = (from video in db.Video where video.Estado.id == estado select video).ToList<Video>();
+                lista = (from video in DB.tabelas.Video where video.Estado.id == estado && video.Estado.id != 3 select video).ToList<Video>();
             }
             catch { }
 
@@ -47,7 +40,7 @@ namespace DAL
             Video aux = null;
             try
             {
-                aux = (from video in db.Video where video.id == id select video).FirstOrDefault<Video>();
+                aux = (from video in DB.tabelas.Video where video.id == id && video.Estado.id != 3 select video).FirstOrDefault<Video>();
             }
             catch { }
 
@@ -59,7 +52,7 @@ namespace DAL
             List<Video> lista = null;
             try
             {
-                lista = (from video in db.Video where video.id_user == idUser && video.Estado.id != 3 select video).ToList<Video>();
+                lista = (from video in DB.tabelas.Video where video.id_user == idUser && video.Estado.id != 3 select video).ToList<Video>();
             }
             catch { }
 
@@ -72,7 +65,7 @@ namespace DAL
 
             try
             {
-                lista = (from subCat in db.Subcategoria from video in db.Video where subCat.Categoria.id == cat && video.Subcategorias.Contains(subCat) select video).ToList<Video>();
+                lista = (from subCat in DB.tabelas.Subcategoria from video in DB.tabelas.Video where subCat.Categoria.id == cat && video.Subcategorias.Contains(subCat) && video.Estado.id != 3 select video).ToList<Video>();
             }
             catch { }
 
@@ -85,16 +78,12 @@ namespace DAL
 
             try
             {
-                lista = (from video in db.Video from subCat in db.Subcategoria where video.Estado.id == 2 && subCat.Categoria.id == cat && video.Subcategorias.Contains(subCat) select video).ToList<Video>();
+                lista = (from video in DB.tabelas.Video from subCat in DB.tabelas.Subcategoria where video.Estado.id == 2 && subCat.Categoria.id == cat && video.Subcategorias.Contains(subCat) select video).ToList<Video>();
             }
             catch { }
 
             return lista;
         }
-
-       
-       
-       
 
         public List<Video> obterVideosCategoriaUser(int cat, Guid idUser)
         {
@@ -102,7 +91,7 @@ namespace DAL
 
             try
             {
-                lista = (from video in db.Video from subCat in db.Subcategoria where video.id_user == idUser && subCat.Categoria.id == cat && video.Subcategorias.Contains(subCat) select video).ToList<Video>();
+                lista = (from video in DB.tabelas.Video from subCat in DB.tabelas.Subcategoria where video.id_user == idUser && subCat.Categoria.id == cat && video.Subcategorias.Contains(subCat) && video.Estado.id != 3 select video).ToList<Video>();
             }
             catch { }
 
@@ -115,7 +104,7 @@ namespace DAL
 
             try
             {
-                lista = (from video in db.Video where video.Estado.id == 2 && video.id_user == idUser select video).ToList<Video>();
+                lista = (from video in DB.tabelas.Video where video.Estado.id == 2 && video.id_user == idUser select video).ToList<Video>();
             }
             catch { }
 
@@ -128,7 +117,7 @@ namespace DAL
             Video aux = null;
             try
             {
-                aux = (from video in db.Video where video.Estado.id == estado orderby video.data descending select video).FirstOrDefault<Video>();
+                aux = (from video in DB.tabelas.Video where video.Estado.id == estado && video.Estado.id != 3 orderby video.data descending select video).FirstOrDefault<Video>();
             }
             catch { }
 
@@ -144,14 +133,14 @@ namespace DAL
             bool sucesso = false;
             try
             {
-                db.AddToVideo(video);
-                sucesso = (db.SaveChanges() != 0);
+                DB.tabelas.AddToVideo(video);
+                sucesso = (DB.tabelas.SaveChanges() != 0);
             }
             catch { }
             return sucesso;
         }
 
-        public bool modificaVideo(Video video)
+        public bool actualizaVideo(Video video)
         {
             bool sucesso = false;
             Video aux = null;
@@ -168,7 +157,7 @@ namespace DAL
                     aux.url = video.url;
                     aux.descricao = video.descricao;
                 }
-                sucesso = (db.SaveChanges() != 0);
+                sucesso = (DB.tabelas.SaveChanges() != 0);
             }
             catch { }
             return sucesso;
@@ -187,13 +176,14 @@ namespace DAL
                     {
                         return false;
                     }
-                    db.DeleteObject(aux);
-                    sucesso = (db.SaveChanges(SaveOptions.None) != 0);
+                    DB.tabelas.DeleteObject(aux);
+                    sucesso = (DB.tabelas.SaveChanges(SaveOptions.None) != 0);
                 }
             }
             catch { }
             return sucesso;
         }
+
 
 
         #endregion

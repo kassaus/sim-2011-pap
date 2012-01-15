@@ -165,8 +165,7 @@
                                             <ItemTemplate>
                                                 <asp:LinkButton runat="server" Text='<%# Eval("nome") %>' OnClick="labelClickEventHandler" />
                                             </ItemTemplate>
-                                        </asp:Repeater>
-                                        <span style="margin-left: 50px; padding: 10px"></span>
+                                        </asp:Repeater> 
                                     </div>
                                     <div>
                                         <asp:Button ID="btnCategorizar" CssClass="botaoLogin" Height="40px" Width="150px"

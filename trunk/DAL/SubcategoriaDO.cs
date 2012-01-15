@@ -1,19 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using BO;
 using System.Linq;
-using BO;
+using System.Collections.Generic;
 
 namespace DAL
 {
     public class SubcategoriaDO
     {
-        private Entities db { get; set; }
-
-        public SubcategoriaDO()
-        {
-            db = new Entities();
-        }
-
         #region // SELECT
         public Subcategoria obterSubCategoriaNome(string nome)
         {
@@ -21,11 +13,11 @@ namespace DAL
 
             try
             {
-                aux = (from subCat in db.Subcategoria
+                aux = (from subCat in DB.tabelas.Subcategoria
                        where subCat.nome == nome
                        select subCat).FirstOrDefault();
             }
-            catch (Exception) { }
+            catch { }
 
             return aux;
         }
@@ -36,11 +28,11 @@ namespace DAL
 
             try
             {
-                aux = (from subCat in db.Subcategoria
+                aux = (from subCat in DB.tabelas.Subcategoria
                        where subCat.id == idSubCat
                        select subCat).FirstOrDefault();
             }
-            catch (Exception) { }
+            catch { }
 
             return aux;
         }
@@ -50,7 +42,7 @@ namespace DAL
             List<Subcategoria> lista = null;
             try
             {
-                lista = (from subCat in db.Subcategoria where subCat.Categoria.id == cat select subCat).ToList<Subcategoria>();
+                lista = (from subCat in DB.tabelas.Subcategoria where subCat.Categoria.id == cat select subCat).ToList<Subcategoria>();
             }
             catch { }
 
@@ -63,7 +55,7 @@ namespace DAL
 
             try
             {
-                lista = (from vsc in db.Video select vsc.Subcategorias).FirstOrDefault().ToList<Subcategoria>();
+                lista = (from vsc in DB.tabelas.Video select vsc.Subcategorias).FirstOrDefault().ToList<Subcategoria>();
             }
             catch { }
 
@@ -74,12 +66,13 @@ namespace DAL
 
         #region // inserir, alterar e apagar
 
-        public bool insereSubCategoria(Subcategoria novaSubcategoria) {
-        bool sucesso = false;
+        public bool insereSubCategoria(Subcategoria novaSubcategoria)
+        {
+            bool sucesso = false;
             try
             {
-                db.AddToSubcategoria(novaSubcategoria);
-                sucesso = (db.SaveChanges() != 0);
+                DB.tabelas.AddToSubcategoria(novaSubcategoria);
+                sucesso = (DB.tabelas.SaveChanges() != 0);
             }
             catch { }
             return sucesso;
@@ -100,9 +93,9 @@ namespace DAL
                     }
                     aux.nome = subCat.nome;
                     aux.Categoria = subCat.Categoria;
-                    
+
                 }
-                sucesso = (db.SaveChanges() != 0);
+                sucesso = (DB.tabelas.SaveChanges() != 0);
             }
             catch { }
             return sucesso;
@@ -121,8 +114,8 @@ namespace DAL
                     {
                         return false;
                     }
-                    db.DeleteObject(aux);
-                    sucesso = (db.SaveChanges() != 0);
+                    DB.tabelas.DeleteObject(aux);
+                    sucesso = (DB.tabelas.SaveChanges() != 0);
                 }
             }
             catch { }
@@ -132,7 +125,7 @@ namespace DAL
         #endregion
 
 
-        
+
     }
 
 
