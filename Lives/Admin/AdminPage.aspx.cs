@@ -10,6 +10,7 @@ namespace Lives
     {
         private VideoBO gestorVideos { get; set; }
         private SubcategoriaBO gestorSubcategorias { get; set; }
+        private CategoriaBO gestorCategorias { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,6 +24,11 @@ namespace Lives
                 gestorSubcategorias = new SubcategoriaBO();
             }
 
+            if (gestorCategorias == null)
+            {
+                gestorCategorias = new CategoriaBO();
+            }
+
             if (gestorVideos == null)
             {
                 gestorVideos = new VideoBO();
@@ -32,6 +38,25 @@ namespace Lives
             {
                 filtroVideos.SelectedIndex = 0;
                 FiltroVideos_OnSelectedIndexChanged(filtroVideos.SelectedItem, null);
+            }
+
+            string view = Request.Params["view"];
+
+            if (view != null)
+            {
+                MultiViewVideos.ActiveViewIndex = int.Parse(view);
+            }
+
+            if (MultiViewVideos.ActiveViewIndex == 2 || MultiViewVideos.ActiveViewIndex == 3 || MultiViewVideos.ActiveViewIndex == 4)
+            {
+                panelFiltros.Visible = false;
+
+            }
+
+            if (MultiViewVideos.ActiveViewIndex == 3)
+            {
+                repeaterUsers.DataSource = Membership.GetAllUsers();
+                repeaterUsers.DataBind();
             }
         }
 
@@ -50,12 +75,24 @@ namespace Lives
             ddlSubcategorias.DataBind();
         }
 
+        protected void CategoriasDropBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lblErro.Visible = false;
+        }
+
 
         protected void labelClickEventHandler(object sender, EventArgs e)
         {
             LinkButton etiqueta = (LinkButton)sender;
             Subcategoria subcategoria = gestorSubcategorias.obterSubCategoriaNome(etiqueta.Text);
             gestorVideos.obterVideo(int.Parse(idVideoAprovacao.Value)).Subcategorias.Remove(subcategoria);
+            etiqueta.Parent.DataBind();
+        }
+
+        protected void labelSubCatEditClickEventHandler(object sender, EventArgs e)
+        {
+            LinkButton etiqueta = (LinkButton)sender;
+            gestorSubcategorias.removeSubcategoria(etiqueta.Text);
             etiqueta.Parent.DataBind();
         }
 
@@ -81,11 +118,39 @@ namespace Lives
         {
             GridViewRow row = (GridViewRow)(sender as LinkButton).NamingContainer;
             idVideoAprovacao.Value = ((GridView)row.NamingContainer).DataKeys[row.RowIndex].Value.ToString();
-
+            panelFiltros.Visible = false;
             MultiViewVideos.ActiveViewIndex = 1;
             filtroVideos.SelectedIndex = 0;
             ddlCategorias.ClearSelection();
             ddlSubcategorias.ClearSelection();
+        }
+
+        protected void btnCategorizar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnApagarSubcat_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnNovaSubcategoria_Click(object sender, EventArgs e)
+        {
+            if (txtBoxNovaSubcategoria.Text == "")
+            {
+                lblErro.Visible = true;
+                lblErro.Text = "Primeiro escreva a nova Subcategoria!";
+            }
+            else
+            {
+                gestorSubcategorias.criarSubCategoria(txtBoxNovaSubcategoria.Text, int.Parse(categoriasDropBox.SelectedItem.Value));
+                TagRepeater.DataBind();
+                txtBoxNovaSubcategoria.Text = "";
+                lblErro.Visible = false;
+
+
+            }
         }
 
         protected void lbtnApagarVideo_Click(object sender, EventArgs e)
@@ -124,13 +189,13 @@ namespace Lives
 
         public void ListaVideos_OnRowDataBound(object sender, EventArgs e)
         {
-            GridView grid = sender as GridView;
-            GridViewRow row = grid.SelectedRow;
-            Video video = row.DataItem as Video;
+            //GridView grid = sender as GridView;
+            //GridViewRow row = grid.SelectedRow;
+            //Video video = row.DataItem as Video;
 
-            Label label = row.FindControl("lblUser") as Label;
+            //Label label = row.FindControl("lblUser") as Label;
 
-            label.Text = Membership.GetUser(video.id_user).UserName;
+            //label.Text = Membership.GetUser(video.id_user).UserName;
         }
     }
 }
