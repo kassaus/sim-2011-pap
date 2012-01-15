@@ -13,7 +13,7 @@
     <RootNamespace>Lives</RootNamespace>
     <AssemblyName>Lives</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <SilverlightApplicationList>{FA0FC5E5-EF18-4BA5-B9BD-FF7A62A1E611}|..\VideoViewer\VideoViewer.csproj|ClientBin|True</SilverlightApplicationList>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -250,7 +250,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>1042</DevelopmentServerPort>
           <DevelopmentServerVPath>/Admin</DevelopmentServerVPath>
-          <IISUrl>http://localhost:1042/</IISUrl>
+          <IISUrl>http://localhost/Lives</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

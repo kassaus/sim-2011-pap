@@ -29,19 +29,19 @@
                 <li>
                     <asp:Image ID="Image4" runat="server" AlternateText="Users" Height="40px" ImageAlign="Middle"
                         ImageUrl="~/images/online.png" />
-                    <a href="AdminPage.aspx" rel="nofollow" class="style1">Online</a></li>
+                    <a href="AdminPage.aspx?view=4" rel="nofollow" class="style1">Online</a></li>
                 <li>
                     <asp:Image ID="Image1" runat="server" AlternateText="Users" Height="40px" ImageAlign="Middle"
                         ImageUrl="~/images/users.png" />
-                    <a href="AdminUsers.aspx" rel="nofollow" class="style1">Users</a></li>
+                    <a href="AdminPage.aspx?view=3" rel="nofollow" class="style1">Users</a></li>
                 <li>
                     <asp:Image ID="Image2" runat="server" AlternateText="Categorias" Height="40px" ImageAlign="Middle"
                         ImageUrl="~/images/categorias.png" />
-                    <a class="style1" href="AdminCategorias.aspx" rel="nofollow">Categorias</a></li>
+                    <a class="style1" href="AdminPage.aspx?view=2" rel="nofollow">Subcategorias</a></li>
                 <li>
                     <asp:Image ID="Image3" runat="server" AlternateText="Listagens" Height="40px" ImageAlign="Middle"
                         ImageUrl="~/images/listagens.png" />
-                    <a href="AdminListagensVideos.aspx" class="style1">listagens</a></li>
+                    <a href="AdminPage.aspx" class="style1">Listagens</a></li>
             </div>
         </div>
                 <asp:ContentPlaceHolder ID="corpo" runat="server">
