@@ -4,22 +4,22 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
     <link href="Estilo.css" rel="stylesheet" type="text/css" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <form id="form1" runat="server">
-    <div id="contentorTopo">
-        <div class="topo">
+    <div class="page">
+        <form id="form1" runat="server">
+        <div id="contentorTopo">
             <div class="contentorLogo">
                 <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/logo1.png" Height="40px"
                     Width="112px" />
             </div>
             <div style="float: right">
                 <asp:Login ID="Login2" runat="server" DestinationPageUrl="~/Default.aspx" RenderOuterTable="False"
-                    Style="margin-left: 0px; color: #FF0000;" FailureText="O nome de utilizador ou a palavra-passe que introduziu estão incorretos." PasswordRecoveryText="esqueceste a password?">
+                    Style="margin-left: 0px; color: #FF0000;" FailureText="O nome de utilizador ou a palavra-passe que introduziu estão incorretos."
+                    PasswordRecoveryText="esqueceste a password?">
                     <LayoutTemplate>
                         <table cellpadding="1" cellspacing="0" style="border-collapse: collapse;">
                             <tr>
@@ -53,8 +53,8 @@
                                     <asp:CheckBox ID="RememberMe" runat="server" Text="Lembrar-me!" Style="color: #FFFF00" />
                                 </td>
                                 <td>
-                                    <asp:LinkButton ID="LinkButton1" runat="server" Font-Underline="False" 
-                                        ForeColor="Yellow" style="color: #FFFF00">Esqueceste password?</asp:LinkButton>
+                                    <asp:LinkButton ID="LinkButton1" runat="server" Font-Underline="False" ForeColor="Yellow"
+                                        Style="color: #FFFF00">Esqueceste password?</asp:LinkButton>
                                 </td>
                                 <td>
                                 </td>
@@ -72,13 +72,10 @@
                 </asp:Login>
             </div>
         </div>
-    </div>
     <div id="contentorMain">
-        <div class="main">
-            <asp:ContentPlaceHolder ID="corpo_user" runat="server">
-            </asp:ContentPlaceHolder>
-        </div>
+        <asp:ContentPlaceHolder ID="corpo_user" runat="server">
+        </asp:ContentPlaceHolder>
     </div>
-    </form>
+    </form> </div>
 </body>
 </html>

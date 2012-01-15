@@ -83,6 +83,8 @@
     <Content Include="Account\RecoverPass.aspx" />
     <Content Include="Admin\AdminPage.aspx" />
     <Content Include="ClientBin\Debug\VideoViewer.xap" />
+    <Content Include="ErrorPages\Error.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="Default.aspx" />
     <Content Include="images\delete.png" />
     <Content Include="Silverlight.js" />
@@ -102,7 +104,6 @@
     <Content Include="images\user.png" />
     <Content Include="images\users.png" />
     <Content Include="Styles\Site.css" />
-    <Content Include="Global.asax" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
@@ -141,15 +142,23 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ErrorPages\Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ErrorPages\Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Handlers\ErrorHandler.cs" />
     <Compile Include="TopoComumAutenticado.Master.cs">
       <DependentUpon>TopoComumAutenticado.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="TopoComumAutenticado.Master.designer.cs">
       <DependentUpon>TopoComumAutenticado.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>

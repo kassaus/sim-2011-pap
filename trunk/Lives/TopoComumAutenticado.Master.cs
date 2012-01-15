@@ -17,7 +17,10 @@ namespace Lives.Admin
 
         protected void btnSair_Click(object sender, EventArgs e)
         {
-           Response.Redirect("~/Home.aspx");
+            FormsAuthentication.SignOut();
+            Roles.DeleteCookie();
+            Session.Clear();
+            FormsAuthentication.RedirectToLoginPage();
         }
     }
 }

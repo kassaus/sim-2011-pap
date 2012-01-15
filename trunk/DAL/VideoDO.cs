@@ -23,7 +23,7 @@ namespace DAL
             return lista;
         }
 
-        public List<Video> obterVideos(int estado)
+        public List<Video> obterVideosPorEstado(int estado)
         {
             List<Video> lista = null;
             try
