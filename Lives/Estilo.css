@@ -1,15 +1,11 @@
-﻿body
+﻿html, body
 {
     margin: 0px;
     padding: 0px;
+    border: 0px;
     font-family: "lucida grande" , tahoma, verdana, arial, sans-serif;
     font-size: 12px;
     color: #4e4a47;
-}
-
-html
-{
-    overflow: hidden;
 }
 
 /* Alteração dos parâmetros da tag de link */
@@ -21,19 +17,11 @@ html
     text-decoration: none;
 }
 
-#contentorTopo
-{
-    position: relative;
-    width: 100%;
-    background-color: #4e4a47;
-    margin: 0 auto;
-    height: 80px;
-}
-
 .contentorLogo
 {
     position: absolute;
     top: 20px;
+    left: 20px;
     width: 85px;
     height: 60px;
 }
@@ -41,10 +29,8 @@ html
 .contentorTopoDireita
 {
     position: absolute;
-    top: 5px;
-    left: 867px;
-    width: 387px;
-    height: 80px; /*background-color:green;*/
+    right: 20px;
+    height: 100%;
 }
 
 .userName
@@ -322,6 +308,8 @@ div#ContentorCorpoInterior
 hr
 {
     color: #4e4a47;
+    margin: 0;
+    padding: 0;
 }
 
 .hrLinha
@@ -405,7 +393,7 @@ hr
 .botaoRegisto
 {
     font-size: 14px;
-    background-color: #666;
+    background-color: #4e4a47;
     border: thin solid #333333;
     color: #FFFFFF;
     font-weight: bold;
@@ -413,7 +401,7 @@ hr
     vertical-align: middle;
 }
 
-.botaoRemoverUser
+.botaoRemoverUser, .botaoPassUser
 {
     position: absolute;
     top: 20px;
@@ -431,85 +419,58 @@ hr
 
 .botaoPassUser
 {
-    position: absolute;
-    top: 20px;
     right: 400px;
-    width: 120px;
-    font-size: 14px;
     background-color: #70ab56;
     border: thin solid #3b6e22;
-    color: #FFFFFF;
-    font-weight: bold;
-    text-align: center;
-    vertical-align: middle;
 }
 
 .letraCinzentoGrande
 {
-    color: #666;
+    color: #4e4a47;
     font-size: 2.5em;
     font-weight: bold;
 }
 
-.letraCinzentoPeq
+.conteudoRodape
 {
     font-size: 0.8em;
-    color: #666;
+    color: #fff;
+    margin-left: 20px;
 }
 
 .letraCinzentoMedia
 {
     font-size: 1em;
-    color: #666;
+    color: #4e4a47;
 }
 
 .filtro
 {
-	font-size: 1em;
-	color: #666;
-	display: block;
-	width: 100%;
-	height: 100%;
+    font-size: 1em;
+    color: #4e4a47;
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 .informacao
 {
-	font-size: 1.5em;
-	color: #666;
+    font-size: 1.5em;
+    color: #4e4a47;
 }
-
-
 
 .titulo
 {
-    color: #666;
+    color: #4e4a47;
     font-size: 2em;
     font-weight: bold;
 }
 
 .subtitulo
 {
-    color: #666;
+    color: #4e4a47;
     font-size: 1.5em;
     font-weight: bold;
     margin-bottom: 5px;
-}
-
-.contentorRodaPe
-{
-    position: absolute;
-    width: 100%;
-    bottom: 0px;
-    border-top-style: solid;
-    border-top-width: thin;
-    border-top-color: #666;
-}
-.rodaPe
-{
-    position: relative;
-    bottom: 0px;
-    width: 100%;
-    height: 20px;
-    margin-left: 20px;
 }
 
 .failureNotification
@@ -531,7 +492,7 @@ hr
 
 .passAlteradaSucesso
 {
-    border: thin dashed #666;
+    border: thin dashed #4e4a47;
     width: 500px;
     margin-left: auto;
     margin-right: auto;
@@ -543,7 +504,7 @@ hr
 
 .redError
 {
-    color: #333;
+    color: #4e4a47;
     background: #ffebe8;
     border: 1px solid #dd3c10;
     text-align: center;
@@ -552,37 +513,85 @@ hr
 
 .error
 {
-    color: #333;
+    color: #4e4a47;
     background: #ffebe8;
     border: 1px solid #dd3c10;
     text-align: center;
-    padding: 10px;
     width: 60%;
-    height: 30%;
-    position: relative;
-    top: 35%;
-    left: 20%;
+    margin-left: 20% !important;
+    position: fixed !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 30% !important;
+    min-height: 200px;
+    max-height: 400px;
 }
 
 .errorMessage
 {
     font-size: 3em;
     font-weight: bold;
+    padding: 40px 0 20px 0;
+    margin: 0;
+    width: 100%;
 }
 
 .errorNote
 {
     font-size: 1.5em;
+    padding: 20px 0 40px 0;
+    margin: 0;
+    width: 100%;
 }
 
-#contentorMain 
+.page
 {
-    position: relative;
-}
-
-.page 
-{
-    position:absolute;
+    position: absolute;
     width: 100%;
     height: 100%;
+    margin: 0;
+    padding: 0;
+    /*background-color: green;*/
+    z-index: -1;
+}
+
+.contentorTopo
+{
+    position: fixed !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 20% !important;
+    height: 80px;
+    min-height: 80px;
+    max-height: 80px;
+    background-color: #4e4a47;
+    z-index: 4;
+}
+
+.contentorMain
+{
+    clear: both;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    width: 100%;
+    height: 100%;
+    /*background-color: Red;*/
+}
+
+.contentorRodaPe
+{
+    position: fixed !important;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5% !important;
+    height: 30px;
+    min-height: 30px;
+    max-height: 100px;
+    background-color: #4e4a47;
+    z-index: 4;
 }
