@@ -187,15 +187,17 @@ namespace Lives
             ListaVideos.DataBind();
         }
 
-        public void ListaVideos_OnRowDataBound(object sender, EventArgs e)
+        public void ListaVideos_OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
-            //GridView grid = sender as GridView;
-            //GridViewRow row = grid.SelectedRow;
-            //Video video = row.DataItem as Video;
+            GridViewRow row = e.Row;
 
-            //Label label = row.FindControl("lblUser") as Label;
+            if (row.RowType == DataControlRowType.DataRow)
+            {
+                Video video = row.DataItem as Video;
+                Label label = row.FindControl("lblUser") as Label;
 
-            //label.Text = Membership.GetUser(video.id_user).UserName;
+                label.Text = Membership.GetUser(video.id_user).UserName;
+            }
         }
     }
 }
