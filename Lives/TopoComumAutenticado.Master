@@ -1,7 +1,7 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="TopoComumAutenticado.Master.cs" Inherits="Lives.Admin.Site1" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="TopoComumAutenticado.Master.cs"
+    Inherits="Lives.Admin.Site1" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
@@ -14,14 +14,12 @@
     <div id="contentorTopo">
         <div class="topo">
             <div class="contentorLogo">
-               <asp:ImageButton ID="ImageBtnLogo" runat="server" ImageUrl="~/images/logo1.png" />
+                <asp:ImageButton ID="ImageBtnLogo" runat="server" ImageUrl="~/images/logo1.png" />
             </div>
             <div id="ContentorMenuCabecalho">
-            <div class="menuCabecalho">
-            <asp:LinkButton  ID="btnPaginaInicial" runat="server" 
-                    onclick="btnPaginaInicial_Click">Home</asp:LinkButton>
-                <asp:LinkButton ID="btnSair" runat="server" onclick="btnSair_Click">Sair</asp:LinkButton>
-
+                <div class="menuCabecalho">
+                    <asp:LinkButton ID="btnPaginaInicial" runat="server" OnClick="btnPaginaInicial_Click">Home</asp:LinkButton>
+                    <asp:LinkButton ID="btnSair" runat="server" OnClick="btnSair_Click">Sair</asp:LinkButton>
                 </div>
             </div>
         </div>
@@ -31,7 +29,7 @@
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
         </div>
-    </div>  
+    </div>
     </form>
 </body>
 </html>
