@@ -3,6 +3,7 @@ using System.Web.UI.WebControls;
 using BLL;
 using BO;
 using System.Web.Security;
+using System.Web.UI;
 
 namespace Lives
 {
@@ -55,8 +56,8 @@ namespace Lives
 
             if (MultiViewVideos.ActiveViewIndex == 3)
             {
-                repeaterUsers.DataSource = Membership.GetAllUsers();
-                repeaterUsers.DataBind();
+                gridViewUser.DataSource = Membership.GetAllUsers();
+                gridViewUser.DataBind();
             }
         }
 
@@ -187,7 +188,7 @@ namespace Lives
             ListaVideos.DataBind();
         }
 
-        public void ListaVideos_OnRowDataBound(object sender, GridViewRowEventArgs e)
+        protected void ListaVideos_OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
             GridViewRow row = e.Row;
 
@@ -199,5 +200,28 @@ namespace Lives
                 label.Text = Membership.GetUser(video.id_user).UserName;
             }
         }
+
+        protected void imgbtnBloquearUser_Click(object sender, EventArgs e)
+        {
+        }
+
+        protected void imgbtnApagarUser_OnCommand(object sender, CommandEventArgs e)
+        {
+            ImageButton imgbtnApagarUser = sender as ImageButton;
+            GridViewRow row = (GridViewRow)imgbtnApagarUser.NamingContainer;
+            Guid UserId = (Guid)(gridViewUser.DataKeys[row.RowIndex].Value);
+
+            gestorVideos.obterVideosUser(UserId);
+        }
+
+        protected void imgbtnDesbloquearUser_Click(object sender, EventArgs e)
+        {
+        }
+
+        protected void imgbtnAlterarPasswordUser_Click(object sender, EventArgs e)
+        {
+        }
+
+
     }
 }

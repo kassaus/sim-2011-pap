@@ -1,597 +1,597 @@
-﻿html, body
+﻿body
 {
-    margin: 0px;
-    padding: 0px;
-    border: 0px;
-    font-family: "lucida grande" , tahoma, verdana, arial, sans-serif;
-    font-size: 12px;
-    color: #4e4a47;
+	margin: 0px;
+	padding: 0px;
+	font-family: "lucida grande" , tahoma, verdana, arial, sans-serif;
+	font-size: 12px;
+	color: #4e4a47;
+}
+
+html
+{
+	overflow: hidden;
 }
 
 /* Alteração dos parâmetros da tag de link */
 .a
 {
-    color: #FFFFFF;
-    font-weight: bold;
-    text-align: right;
-    text-decoration: none;
+	color: #FFFFFF;
+	font-weight: bold;
+	text-align: right;
+	text-decoration: none;
+}
+
+#contentorTopo
+{
+	position: relative;
+	width: 100%;
+	background-color: #4e4a47;
+	margin: 0 auto;
+	height: 80px;
 }
 
 .contentorLogo
 {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    width: 85px;
-    height: 60px;
+	position: absolute;
+	top: 20px;
+	width: 85px;
+	height: 60px;
 }
 
 .contentorTopoDireita
 {
-    position: absolute;
-    right: 20px;
-    height: 100%;
+	position: absolute;
+	top: 5px;
+	left: 867px;
+	width: 387px;
+	height: 80px; /*background-color:green;*/
 }
 
 .userName
 {
-    position: absolute;
-    top: 0px;
-    left: 0;
-    width: 132px;
-    padding-bottom: 0px;
+	position: absolute;
+	top: 0px;
+	left: 0;
+	width: 132px;
+	padding-bottom: 0px;
 }
 .pass
 {
-    position: absolute;
-    top: 0;
-    left: 142px;
-    width: 150px; /*background-color:Red;*/
+	position: absolute;
+	top: 0;
+	left: 142px;
+	width: 150px; /*background-color:Red;*/
 }
 
 .boxLogin
 {
-    background-color: #FFF;
-    border: thin solid #000000;
-    width: 98%;
-    height: 18px;
-    font-size: 9pt;
-    font-family: Verdana;
-    margin-left: 0px;
-    padding-bottom: 0px;
+	background-color: #FFF;
+	border: thin solid #000000;
+	width: 98%;
+	height: 18px;
+	font-size: 9pt;
+	font-family: Verdana;
+	margin-left: 0px;
+	padding-bottom: 0px;
 }
 
 .BoxForm
 {
-    height: 25px;
-    width: 200px;
-    left: 0px;
-    background-color: #FFF;
-    border: thin solid #a1afcb;
-    font-size: 12pt;
-    vertical-align: middle;
-    font-family: "lucida grande";
-    padding-left: 0px;
-    margin-left: 0px;
-    text-align: left;
+	height: 25px;
+	width: 200px;
+	left: 0px;
+	background-color: #FFF;
+	border: thin solid #a1afcb;
+	font-size: 12pt;
+	vertical-align: middle;
+	font-family: "lucida grande";
+	padding-left: 0px;
+	margin-left: 0px;
+	text-align: left;
 }
 
 .letraBrancoPeq
 {
-    font-size: xx-small;
-    color: #FFFFFF;
+	font-size: xx-small;
+	color: #FFFFFF;
 }
 
 .letraAmareloPeq
 {
-    font-size: xx-small;
-    color: #FFFF00;
-    text-decoration: none;
+	font-size: xx-small;
+	color: #FFFF00;
+	text-decoration: none;
 }
 
 .LetraAmarelaGrande
 {
-    font-size: large;
-    color: #FFFF00;
-    text-decoration: none;
+	font-size: large;
+	color: #FFFF00;
+	text-decoration: none;
 }
 
 .letraSiteMedia
 {
-    font-size: medium;
-    color: #4e4a47;
-    text-decoration: none;
+	font-size: medium;
+	color: #4e4a47;
+	text-decoration: none;
 }
 
 .botaoLogin
 {
-    border-color: #000000;
-    height: 20px;
-    width: 95px;
-    font-size: 12px;
-    color: #FFFF00;
-    font-weight: bold;
-    text-align: center;
-    vertical-align: middle;
-    background-color: #4e4a47;
-    vertical-align: middle;
+	border-color: #000000;
+	height: 20px;
+	width: 95px;
+	font-size: 12px;
+	color: #FFFF00;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: middle;
+	background-color: #4e4a47;
+	vertical-align: middle;
 }
 
 .home_backoffice
 {
-    position: relative;
-    width: 100%; /*height:300px;*/ /*background-color:Blue;*/
+	position: relative;
+	width: 100%; /*height:300px;*/ /*background-color:Blue;*/
 }
 
 .home_backoffice_video
 {
-    position: absolute;
-    top: 0px;
-    left: 0;
-    width: 70%; /*height:600px;*/ /*background-color:Blue;*/
+	position: absolute;
+	top: 0px;
+	left: 0;
+	width: 70%; /*height:600px;*/ /*background-color:Blue;*/
 }
 
 .home_backoffice_registo
 {
-    position: absolute;
-    top: 0px;
-    right: 15px;
-    width: 30%; /*background-color:red;*/
+	position: absolute;
+	top: 0px;
+	right: 15px;
+	width: 30%; /*background-color:red;*/
 }
 
 div#ContentorMenuCabecalho
 {
-    float: right;
-    width: 7%;
+	float: right;
+	width: 7%;
 }
 
 .menuCabecalho
 {
-    position: relative;
-    top: 4px;
-    width: 100%;
-    padding: 5px;
-    text-align: right;
-    color: #FFFFFF;
-    border-top-style: solid;
-    border-right-style: solid;
-    border-left-style: solid;
-    border-top-width: thin;
-    border-right-width: thin;
-    border-left-width: thin;
-    border-top-color: #ffff00;
-    border-right-color: #ffff00;
-    border-left-color: #ffff00;
+	position: relative;
+	top: 4px;
+	width: 100%;
+	padding: 5px;
+	text-align: right;
+	color: #FFFFFF;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-left-style: solid;
+	border-top-width: thin;
+	border-right-width: thin;
+	border-left-width: thin;
+	border-top-color: #ffff00;
+	border-right-color: #ffff00;
+	border-left-color: #ffff00;
 }
 
 .menuCabecalho a
 {
-    color: #FFFFFF;
-    text-decoration: none;
-    outline-style: none;
-    padding: 5px;
+	color: #FFFFFF;
+	text-decoration: none;
+	outline-style: none;
+	padding: 5px;
 }
 
 .menuCabecalho a:hover
 {
-    background: #6D84B4;
-    text-decoration: none;
-    font-weight: bold;
+	background: #6D84B4;
+	text-decoration: none;
+	font-weight: bold;
 }
 
 div#contentorMainMenuCorpo
 {
-    text-align: right;
-    background-color: #FFFFFF;
+	text-align: right;
+	background-color: #FFFFFF;
 }
 
 div#contentorMenu
 {
-    text-align: left;
-    width: 15%;
-    height: 100%;
-    float: left;
-    margin-left: 10px;
+	text-align: left;
+	width: 15%;
+	height: 100%;
+	float: left;
+	margin-left: 10px;
 }
 div#ContentorCorpoInterior
 {
-    position: absolute;
-    left: 16%;
-    width: 80%;
+	position: absolute;
+	left: 16%;
+	width: 80%;
 }
 
 .corpoInterior
 {
-    position: relative;
-    border: thin solid #FFFF00;
-    text-align: left;
-    width: 100%;
-    margin-top: 0px;
-    margin-left: 10px;
-    margin-bottom: 10px;
-    padding-left: 10px;
+	position: relative;
+	border: thin solid #FFFF00;
+	text-align: left;
+	width: 100%;
+	margin-top: 0px;
+	margin-left: 10px;
+	margin-bottom: 10px;
+	padding-left: 10px;
 }
 
 .listaMenu
 {
-    width: 100%;
-    float: left;
+	width: 100%;
+	float: left;
 }
 
 .listaMenu a
 {
-    color: #4e4a47;
-    border-bottom: 1px thin #ccc;
-    font-weight: bold;
+	color: #4e4a47;
+	border-bottom: 1px thin #ccc;
+	font-weight: bold;
 }
 
 .listaMenu a:hover
 {
-    text-decoration: none;
+	text-decoration: none;
 }
 
 .listaMenu H3
 {
-    font-size: 11px;
-    color: #FFFF00;
-    background: #4e4a47;
-    border-top: 1px solid #3B5998;
-    padding: 3px 10px;
-    margin: 0px;
+	font-size: 11px;
+	color: #FFFF00;
+	background: #4e4a47;
+	border-top: 1px solid #3B5998;
+	padding: 3px 10px;
+	margin: 0px;
 }
 
 
 .listaMenu H3:hover
 {
-    background: #cfd7e4;
-    border-top: 1px solid #3B5998;
+	background: #cfd7e4;
+	border-top: 1px solid #3B5998;
 }
 
 .listaMenu li
 {
-    font-size: 11px;
-    font-weight: normal;
-    margin-left: 5px;
-    padding: 3px 0px;
-    list-style: none;
-    border-bottom: 1px solid #ccc;
-    width: 155px;
-    text-decoration: none;
+	font-size: 11px;
+	font-weight: normal;
+	margin-left: 5px;
+	padding: 3px 0px;
+	list-style: none;
+	border-bottom: 1px solid #ccc;
+	width: 155px;
+	text-decoration: none;
 }
 
 .listaMenu img
 {
-    border: 0;
+	border: 0;
 }
 
 .userState
 {
-    width: 100%;
-    font-size: 11px;
-    font-weight: normal;
-    background: #f7f7f7;
-    color: #000;
-    float: left;
-    text-decoration: none;
+	width: 100%;
+	font-size: 11px;
+	font-weight: normal;
+	background: #f7f7f7;
+	color: #000;
+	float: left;
+	text-decoration: none;
 }
 
 .imagemLogo
 {
-    position: relative;
-    left: 6px;
-    width: 100px;
-    top: 0px;
+	position: relative;
+	left: 6px;
+	width: 100px;
+	top: 0px;
 }
 
 .labelLogo
 {
-    position: absolute;
-    top: 120px;
-    width: 70px;
-    height: 48px;
-    left: 120px;
-    text-align: left;
-    font-family: verdana;
-    font-weight: bold;
+	position: absolute;
+	top: 120px;
+	width: 70px;
+	height: 48px;
+	left: 120px;
+	text-align: left;
+	font-family: verdana;
+	font-weight: bold;
 }
 
 .labelOnline
 {
-    position: relative;
-    top: 50px;
-    left: 130px;
-    font-weight: bold;
-    font-size: medium;
-    width: 24px;
+	position: relative;
+	top: 50px;
+	left: 130px;
+	font-weight: bold;
+	font-size: medium;
+	width: 24px;
 }
 
 hr
 {
-    color: #4e4a47;
-    margin: 0;
-    padding: 0;
+	color: #4e4a47;
 }
 
 .hrLinha
 {
-    width: 900px;
+	width: 900px;
 }
 
 .entulho
 {
-    height: 280px;
-    width: 100%;
+	height: 280px;
+	width: 100%;
 }
 
 .contentorListagemVideosAdmin
 {
-    position: relative;
-    top: 0px;
-    width: 100%;
+	position: relative;
+	top: 0px;
+	width: 100%;
 }
 
 .imagemUserAprovacao
 {
-    position: relative;
-    top: 0px;
-    left: 10px;
-    width: 100%;
+	position: relative;
+	top: 0px;
+	left: 10px;
+	width: 100%;
 }
 
 .filmeUseraprovacao
 {
-    position: absolute;
-    top: 30px;
-    right: 195px;
+	position: absolute;
+	top: 30px;
+	right: 195px;
 }
 
 .drListCategoriaAprovacao
 {
-    position: absolute;
-    top: 200px;
-    right: 220px;
+	position: absolute;
+	top: 200px;
+	right: 220px;
 }
 
 .drListSubCategoriaAprovacao
 {
-    position: absolute;
-    top: 200px;
-    right: 0px;
+	position: absolute;
+	top: 200px;
+	right: 0px;
 }
 
 .botaoListagemAprovacao
 {
-    position: absolute;
-    top: 0px;
-    right: 398px;
-    height: 20px;
-    width: 95px;
-    font-size: 12px;
-    color: #70ab56;
-    font-weight: bold;
-    text-align: center;
-    vertical-align: middle;
-    text-decoration: none;
+	position: absolute;
+	top: 0px;
+	right: 398px;
+	height: 20px;
+	width: 95px;
+	font-size: 12px;
+	color: #70ab56;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
 }
 
 .botaoListagemremover
 {
-    position: absolute;
-    top: 0px;
-    height: 20px;
-    right: 195px;
-    height: 20px;
-    width: 95px;
-    font-size: 12px;
-    color: #FF0000;
-    font-weight: bold;
-    text-align: center;
-    vertical-align: middle;
-    text-decoration: none;
+	position: absolute;
+	top: 0px;
+	height: 20px;
+	right: 195px;
+	height: 20px;
+	width: 95px;
+	font-size: 12px;
+	color: #FF0000;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
 }
 
 .botaoRegisto
 {
-    font-size: 14px;
-    background-color: #4e4a47;
-    border: thin solid #333333;
-    color: #FFFFFF;
-    font-weight: bold;
-    text-align: center;
-    vertical-align: middle;
+	font-size: 14px;
+	background-color: #666;
+	border: thin solid #333333;
+	color: #FFFFFF;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: middle;
 }
 
-.botaoRemoverUser, .botaoPassUser
+.botaoRemoverUser
 {
-    position: absolute;
-    top: 20px;
-    right: 200px;
-    width: 120px;
-    height: 25px;
-    font-size: 14px;
-    background-color: #FF0000;
-    border: thin solid #3b6e22;
-    color: #FFFFFF;
-    font-weight: bold;
-    text-align: center;
-    vertical-align: middle;
+	position: absolute;
+	top: 20px;
+	right: 200px;
+	width: 120px;
+	height: 25px;
+	font-size: 14px;
+	background-color: #FF0000;
+	border: thin solid #3b6e22;
+	color: #FFFFFF;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: middle;
 }
 
 .botaoPassUser
 {
-    right: 400px;
-    background-color: #70ab56;
-    border: thin solid #3b6e22;
+	position: absolute;
+	top: 20px;
+	right: 400px;
+	width: 120px;
+	font-size: 14px;
+	background-color: #70ab56;
+	border: thin solid #3b6e22;
+	color: #FFFFFF;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: middle;
 }
 
 .letraCinzentoGrande
 {
-    color: #4e4a47;
-    font-size: 2.5em;
-    font-weight: bold;
+	color: #666;
+	font-size: 2.5em;
+	font-weight: bold;
 }
 
-.conteudoRodape
+.letraCinzentoPeq
 {
-    font-size: 0.8em;
-    color: #fff;
-    margin-left: 20px;
+	font-size: 0.8em;
+	color: #666;
 }
 
 .letraCinzentoMedia
 {
-    font-size: 1em;
-    color: #4e4a47;
+	font-size: 1em;
+	color: #666;
 }
 
 .filtro
 {
-    font-size: 1em;
-    color: #4e4a47;
-    display: block;
-    width: 100%;
-    height: 100%;
+	font-size: 1em;
+	color: #666;
+	display: block;
+	width: 100%;
+	height: 100%;
 }
 .informacao
 {
-    font-size: 1.5em;
-    color: #4e4a47;
+	font-size: 1.5em;
+	color: #666;
 }
+
+
 
 .titulo
 {
-    color: #4e4a47;
-    font-size: 2em;
-    font-weight: bold;
+	color: #666;
+	font-size: 2em;
+	font-weight: bold;
 }
 
 .subtitulo
 {
-    color: #4e4a47;
-    font-size: 1.5em;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.failureNotification
-{
-    font-size: 1.2em;
-    color: Red;
-}
-
-.labelChangePassword
-{
-    width: 300px;
-}
-
-.changePassword
-{
-    width: 42%;
-    margin-left: 100px;
-}
-
-.passAlteradaSucesso
-{
-    border: thin dashed #4e4a47;
-    width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 5px;
-    font-size: 1.8em;
-    text-align: center;
-    background: #ffebe8;
-}
-
-.redError
-{
-    color: #4e4a47;
-    background: #ffebe8;
-    border: 1px solid #dd3c10;
-    text-align: center;
-    padding: 10px;
-}
-
-.error
-{
-    color: #4e4a47;
-    background: #ffebe8;
-    border: 1px solid #dd3c10;
-    text-align: center;
-    width: 60%;
-    margin-left: 20% !important;
-    position: fixed !important;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 30% !important;
-    min-height: 200px;
-    max-height: 400px;
-}
-
-.errorMessage
-{
-    font-size: 3em;
-    font-weight: bold;
-    padding: 40px 0 20px 0;
-    margin: 0;
-    width: 100%;
-}
-
-.errorNote
-{
-    font-size: 1.5em;
-    padding: 20px 0 40px 0;
-    margin: 0;
-    width: 100%;
-}
-
-.page
-{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    /*background-color: green;*/
-    z-index: -1;
-}
-
-.contentorTopo
-{
-    position: fixed !important;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 20% !important;
-    height: 80px;
-    min-height: 80px;
-    max-height: 80px;
-    background-color: #4e4a47;
-    z-index: 4;
-}
-
-.contentorMain
-{
-    clear: both;
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
-    width: 100%;
-    height: 100%;
-    /*background-color: Red;*/
+	color: #666;
+	font-size: 1.5em;
+	font-weight: bold;
+	margin-bottom: 5px;
 }
 
 .contentorRodaPe
 {
-    position: fixed !important;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 5% !important;
-    height: 30px;
-    min-height: 30px;
-    max-height: 100px;
-    background-color: #4e4a47;
-    z-index: 4;
+	position: absolute;
+	width: 100%;
+	bottom: 0px;
+	border-top-style: solid;
+	border-top-width: thin;
+	border-top-color: #666;
+}
+.rodaPe
+{
+	position: relative;
+	bottom: 0px;
+	width: 100%;
+	height: 20px;
+	margin-left: 20px;
+}
+
+.failureNotification
+{
+	font-size: 1.2em;
+	color: Red;
+}
+
+.labelChangePassword
+{
+	width: 300px;
+}
+
+.changePassword
+{
+	width: 42%;
+	margin-left: 100px;
+}
+
+.passAlteradaSucesso
+{
+	border: thin dashed #666;
+	width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 5px;
+	font-size: 1.8em;
+	text-align: center;
+	background: #ffebe8;
+}
+
+.redError
+{
+	color: #333;
+	background: #ffebe8;
+	border: 1px solid #dd3c10;
+	text-align: center;
+	padding: 10px;
+}
+
+.error
+{
+	color: #333;
+	background: #ffebe8;
+	border: 1px solid #dd3c10;
+	text-align: center;
+	padding: 10px;
+	width: 60%;
+	height: 30%;
+	position: relative;
+	top: 35%;
+	left: 20%;
+}
+
+.errorMessage
+{
+	font-size: 3em;
+	font-weight: bold;
+}
+
+.errorNote
+{
+	font-size: 1.5em;
+}
+
+#contentorMain 
+{
+	position: relative;
+}
+
+.page 
+{
+	position:absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.gridViewLineUsers
+{
+	padding-left: 10px;
+	margin: 5px;
+	text-align: left;
+	vertical-align: middle;
+	color: #666;
 }
