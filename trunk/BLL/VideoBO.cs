@@ -116,6 +116,19 @@ namespace BLL
 			return lista;
 		}
 
+		public List<Video> obterVideosUser(Guid idUser)
+		{
+			List<Video> lista = null;
+			lista = videosDataManager.obterVideosPorUser(idUser);
+
+			if (lista == null)
+			{
+				lista = new List<Video>();
+			}
+
+			return lista;
+		}
+
 		public Video obterVideoMaisRecente(int estado)
 		{
 			return videosDataManager.obterVideoMaisRecente(estado);
