@@ -251,7 +251,7 @@
 								<td>
 									<asp:GridView runat="server" ID="gridViewUser" AllowSorting="True" AutoGenerateColumns="False"
 										Font-Size="X-Small" HorizontalAlign="Center" RowStyle-VerticalAlign="Middle"
-										DataKeyNames="ProviderUserKey" RowStyle-Height="40px" EditRowStyle-HorizontalAlign="Center"
+										DataKeyNames="ProviderUserKey, UserName" RowStyle-Height="40px" EditRowStyle-HorizontalAlign="Center"
 										EditRowStyle-VerticalAlign="Middle" HeaderStyle-ForeColor="White" GridLines="None"
 										HeaderStyle-HorizontalAlign="Center" HeaderStyle-BackColor="#666666">
 										<Columns>
@@ -312,7 +312,7 @@
 												</HeaderTemplate>
 												<ItemTemplate>
 													<asp:ImageButton ID="btnApagarUser" runat="server" ImageUrl="~/images/deleteUser.png"
-														AlternateText="Remover User" CausesValidation="False" OnCommand="imgbtnApagarUser_OnCommand" DescriptionUrl="~/Admin/AdminPage.aspx?view=3"></asp:ImageButton>&nbsp&nbsp
+														AlternateText="Remover User" CausesValidation="False" OnCommand="imgbtnApagarUser_OnCommand"></asp:ImageButton>&nbsp&nbsp
 													<asp:ImageButton ID="btnBloquearUser" runat="server" ImageUrl="~/images/locked.png"
 														AlternateText="Bloquear User" OnClick="imgbtnBloquearUser_Click"></asp:ImageButton>&nbsp&nbsp
 													<asp:ImageButton ID="btndesbloquearUser" runat="server" ImageUrl="~/images/unlocked.png"

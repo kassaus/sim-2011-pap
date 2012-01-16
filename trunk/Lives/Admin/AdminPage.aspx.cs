@@ -4,6 +4,7 @@ using BLL;
 using BO;
 using System.Web.Security;
 using System.Web.UI;
+using System.Collections.Generic;
 
 namespace Lives
 {
@@ -210,8 +211,28 @@ namespace Lives
             ImageButton imgbtnApagarUser = sender as ImageButton;
             GridViewRow row = (GridViewRow)imgbtnApagarUser.NamingContainer;
             Guid UserId = (Guid)(gridViewUser.DataKeys[row.RowIndex].Value);
+            string UserName = (String)gridViewUser.DataKeys[row.RowIndex].Values[1];
 
-            gestorVideos.obterVideosUser(UserId);
+            List<Video> videos = gestorVideos.obterVideosUser(UserId);
+
+
+
+            if (videos.Count > 0)
+            {
+                foreach (Video video in videos)
+                {
+                    gestorVideos.removeVideo(video.id);
+                }
+                Membership.DeleteUser(UserName);
+            }
+            else
+            {
+                Membership.DeleteUser(UserName);
+            }
+            gridViewUser.DataBind();
+            Response.Redirect("~/Admin/AdminPage.aspx?view=3", true);
+
+
         }
 
         protected void imgbtnDesbloquearUser_Click(object sender, EventArgs e)
