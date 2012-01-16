@@ -86,7 +86,11 @@
     <Content Include="ErrorPages\Error.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Default.aspx" />
+    <Content Include="images\changePassword.png" />
     <Content Include="images\delete.png" />
+    <Content Include="images\deleteUser.png" />
+    <Content Include="images\locked.png" />
+    <Content Include="images\unlocked.png" />
     <Content Include="Silverlight.js" />
     <Content Include="Videos\1.wmv" />
     <Content Include="Videos\2.wmv" />
@@ -246,10 +250,10 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>1042</DevelopmentServerPort>
-          <DevelopmentServerVPath>/Admin</DevelopmentServerVPath>
+          <DevelopmentServerPort>54465</DevelopmentServerPort>
+          <DevelopmentServerVPath>/Lives</DevelopmentServerVPath>
           <IISUrl>http://localhost/Lives</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>

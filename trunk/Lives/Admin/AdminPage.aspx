@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/CorpoAdministrador.master"
-	AutoEventWireup="true" CodeBehind="AdminPage.aspx.cs" Inherits="Lives.AdminPage" %>
+	AutoEventWireup="true" EnableEventValidation="false"  CodeBehind="AdminPage.aspx.cs" Inherits="Lives.AdminPage" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="corpo" runat="server">
@@ -235,9 +235,8 @@
 					</div>
 				</asp:View>
 				<asp:View ID="usersView" runat="server">
-					<div style="position: relative; padding-bottom: 10px; border-top-style: solid; border-top-width: thin;
-						border-top-color: #666; border-bottom-style: solid; border-bottom-width: thin;
-						border-bottom-color: #666;">
+					<div style="position: relative; padding-bottom: 10px; border-bottom-style: solid;
+						border-bottom-width: thin; border-bottom-color: #666;">
 						<h3 class="subtitulo">
 							Users</h3>
 						<div style="position: absolute; top: 20px; left: 320px">
@@ -246,38 +245,97 @@
 							</div>
 						</div>
 					</div>
-					<div>
-						<asp:GridView ID="gridUsers" runat="server" AutoGenerateColumns="False" GridLines="None"
-							ShowHeader="False" DataKeyNames="id" OnRowDataBound="ListaVideos_OnRowDataBound">
-							<Columns>
-								<asp:TemplateField>
-									<ItemTemplate>
-									</ItemTemplate>
-								</asp:TemplateField>
-							</Columns>
-						</asp:GridView>
-						<asp:Repeater ID="repeaterUsers" runat="server">
-							<ItemTemplate>
-								<p class="letraCinzentoMedia" style="font-weight: bold">
-									User:
-									<asp:Label ID="lblUserName" runat="server" Text='<%# Eval("UserName") %>'></asp:Label>
-									Email:
-									<asp:Label ID="lblEmail" runat="server" Text='<%# Eval("Email").ToString().ToLower() %>'></asp:Label>
-									Aprovado:
-									<asp:Label ID="lblAprovado" runat="server" Text='<%# Eval("IsApproved") %>'></asp:Label>
-									Bloqueado:
-									<asp:Label ID="lblBloqueado" runat="server" Text='<%# Eval("IsLockedOut") %>'></asp:Label>
-									Data Registo:
-									<asp:Label ID="lblDataRegisto" runat="server" Text='<%# Eval("CreationDate") %>'></asp:Label>
-									Ultima Sessão:
-									<asp:Label ID="lblUltimaSessao" runat="server" Text='<%# Eval("LastLoginDate") %>'></asp:Label>
-								</p>
-							</ItemTemplate>
-						</asp:Repeater>
+					<div style="position: relative; margin-top: 20px; margin-left: 20px; margin-bottom: 20px;">
+						<table border="0" cellspacing="0" cellpadding="0" width="100%" align="center">
+							<tr>
+								<td>
+									<asp:GridView runat="server" ID="gridViewUser" AllowSorting="True" AutoGenerateColumns="False"
+										Font-Size="X-Small" HorizontalAlign="Center" RowStyle-VerticalAlign="Middle"
+										DataKeyNames="ProviderUserKey" RowStyle-Height="40px" EditRowStyle-HorizontalAlign="Center"
+										EditRowStyle-VerticalAlign="Middle" HeaderStyle-ForeColor="White" GridLines="None"
+										HeaderStyle-HorizontalAlign="Center" HeaderStyle-BackColor="#666666">
+										<Columns>
+											<asp:TemplateField ItemStyle-CssClass="gridViewLineUsers">
+												<HeaderTemplate>
+													<b>Utilizador</b>
+												</HeaderTemplate>
+												<ItemTemplate>
+													<%#DataBinder.Eval(Container, "DataItem.UserName")%>
+												</ItemTemplate>
+											</asp:TemplateField>
+											<asp:TemplateField ItemStyle-CssClass="gridViewLineUsers">
+												<HeaderTemplate>
+													<b>Email</b>
+												</HeaderTemplate>
+												<ItemTemplate>
+													<%#DataBinder.Eval(Container, "DataItem.Email")%>
+												</ItemTemplate>
+											</asp:TemplateField>
+											<asp:TemplateField ItemStyle-CssClass="gridViewLineUsers">
+												<HeaderTemplate>
+													<b>Aprovado</b>
+												</HeaderTemplate>
+												<ItemTemplate>
+													<asp:CheckBox ID="chkbUserAprovado" runat="server" Text="" Checked='<%#DataBinder.Eval(Container, "DataItem.IsApproved")%>'
+														Enabled="False" />
+												</ItemTemplate>
+											</asp:TemplateField>
+											<asp:TemplateField ItemStyle-CssClass="gridViewLineUsers">
+												<HeaderTemplate>
+													<b>Bloqueado</b>
+												</HeaderTemplate>
+												<ItemTemplate>
+													<asp:CheckBox ID="chkbUserBloqueado" runat="server" Text="" Checked='<%#DataBinder.Eval(Container, "DataItem.IsLockedOut")%>'
+														Enabled="False" />
+												</ItemTemplate>
+												<ItemStyle HorizontalAlign="Center" Width="70px" />
+											</asp:TemplateField>
+											<asp:TemplateField ItemStyle-CssClass="gridViewLineUsers">
+												<HeaderTemplate>
+													<b>Data Registo</b>
+												</HeaderTemplate>
+												<ItemTemplate>
+													<%#DataBinder.Eval(Container, "DataItem.CreationDate")%>
+												</ItemTemplate>
+											</asp:TemplateField>
+											<asp:TemplateField ItemStyle-CssClass="gridViewLineUsers">
+												<HeaderTemplate>
+													<b>Ultima Sessão</b>
+												</HeaderTemplate>
+												<ItemTemplate>
+													<%#DataBinder.Eval(Container, "DataItem.LastLoginDate")%>
+												</ItemTemplate>
+											</asp:TemplateField>
+											<asp:TemplateField ItemStyle-CssClass="gridViewLineUsers">
+												<HeaderTemplate>
+													Comandos
+												</HeaderTemplate>
+												<ItemTemplate>
+													<asp:ImageButton ID="btnApagarUser" runat="server" ImageUrl="~/images/deleteUser.png"
+														AlternateText="Remover User" CausesValidation="False" OnCommand="imgbtnApagarUser_OnCommand" DescriptionUrl="~/Admin/AdminPage.aspx?view=3"></asp:ImageButton>&nbsp&nbsp
+													<asp:ImageButton ID="btnBloquearUser" runat="server" ImageUrl="~/images/locked.png"
+														AlternateText="Bloquear User" OnClick="imgbtnBloquearUser_Click"></asp:ImageButton>&nbsp&nbsp
+													<asp:ImageButton ID="btndesbloquearUser" runat="server" ImageUrl="~/images/unlocked.png"
+														AlternateText="Desbloquear User" OnClick="imgbtnDesbloquearUser_Click"></asp:ImageButton>&nbsp&nbsp
+													<asp:ImageButton ID="btndesAlterarPass" runat="server" ImageUrl="~/images/changePassword.png"
+														AlternateText="Alterar Pass User" OnClick="imgbtnAlterarPasswordUser_Click">
+													</asp:ImageButton>
+												</ItemTemplate>
+												<HeaderStyle />
+												<ItemStyle HorizontalAlign="Center" Width="130px" />
+											</asp:TemplateField>
+										</Columns>
+										<EmptyDataTemplate>
+											<b>Não existem utilizadores!</b></EmptyDataTemplate>
+									</asp:GridView>
+								</td>
+							</tr>
+						</table>
 					</div>
 				</asp:View>
-			</asp:MultiView>
 		</div>
+		</asp:MultiView>
+	</div>
 	</div>
 	<asp:ObjectDataSource ID="ODSObterVideosPorAprovar" runat="server" SelectMethod="obterVideosPorAprovar"
 		TypeName="BLL.VideoBO" />
