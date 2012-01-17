@@ -60,8 +60,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="3" style="text-align: left; color: #FF0000;">
-                                    <asp:Label ID="lblErro" runat="server" Text="Label"></asp:Label>
+                                <td colspan="3" style="text-align: left; color: #FF0000;">                                    
                                     <asp:ValidationSummary ID="LoginUserValidationSummary" runat="server" ValidationGroup="ctl00$Login2"
                                         DisplayMode="SingleParagraph" />
                                     <asp:Literal ID="FailureText" runat="server" EnableViewState="False"></asp:Literal>

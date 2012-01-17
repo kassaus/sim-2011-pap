@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/CorpoAdministrador.master"
-	AutoEventWireup="true" EnableEventValidation="false"  CodeBehind="AdminPage.aspx.cs" Inherits="Lives.AdminPage" %>
+	AutoEventWireup="true" EnableEventValidation="false" CodeBehind="AdminPage.aspx.cs"
+	Inherits="Lives.AdminPage" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="corpo" runat="server">
@@ -44,7 +45,7 @@
 							</asp:ObjectDataSource>
 						</p>
 					</div>
-					<div style="position: absolute; height: 50%; width: 20%; top: 20%; left: 580px;">
+					<div style="position: absolute; height: 50%; width: 30%; top: 20%; left: 560px;">
 						<asp:RadioButtonList CssClass="filtro" ID="filtroVideos" runat="server" OnSelectedIndexChanged="FiltroVideos_OnSelectedIndexChanged"
 							AutoPostBack="true" RepeatDirection="Horizontal" RepeatLayout="Table" RepeatColumns="0">
 							<asp:ListItem Text="Por aprovar" Value=" Por Aprovar" />
@@ -312,7 +313,8 @@
 												</HeaderTemplate>
 												<ItemTemplate>
 													<asp:ImageButton ID="btnApagarUser" runat="server" ImageUrl="~/images/deleteUser.png"
-														AlternateText="Remover User" CausesValidation="False" OnCommand="imgbtnApagarUser_OnCommand"></asp:ImageButton>&nbsp&nbsp
+														AlternateText="Remover User"CausesValidation="False" OnClick="imgbtnApagarUser_Click">
+													</asp:ImageButton>&nbsp&nbsp
 													<asp:ImageButton ID="btnBloquearUser" runat="server" ImageUrl="~/images/locked.png"
 														AlternateText="Bloquear User" OnClick="imgbtnBloquearUser_Click"></asp:ImageButton>&nbsp&nbsp
 													<asp:ImageButton ID="btndesbloquearUser" runat="server" ImageUrl="~/images/unlocked.png"
@@ -330,7 +332,19 @@
 									</asp:GridView>
 								</td>
 							</tr>
+							<tr>
+								<td>
+									<asp:Label ID="lblErroResetPassword" CssClass="error" runat="server" Visible="false"
+										Text="Label"></asp:Label>
+								</td>
+							</tr>
 						</table>
+						<br />
+						<br />
+						<div style="margin-left:30%; margin-right:30%">
+							<strong>
+								<asp:Label ID="lblSucessoAlterarPass" runat="server" CssClass="passAlteradaSucesso" Visible="false" Text="Password alterada com sucesso!"></asp:Label></strong>
+						</div>
 					</div>
 				</asp:View>
 		</div>
