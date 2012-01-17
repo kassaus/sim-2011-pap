@@ -5,6 +5,7 @@ using BO;
 using System.Web.Security;
 using System.Web.UI;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Lives
 {
@@ -207,7 +208,7 @@ namespace Lives
                 label.Text = Membership.GetUser(video.id_user).UserName;
             }
         }
-        
+
 
         protected void imgbtnBloquearUser_Click(object sender, EventArgs e)
         {
@@ -241,7 +242,7 @@ namespace Lives
             Response.Redirect("~/Admin/AdminPage.aspx?view=3", false);
         }
 
-        protected void imgbtnApagarUser_OnCommand(object sender, CommandEventArgs e)
+        protected void imgbtnApagarUser_Click(object sender, EventArgs e)
         {
             ImageButton imgbtnApagarUser = sender as ImageButton;
             GridViewRow row = (GridViewRow)imgbtnApagarUser.NamingContainer;
@@ -266,15 +267,69 @@ namespace Lives
             }
             gridViewUser.DataBind();
             Response.Redirect("~/Admin/AdminPage.aspx?view=3", true);
-
-
         }
-
-
 
         protected void imgbtnAlterarPasswordUser_Click(object sender, EventArgs e)
         {
+            string novaPassword = null;
+            string email = null;
+            ImageButton imgbtnApagarUser = sender as ImageButton;
+            GridViewRow row = (GridViewRow)imgbtnApagarUser.NamingContainer;
+            Guid userId = (Guid)(gridViewUser.DataKeys[row.RowIndex].Value);
+            string userName = (String)gridViewUser.DataKeys[row.RowIndex].Values[1];
+
+            MembershipUser user = Membership.GetUser(userName);
+            email = user.Email;
+
+            if (user != null && user.IsApproved)
+            {
+                try
+                {
+                    novaPassword = user.ResetPassword();
+                }
+                catch { }
+
+
+
+                if (novaPassword != null)
+                {
+                    
+                    enviaEmailNovaPass(userName, Server.HtmlEncode(novaPassword), email);
+                    lblSucessoAlterarPass.Visible = true;
+
+                }
+                else
+                {
+                    lblErroResetPassword.Visible = true;
+                    lblErroResetPassword.Text = "Não foi possivel satisfazer o seu pedido";
+                }
+
+            }
+
         }
+
+
+        protected void enviaEmailNovaPass(string userName, string password, string email)
+        {
+            SendEmail email_pass = new SendEmail();
+            StringBuilder strData = new StringBuilder(string.Empty);
+            string from = "lives@gmail.com";
+            string to = email;
+            string bcc = null;
+            string cc = "pppluis@gmail.com";
+            string subject = "Nova Password";
+            string body = null;
+
+            strData.Append("<h4>Olá " + userName + " bem vindo ao Lives!</h4>");
+            strData.Append("Dados da sua conta:</br>");
+            strData.Append("<span style=" + @"""font-weight: bold;""><p>Nova Password: </span>" + password + "</ br>");
+            strData.Append("<p>Carregue na ligação para voltar ao Lives.</p><p><a href=" + @"""http://lives.pt"" target=" + @"""_blank"">http://lives.pt</a></p>");
+            strData.Append("<p style=" + @"""font-weight: bold;"">Até breve! </p>");
+
+            body = strData.ToString();
+            email_pass.EnviarEmail(from, to, bcc, cc, subject, body);
+        }
+
 
 
     }
