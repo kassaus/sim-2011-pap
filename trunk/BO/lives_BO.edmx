@@ -6,6 +6,7 @@
     <edmx:StorageModels>
     <Schema Namespace="livesModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="livesModelStoreContainer">
+          <EntitySet Name="aspnet_Membership" EntityType="livesModel.Store.aspnet_Membership" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Categoria" EntityType="livesModel.Store.Categoria" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Estado" EntityType="livesModel.Store.Estado" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Subcategoria" EntityType="livesModel.Store.Subcategoria" store:Type="Tables" Schema="dbo" />
@@ -28,6 +29,32 @@
             <End Role="SubcategoriaVideo" EntitySet="SubcategoriaVideo" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="aspnet_Membership">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="PasswordFormat" Type="int" Nullable="false" />
+          <Property Name="PasswordSalt" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="MobilePIN" Type="nvarchar" MaxLength="16" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="LoweredEmail" Type="nvarchar" MaxLength="256" />
+          <Property Name="PasswordQuestion" Type="nvarchar" MaxLength="256" />
+          <Property Name="PasswordAnswer" Type="nvarchar" MaxLength="128" />
+          <Property Name="IsApproved" Type="bit" Nullable="false" />
+          <Property Name="IsLockedOut" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="LastLoginDate" Type="datetime" Nullable="false" />
+          <Property Name="LastPasswordChangedDate" Type="datetime" Nullable="false" />
+          <Property Name="LastLockoutDate" Type="datetime" Nullable="false" />
+          <Property Name="FailedPasswordAttemptCount" Type="int" Nullable="false" />
+          <Property Name="FailedPasswordAttemptWindowStart" Type="datetime" Nullable="false" />
+          <Property Name="FailedPasswordAnswerAttemptCount" Type="int" Nullable="false" />
+          <Property Name="FailedPasswordAnswerAttemptWindowStart" Type="datetime" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="Categoria">
           <Key>
             <PropertyRef Name="id" />
@@ -118,27 +145,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="AlteraVideo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id" Type="int" Mode="In" />
-          <Parameter Name="descricao" Type="nvarchar(max)" Mode="In" />
-          <Parameter Name="url" Type="nvarchar" Mode="In" />
-          <Parameter Name="estado" Type="int" Mode="In" />
-          <Parameter Name="titulo" Type="nvarchar" Mode="In" />
-        </Function>
         <Function Name="ApagaSubcategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
           <Parameter Name="categoria" Type="int" Mode="In" />
         </Function>
-        <Function Name="InsereSubcategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="nome" Type="nvarchar" Mode="In" />
-          <Parameter Name="categoria" Type="int" Mode="In" />
-        </Function>
-        <Function Name="InsereVideo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="descricao" Type="nvarchar(max)" Mode="In" />
-          <Parameter Name="url" Type="nvarchar" Mode="In" />
-          <Parameter Name="estado" Type="int" Mode="In" />
-          <Parameter Name="id_user" Type="uniqueidentifier" Mode="In" />
-          <Parameter Name="titulo" Type="nvarchar" Mode="In" />
+        <Function Name="UpdatelockUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="IsLockedOut" Type="bit" Mode="In" />
         </Function>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -161,6 +174,7 @@
             <End Role="Estado" EntitySet="Estado" />
             <End Role="Video" EntitySet="Video" />
           </AssociationSet>
+          <EntitySet Name="aspnet_Membership" EntityType="livesModel.aspnet_Membership" />
         </EntityContainer>
         <EntityType Name="Categoria">
           <Key>
@@ -212,6 +226,32 @@
           <End Type="livesModel.Estado" Role="Estado" Multiplicity="1" />
           <End Type="livesModel.Video" Role="Video" Multiplicity="*" />
         </Association>
+        <EntityType Name="aspnet_Membership">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Type="Guid" Name="ApplicationId" Nullable="false" />
+          <Property Type="Guid" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="PasswordFormat" Nullable="false" />
+          <Property Type="String" Name="PasswordSalt" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MobilePIN" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Email" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LoweredEmail" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PasswordQuestion" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PasswordAnswer" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsApproved" Nullable="false" />
+          <Property Type="Boolean" Name="IsLockedOut" Nullable="false" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="false" />
+          <Property Type="DateTime" Name="LastLoginDate" Nullable="false" />
+          <Property Type="DateTime" Name="LastPasswordChangedDate" Nullable="false" />
+          <Property Type="DateTime" Name="LastLockoutDate" Nullable="false" />
+          <Property Type="Int32" Name="FailedPasswordAttemptCount" Nullable="false" />
+          <Property Type="DateTime" Name="FailedPasswordAttemptWindowStart" Nullable="false" />
+          <Property Type="Int32" Name="FailedPasswordAnswerAttemptCount" Nullable="false" />
+          <Property Type="DateTime" Name="FailedPasswordAnswerAttemptWindowStart" Nullable="false" />
+          <Property Type="String" Name="Comment" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -243,12 +283,6 @@
       </EntityTypeMapping>
             <EntityTypeMapping TypeName="livesModel.Subcategoria">
               <ModificationFunctionMapping>
-                <InsertFunction FunctionName="livesModel.Store.InsereSubcategoria">
-                  <AssociationEnd AssociationSet="FK_CategoriaSubcategoria" From="Subcategoria" To="Categoria">
-                    <ScalarProperty Name="id" ParameterName="categoria" />
-                  </AssociationEnd>
-                  <ScalarProperty Name="nome" ParameterName="nome" />
-                </InsertFunction>
                 <DeleteFunction FunctionName="livesModel.Store.ApagaSubcategoria">
                   <AssociationEnd AssociationSet="FK_CategoriaSubcategoria" From="Subcategoria" To="Categoria">
                     <ScalarProperty Name="id" ParameterName="categoria" />
@@ -269,28 +303,6 @@
           <ScalarProperty Name="titulo" ColumnName="titulo" />
         </MappingFragment>
       </EntityTypeMapping>
-            <EntityTypeMapping TypeName="livesModel.Video">
-              <ModificationFunctionMapping>
-                <InsertFunction FunctionName="livesModel.Store.InsereVideo">
-                  <AssociationEnd AssociationSet="EstadoVideo" From="Video" To="Estado">
-                    <ScalarProperty Name="id" ParameterName="estado" />
-                  </AssociationEnd>
-                  <ScalarProperty Name="titulo" ParameterName="titulo" />
-                  <ScalarProperty Name="id_user" ParameterName="id_user" />
-                  <ScalarProperty Name="url" ParameterName="url" />
-                  <ScalarProperty Name="descricao" ParameterName="descricao" />
-                </InsertFunction>
-                <UpdateFunction FunctionName="livesModel.Store.AlteraVideo">
-                  <AssociationEnd AssociationSet="EstadoVideo" From="Video" To="Estado">
-                    <ScalarProperty Name="id" ParameterName="estado" Version="Current" />
-                  </AssociationEnd>
-                  <ScalarProperty Name="titulo" ParameterName="titulo" Version="Current" />
-                  <ScalarProperty Name="url" ParameterName="url" Version="Current" />
-                  <ScalarProperty Name="descricao" ParameterName="descricao" Version="Current" />
-                  <ScalarProperty Name="id" ParameterName="id" Version="Original" />
-                </UpdateFunction>
-              </ModificationFunctionMapping>
-            </EntityTypeMapping>
     </EntitySetMapping>
     <AssociationSetMapping Name="FK_CategoriaSubcategoria" TypeName="livesModel.FK_CategoriaSubcategoria" StoreEntitySet="Subcategoria">
       <EndProperty Name="Categoria">
@@ -316,6 +328,41 @@
         <ScalarProperty Name="id" ColumnName="id" />
       </EndProperty>
     </AssociationSetMapping>
+          <EntitySetMapping Name="aspnet_Membership">
+            <EntityTypeMapping TypeName="livesModel.aspnet_Membership">
+              <MappingFragment StoreEntitySet="aspnet_Membership">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="FailedPasswordAnswerAttemptWindowStart" ColumnName="FailedPasswordAnswerAttemptWindowStart" />
+                <ScalarProperty Name="FailedPasswordAnswerAttemptCount" ColumnName="FailedPasswordAnswerAttemptCount" />
+                <ScalarProperty Name="FailedPasswordAttemptWindowStart" ColumnName="FailedPasswordAttemptWindowStart" />
+                <ScalarProperty Name="FailedPasswordAttemptCount" ColumnName="FailedPasswordAttemptCount" />
+                <ScalarProperty Name="LastLockoutDate" ColumnName="LastLockoutDate" />
+                <ScalarProperty Name="LastPasswordChangedDate" ColumnName="LastPasswordChangedDate" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsLockedOut" ColumnName="IsLockedOut" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="PasswordAnswer" ColumnName="PasswordAnswer" />
+                <ScalarProperty Name="PasswordQuestion" ColumnName="PasswordQuestion" />
+                <ScalarProperty Name="LoweredEmail" ColumnName="LoweredEmail" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="MobilePIN" ColumnName="MobilePIN" />
+                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+                <ScalarProperty Name="PasswordFormat" ColumnName="PasswordFormat" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="livesModel.aspnet_Membership">
+              <ModificationFunctionMapping>
+                <UpdateFunction FunctionName="livesModel.Store.UpdatelockUser">
+                  <ScalarProperty Name="IsLockedOut" ParameterName="IsLockedOut" Version="Current" />
+                  <ScalarProperty Name="UserId" ParameterName="UserId" Version="Original" />
+                </UpdateFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
@@ -352,6 +399,7 @@
           <ConnectorPoint PointX="2.25" PointY="2.172841796875" />
           <ConnectorPoint PointX="3" PointY="2.172841796875" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="livesModel.aspnet_Membership" Width="1.5" PointX="5.375" PointY="0.75" Height="5.057109375" />
       </Diagram>
     </Diagrams>
   </Designer>
