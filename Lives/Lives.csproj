@@ -208,7 +208,6 @@
       <DependentUpon>TopoAutenticacao.Master</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="TopoAutenticacao.Master" />
   </ItemGroup>
