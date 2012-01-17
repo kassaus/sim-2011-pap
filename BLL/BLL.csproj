@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="CategoriaBO.cs" />
     <Compile Include="SubcategoriaBO.cs" />
+    <Compile Include="UserMembershipBO.cs" />
     <Compile Include="VideoBO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
