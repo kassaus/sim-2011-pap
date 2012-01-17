@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 01/15/2012 00:34:09
+-- Date Created: 01/17/2012 11:26:19
 -- Generated from EDMX file: C:\Users\Paulo Luis\Documents\Lusofona\3 Ano\SIM\Projecto\Lives\BO\lives_BO.edmx
 -- --------------------------------------------------
 
@@ -20,8 +20,8 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_CategoriaSubcategoria]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Subcategoria] DROP CONSTRAINT [FK_CategoriaSubcategoria];
 GO
-IF OBJECT_ID(N'[dbo].[FK_EstadoVideoVideo]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Video] DROP CONSTRAINT [FK_EstadoVideoVideo];
+IF OBJECT_ID(N'[dbo].[FK_EstadoVideo]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Video] DROP CONSTRAINT [FK_EstadoVideo];
 GO
 IF OBJECT_ID(N'[dbo].[FK_SubcategoriaVideo_Subcategoria]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[SubcategoriaVideo] DROP CONSTRAINT [FK_SubcategoriaVideo_Subcategoria];
