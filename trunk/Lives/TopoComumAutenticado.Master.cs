@@ -12,7 +12,7 @@ namespace Lives.Admin
 
         protected void btnPaginaInicial_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         protected void btnSair_Click(object sender, EventArgs e)

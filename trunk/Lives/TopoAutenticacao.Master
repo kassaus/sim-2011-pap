@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="TopoAutenticacao.Master.cs"
+﻿<%@ Master Language="C#"  AutoEventWireup="true" CodeBehind="TopoAutenticacao.Master.cs"
     Inherits="Lives.TopoAutenticacao" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -18,7 +18,7 @@
             </div>
             <div style="float: right">
                 <asp:Login ID="Login2" runat="server" DestinationPageUrl="~/Default.aspx" RenderOuterTable="False"
-                    Style="margin-left: 0px; color: #FF0000;" FailureText="O nome de utilizador ou a palavra-passe que introduziu estão incorretos."
+                    Style=" font-weight:bold; margin-left: 0px; color: #FFFFFF;" FailureText="O nome de utilizador ou a palavra-passe que introduziu estão incorretos."
                     PasswordRecoveryText="esqueceste a password?">
                     <LayoutTemplate>
                         <table cellpadding="1" cellspacing="0" style="border-collapse: collapse;">
@@ -61,6 +61,7 @@
                             </tr>
                             <tr>
                                 <td colspan="3" style="text-align: left; color: #FF0000;">
+                                    <asp:Label ID="lblErro" runat="server" Text="Label"></asp:Label>
                                     <asp:ValidationSummary ID="LoginUserValidationSummary" runat="server" ValidationGroup="ctl00$Login2"
                                         DisplayMode="SingleParagraph" />
                                     <asp:Literal ID="FailureText" runat="server" EnableViewState="False"></asp:Literal>

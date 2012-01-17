@@ -13,6 +13,7 @@ namespace Lives
         private VideoBO gestorVideos { get; set; }
         private SubcategoriaBO gestorSubcategorias { get; set; }
         private CategoriaBO gestorCategorias { get; set; }
+        private UserMembershipBO gestorUsers { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -34,6 +35,11 @@ namespace Lives
             if (gestorVideos == null)
             {
                 gestorVideos = new VideoBO();
+            }
+
+            if (gestorUsers == null)
+            {
+                gestorUsers = new UserMembershipBO();
             }
 
             if (filtroVideos.SelectedItem == null)
@@ -201,9 +207,38 @@ namespace Lives
                 label.Text = Membership.GetUser(video.id_user).UserName;
             }
         }
+        
 
         protected void imgbtnBloquearUser_Click(object sender, EventArgs e)
         {
+            ImageButton imgbtnApagarUser = sender as ImageButton;
+            GridViewRow row = (GridViewRow)imgbtnApagarUser.NamingContainer;
+            Guid userId = (Guid)(gridViewUser.DataKeys[row.RowIndex].Value);
+            string userName = (String)gridViewUser.DataKeys[row.RowIndex].Values[1];
+            actualizaEstadoLockUser(userName, userId, true);
+
+        }
+
+        protected void imgbtnDesbloquearUser_Click(object sender, EventArgs e)
+        {
+            ImageButton imgbtnApagarUser = sender as ImageButton;
+            GridViewRow row = (GridViewRow)imgbtnApagarUser.NamingContainer;
+            Guid userId = (Guid)(gridViewUser.DataKeys[row.RowIndex].Value);
+            string userName = (String)gridViewUser.DataKeys[row.RowIndex].Values[1];
+            actualizaEstadoLockUser(userName, userId, false);
+        }
+
+        private void actualizaEstadoLockUser(string userName, Guid userId, bool estado)
+        {
+            MembershipUser user = Membership.GetUser(userName);
+
+            if (user != null && user.IsApproved)
+            {
+                gestorUsers.modificaEstadoLock(userId, estado);
+
+            }
+            gridViewUser.DataBind();
+            Response.Redirect("~/Admin/AdminPage.aspx?view=3", false);
         }
 
         protected void imgbtnApagarUser_OnCommand(object sender, CommandEventArgs e)
@@ -235,9 +270,7 @@ namespace Lives
 
         }
 
-        protected void imgbtnDesbloquearUser_Click(object sender, EventArgs e)
-        {
-        }
+
 
         protected void imgbtnAlterarPasswordUser_Click(object sender, EventArgs e)
         {
