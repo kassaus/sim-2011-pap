@@ -193,6 +193,15 @@ namespace Lives {
         protected global::System.Web.UI.WebControls.Repeater TagRepeater;
         
         /// <summary>
+        /// ImageButton2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton ImageButton2;
+        
+        /// <summary>
         /// txtBoxNovaSubcategoria control.
         /// </summary>
         /// <remarks>
@@ -211,13 +220,22 @@ namespace Lives {
         protected global::AjaxControlToolkit.TextBoxWatermarkExtender txtBoxNovaSubcategoria_TextBoxWatermarkExtender;
         
         /// <summary>
-        /// btnNovaSubcategoria control.
+        /// lbtnInserirSubcategoria control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNovaSubcategoria;
+        protected global::System.Web.UI.WebControls.ImageButton lbtnInserirSubcategoria;
+        
+        /// <summary>
+        /// ImageButton1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton ImageButton1;
         
         /// <summary>
         /// usersView control.

@@ -129,17 +129,14 @@ namespace Lives
             {
                 gestorVideos.desaprova(int.Parse(idVideoAprovacao.Value));
             }
-
-            // FiltroVideos_OnSelectedIndexChanged(filtroVideos.SelectedItem, null);
-            
         }
 
         protected void lbtnEditar_Click(object sender, EventArgs e)
         {
             GridViewRow row = (GridViewRow)(sender as LinkButton).NamingContainer;
             idVideoAprovacao.Value = ((GridView)row.NamingContainer).DataKeys[row.RowIndex].Value.ToString();
-            panelFiltros.Visible = false;
             MultiViewVideos.ActiveViewIndex = 1;
+            filtroVideos.Visible = false;
             filtroVideos.SelectedIndex = 0;
             ddlCategorias.ClearSelection();
             ddlSubcategorias.ClearSelection();

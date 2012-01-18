@@ -4,6 +4,7 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="corpo" runat="server">
+	<link href="../Estilo.css" rel="stylesheet" type="text/css" />
 	<asp:ToolkitScriptManager ID="ScriptManager" runat="Server">
 	</asp:ToolkitScriptManager>
 	<asp:HiddenField ID="idVideoAprovacao" runat="server" />
@@ -57,7 +58,7 @@
 			</asp:Panel>
 			<asp:MultiView ID="MultiViewVideos" runat="server" ActiveViewIndex="0">
 				<asp:View ID="View1" runat="server">
-					<div style="padding-bottom: 10px; border-top-style: solid; border-top-width: thin;
+					<div style="padding-bottom: 10px; padding-left:10px; border-top-style: solid; border-top-width: thin;
 						border-top-color: #666; border-bottom-style: solid; border-bottom-width: thin;
 						border-bottom-color: #666;">
 						<h3>
@@ -135,7 +136,7 @@
 					</asp:ObjectDataSource>
 					<asp:Repeater ID="VideoDetailsView" runat="server" DataSourceID="ODSVideoToEdit">
 						<ItemTemplate>
-							<div style="padding-bottom: 10px; border-top-style: solid; border-top-width: thin;
+							<div style="padding-bottom: 10px; padding-left:10px; border-top-style: solid; border-top-width: thin;
 								border-top-color: #666; border-bottom-style: solid; border-bottom-width: thin;
 								border-bottom-color: #666;">
 								<h3 class="subtitulo">
@@ -193,7 +194,7 @@
 					</asp:Repeater>
 				</asp:View>
 				<asp:View ID="EditarsubCategoriasView" runat="server">
-					<div style="position: relative; padding-bottom: 10px; border-top-style: solid; border-top-width: thin;
+					<div style="position: relative; padding-bottom: 10px; padding-left:10px; border-top-style: solid; border-top-width: thin;
 						border-top-color: #666; border-bottom-style: solid; border-bottom-width: thin;
 						border-bottom-color: #666;">
 						<h3 class="subtitulo">
@@ -204,7 +205,7 @@
 							</div>
 						</div>
 					</div>
-					<div style="position: relative; top: 0px; margin-left: 50px">
+					<div style="position: relative; top: 0px; padding-left: 50px">
 						<p class="letraCinzentoMedia">
 							Categorias:
 							<asp:DropDownList ID="categoriasDropBox" runat="server" DataSourceID="OdsCategorias"
@@ -213,13 +214,17 @@
 							<asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="obterTodas"
 								TypeName="BLL.CategoriaBO"></asp:ObjectDataSource>
 						</p>
-						<div class="letraCinzentoMedia" style="position: absolute; top: 0; left: 220px">
-							<span style="margin-left: 50px; font-weight: bold">Etiquetas: </span>
+						<div class="letraCinzentoMedia" style="position: absolute; top: 3px; height: 200px;
+							left: 370px; margin: 0px;">
+							<span style="font-weight: bold">Etiquetas: </span>
 							<asp:Repeater ID="TagRepeater" runat="server" DataSourceID="ODSObterSubcategoriasCategoria">
 								<ItemTemplate>
 									<asp:LinkButton runat="server" Text='<%# Eval("nome") %>' OnClick="labelSubCatEditClickEventHandler" />
 								</ItemTemplate>
 							</asp:Repeater>
+						</div>
+						<div style="position: absolute; top: 3px; left: 350px;">
+							<asp:ImageButton ID="ImageButton2" runat="server" ImageAlign="Middle" ImageUrl="~/images/informacao.png" />
 						</div>
 						<div style="position: relative; top: 10; left: 0px">
 							<p class="letraCinzentoMedia" style="font-weight: bold">
@@ -228,15 +233,20 @@
 							<asp:TextBoxWatermarkExtender ID="txtBoxNovaSubcategoria_TextBoxWatermarkExtender"
 								runat="server" Enabled="True" TargetControlID="txtBoxNovaSubcategoria" WatermarkText="Nova subcategoria!">
 							</asp:TextBoxWatermarkExtender>
+							<div style="position: absolute; top: 0; left: 290px;">
+								<asp:ImageButton ID="lbtnInserirSubcategoria" runat="server" ImageAlign="Middle"
+									ImageUrl="~/images/add.png" OnClick="btnNovaSubcategoria_Click" />
+							</div>
 						</div>
-						<div style="position: relative; top: 10; left: 0px; margin-bottom: 20px;">
-							<asp:Button ID="btnNovaSubcategoria" CssClass="botaoLogin" Height="40px" Width="100px"
-								runat="server" Text="Inserir" OnClick="btnNovaSubcategoria_Click" />
+						<div style="position: relative; height: 100px;">
+						</div>
+						<div style="position: absolute; top: 33px; left: 30px;">
+							<asp:ImageButton ID="ImageButton1" runat="server" ImageAlign="Middle" ImageUrl="~/images/informacao.png" />
 						</div>
 					</div>
 				</asp:View>
 				<asp:View ID="usersView" runat="server">
-					<div style="position: relative; padding-bottom: 10px; border-bottom-style: solid;
+					<div style="position: relative; padding-bottom: 10px; padding-left:10px; border-bottom-style: solid;
 						border-bottom-width: thin; border-bottom-color: #666;">
 						<h3 class="subtitulo">
 							Users</h3>
