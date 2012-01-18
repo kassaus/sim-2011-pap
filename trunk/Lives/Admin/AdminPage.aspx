@@ -33,8 +33,8 @@
 					<div style="position: absolute; top: 0px; left: 300px">
 						<p class="letraCinzentoMedia">
 							Subcategorias:
-							<asp:DropDownList ID="ddlSubcategorias" runat="server" Width="150px" AutoPostBack="false"
-								DataSourceID="OdsSubcategorias" DataTextField="nome" DataValueField="id">
+							<asp:DropDownList ID="ddlSubcategorias" runat="server" Width="150px" AutoPostBack="true"
+								DataSourceID="OdsSubcategorias" DataTextField="nome" DataValueField="id" OnSelectedIndexChanged="ddlSubcategorias_OnSelectedIndexChanged">
 							</asp:DropDownList>
 							<asp:ObjectDataSource ID="OdsSubcategorias" runat="server" SelectMethod="obterTodasSubCategoriasCategoria"
 								TypeName="BLL.SubcategoriaBO">
@@ -60,8 +60,8 @@
 					<div style="padding-bottom: 10px; border-top-style: solid; border-top-width: thin;
 						border-top-color: #666; border-bottom-style: solid; border-bottom-width: thin;
 						border-bottom-color: #666;">
-						<h3 class="subtitulo">
-							Listagem de Vídeos<%= filtroVideos.SelectedItem.Value %></h3>
+						<h3>
+							<asp:Label ID="lblSubtitulo" CssClass="subtitulo" runat="server" Text=""></asp:Label></h3>
 					</div>
 					<asp:GridView ID="ListaVideos" runat="server" AutoGenerateColumns="False" GridLines="None"
 						ShowHeader="False" DataKeyNames="id" OnRowDataBound="ListaVideos_OnRowDataBound">
@@ -313,8 +313,7 @@
 												</HeaderTemplate>
 												<ItemTemplate>
 													<asp:ImageButton ID="btnApagarUser" runat="server" ImageUrl="~/images/deleteUser.png"
-														AlternateText="Remover User"CausesValidation="False" OnClick="imgbtnApagarUser_Click">
-													</asp:ImageButton>&nbsp&nbsp
+														AlternateText="Remover User" OnClick="imgbtnApagarUser_Click"></asp:ImageButton>&nbsp&nbsp
 													<asp:ImageButton ID="btnBloquearUser" runat="server" ImageUrl="~/images/locked.png"
 														AlternateText="Bloquear User" OnClick="imgbtnBloquearUser_Click"></asp:ImageButton>&nbsp&nbsp
 													<asp:ImageButton ID="btndesbloquearUser" runat="server" ImageUrl="~/images/unlocked.png"
@@ -341,15 +340,15 @@
 						</table>
 						<br />
 						<br />
-						<div style="margin-left:30%; margin-right:30%">
+						<div style="margin-left: 30%; margin-right: 30%">
 							<strong>
-								<asp:Label ID="lblSucessoAlterarPass" runat="server" CssClass="passAlteradaSucesso" Visible="false" Text="Password alterada com sucesso!"></asp:Label></strong>
+								<asp:Label ID="lblSucessoAlterarPass" runat="server" CssClass="passAlteradaSucesso"
+									Visible="false" Text="Password alterada com sucesso!"></asp:Label></strong>
 						</div>
 					</div>
 				</asp:View>
+			</asp:MultiView>
 		</div>
-		</asp:MultiView>
-	</div>
 	</div>
 	<asp:ObjectDataSource ID="ODSObterVideosPorAprovar" runat="server" SelectMethod="obterVideosPorAprovar"
 		TypeName="BLL.VideoBO" />
