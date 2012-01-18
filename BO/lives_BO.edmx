@@ -145,9 +145,40 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="AlteraEstadoVideo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="estado" Type="int" Mode="In" />
+        </Function>
+        <Function Name="AlteraSubcategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="nome" Type="nvarchar" Mode="In" />
+          <Parameter Name="categoria" Type="int" Mode="In" />
+        </Function>
+        <Function Name="AlteraVideo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="descricao" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="url" Type="nvarchar" Mode="In" />
+          <Parameter Name="estado" Type="int" Mode="In" />
+          <Parameter Name="titulo" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="ApagaSubcategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
           <Parameter Name="categoria" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ApagaVideo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="estado" Type="int" Mode="In" />
+        </Function>
+        <Function Name="InsereSubcategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nome" Type="nvarchar" Mode="In" />
+          <Parameter Name="categoria" Type="int" Mode="In" />
+        </Function>
+        <Function Name="InsereVideo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="descricao" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="url" Type="nvarchar" Mode="In" />
+          <Parameter Name="estado" Type="int" Mode="In" />
+          <Parameter Name="id_user" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="titulo" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="UpdatelockUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserId" Type="uniqueidentifier" Mode="In" />
@@ -289,6 +320,12 @@
                   </AssociationEnd>
                   <ScalarProperty Name="id" ParameterName="id" />
                 </DeleteFunction>
+                <UpdateFunction FunctionName="livesModel.Store.InsereSubcategoria">
+                  <AssociationEnd AssociationSet="FK_CategoriaSubcategoria" From="Subcategoria" To="Categoria">
+                    <ScalarProperty Name="id" ParameterName="categoria" Version="Current" />
+                  </AssociationEnd>
+                  <ScalarProperty Name="nome" ParameterName="nome" Version="Current" />
+                </UpdateFunction>
               </ModificationFunctionMapping>
             </EntityTypeMapping>
     </EntitySetMapping>
@@ -303,6 +340,34 @@
           <ScalarProperty Name="titulo" ColumnName="titulo" />
         </MappingFragment>
       </EntityTypeMapping>
+            <EntityTypeMapping TypeName="livesModel.Video">
+              <ModificationFunctionMapping>
+                <UpdateFunction FunctionName="livesModel.Store.AlteraVideo">
+                  <AssociationEnd AssociationSet="EstadoVideo" From="Video" To="Estado">
+                    <ScalarProperty Name="id" ParameterName="estado" Version="Current" />
+                  </AssociationEnd>
+                  <ScalarProperty Name="titulo" ParameterName="titulo" Version="Current" />
+                  <ScalarProperty Name="url" ParameterName="url" Version="Current" />
+                  <ScalarProperty Name="descricao" ParameterName="descricao" Version="Current" />
+                  <ScalarProperty Name="id" ParameterName="id" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="livesModel.Store.ApagaVideo">
+                  <AssociationEnd AssociationSet="EstadoVideo" From="Video" To="Estado">
+                    <ScalarProperty Name="id" ParameterName="estado" />
+                  </AssociationEnd>
+                  <ScalarProperty Name="id" ParameterName="id" />
+                </DeleteFunction>
+                <InsertFunction FunctionName="livesModel.Store.InsereVideo">
+                  <AssociationEnd AssociationSet="EstadoVideo" From="Video" To="Estado">
+                    <ScalarProperty Name="id" ParameterName="estado" />
+                  </AssociationEnd>
+                  <ScalarProperty Name="titulo" ParameterName="titulo" />
+                  <ScalarProperty Name="id_user" ParameterName="id_user" />
+                  <ScalarProperty Name="url" ParameterName="url" />
+                  <ScalarProperty Name="descricao" ParameterName="descricao" />
+                </InsertFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
     </EntitySetMapping>
     <AssociationSetMapping Name="FK_CategoriaSubcategoria" TypeName="livesModel.FK_CategoriaSubcategoria" StoreEntitySet="Subcategoria">
       <EndProperty Name="Categoria">
