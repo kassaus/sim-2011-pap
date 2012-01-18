@@ -28,8 +28,7 @@
                     Administração</h3>
                 <li>
                     <asp:Image ID="Image4" runat="server" AlternateText="Users" Height="40px" ImageAlign="Middle"
-                        ImageUrl="~/images/online.png" />
-                    <a href="AdminPage.aspx?view=4" rel="nofollow" class="style1">Online</a></li>
+                        ImageUrl="~/images/online.png" /><b>Online</b></li>
                 <li>
                     <asp:Image ID="Image1" runat="server" AlternateText="Users" Height="40px" ImageAlign="Middle"
                         ImageUrl="~/images/users.png" />

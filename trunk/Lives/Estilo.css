@@ -331,8 +331,9 @@ hr
 
 .entulho
 {
-	height: 280px;
-	width: 100%;
+	position:relative;
+	height: 100px;
+	
 }
 
 .contentorListagemVideosAdmin
@@ -595,3 +596,6 @@ hr
 	vertical-align: middle;
 	color: #666;
 }
+
+
+

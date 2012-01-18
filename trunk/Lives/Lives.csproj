@@ -84,7 +84,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\RecoverPass.aspx" />
+    <Content Include="images\add.png" />
     <Content Include="Admin\AdminPage.aspx" />
+    <Content Include="images\informacao.png" />
     <Content Include="ClientBin\Debug\VideoViewer.xap" />
     <Content Include="ErrorPages\Error.aspx" />
     <Content Include="Global.asax" />
