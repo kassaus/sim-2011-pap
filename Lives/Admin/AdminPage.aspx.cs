@@ -183,6 +183,8 @@ namespace Lives
             bool teste = videoBO.removeVideo(int.Parse(VideoId));
 
             Videos.DataBind();
+            filtroVideos.SelectedIndex = 0;
+            FiltroVideos_OnSelectedIndexChanged(filtroVideos.SelectedItem, null);
         }
 
         protected void FiltroVideos_OnSelectedIndexChanged(object sender, EventArgs e)

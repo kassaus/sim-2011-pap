@@ -320,12 +320,12 @@
                   </AssociationEnd>
                   <ScalarProperty Name="id" ParameterName="id" />
                 </DeleteFunction>
-                <UpdateFunction FunctionName="livesModel.Store.InsereSubcategoria">
+                <InsertFunction FunctionName="livesModel.Store.InsereSubcategoria">
                   <AssociationEnd AssociationSet="FK_CategoriaSubcategoria" From="Subcategoria" To="Categoria">
-                    <ScalarProperty Name="id" ParameterName="categoria" Version="Current" />
+                    <ScalarProperty Name="id" ParameterName="categoria" />
                   </AssociationEnd>
-                  <ScalarProperty Name="nome" ParameterName="nome" Version="Current" />
-                </UpdateFunction>
+                  <ScalarProperty Name="nome" ParameterName="nome" />
+                </InsertFunction>
               </ModificationFunctionMapping>
             </EntityTypeMapping>
     </EntitySetMapping>
