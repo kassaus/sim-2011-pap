@@ -84,6 +84,16 @@ namespace Lives
             ddlSubcategorias.DataBind();
         }
 
+        protected void ddlSubcategorias_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            Subcategoria subcategoria = gestorSubcategorias.obterSubCategoriaId(int.Parse(ddlSubcategorias.SelectedValue));
+
+            ListaVideos.DataSource = gestorVideos.obterTodosVideosSubcategoria(subcategoria.id);
+            ListaVideos.DataBind();
+            lblSubtitulo.Text = "Listagem de vídeos da Subcategoria " + subcategoria.nome;
+        }
+
+
         protected void CategoriasDropBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             lblErro.Visible = false;
@@ -120,7 +130,8 @@ namespace Lives
                 gestorVideos.desaprova(int.Parse(idVideoAprovacao.Value));
             }
 
-            FiltroVideos_OnSelectedIndexChanged(filtroVideos.SelectedItem, null);
+            // FiltroVideos_OnSelectedIndexChanged(filtroVideos.SelectedItem, null);
+            
         }
 
         protected void lbtnEditar_Click(object sender, EventArgs e)
@@ -184,12 +195,15 @@ namespace Lives
                 case 0:
                 default:
                     ListaVideos.DataSource = ODSObterVideosPorAprovar;
+                    lblSubtitulo.Text = "Listagem de vídeos Por Aprovar";
                     break;
                 case 1:
                     ListaVideos.DataSource = ODSObterVideosAprovados;
+                    lblSubtitulo.Text = "Listagem de Vídeos Aprovados";
                     break;
                 case 2:
                     ListaVideos.DataSource = ODSObterTodosVideos;
+                    lblSubtitulo.Text = "Listagem de Todos Vídeos";
                     break;
             }
 
@@ -293,7 +307,7 @@ namespace Lives
 
                 if (novaPassword != null)
                 {
-                    
+
                     enviaEmailNovaPass(userName, Server.HtmlEncode(novaPassword), email);
                     lblSucessoAlterarPass.Visible = true;
 
