@@ -20,7 +20,8 @@
 				Administração</h3>
 			<hr style="margin: 0; padding: 0;" />
 			<asp:Panel ID="panelFiltros" runat="server">
-				<div style="position: relative; width: 100%; height: 40px;">
+				<div style="position: relative; width: 100%; height: 40px; border-bottom-style: solid;
+					border-bottom-width: thin; border-bottom-color: #666;">
 					<div style="position: absolute; top: 0px; margin-left: 50px">
 						<p class="letraCinzentoMedia">
 							Categorias:
@@ -58,9 +59,7 @@
 			</asp:Panel>
 			<asp:MultiView ID="MultiViewVideos" runat="server" ActiveViewIndex="0">
 				<asp:View ID="View1" runat="server">
-					<div style="padding-bottom: 10px; padding-left:10px; border-top-style: solid; border-top-width: thin;
-						border-top-color: #666; border-bottom-style: solid; border-bottom-width: thin;
-						border-bottom-color: #666;">
+					<div style="padding-bottom: 10px; padding-left: 10px;">
 						<h3>
 							<asp:Label ID="lblSubtitulo" CssClass="subtitulo" runat="server" Text=""></asp:Label></h3>
 					</div>
@@ -69,8 +68,7 @@
 						<Columns>
 							<asp:TemplateField>
 								<ItemTemplate>
-									<div style="position: relative; margin-left: 10px; padding-bottom: 10px; padding-top: 10px;
-										width: 500px">
+									<div style="position: relative; margin-left: 10px; padding-bottom: 10px; padding-top: 10px;">
 										<strong>User:</strong>&nbsp
 										<asp:Label ID="lblUser" runat="server" Font-Bold="false"></asp:Label><br />
 										<strong>Título:</strong>&nbsp
@@ -136,66 +134,72 @@
 					</asp:ObjectDataSource>
 					<asp:Repeater ID="VideoDetailsView" runat="server" DataSourceID="ODSVideoToEdit">
 						<ItemTemplate>
-							<div style="padding-bottom: 10px; padding-left:10px; border-top-style: solid; border-top-width: thin;
-								border-top-color: #666; border-bottom-style: solid; border-bottom-width: thin;
-								border-bottom-color: #666;">
+							<div style="position: relative; width: 100%; padding-bottom: 10px; padding-left: 10px;">
 								<h3 class="subtitulo">
 									Editar Vídeos</h3>
 							</div>
-							<div style="position: relative; bottom: 1.9em;">
-								<div style="margin-left: auto; margin-right: auto; width: 300px">
-									<asp:Label ID="lblErro" CssClass="redError" runat="Server" Visible="false"></asp:Label>
+							<div style="position: relative; top: 0px; height: 480px; width: 100%; border-top-style: solid;
+								border-top-width: thin; border-top-color: #666;">
+								<div style="position: absolute; float: none; top: 0px; width: 100%">
+									<div style="position: relative; float: left; top: 0px; height: 480px; width: 44%;">
+										<div style="position: relative; float: left; width: 60%;">
+											<p class="letraCinzentoMedia" style="font-weight: bold">
+												<asp:Image ID="Image1" AlternateText="Informação do controlo" runat="server" ImageUrl="~/images/informacao.png" />&nbsp
+												Título:
+												<asp:TextBox ID="txtBoxTitulo" runat="server" Columns="50" Width="200px"></asp:TextBox></p>
+											<asp:TextBoxWatermarkExtender ID="txtBoxTitulo_TextBoxWatermarkExtender" runat="server"
+												Enabled="True" TargetControlID="txtBoxTitulo" WatermarkText='<%# Eval("titulo") %>'>
+											</asp:TextBoxWatermarkExtender>
+										</div>
+										<div style="position: relative; float: right; top: 15px">
+											Aprovado?<asp:CheckBox ID="chkbAprovado" OnCheckedChanged="aprovarVideo_check" AutoPostBack="true"
+												runat="server" Checked='<%# (int) Eval("Estado.id") == 2 %>' />
+										</div>
+										<div style="position: relative; float: left; width: 100%; height: 380px;">
+											<object classid="clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95" width="500" height="375"
+												codebase="http://www.microsoft.com/Windows/MediaPlayer/">
+												<param name="Filename" value='<%# Eval("url") %>'>
+												<param name="AutoStart" value="false">
+												<param name="ShowControls" value="true">
+												<param name="BufferingTime" value="2">
+												<param name="ShowStatusBar" value="false">
+												<param name="AutoSize" value="true">
+												<param name="InvokeURLs" value="false">
+												<embed src='<%# "/Videos/" + Eval("url") %>' type="application/x-mplayer2" autostart="0"
+													enabled="1" showstatusbar="0" showdisplay="1" showcontrols="1" pluginspage="http://www.microsoft.com/Windows/MediaPlayer/"
+													codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=6,0,0,0"
+													width="500" height="375"></embed>
+											</object>
+										</div>
+										<div style="position: relative; float: left; width: 100%;">
+											<asp:Button ID="btnCategorizar" CssClass="botaoLogin" Height="40px" Width="133px"
+												runat="server" Text="Mais Etquetas" OnClick="btnCategorizar_Click" />
+											<span style="margin-left: 47px;">
+												<asp:Button ID="btnApagarSubcat" CssClass="botaoLogin" Height="40px" Width="133px"
+													runat="server" Text="Apagar Etiquetas" OnClick="btnApagarSubcat_Click" /></span>
+											<span style="margin-left: 47px;">
+												<asp:Button ID="btnConfirmarEdicaoVideo" CssClass="botaoLogin" Height="40px" Width="133px"
+													runat="server" Text="Confirmar" /></span>
+										</div>
+									</div>
+									<div style="position: relative; float: right; top: 0px; height: 480px; width: 56%;">
+										<div style="position: relative; float: left; top: 48px; width: 100%;">
+											<asp:Image ID="Image2" AlternateText="Informação do controlo" runat="server" ImageUrl="~/images/informacao.png"
+												ImageAlign="AbsMiddle" />&nbsp Etiquetas:
+											<asp:Repeater ID="TagRepeater" runat="server" DataSource='<%# Eval("Subcategorias") %>'>
+												<ItemTemplate>
+													<asp:LinkButton ID="LinkButton1" runat="server" Text='<%# Eval("nome") %>' OnClick="labelClickEventHandler" />
+												</ItemTemplate>
+											</asp:Repeater>
+										</div>
+									</div>
 								</div>
-							</div>
-							<div style="position: relative; margin-left: 10px; padding-bottom: 10px; padding-top: 10px;">
-								<div style="position: relative; top: 0; left: 0; margin-left: 10px; padding-bottom: 10px;">
-									<div>
-										<p class="letraCinzentoMedia" style="font-weight: bold">
-											Título:
-											<asp:TextBox ID="txtBoxTitulo" runat="server" Columns="50" Width="200px"></asp:TextBox></p>
-										<asp:TextBoxWatermarkExtender ID="txtBoxTitulo_TextBoxWatermarkExtender" runat="server"
-											Enabled="True" TargetControlID="txtBoxTitulo" WatermarkText='<%# Eval("titulo") %>'>
-										</asp:TextBoxWatermarkExtender>
-									</div>
-									<div style="position: absolute; top: 0; left: 220px">
-										<span style="margin-left: 50px; font-weight: bold">Etiquetas: </span>
-										<asp:Repeater ID="TagRepeater" runat="server" DataSource='<%# Eval("Subcategorias") %>'>
-											<ItemTemplate>
-												<asp:LinkButton ID="LinkButton1" runat="server" Text='<%# Eval("nome") %>' OnClick="labelClickEventHandler" />
-											</ItemTemplate>
-										</asp:Repeater>
-									</div>
-									<div>
-										<asp:Button ID="btnCategorizar" CssClass="botaoLogin" Height="40px" Width="150px"
-											runat="server" Text="Classificar" OnClick="btnCategorizar_Click" />
-										<span style="margin-left: 50px;"></span>
-										<asp:Button ID="btnApagarSubcat" CssClass="botaoLogin" Height="40px" Width="150px"
-											runat="server" Text="Apagar Etiquetas" OnClick="btnApagarSubcat_Click" />
-									</div>
-									<div style="position: relative; top: 20px; width: 500px; height: 375px;">
-										<object classid="clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95" width="500" height="375"
-											codebase="http://www.microsoft.com/Windows/MediaPlayer/">
-											<param name="Filename" value='<%# Eval("url") %>'>
-											<param name="AutoStart" value="false">
-											<param name="ShowControls" value="true">
-											<param name="BufferingTime" value="2">
-											<param name="ShowStatusBar" value="false">
-											<param name="AutoSize" value="true">
-											<param name="InvokeURLs" value="false">
-											<embed src='<%# "/Videos/" + Eval("url") %>' type="application/x-mplayer2" autostart="0"
-												enabled="1" showstatusbar="0" showdisplay="1" showcontrols="1" pluginspage="http://www.microsoft.com/Windows/MediaPlayer/"
-												codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=6,0,0,0"
-												width="500" height="375"></embed>
-										</object>
-									</div>
-								</div>
-							</div>
 						</ItemTemplate>
 					</asp:Repeater>
 				</asp:View>
 				<asp:View ID="EditarsubCategoriasView" runat="server">
-					<div style="position: relative; padding-bottom: 10px; padding-left:10px; border-top-style: solid; border-top-width: thin;
-						border-top-color: #666; border-bottom-style: solid; border-bottom-width: thin;
+					<div style="position: relative; padding-bottom: 10px; padding-left: 10px; border-top-style: solid;
+						border-top-width: thin; border-top-color: #666; border-bottom-style: solid; border-bottom-width: thin;
 						border-bottom-color: #666;">
 						<h3 class="subtitulo">
 							Editar Subcategorias</h3>
@@ -246,7 +250,7 @@
 					</div>
 				</asp:View>
 				<asp:View ID="usersView" runat="server">
-					<div style="position: relative; padding-bottom: 10px; padding-left:10px; border-bottom-style: solid;
+					<div style="position: relative; padding-bottom: 10px; padding-left: 10px; border-bottom-style: solid;
 						border-bottom-width: thin; border-bottom-color: #666;">
 						<h3 class="subtitulo">
 							Users</h3>
