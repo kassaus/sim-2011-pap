@@ -10,6 +10,7 @@ namespace Lives.Users
     {
         private VideoBO gestorVideos { get; set; }
         private SubcategoriaBO gestorSubcategorias { get; set; }
+        private CategoriaBO gestorCategorias { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,12 +28,37 @@ namespace Lives.Users
                 gestorSubcategorias = new SubcategoriaBO();
             }
 
+            if (gestorCategorias == null)
+            {
+                gestorCategorias = new CategoriaBO();
+            }
+
             if (gestorVideos == null)
             {
                 gestorVideos = new VideoBO();
             }
-        }
 
+            if (filtroVideos.SelectedItem == null)
+            {
+                filtroVideos.SelectedIndex = 0;
+                FiltroVideos_OnSelectedIndexChanged(filtroVideos.SelectedItem, null);
+            }
+
+            string view = Request.Params["view"];
+
+            if (view != null)
+            {
+                MultiViewVideos.ActiveViewIndex = int.Parse(view);
+            }
+
+            if (MultiViewVideos.ActiveViewIndex == 1 || MultiViewVideos.ActiveViewIndex == 2)
+            {
+                panelFiltros.Visible = false;
+
+            }
+
+
+        }
 
         protected void ddlCategoria_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -47,8 +73,6 @@ namespace Lives.Users
                 ddlSubcategorias.Enabled = false;
             }
             ddlSubcategorias.DataBind();
-
-
         }
 
         protected void ListaVideos_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -71,21 +95,14 @@ namespace Lives.Users
         {
             GridViewRow row = (GridViewRow)(sender as LinkButton).NamingContainer;
             idVideoToEdit.Value = ((GridView)row.NamingContainer).DataKeys[row.RowIndex].Value.ToString();
-
             MultiViewVideos.ActiveViewIndex = 1;
-            if (CheckBoxVideosAprovados.Checked || CheckBoxVideosAprovados.Checked || CheckBoxVideosAprovados.Checked)
-            {
-                CheckBoxVideosAprovados.Checked = false;
-                CheckBoxVideosPorAprovar.Checked = false;
-                CheckBoxTodosVideos.Checked = false;
-            }
-
-            CheckBoxVideosAprovados.Enabled = false;
-            CheckBoxVideosPorAprovar.Enabled = false;
-            CheckBoxTodosVideos.Enabled = false;
+            filtroVideos.Visible = false;
+            filtroVideos.SelectedIndex = 0;
+            ddlCategorias.ClearSelection();
+            ddlSubcategorias.ClearSelection();
         }
 
-        protected void labelClickEventHandler(object sender, EventArgs e)
+        protected void labelEditarVideoClickEventHandler(object sender, EventArgs e)
         {
             LinkButton etiqueta = (LinkButton)sender;
             Subcategoria subcategoria = gestorSubcategorias.obterSubCategoriaNome(etiqueta.Text);
@@ -109,7 +126,11 @@ namespace Lives.Users
 
         }
 
+        protected void ddlSubcategorias_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
 
+            lblSubtitulo.Text = "Listagem de vídeos da Subcategoria ";
+        }
 
 
         protected void btnCategorizar_Click(object sender, EventArgs e)
@@ -123,22 +144,33 @@ namespace Lives.Users
             Label erro = (Label)button.Parent.FindControl("lblErro");
             erro.Visible = true;
             erro.Text = "É necessário escolher uma categoria!";
+        }
 
-
-
-
-
-
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
 
         }
 
-
-
-
-
-        protected void btnApagarSubcat_Click(object sender, EventArgs e)
+        protected void FiltroVideos_OnSelectedIndexChanged(object sender, EventArgs e)
         {
+            switch (filtroVideos.SelectedIndex)
+            {
+                case 0:
+                default:
+                    //ListaVideos.DataSource = ODSObterVideosPorAprovar;
+                    lblSubtitulo.Text = "Listagem de vídeos Por Aprovar";
+                    break;
+                case 1:
+                    //ListaVideos.DataSource = ODSObterVideosAprovados;
+                    lblSubtitulo.Text = "Listagem de Vídeos Aprovados";
+                    break;
+                case 2:
+                    // ListaVideos.DataSource = ODSObterTodosVideos;
+                    lblSubtitulo.Text = "Listagem de Todos Vídeos";
+                    break;
+            }
 
+            //ListaVideos.DataBind();
         }
 
     }

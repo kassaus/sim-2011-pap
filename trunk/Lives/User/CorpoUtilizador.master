@@ -34,7 +34,7 @@
                 <li>
                     <asp:Image ID="Image2" runat="server" AlternateText="Categorias" Height="40px" ImageAlign="Middle"
                         ImageUrl="~/images/file_upload.png" />
-                    <a class="style1" href="#" rel="nofollow">upload Vídeos</a></li>
+                    <a class="style1" href="HomeUser.aspx?view=2" rel="nofollow">upload Vídeos</a></li>
                 
             </div>
         </div>  
