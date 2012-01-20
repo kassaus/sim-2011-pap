@@ -9,11 +9,13 @@ namespace BLL
 	{
 		private VideoDO videosDataManager { get; set; }
 		private EstadoDO estadosDataManager { get; set; }
+		private SubcategoriaDO subcategoriasDataManager { get; set; }
 
 		public VideoBO()
 		{
 			videosDataManager = new VideoDO();
 			estadosDataManager = new EstadoDO();
+			subcategoriasDataManager = new SubcategoriaDO();
 		}
 
 		public List<Video> obterTodosVideos()
@@ -155,7 +157,7 @@ namespace BLL
 
 		#region // INSERT, DELETE, UPDATE
 
-		public bool criarVideo(string descricao, Guid id_user, string url)
+		public bool criarVideo(string descricao, Guid id_user, string titulo, string url)
 		{
 			Video video = new Video();
 			video.descricao = descricao;
@@ -165,7 +167,7 @@ namespace BLL
 			return videosDataManager.inserirVideo(video);
 		}
 
-		public bool modificaVideo(string descricao, Guid id_user, string url, int id_video)
+		public bool modificaVideo(string descricao, Guid id_user, string titulo, string url, int id_video)
 		{
 			Video video = new Video();
 			video.descricao = descricao;
@@ -202,6 +204,30 @@ namespace BLL
 		public bool desaprova(int id)
 		{
 			return modificaEstado(id, 1);
+		}
+
+		public bool associaEtiqueta(int id_video, string subcat)
+		{
+			Subcategoria subcategoria = subcategoriasDataManager.obterSubCategoriaNome(subcat);
+			Video video = videosDataManager.obterVideo(id_video);
+
+			return videosDataManager.inserirSubcategoriaVideo(video, subcategoria);
+		}
+
+		public bool desassociaEtiqueta(int id_video, string subcat)
+		{
+			Subcategoria subcategoria = subcategoriasDataManager.obterSubCategoriaNome(subcat);
+			Video video = videosDataManager.obterVideo(id_video);
+
+			return videosDataManager.removerSubcategoriaVideo(video, subcategoria);
+		}
+
+		public bool desassociaEtiqueta(int id_video, int subcat)
+		{
+			Subcategoria subcategoria = subcategoriasDataManager.obterSubCategoriaId(subcat);
+			Video video = videosDataManager.obterVideo(id_video);
+
+			return videosDataManager.inserirSubcategoriaVideo(video, subcategoria);
 		}
 
 		#endregion

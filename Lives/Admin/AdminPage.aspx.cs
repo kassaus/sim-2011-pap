@@ -6,6 +6,7 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Collections.Generic;
 using System.Text;
+using AjaxControlToolkit;
 
 namespace Lives
 {
@@ -15,6 +16,7 @@ namespace Lives
         private SubcategoriaBO gestorSubcategorias { get; set; }
         private CategoriaBO gestorCategorias { get; set; }
         private UserMembershipBO gestorUsers { get; set; }
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -91,6 +93,7 @@ namespace Lives
             ListaVideos.DataSource = gestorVideos.obterTodosVideosSubcategoria(subcategoria.id);
             ListaVideos.DataBind();
             lblSubtitulo.Text = "Listagem de vídeos da Subcategoria " + subcategoria.nome;
+
         }
 
 
@@ -103,16 +106,30 @@ namespace Lives
         protected void labelClickEventHandler(object sender, EventArgs e)
         {
             LinkButton etiqueta = (LinkButton)sender;
-            Subcategoria subcategoria = gestorSubcategorias.obterSubCategoriaNome(etiqueta.Text);
-            gestorVideos.obterVideo(int.Parse(idVideoAprovacao.Value)).Subcategorias.Remove(subcategoria);
-            etiqueta.Parent.DataBind();
+
+            if (gestorVideos.desassociaEtiqueta(int.Parse(idVideoAprovacao.Value), etiqueta.Text))
+            {
+                etiqueta.Parent.DataBind();
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
+
         }
 
         protected void labelSubCatEditClickEventHandler(object sender, EventArgs e)
         {
             LinkButton etiqueta = (LinkButton)sender;
-            gestorSubcategorias.removeSubcategoria(etiqueta.Text);
-            etiqueta.Parent.DataBind();
+            if (gestorVideos.desassociaEtiqueta(int.Parse(idVideoAprovacao.Value), etiqueta.Text))
+            {
+                etiqueta.Parent.DataBind();
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
+
         }
 
         protected void aprovarVideo_check(object sender, EventArgs e)
@@ -142,15 +159,7 @@ namespace Lives
             ddlSubcategorias.ClearSelection();
         }
 
-        protected void btnCategorizar_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        protected void btnApagarSubcat_Click(object sender, EventArgs e)
-        {
-
-        }
 
         protected void btnNovaSubcategoria_Click(object sender, EventArgs e)
         {
@@ -169,6 +178,46 @@ namespace Lives
 
             }
         }
+
+        protected void btnInserirSubcategoria_Click(object sender, EventArgs e)
+        {
+
+            if (gestorVideos.desassociaEtiqueta(int.Parse(idVideoAprovacao.Value), int.Parse(ddlSubcategorias.SelectedValue)))
+            {
+                TagRepeater.DataBind();
+            }
+            else
+            {
+                Label erro = null;
+                foreach (RepeaterItem item in VideoDetailsView.Items)
+                {
+                    if (item.ItemType == ListItemType.AlternatingItem || item.ItemType == ListItemType.Item)
+                    {
+                        erro = (Label)item.FindControl("lblErroEditarVideos");
+
+                    }
+                }
+                if (erro != null)
+                {
+                    erro.Visible = true;
+                    erro.Text = "Já inseriu essa subcategoria!";
+                }
+            }
+
+
+
+        }
+
+        protected void btnConfirmarEdicaoVideo_Click(object sender, EventArgs e)
+        {
+            string conteudoBox = null;
+            conteudoBox = findControloTextBoxRepeater(VideoDetailsView);
+            Subcategoria subCat = gestorSubcategorias.obterSubCategoriaId(int.Parse(ddlSubcategorias.SelectedValue));
+            //gestorVideos.modificaVideo(int.Parse(idVideoAprovacao.Value)).Subcategorias.Remove(subcategoria);
+
+        }
+
+
 
         protected void lbtnApagarVideo_Click(object sender, EventArgs e)
         {
@@ -342,6 +391,20 @@ namespace Lives
             body = strData.ToString();
             email_pass.EnviarEmail(from, to, bcc, cc, subject, body);
         }
+
+        protected string findControloTextBoxRepeater(Repeater repeater)
+        {
+            string valor = null;
+            foreach (RepeaterItem item in repeater.Items)
+            {
+                if (item.ItemType == ListItemType.AlternatingItem || item.ItemType == ListItemType.Item)
+                {
+                    TextBox controlo = (TextBox)item.FindControl("txtBoxTitulo");
+                    valor = controlo.Text;
+                }
+            } return valor;
+        }
+
 
 
 

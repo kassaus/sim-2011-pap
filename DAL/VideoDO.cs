@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data.Objects;
 using BO;
 using System.Linq;
+using System.Data.SqlClient;
+using System.Data.Common;
 
 namespace DAL
 {
@@ -195,6 +197,34 @@ namespace DAL
 				}
 			}
 			catch { }
+			return sucesso;
+		}
+
+		public bool removerSubcategoriaVideo(Video video, Subcategoria subcategoria)
+		{
+			bool sucesso = false;
+
+			try
+			{
+				sucesso = DB.tabelas.ExecuteStoreCommand("RemoverSubcategoriaDeVideo @id_video={0}, @id_subcat={1}", video.id, subcategoria.id) != 0;
+				DB.tabelas.SaveChanges();
+			}
+			catch { }
+
+			return sucesso;
+		}
+
+		public bool inserirSubcategoriaVideo(Video video, Subcategoria subcategoria)
+		{
+			bool sucesso = false;
+
+			try
+			{
+				sucesso = DB.tabelas.ExecuteStoreCommand("AtribuirSubcategoriaAVideo @id_video={0}, @id_subcat={1}", video.id, subcategoria.id) != 0;
+				DB.tabelas.SaveChanges();
+			}
+			catch { }
+
 			return sucesso;
 		}
 

@@ -17,8 +17,7 @@
 		<div class="corpoInterior">
 			<h3 class="titulo">
 				Gestão de Publicações</h3>
-			<hr style="margin: 0; padding: 0;" />
-			<asp:Panel ID="panelFiltros" runat="server">
+			<hr style="margin: 0; padding: 0;" />			
 				<div style="position: relative; width: 100%; height: 40px; border-bottom-style: solid;
 					border-bottom-width: thin; border-bottom-color: #666;">
 					<div style="position: absolute; top: 0px; margin-left: 50px">
@@ -46,6 +45,7 @@
 							</asp:ObjectDataSource>
 						</p>
 					</div>
+					<asp:Panel ID="panelFiltros" runat="server">
 					<div style="position: absolute; height: 50%; width: 30%; top: 20%; left: 560px;">
 						<asp:RadioButtonList CssClass="filtro" ID="filtroVideos" runat="server" OnSelectedIndexChanged="FiltroVideos_OnSelectedIndexChanged"
 							AutoPostBack="true" RepeatDirection="Horizontal" RepeatLayout="Table" RepeatColumns="0">
@@ -54,8 +54,9 @@
 							<asp:ListItem Text="Todos" Value="" />
 						</asp:RadioButtonList>
 					</div>
+					</asp:Panel>
 				</div>
-			</asp:Panel>
+			
 			<asp:MultiView ID="MultiViewVideos" runat="server" ActiveViewIndex="0">
 				<asp:View ID="View1" runat="server">
 					<div style="padding-bottom: 10px; border-top-style: solid; border-top-width: thin;
@@ -218,12 +219,17 @@
 									<p class="letraCinzentoMedia" style="font-weight: bold">
 										<asp:Image ID="Image1" AlternateText="Informação do controlo" runat="server" ImageUrl="~/images/informacao.png" />&nbsp
 										Título:
-										<asp:TextBox ID="txtBoxTitulo" runat="server" Columns="50" Width="200px"></asp:TextBox></p>
+										<asp:TextBox ID="txtBoxTitulo" runat="server" Columns="50" Width="200px"></asp:TextBox>
 									<asp:TextBoxWatermarkExtender ID="txtBoxTitulo_TextBoxWatermarkExtender" runat="server"
 										Enabled="True" TargetControlID="txtBoxTitulo" WatermarkText="Escreva o título!">
-									</asp:TextBoxWatermarkExtender>
+									</asp:TextBoxWatermarkExtender>												
+													Descrição:
+													<asp:TextBox ID="txtBoxDescricao" runat="server" Columns="50" Width="200px"></asp:TextBox></p>
+												<asp:TextBoxWatermarkExtender ID="TextBoxDescricao_WatermarkExtender" runat="server"
+													Enabled="True" TargetControlID="txtBoxDescricao" WatermarkText="Insira uma descrição">
+												</asp:TextBoxWatermarkExtender>
 								</div>
-								<div style="position: relative; float: left; width: 100%; height: 380px;">
+								<div style="position: relative; float: left; width: 100%; height: 380px; background-color:Menu">
 									<object classid="clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95" width="500" height="375"
 										codebase="http://www.microsoft.com/Windows/MediaPlayer/">
 										<!--<param name="Filename" value='<%# Eval("url") %>'>-->
@@ -254,14 +260,15 @@
 								</div>
 							</div>
 							<div style="position: relative; float: right; top: 0px; height: 530px; width: 56%;">
-								<div style="position: relative; float: left; top: 48px; width: 100%;">
+								<div style="position: relative; float: left; top: 65px; width: 100%;">
 									<asp:Image ID="Image2" AlternateText="Informação do controlo" runat="server" ImageUrl="~/images/informacao.png"
-										ImageAlign="AbsMiddle" />&nbsp Etiquetas:
-									<!--<asp:Repeater ID="TagRepeater" runat="server" DataSource='<%# Eval("Subcategorias") %>'>
+										ImageAlign="AbsMiddle" />&nbsp <asp:ImageButton ID="btnInserirSubcategoria" runat="server" ImageAlign="Middle"
+									ImageUrl="~/images/add.png" OnClick="btnInserirSubcategoria_Click" /> &nbsp Etiquetas:
+									<asp:Repeater ID="TagInserirVideoRepeater" runat="server">
 												<ItemTemplate>
-													<asp:LinkButton ID="LinkButton1" runat="server" Text='<%# Eval("nome") %>' OnClick="labelEditarVideoClickEventHandler" />
+													<asp:LinkButton ID="LinkButton1" runat="server" Text='<%# Eval("nome") %>' OnClick="labelInserirVideoClickEventHandler" />													
 												</ItemTemplate>
-											</asp:Repeater>-->
+											</asp:Repeater>
 								</div>
 							</div>
 						</div>
