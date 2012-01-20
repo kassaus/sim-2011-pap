@@ -58,13 +58,13 @@
 				</div>
 			</asp:Panel>
 			<asp:MultiView ID="MultiViewVideos" runat="server" ActiveViewIndex="0">
-				<asp:View ID="View1" runat="server">
+				<asp:View ID="ViewListagensVideos" runat="server">
 					<div style="padding-bottom: 10px; padding-left: 10px;">
 						<h3>
 							<asp:Label ID="lblSubtitulo" CssClass="subtitulo" runat="server" Text=""></asp:Label></h3>
 					</div>
-					<asp:GridView ID="ListaVideos" runat="server" AutoGenerateColumns="False" GridLines="None"
-						ShowHeader="False" DataKeyNames="id" OnRowDataBound="ListaVideos_OnRowDataBound">
+					<asp:GridView ID="GridViewListaVideos" runat="server" AutoGenerateColumns="False" GridLines="None"
+						ShowHeader="False" DataKeyNames="id" OnRowDataBound="GridViewListaVideos_OnRowDataBound">
 						<Columns>
 							<asp:TemplateField>
 								<ItemTemplate>
@@ -107,10 +107,10 @@
 													</span>
 												</div>
 												<div style="position: relative; top: 20px">
-													<asp:LinkButton ID="lbtnEditar" CssClass="botaoLogin" Font-Underline="false" Width="80px"
-														runat="server" OnClick="lbtnEditar_Click">Editar</asp:LinkButton></div>
+													<asp:LinkButton ID="lbtnEditarVideo" CssClass="botaoLogin" Font-Underline="false" Width="80px"
+														runat="server" OnClick="lbtnEditarVideo_Click">Editar</asp:LinkButton></div>
 												<div style="position: relative; top: 70px">
-													<asp:LinkButton ID="lbtnApagar" CssClass="botaoLogin" Font-Underline="false" ForeColor="red"
+													<asp:LinkButton ID="lbtnApagarVideo" CssClass="botaoLogin" Font-Underline="false" ForeColor="red"
 														Width="80px" runat="server" OnClick="lbtnApagarVideo_Click">Remover</asp:LinkButton></div>
 											</div>
 										</div>
@@ -124,15 +124,8 @@
 						</EmptyDataTemplate>
 					</asp:GridView>
 				</asp:View>
-				<asp:View ID="VideoEditSubcategoriasView" runat="server">
-					<asp:ObjectDataSource ID="ODSVideoToEdit" runat="server" SelectMethod="obterVideo"
-						TypeName="BLL.VideoBO">
-						<SelectParameters>
-							<asp:ControlParameter ControlID="idVideoAprovacao" DbType="Int32" Name="id" ConvertEmptyStringToNull="true"
-								PropertyName="Value" />
-						</SelectParameters>
-					</asp:ObjectDataSource>
-					<asp:Repeater ID="VideoDetailsView" runat="server" DataSourceID="ODSVideoToEdit">
+				<asp:View ID="ViewEditVideo" runat="server">
+					<asp:Repeater ID="RepeaterVideoDetails" runat="server" DataSourceID="ODSVideoToEdit">
 						<ItemTemplate>
 							<div style="position: relative; width: 100%; padding-bottom: 10px; padding-left: 10px;">
 								<h3 class="subtitulo">
@@ -195,13 +188,14 @@
 											<asp:ImageButton ID="btnInserirSubcategoria" runat="server" ImageAlign="Middle" ImageUrl="~/images/add.png"
 												OnClick="btnInserirSubcategoria_Click" />
 											&nbsp Etiquetas:
-											<asp:Repeater ID="TagRepeater" runat="server" DataSource='<%# Eval("Subcategorias") %>'>
+											<asp:Repeater ID="RepeaterTag" runat="server" DataSource='<%# Eval("Subcategorias") %>'>
 												<ItemTemplate>
 													<asp:LinkButton ID="LinkButton1" runat="server" Text='<%# Eval("nome") %>' OnClick="labelClickEventHandler" />
 												</ItemTemplate>
 											</asp:Repeater>
 										</div>
-										<div style="position: relative; float:left; margin-top:100px; margin-left: 10px; text-align: center; width:300px;">
+										<div style="position: relative; float: left; margin-top: 100px; margin-left: 10px;
+											text-align: center; width: 300px;">
 											<asp:Label ID="lblErroEditarVideos" CssClass="redError" runat="Server" Visible="false"></asp:Label>
 										</div>
 									</div>
@@ -210,7 +204,7 @@
 						</ItemTemplate>
 					</asp:Repeater>
 				</asp:View>
-				<asp:View ID="EditarsubCategoriasView" runat="server">
+				<asp:View ID="ViewEditarsubCategorias" runat="server">
 					<div style="position: relative; padding-bottom: 10px; padding-left: 10px; border-top-style: solid;
 						border-top-width: thin; border-top-color: #666; border-bottom-style: solid; border-bottom-width: thin;
 						border-bottom-color: #666;">
@@ -226,7 +220,7 @@
 						<p class="letraCinzentoMedia">
 							Categorias:
 							<asp:DropDownList ID="categoriasDropBox" runat="server" DataSourceID="OdsCategorias"
-								DataTextField="nome" DataValueField="id" Width="150px" AutoPostBack="True" OnSelectedIndexChanged="CategoriasDropBox_SelectedIndexChanged">
+								DataTextField="nome" DataValueField="id" Width="150px" AutoPostBack="True">
 							</asp:DropDownList>
 							<asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="obterTodas"
 								TypeName="BLL.CategoriaBO"></asp:ObjectDataSource>
@@ -234,7 +228,7 @@
 						<div class="letraCinzentoMedia" style="position: absolute; top: 3px; height: 200px;
 							left: 370px; margin: 0px;">
 							<span style="font-weight: bold">Etiquetas: </span>
-							<asp:Repeater ID="TagRepeater" runat="server" DataSourceID="ODSObterSubcategoriasCategoria">
+							<asp:Repeater ID="RepeaterTag" runat="server" DataSourceID="ODSObterSubcategoriasCategoria">
 								<ItemTemplate>
 									<asp:LinkButton runat="server" Text='<%# Eval("nome") %>' OnClick="labelSubCatEditClickEventHandler" />
 								</ItemTemplate>
@@ -262,7 +256,7 @@
 						</div>
 					</div>
 				</asp:View>
-				<asp:View ID="usersView" runat="server">
+				<asp:View ID="ViewUsers" runat="server">
 					<div style="position: relative; padding-bottom: 10px; padding-left: 10px; border-bottom-style: solid;
 						border-bottom-width: thin; border-bottom-color: #666;">
 						<h3 class="subtitulo">
@@ -277,7 +271,7 @@
 						<table border="0" cellspacing="0" cellpadding="0" width="100%" align="center">
 							<tr>
 								<td>
-									<asp:GridView runat="server" ID="gridViewUser" AllowSorting="True" AutoGenerateColumns="False"
+									<asp:GridView runat="server" ID="GridViewUser" AllowSorting="True" AutoGenerateColumns="False"
 										Font-Size="X-Small" HorizontalAlign="Center" RowStyle-VerticalAlign="Middle"
 										DataKeyNames="ProviderUserKey, UserName" RowStyle-Height="40px" EditRowStyle-HorizontalAlign="Center"
 										EditRowStyle-VerticalAlign="Middle" HeaderStyle-ForeColor="White" GridLines="None"
@@ -377,6 +371,13 @@
 			</asp:MultiView>
 		</div>
 	</div>
+	<asp:ObjectDataSource ID="ODSVideoToEdit" runat="server" SelectMethod="obterVideo"
+		TypeName="BLL.VideoBO">
+		<SelectParameters>
+			<asp:ControlParameter ControlID="idVideoAprovacao" DbType="Int32" Name="id" ConvertEmptyStringToNull="true"
+				PropertyName="Value" />
+		</SelectParameters>
+	</asp:ObjectDataSource>
 	<asp:ObjectDataSource ID="ODSObterVideosPorAprovar" runat="server" SelectMethod="obterVideosPorAprovar"
 		TypeName="BLL.VideoBO" />
 	<asp:ObjectDataSource ID="ODSObterTodosVideos" runat="server" SelectMethod="obterTodosVideos"
