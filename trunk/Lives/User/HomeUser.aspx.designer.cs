@@ -40,15 +40,6 @@ namespace Lives.Users {
         protected global::System.Web.UI.WebControls.HiddenField idVideoToEdit;
         
         /// <summary>
-        /// panelFiltros control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel panelFiltros;
-        
-        /// <summary>
         /// ddlCategorias control.
         /// </summary>
         /// <remarks>
@@ -83,6 +74,15 @@ namespace Lives.Users {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ObjectDataSource OdsSubcategorias;
+        
+        /// <summary>
+        /// panelFiltros control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel panelFiltros;
         
         /// <summary>
         /// filtroVideos control.
@@ -202,6 +202,24 @@ namespace Lives.Users {
         protected global::AjaxControlToolkit.TextBoxWatermarkExtender txtBoxTitulo_TextBoxWatermarkExtender;
         
         /// <summary>
+        /// txtBoxDescricao control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBoxDescricao;
+        
+        /// <summary>
+        /// TextBoxDescricao_WatermarkExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.TextBoxWatermarkExtender TextBoxDescricao_WatermarkExtender;
+        
+        /// <summary>
         /// FileUpload1 control.
         /// </summary>
         /// <remarks>
@@ -238,12 +256,21 @@ namespace Lives.Users {
         protected global::System.Web.UI.WebControls.Image Image2;
         
         /// <summary>
-        /// TagRepeater control.
+        /// btnInserirSubcategoria control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater TagRepeater;
+        protected global::System.Web.UI.WebControls.ImageButton btnInserirSubcategoria;
+        
+        /// <summary>
+        /// TagInserirVideoRepeater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater TagInserirVideoRepeater;
     }
 }

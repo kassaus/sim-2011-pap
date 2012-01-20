@@ -3,6 +3,7 @@ using System.Web.Security;
 using System.Web.UI.WebControls;
 using BLL;
 using BO;
+using System.Collections.Generic;
 
 namespace Lives.Users
 {
@@ -11,6 +12,7 @@ namespace Lives.Users
         private VideoBO gestorVideos { get; set; }
         private SubcategoriaBO gestorSubcategorias { get; set; }
         private CategoriaBO gestorCategorias { get; set; }
+        private List<Subcategoria> listaEtiquetas = new List<Subcategoria>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -51,9 +53,10 @@ namespace Lives.Users
                 MultiViewVideos.ActiveViewIndex = int.Parse(view);
             }
 
-            if (MultiViewVideos.ActiveViewIndex == 1 || MultiViewVideos.ActiveViewIndex == 2)
+            if (MultiViewVideos.ActiveViewIndex == 2)
             {
                 panelFiltros.Visible = false;
+                TagInserirVideoRepeater.DataSource = listaEtiquetas;
 
             }
 
@@ -110,6 +113,24 @@ namespace Lives.Users
             etiqueta.Parent.DataBind();
         }
 
+        protected void labelInserirVideoClickEventHandler(object sender, EventArgs e)
+        {
+            LinkButton etiqueta = (LinkButton)sender;
+            Subcategoria subcategoria = gestorSubcategorias.obterSubCategoriaNome(etiqueta.Text);
+            listaEtiquetas.Remove(subcategoria);
+            TagInserirVideoRepeater.DataBind();
+        }
+
+        protected void btnInserirSubcategoria_Click(object sender, EventArgs e)
+        {
+            Subcategoria subcategoria = gestorSubcategorias.obterSubCategoriaId(int.Parse(ddlSubcategorias.SelectedValue));
+            listaEtiquetas.Add(subcategoria);
+            TagInserirVideoRepeater.DataBind();
+
+        }
+
+
+
         protected void lbtnApagarVideo_Click(object sender, EventArgs e)
         {
             LinkButton apagar = sender as LinkButton;
@@ -133,18 +154,18 @@ namespace Lives.Users
         }
 
 
-        protected void btnCategorizar_Click(object sender, EventArgs e)
-        {
-            string subCat = null;
+        //protected void btnCategorizar_Click(object sender, EventArgs e)
+        //{
+        //    string subCat = null;
 
 
-            SubcategoriaBO subCatBO = new SubcategoriaBO();
-            subCat = subCatBO.obterSubCategoriaId(Convert.ToInt32(ddlSubcategorias.SelectedValue)).nome;
-            Button button = (Button)sender;
-            Label erro = (Label)button.Parent.FindControl("lblErro");
-            erro.Visible = true;
-            erro.Text = "É necessário escolher uma categoria!";
-        }
+        //    SubcategoriaBO subCatBO = new SubcategoriaBO();
+        //    subCat = subCatBO.obterSubCategoriaId(Convert.ToInt32(ddlSubcategorias.SelectedValue)).nome;
+        //    Button button = (Button)sender;
+        //    Label erro = (Label)button.Parent.FindControl("lblErro");
+        //    erro.Visible = true;
+        //    erro.Text = "É necessário escolher uma categoria!";
+        //}
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
@@ -172,6 +193,8 @@ namespace Lives.Users
 
             //ListaVideos.DataBind();
         }
+
+
 
     }
 }

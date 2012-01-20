@@ -7,12 +7,12 @@ namespace BLL
     public class SubcategoriaBO
     {
         private SubcategoriaDO subCategoriasDataManager { get; set; }
-        private CategoriaBO categoriasManager { get; set; }
+        private CategoriaDO categoriasDataManager { get; set; }
 
         public SubcategoriaBO()
         {
             subCategoriasDataManager = new SubcategoriaDO();
-            categoriasManager = new CategoriaBO();
+            categoriasDataManager = new CategoriaDO();
         }
 
         #region //Select
@@ -61,7 +61,7 @@ namespace BLL
         public bool criarSubCategoria(string nome, int cat)
         {
             Subcategoria subCat = new Subcategoria();
-            subCat.Categoria = categoriasManager.obterCategoriaId(cat);
+            subCat.Categoria = categoriasDataManager.obterCategoriaId(cat);
             subCat.nome = nome;
 
             return subCategoriasDataManager.insereSubCategoria(subCat);
@@ -70,7 +70,7 @@ namespace BLL
         public bool modificaSubcategoria(string nome, int cat)
         {
             Subcategoria subCat = new Subcategoria();
-            subCat.Categoria = categoriasManager.obterCategoriaId(cat);
+            subCat.Categoria = categoriasDataManager.obterCategoriaId(cat);
             subCat.nome = nome;
 
             return subCategoriasDataManager.modificaSubcategoria(subCat);

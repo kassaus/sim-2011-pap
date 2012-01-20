@@ -169,6 +169,10 @@
           <Parameter Name="id" Type="int" Mode="In" />
           <Parameter Name="estado" Type="int" Mode="In" />
         </Function>
+        <Function Name="AtribuirSubcategoriaAVideo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_video" Type="int" Mode="In" />
+          <Parameter Name="id_subcat" Type="int" Mode="In" />
+        </Function>
         <Function Name="InsereSubcategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="nome" Type="nvarchar" Mode="In" />
           <Parameter Name="categoria" Type="int" Mode="In" />
@@ -179,6 +183,10 @@
           <Parameter Name="estado" Type="int" Mode="In" />
           <Parameter Name="id_user" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="titulo" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="RemoverSubcategoriaDeVideo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_video" Type="int" Mode="In" />
+          <Parameter Name="id_subcat" Type="int" Mode="In" />
         </Function>
         <Function Name="UpdatelockUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserId" Type="uniqueidentifier" Mode="In" />

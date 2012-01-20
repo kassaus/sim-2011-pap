@@ -141,7 +141,7 @@
 							<div style="position: relative; top: 0px; height: 480px; width: 100%; border-top-style: solid;
 								border-top-width: thin; border-top-color: #666;">
 								<div style="position: absolute; float: none; top: 0px; width: 100%">
-									<div style="position: relative; float: left; top: 0px; height: 480px; width: 44%;">
+									<div style="position: relative; float: left; top: 0px; height: 480px; width: 46%;">
 										<div style="position: relative; float: left; width: 60%;">
 											<p class="letraCinzentoMedia" style="font-weight: bold">
 												<asp:Image ID="Image1" AlternateText="Informação do controlo" runat="server" ImageUrl="~/images/informacao.png" />&nbsp
@@ -151,7 +151,8 @@
 												Enabled="True" TargetControlID="txtBoxTitulo" WatermarkText='<%# Eval("titulo") %>'>
 											</asp:TextBoxWatermarkExtender>
 										</div>
-										<div style="position: relative; float: right; top: 15px">
+										<div style="position: relative; float: left; text-align: right; margin-left: 110px;
+											top: 15px">
 											Aprovado?<asp:CheckBox ID="chkbAprovado" OnCheckedChanged="aprovarVideo_check" AutoPostBack="true"
 												runat="server" Checked='<%# (int) Eval("Estado.id") == 2 %>' />
 										</div>
@@ -172,28 +173,40 @@
 											</object>
 										</div>
 										<div style="position: relative; float: left; width: 100%;">
-											<asp:Button ID="btnCategorizar" CssClass="botaoLogin" Height="40px" Width="133px"
-												runat="server" Text="Mais Etquetas" OnClick="btnCategorizar_Click" />
-											<span style="margin-left: 47px;">
-												<asp:Button ID="btnApagarSubcat" CssClass="botaoLogin" Height="40px" Width="133px"
-													runat="server" Text="Apagar Etiquetas" OnClick="btnApagarSubcat_Click" /></span>
-											<span style="margin-left: 47px;">
+											<div style="position: relative; float: left; width: 60%;">
+												<p class="letraCinzentoMedia" style="font-weight: bold">
+													<asp:Image ID="Image3" AlternateText="Informação do controlo" runat="server" ImageUrl="~/images/informacao.png" />&nbsp
+													Descrição:
+													<asp:TextBox ID="txtBoxDescricao" runat="server" Columns="50" Width="200px"></asp:TextBox></p>
+												<asp:TextBoxWatermarkExtender ID="TextBoxDescricao_WatermarkExtender" runat="server"
+													Enabled="True" TargetControlID="txtBoxDescricao" WatermarkText='<%# Eval("descricao") %>'>
+												</asp:TextBoxWatermarkExtender>
+											</div>
+											<div style="position: relative; float: left; margin-left: 50px; text-align: right;">
 												<asp:Button ID="btnConfirmarEdicaoVideo" CssClass="botaoLogin" Height="40px" Width="133px"
-													runat="server" Text="Confirmar" /></span>
+													runat="server" Text="Confirmar" OnClick="btnConfirmarEdicaoVideo_Click" />
+											</div>
 										</div>
 									</div>
-									<div style="position: relative; float: right; top: 0px; height: 480px; width: 56%;">
-										<div style="position: relative; float: left; top: 48px; width: 100%;">
+									<div style="position: relative; float: right; top: 0px; height: 480px; width: 54%;">
+										<div style="position: relative; float: left; margin-left: 10px; top: 48px; width: 100%;">
 											<asp:Image ID="Image2" AlternateText="Informação do controlo" runat="server" ImageUrl="~/images/informacao.png"
-												ImageAlign="AbsMiddle" />&nbsp Etiquetas:
+												ImageAlign="AbsMiddle" />&nbsp
+											<asp:ImageButton ID="btnInserirSubcategoria" runat="server" ImageAlign="Middle" ImageUrl="~/images/add.png"
+												OnClick="btnInserirSubcategoria_Click" />
+											&nbsp Etiquetas:
 											<asp:Repeater ID="TagRepeater" runat="server" DataSource='<%# Eval("Subcategorias") %>'>
 												<ItemTemplate>
 													<asp:LinkButton ID="LinkButton1" runat="server" Text='<%# Eval("nome") %>' OnClick="labelClickEventHandler" />
 												</ItemTemplate>
 											</asp:Repeater>
 										</div>
+										<div style="position: relative; float:left; margin-top:100px; margin-left: 10px; text-align: center; width:300px;">
+											<asp:Label ID="lblErroEditarVideos" CssClass="redError" runat="Server" Visible="false"></asp:Label>
+										</div>
 									</div>
 								</div>
+							</div>
 						</ItemTemplate>
 					</asp:Repeater>
 				</asp:View>
