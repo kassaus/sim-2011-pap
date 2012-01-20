@@ -94,13 +94,13 @@ namespace Lives {
         protected global::System.Web.UI.WebControls.MultiView MultiViewVideos;
         
         /// <summary>
-        /// View1 control.
+        /// ViewListagensVideos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View View1;
+        protected global::System.Web.UI.WebControls.View ViewListagensVideos;
         
         /// <summary>
         /// lblSubtitulo control.
@@ -112,49 +112,40 @@ namespace Lives {
         protected global::System.Web.UI.WebControls.Label lblSubtitulo;
         
         /// <summary>
-        /// ListaVideos control.
+        /// GridViewListaVideos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView ListaVideos;
+        protected global::System.Web.UI.WebControls.GridView GridViewListaVideos;
         
         /// <summary>
-        /// VideoEditSubcategoriasView control.
+        /// ViewEditVideo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View VideoEditSubcategoriasView;
+        protected global::System.Web.UI.WebControls.View ViewEditVideo;
         
         /// <summary>
-        /// ODSVideoToEdit control.
+        /// RepeaterVideoDetails control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ODSVideoToEdit;
+        protected global::System.Web.UI.WebControls.Repeater RepeaterVideoDetails;
         
         /// <summary>
-        /// VideoDetailsView control.
+        /// ViewEditarsubCategorias control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater VideoDetailsView;
-        
-        /// <summary>
-        /// EditarsubCategoriasView control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.View EditarsubCategoriasView;
+        protected global::System.Web.UI.WebControls.View ViewEditarsubCategorias;
         
         /// <summary>
         /// lblErro control.
@@ -184,13 +175,13 @@ namespace Lives {
         protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSource1;
         
         /// <summary>
-        /// TagRepeater control.
+        /// RepeaterTag control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater TagRepeater;
+        protected global::System.Web.UI.WebControls.Repeater RepeaterTag;
         
         /// <summary>
         /// ImageButton2 control.
@@ -238,13 +229,13 @@ namespace Lives {
         protected global::System.Web.UI.WebControls.ImageButton ImageButton1;
         
         /// <summary>
-        /// usersView control.
+        /// ViewUsers control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View usersView;
+        protected global::System.Web.UI.WebControls.View ViewUsers;
         
         /// <summary>
         /// Label4 control.
@@ -256,13 +247,13 @@ namespace Lives {
         protected global::System.Web.UI.WebControls.Label Label4;
         
         /// <summary>
-        /// gridViewUser control.
+        /// GridViewUser control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridViewUser;
+        protected global::System.Web.UI.WebControls.GridView GridViewUser;
         
         /// <summary>
         /// lblErroResetPassword control.
@@ -281,6 +272,15 @@ namespace Lives {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblSucessoAlterarPass;
+        
+        /// <summary>
+        /// ODSVideoToEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource ODSVideoToEdit;
         
         /// <summary>
         /// ODSObterVideosPorAprovar control.

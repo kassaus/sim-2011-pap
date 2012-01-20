@@ -163,6 +163,7 @@ namespace BLL
 			video.descricao = descricao;
 			video.id_user = id_user;
 			video.url = url;
+			video.titulo = titulo;
 
 			return videosDataManager.inserirVideo(video);
 		}
@@ -174,6 +175,7 @@ namespace BLL
 			video.id_user = id_user;
 			video.url = url;
 			video.id = id_video;
+			video.titulo = titulo;
 
 			return videosDataManager.actualizaVideo(video);
 		}
@@ -209,6 +211,14 @@ namespace BLL
 		public bool associaEtiqueta(int id_video, string subcat)
 		{
 			Subcategoria subcategoria = subcategoriasDataManager.obterSubCategoriaNome(subcat);
+			Video video = videosDataManager.obterVideo(id_video);
+
+			return videosDataManager.inserirSubcategoriaVideo(video, subcategoria);
+		}
+
+		public bool associaEtiqueta(int id_video, int subcat)
+		{
+			Subcategoria subcategoria = subcategoriasDataManager.obterSubCategoriaId(subcat);
 			Video video = videosDataManager.obterVideo(id_video);
 
 			return videosDataManager.inserirSubcategoriaVideo(video, subcategoria);

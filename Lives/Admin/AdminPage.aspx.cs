@@ -25,6 +25,9 @@ namespace Lives
                 Response.Redirect("Home.aspx");
             }
 
+
+            ODSObterSubcategoriasCategoria.DataBind();
+
             if (gestorSubcategorias == null)
             {
                 gestorSubcategorias = new SubcategoriaBO();
@@ -61,14 +64,23 @@ namespace Lives
             if (MultiViewVideos.ActiveViewIndex == 2 || MultiViewVideos.ActiveViewIndex == 3 || MultiViewVideos.ActiveViewIndex == 4)
             {
                 panelFiltros.Visible = false;
-
             }
 
             if (MultiViewVideos.ActiveViewIndex == 3)
             {
-                gridViewUser.DataSource = Membership.GetAllUsers();
-                gridViewUser.DataBind();
+                GridViewUser.DataSource = Membership.GetAllUsers();
+                GridViewUser.DataBind();
             }
+
+            //if (MultiViewVideos.ActiveViewIndex == 0)
+            //{
+            //    GridViewListaVideos.FindControl("SubCats").DataBind();
+            //    filtroVideos.SelectedIndex = 0;
+            //    FiltroVideos_OnSelectedIndexChanged(filtroVideos.SelectedItem, null);
+            //}
+
+
+
         }
 
         protected void ddlCategoria_SelectedIndexChanged(object sender, EventArgs e)
@@ -90,18 +102,16 @@ namespace Lives
         {
             Subcategoria subcategoria = gestorSubcategorias.obterSubCategoriaId(int.Parse(ddlSubcategorias.SelectedValue));
 
-            ListaVideos.DataSource = gestorVideos.obterTodosVideosSubcategoria(subcategoria.id);
-            ListaVideos.DataBind();
+            GridViewListaVideos.DataSource = gestorVideos.obterTodosVideosSubcategoria(subcategoria.id);
+            GridViewListaVideos.DataBind();
             lblSubtitulo.Text = "Listagem de vídeos da Subcategoria " + subcategoria.nome;
 
         }
 
+        #region //Listagem dos videos
 
-        protected void CategoriasDropBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            lblErro.Visible = false;
-        }
 
+        #endregion
 
         protected void labelClickEventHandler(object sender, EventArgs e)
         {
@@ -121,7 +131,7 @@ namespace Lives
         protected void labelSubCatEditClickEventHandler(object sender, EventArgs e)
         {
             LinkButton etiqueta = (LinkButton)sender;
-            if (gestorVideos.desassociaEtiqueta(int.Parse(idVideoAprovacao.Value), etiqueta.Text))
+            if (gestorSubcategorias.removeSubcategoria(etiqueta.Text))
             {
                 etiqueta.Parent.DataBind();
             }
@@ -148,13 +158,12 @@ namespace Lives
             }
         }
 
-        protected void lbtnEditar_Click(object sender, EventArgs e)
+        protected void lbtnEditarVideo_Click(object sender, EventArgs e)
         {
             GridViewRow row = (GridViewRow)(sender as LinkButton).NamingContainer;
             idVideoAprovacao.Value = ((GridView)row.NamingContainer).DataKeys[row.RowIndex].Value.ToString();
             MultiViewVideos.ActiveViewIndex = 1;
             filtroVideos.Visible = false;
-            filtroVideos.SelectedIndex = 0;
             ddlCategorias.ClearSelection();
             ddlSubcategorias.ClearSelection();
         }
@@ -171,7 +180,7 @@ namespace Lives
             else
             {
                 gestorSubcategorias.criarSubCategoria(txtBoxNovaSubcategoria.Text, int.Parse(categoriasDropBox.SelectedItem.Value));
-                TagRepeater.DataBind();
+                RepeaterTag.DataBind();
                 txtBoxNovaSubcategoria.Text = "";
                 lblErro.Visible = false;
 
@@ -182,14 +191,15 @@ namespace Lives
         protected void btnInserirSubcategoria_Click(object sender, EventArgs e)
         {
 
-            if (gestorVideos.desassociaEtiqueta(int.Parse(idVideoAprovacao.Value), int.Parse(ddlSubcategorias.SelectedValue)))
+            if (gestorVideos.associaEtiqueta(int.Parse(idVideoAprovacao.Value), int.Parse(ddlSubcategorias.SelectedValue)))
             {
-                TagRepeater.DataBind();
+                RepeaterTag.DataBind();
+
             }
             else
             {
                 Label erro = null;
-                foreach (RepeaterItem item in VideoDetailsView.Items)
+                foreach (RepeaterItem item in RepeaterVideoDetails.Items)
                 {
                     if (item.ItemType == ListItemType.AlternatingItem || item.ItemType == ListItemType.Item)
                     {
@@ -211,7 +221,7 @@ namespace Lives
         protected void btnConfirmarEdicaoVideo_Click(object sender, EventArgs e)
         {
             string conteudoBox = null;
-            conteudoBox = findControloTextBoxRepeater(VideoDetailsView);
+            conteudoBox = findControloTextBoxRepeater(RepeaterVideoDetails);
             Subcategoria subCat = gestorSubcategorias.obterSubCategoriaId(int.Parse(ddlSubcategorias.SelectedValue));
             //gestorVideos.modificaVideo(int.Parse(idVideoAprovacao.Value)).Subcategorias.Remove(subcategoria);
 
@@ -242,23 +252,23 @@ namespace Lives
             {
                 case 0:
                 default:
-                    ListaVideos.DataSource = ODSObterVideosPorAprovar;
+                    GridViewListaVideos.DataSource = ODSObterVideosPorAprovar;
                     lblSubtitulo.Text = "Listagem de vídeos Por Aprovar";
                     break;
                 case 1:
-                    ListaVideos.DataSource = ODSObterVideosAprovados;
+                    GridViewListaVideos.DataSource = ODSObterVideosAprovados;
                     lblSubtitulo.Text = "Listagem de Vídeos Aprovados";
                     break;
                 case 2:
-                    ListaVideos.DataSource = ODSObterTodosVideos;
+                    GridViewListaVideos.DataSource = ODSObterTodosVideos;
                     lblSubtitulo.Text = "Listagem de Todos Vídeos";
                     break;
             }
 
-            ListaVideos.DataBind();
+            GridViewListaVideos.DataBind();
         }
 
-        protected void ListaVideos_OnRowDataBound(object sender, GridViewRowEventArgs e)
+        protected void GridViewListaVideos_OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
             GridViewRow row = e.Row;
 
@@ -276,8 +286,8 @@ namespace Lives
         {
             ImageButton imgbtnApagarUser = sender as ImageButton;
             GridViewRow row = (GridViewRow)imgbtnApagarUser.NamingContainer;
-            Guid userId = (Guid)(gridViewUser.DataKeys[row.RowIndex].Value);
-            string userName = (String)gridViewUser.DataKeys[row.RowIndex].Values[1];
+            Guid userId = (Guid)(GridViewUser.DataKeys[row.RowIndex].Value);
+            string userName = (String)GridViewUser.DataKeys[row.RowIndex].Values[1];
             actualizaEstadoLockUser(userName, userId, true);
 
         }
@@ -286,8 +296,8 @@ namespace Lives
         {
             ImageButton imgbtnApagarUser = sender as ImageButton;
             GridViewRow row = (GridViewRow)imgbtnApagarUser.NamingContainer;
-            Guid userId = (Guid)(gridViewUser.DataKeys[row.RowIndex].Value);
-            string userName = (String)gridViewUser.DataKeys[row.RowIndex].Values[1];
+            Guid userId = (Guid)(GridViewUser.DataKeys[row.RowIndex].Value);
+            string userName = (String)GridViewUser.DataKeys[row.RowIndex].Values[1];
             actualizaEstadoLockUser(userName, userId, false);
         }
 
@@ -300,7 +310,7 @@ namespace Lives
                 gestorUsers.modificaEstadoLock(userId, estado);
 
             }
-            gridViewUser.DataBind();
+            GridViewUser.DataBind();
             Response.Redirect("~/Admin/AdminPage.aspx?view=3", false);
         }
 
@@ -308,8 +318,8 @@ namespace Lives
         {
             ImageButton imgbtnApagarUser = sender as ImageButton;
             GridViewRow row = (GridViewRow)imgbtnApagarUser.NamingContainer;
-            Guid UserId = (Guid)(gridViewUser.DataKeys[row.RowIndex].Value);
-            string UserName = (String)gridViewUser.DataKeys[row.RowIndex].Values[1];
+            Guid UserId = (Guid)(GridViewUser.DataKeys[row.RowIndex].Value);
+            string UserName = (String)GridViewUser.DataKeys[row.RowIndex].Values[1];
 
             List<Video> videos = gestorVideos.obterVideosUser(UserId);
 
@@ -327,7 +337,7 @@ namespace Lives
             {
                 Membership.DeleteUser(UserName);
             }
-            gridViewUser.DataBind();
+            GridViewUser.DataBind();
             Response.Redirect("~/Admin/AdminPage.aspx?view=3", true);
         }
 
@@ -337,8 +347,8 @@ namespace Lives
             string email = null;
             ImageButton imgbtnApagarUser = sender as ImageButton;
             GridViewRow row = (GridViewRow)imgbtnApagarUser.NamingContainer;
-            Guid userId = (Guid)(gridViewUser.DataKeys[row.RowIndex].Value);
-            string userName = (String)gridViewUser.DataKeys[row.RowIndex].Values[1];
+            Guid userId = (Guid)(GridViewUser.DataKeys[row.RowIndex].Value);
+            string userName = (String)GridViewUser.DataKeys[row.RowIndex].Values[1];
 
             MembershipUser user = Membership.GetUser(userName);
             email = user.Email;
