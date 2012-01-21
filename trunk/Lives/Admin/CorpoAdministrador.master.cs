@@ -12,12 +12,6 @@ namespace Lives
                 Response.Redirect("~/Home.aspx");
 
             }
-            else
-            {
-                lblNome.Text = Membership.GetUser().UserName;
-                lblOnline.Text = Membership.GetNumberOfUsersOnline().ToString();
-            }
-
         }
     }
 }

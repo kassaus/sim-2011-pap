@@ -11,7 +11,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div id="contentorTopo">
+    <div class="contentorTopo">
         <div class="topo">
             <div class="contentorLogo">
                 <asp:ImageButton ID="ImageBtnLogo" runat="server" ImageUrl="~/images/logo1.png" />
@@ -25,10 +25,8 @@
         </div>
     </div>
     <div id="contentorMain">
-        <div class="main">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server">
-            </asp:ContentPlaceHolder>
-        </div>
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
     </div>
     </form>
 </body>
