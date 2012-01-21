@@ -22,8 +22,11 @@ namespace Lives
         {
             if (!Request.IsAuthenticated)
             {
-                Response.Redirect("Home.aspx");
+                Response.Redirect("Home.aspx", true);
             }
+
+            lblNome.Text = Membership.GetUser().UserName;
+            lblOnline.Text = Membership.GetNumberOfUsersOnline().ToString();
 
 
             ODSObterSubcategoriasCategoria.DataBind();
@@ -54,11 +57,9 @@ namespace Lives
                 FiltroVideos_OnSelectedIndexChanged(filtroVideos.SelectedItem, null);
             }
 
-            string view = Request.Params["view"];
-
-            if (view != null)
+            if (!IsPostBack)
             {
-                MultiViewVideos.ActiveViewIndex = int.Parse(view);
+                MultiViewVideos.ActiveViewIndex = int.Parse(Request.Params["view"]);
             }
 
             if (MultiViewVideos.ActiveViewIndex == 2 || MultiViewVideos.ActiveViewIndex == 3 || MultiViewVideos.ActiveViewIndex == 4)
@@ -71,75 +72,22 @@ namespace Lives
                 GridViewUser.DataSource = Membership.GetAllUsers();
                 GridViewUser.DataBind();
             }
-
-            //if (MultiViewVideos.ActiveViewIndex == 0)
-            //{
-            //    GridViewListaVideos.FindControl("SubCats").DataBind();
-            //    filtroVideos.SelectedIndex = 0;
-            //    FiltroVideos_OnSelectedIndexChanged(filtroVideos.SelectedItem, null);
-            //}
-
-
-
         }
 
-        protected void ddlCategoria_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            OdsSubcategorias.SelectMethod = "obterTodasSubCategoriasCategoria";
-            OdsSubcategorias.SelectParameters.Clear();
-            OdsSubcategorias.SelectParameters.Add("cat", TypeCode.Int32, ddlCategorias.SelectedValue);
-            ddlSubcategorias.Enabled = true;
-            ddlSubcategorias.DataBind();
-
-            if (ddlSubcategorias.Items.Count == 0)
-            {
-                ddlSubcategorias.Enabled = false;
-            }
-            ddlSubcategorias.DataBind();
-        }
-
-        protected void ddlSubcategorias_OnSelectedIndexChanged(object sender, EventArgs e)
-        {
-            Subcategoria subcategoria = gestorSubcategorias.obterSubCategoriaId(int.Parse(ddlSubcategorias.SelectedValue));
-
-            GridViewListaVideos.DataSource = gestorVideos.obterTodosVideosSubcategoria(subcategoria.id);
-            GridViewListaVideos.DataBind();
-            lblSubtitulo.Text = "Listagem de vídeos da Subcategoria " + subcategoria.nome;
-
-        }
 
         #region //Listagem dos videos
 
-
-        #endregion
-
-        protected void labelClickEventHandler(object sender, EventArgs e)
+        protected void GridViewListaVideos_OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
-            LinkButton etiqueta = (LinkButton)sender;
+            GridViewRow row = e.Row;
 
-            if (gestorVideos.desassociaEtiqueta(int.Parse(idVideoAprovacao.Value), etiqueta.Text))
+            if (row.RowType == DataControlRowType.DataRow)
             {
-                etiqueta.Parent.DataBind();
-            }
-            else
-            {
-                throw new NotImplementedException();
-            }
+                Video video = row.DataItem as Video;
+                Label label = row.FindControl("lblUser") as Label;
 
-        }
-
-        protected void labelSubCatEditClickEventHandler(object sender, EventArgs e)
-        {
-            LinkButton etiqueta = (LinkButton)sender;
-            if (gestorSubcategorias.removeSubcategoria(etiqueta.Text))
-            {
-                etiqueta.Parent.DataBind();
+                label.Text = Membership.GetUser(video.id_user).UserName;
             }
-            else
-            {
-                throw new NotImplementedException();
-            }
-
         }
 
         protected void aprovarVideo_check(object sender, EventArgs e)
@@ -151,10 +99,17 @@ namespace Lives
             if (aprovar.Checked)
             {
                 gestorVideos.aprovar(int.Parse(idVideoAprovacao.Value));
+                filtroVideos.SelectedIndex = 1;
+                FiltroVideos_OnSelectedIndexChanged(filtroVideos.SelectedItem, null);
+                MultiViewVideos.ActiveViewIndex = 0;
+
             }
             else
             {
                 gestorVideos.desaprova(int.Parse(idVideoAprovacao.Value));
+                filtroVideos.SelectedIndex = 0;
+                FiltroVideos_OnSelectedIndexChanged(filtroVideos.SelectedItem, null);
+                MultiViewVideos.ActiveViewIndex = 0;
             }
         }
 
@@ -162,77 +117,15 @@ namespace Lives
         {
             GridViewRow row = (GridViewRow)(sender as LinkButton).NamingContainer;
             idVideoAprovacao.Value = ((GridView)row.NamingContainer).DataKeys[row.RowIndex].Value.ToString();
-            MultiViewVideos.ActiveViewIndex = 1;
-            filtroVideos.Visible = false;
             ddlCategorias.ClearSelection();
             ddlSubcategorias.ClearSelection();
+            panelFiltros.Visible = false;
+            MultiViewVideos.ActiveViewIndex = 1;
         }
-
-
-
-        protected void btnNovaSubcategoria_Click(object sender, EventArgs e)
-        {
-            if (txtBoxNovaSubcategoria.Text == "")
-            {
-                lblErro.Visible = true;
-                lblErro.Text = "Primeiro escreva a nova Subcategoria!";
-            }
-            else
-            {
-                gestorSubcategorias.criarSubCategoria(txtBoxNovaSubcategoria.Text, int.Parse(categoriasDropBox.SelectedItem.Value));
-                RepeaterTag.DataBind();
-                txtBoxNovaSubcategoria.Text = "";
-                lblErro.Visible = false;
-
-
-            }
-        }
-
-        protected void btnInserirSubcategoria_Click(object sender, EventArgs e)
-        {
-
-            if (gestorVideos.associaEtiqueta(int.Parse(idVideoAprovacao.Value), int.Parse(ddlSubcategorias.SelectedValue)))
-            {
-                RepeaterTag.DataBind();
-
-            }
-            else
-            {
-                Label erro = null;
-                foreach (RepeaterItem item in RepeaterVideoDetails.Items)
-                {
-                    if (item.ItemType == ListItemType.AlternatingItem || item.ItemType == ListItemType.Item)
-                    {
-                        erro = (Label)item.FindControl("lblErroEditarVideos");
-
-                    }
-                }
-                if (erro != null)
-                {
-                    erro.Visible = true;
-                    erro.Text = "Já inseriu essa subcategoria!";
-                }
-            }
-
-
-
-        }
-
-        protected void btnConfirmarEdicaoVideo_Click(object sender, EventArgs e)
-        {
-            string conteudoBox = null;
-            conteudoBox = findControloTextBoxRepeater(RepeaterVideoDetails);
-            Subcategoria subCat = gestorSubcategorias.obterSubCategoriaId(int.Parse(ddlSubcategorias.SelectedValue));
-            //gestorVideos.modificaVideo(int.Parse(idVideoAprovacao.Value)).Subcategorias.Remove(subcategoria);
-
-        }
-
-
 
         protected void lbtnApagarVideo_Click(object sender, EventArgs e)
         {
             LinkButton apagar = sender as LinkButton;
-
             GridViewRow row = (GridViewRow)apagar.NamingContainer;
             GridView Videos = (GridView)row.NamingContainer;
 
@@ -268,19 +161,98 @@ namespace Lives
             GridViewListaVideos.DataBind();
         }
 
-        protected void GridViewListaVideos_OnRowDataBound(object sender, GridViewRowEventArgs e)
+        #endregion
+
+        #region //Editar Vídeos
+
+        protected void btnConfirmarEdicaoVideo_Click(object sender, EventArgs e)
         {
-            GridViewRow row = e.Row;
+            string titulo = null;
+            string descricao = null;
+            titulo = findControloTextBoxRepeater(RepeaterVideoDetails);
+            descricao = findControloTextBoxRepeater(RepeaterVideoDetails);
+            gestorVideos.modificaVideo(descricao, titulo, null, int.Parse(idVideoAprovacao.Value));
 
-            if (row.RowType == DataControlRowType.DataRow)
+        }
+
+        protected void labelClickEventHandler(object sender, EventArgs e)
+        {
+            LinkButton etiqueta = (LinkButton)sender;
+
+            if (gestorVideos.desassociaEtiqueta(int.Parse(idVideoAprovacao.Value), etiqueta.Text))
             {
-                Video video = row.DataItem as Video;
-                Label label = row.FindControl("lblUser") as Label;
-
-                label.Text = Membership.GetUser(video.id_user).UserName;
+                etiqueta.Parent.DataBind();
+            }
+            else
+            {
+                throw new NotImplementedException();
             }
         }
 
+        protected void btnInserirSubcategoria_Click(object sender, EventArgs e)
+        {
+            if (gestorVideos.associaEtiqueta(int.Parse(idVideoAprovacao.Value), int.Parse(ddlSubcategorias.SelectedValue)))
+            {
+                RepeaterVideoDetails.DataBind();
+            }
+            else
+            {
+                Label erro = null;
+                foreach (RepeaterItem item in RepeaterVideoDetails.Items)
+                {
+                    if (item.ItemType == ListItemType.AlternatingItem || item.ItemType == ListItemType.Item)
+                    {
+                        erro = (Label)item.FindControl("lblErroEditarVideos");
+                    }
+                }
+                if (erro != null)
+                {
+                    erro.Visible = true;
+                    erro.Text = "Já inseriu essa subcategoria!";
+                }
+            }
+        }
+
+
+
+        #endregion
+
+        #region //Editar Subcategorias
+
+        protected void btnNovaSubcategoria_Click(object sender, EventArgs e)
+        {
+            if (txtBoxNovaSubcategoria.Text == "")
+            {
+                lblErro.Visible = true;
+                lblErro.Text = "Primeiro escreva a nova Subcategoria!";
+            }
+            else
+            {
+                gestorSubcategorias.criarSubCategoria(txtBoxNovaSubcategoria.Text, int.Parse(categoriasDropBox.SelectedItem.Value));
+                RepeaterTag.DataBind();
+                txtBoxNovaSubcategoria.Text = "";
+                lblErro.Visible = false;
+            }
+        }
+
+        protected void labelSubCatEditClickEventHandler(object sender, EventArgs e)
+        {
+            LinkButton etiqueta = (LinkButton)sender;
+            if (gestorSubcategorias.removeSubcategoria(etiqueta.Text))
+            {
+                etiqueta.Parent.DataBind();
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+
+
+        #endregion
+
+        #region //Gerir Users
 
         protected void imgbtnBloquearUser_Click(object sender, EventArgs e)
         {
@@ -289,7 +261,6 @@ namespace Lives
             Guid userId = (Guid)(GridViewUser.DataKeys[row.RowIndex].Value);
             string userName = (String)GridViewUser.DataKeys[row.RowIndex].Values[1];
             actualizaEstadoLockUser(userName, userId, true);
-
         }
 
         protected void imgbtnDesbloquearUser_Click(object sender, EventArgs e)
@@ -323,8 +294,6 @@ namespace Lives
 
             List<Video> videos = gestorVideos.obterVideosUser(UserId);
 
-
-
             if (videos.Count > 0)
             {
                 foreach (Video video in videos)
@@ -352,7 +321,6 @@ namespace Lives
 
             MembershipUser user = Membership.GetUser(userName);
             email = user.Email;
-
             if (user != null && user.IsApproved)
             {
                 try
@@ -360,26 +328,18 @@ namespace Lives
                     novaPassword = user.ResetPassword();
                 }
                 catch { }
-
-
-
                 if (novaPassword != null)
                 {
-
                     enviaEmailNovaPass(userName, Server.HtmlEncode(novaPassword), email);
                     lblSucessoAlterarPass.Visible = true;
-
                 }
                 else
                 {
                     lblErroResetPassword.Visible = true;
                     lblErroResetPassword.Text = "Não foi possivel satisfazer o seu pedido";
                 }
-
             }
-
         }
-
 
         protected void enviaEmailNovaPass(string userName, string password, string email)
         {
@@ -402,6 +362,8 @@ namespace Lives
             email_pass.EnviarEmail(from, to, bcc, cc, subject, body);
         }
 
+        #endregion
+
         protected string findControloTextBoxRepeater(Repeater repeater)
         {
             string valor = null;
@@ -415,8 +377,29 @@ namespace Lives
             } return valor;
         }
 
+        protected void ddlCategoria_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            OdsSubcategorias.SelectMethod = "obterTodasSubCategoriasCategoria";
+            OdsSubcategorias.SelectParameters.Clear();
+            OdsSubcategorias.SelectParameters.Add("cat", TypeCode.Int32, ddlCategorias.SelectedValue);
+            ddlSubcategorias.Enabled = true;
+            ddlSubcategorias.DataBind();
 
+            if (ddlSubcategorias.Items.Count == 0)
+            {
+                ddlSubcategorias.Enabled = false;
+            }
+            ddlSubcategorias.DataBind();
+        }
 
+        protected void ddlSubcategorias_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            Subcategoria subcategoria = gestorSubcategorias.obterSubCategoriaId(int.Parse(ddlSubcategorias.SelectedValue));
+
+            GridViewListaVideos.DataSource = gestorVideos.obterTodosVideosSubcategoria(subcategoria.id);
+            GridViewListaVideos.DataBind();
+            lblSubtitulo.Text = "Listagem de vídeos da Subcategoria " + subcategoria.nome;
+        }
 
     }
 }

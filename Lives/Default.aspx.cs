@@ -18,7 +18,7 @@ namespace Lives
             if (User.IsInRole("admin"))
             {
 
-                Response.Redirect("~/Admin/AdminPage.aspx", true);
+                Response.Redirect("~/Admin/AdminPage.aspx?view=0", true);
             }
 
             if (User.IsInRole("user"))

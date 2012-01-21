@@ -168,14 +168,24 @@ namespace BLL
 			return videosDataManager.inserirVideo(video);
 		}
 
-		public bool modificaVideo(string descricao, Guid id_user, string titulo, string url, int id_video)
+		public bool modificaVideo(string descricao, string titulo, string url, int id_video)
 		{
-			Video video = new Video();
-			video.descricao = descricao;
-			video.id_user = id_user;
-			video.url = url;
-			video.id = id_video;
-			video.titulo = titulo;
+			Video video = obterVideo(id_video);
+
+			if (descricao != null)
+			{
+				video.descricao = descricao;
+			}
+
+			if (url != null)
+			{
+				video.url = url;
+			}
+
+			if (titulo != null)
+			{
+				video.titulo = titulo;
+			}
 
 			return videosDataManager.actualizaVideo(video);
 		}
@@ -208,20 +218,16 @@ namespace BLL
 			return modificaEstado(id, 1);
 		}
 
-		public bool associaEtiqueta(int id_video, string subcat)
-		{
-			Subcategoria subcategoria = subcategoriasDataManager.obterSubCategoriaNome(subcat);
-			Video video = videosDataManager.obterVideo(id_video);
-
-			return videosDataManager.inserirSubcategoriaVideo(video, subcategoria);
-		}
-
 		public bool associaEtiqueta(int id_video, int subcat)
 		{
 			Subcategoria subcategoria = subcategoriasDataManager.obterSubCategoriaId(subcat);
 			Video video = videosDataManager.obterVideo(id_video);
 
-			return videosDataManager.inserirSubcategoriaVideo(video, subcategoria);
+			bool ret = videosDataManager.inserirSubcategoriaVideo(video, subcategoria);
+
+			actualizaRelacao(subcategoria, video);
+
+			return ret;
 		}
 
 		public bool desassociaEtiqueta(int id_video, string subcat)
@@ -229,15 +235,20 @@ namespace BLL
 			Subcategoria subcategoria = subcategoriasDataManager.obterSubCategoriaNome(subcat);
 			Video video = videosDataManager.obterVideo(id_video);
 
-			return videosDataManager.removerSubcategoriaVideo(video, subcategoria);
+			bool ret = videosDataManager.removerSubcategoriaVideo(video, subcategoria);
+
+			actualizaRelacao(subcategoria, video);
+
+			return ret;
 		}
 
-		public bool desassociaEtiqueta(int id_video, int subcat)
+		private static void actualizaRelacao(Subcategoria subcategoria, Video video)
 		{
-			Subcategoria subcategoria = subcategoriasDataManager.obterSubCategoriaId(subcat);
-			Video video = videosDataManager.obterVideo(id_video);
-
-			return videosDataManager.inserirSubcategoriaVideo(video, subcategoria);
+			subcategoria.Videos.Clear();
+			video.Subcategorias.Clear();
+			DB.tabelas.AcceptAllChanges();
+			subcategoria.Videos.Load();
+			video.Subcategorias.Load();
 		}
 
 		#endregion
