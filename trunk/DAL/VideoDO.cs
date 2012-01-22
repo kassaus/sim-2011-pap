@@ -128,6 +128,19 @@ namespace DAL
 
 		}
 
+		public List<Video> obterVideosPorAprovadosUser(Guid idUser)
+		{
+			List<Video> lista = null;
+
+			try
+			{
+				lista = (from video in DB.tabelas.Video where video.Estado.id == 1 && video.id_user == idUser select video).ToList<Video>();
+			}
+			catch { }
+
+			return lista;
+		}
+
 		public Video obterVideoMaisRecente(int estado)
 		{
 			Video aux = null;
@@ -139,6 +152,19 @@ namespace DAL
 
 			return aux;
 
+		}
+
+		public List<Video> obterVideosSubcategoriaUser(int idSubcat, Guid idUser)
+		{
+			List<Video> lista = null;
+
+			try
+			{
+				lista = (from video in DB.tabelas.Video from subCat in DB.tabelas.Subcategoria where subCat.id == idSubcat && video.Subcategorias.Contains(subCat) && video.Estado.id != 3 && video.id_user == idUser select video).ToList<Video>();
+			}
+			catch { }
+
+			return lista;
 		}
 
 		#endregion
@@ -231,6 +257,10 @@ namespace DAL
 
 
 		#endregion
+
+
+
+
 
 
 	}

@@ -13,22 +13,49 @@ namespace Lives.Users {
     public partial class HomeUser {
         
         /// <summary>
-        /// ScriptManager control.
+        /// lblNome control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.ToolkitScriptManager ScriptManager;
+        protected global::System.Web.UI.WebControls.Label lblNome;
         
         /// <summary>
-        /// idUserHide control.
+        /// imagemLogo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField idUserHide;
+        protected global::System.Web.UI.WebControls.Image imagemLogo;
+        
+        /// <summary>
+        /// ImgAlterarPass control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image ImgAlterarPass;
+        
+        /// <summary>
+        /// ImgGerirVideos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image ImgGerirVideos;
+        
+        /// <summary>
+        /// ImgUploadFile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image ImgUploadFile;
         
         /// <summary>
         /// idVideoToEdit control.
@@ -40,13 +67,22 @@ namespace Lives.Users {
         protected global::System.Web.UI.WebControls.HiddenField idVideoToEdit;
         
         /// <summary>
-        /// ddlCategorias control.
+        /// ScriptManager control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCategorias;
+        protected global::AjaxControlToolkit.ToolkitScriptManager ScriptManager;
+        
+        /// <summary>
+        /// ODSVideoToEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource ODSVideoToEdit;
         
         /// <summary>
         /// OdsCategorias control.
@@ -58,15 +94,6 @@ namespace Lives.Users {
         protected global::System.Web.UI.WebControls.ObjectDataSource OdsCategorias;
         
         /// <summary>
-        /// ddlSubcategorias control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSubcategorias;
-        
-        /// <summary>
         /// OdsSubcategorias control.
         /// </summary>
         /// <remarks>
@@ -76,6 +103,51 @@ namespace Lives.Users {
         protected global::System.Web.UI.WebControls.ObjectDataSource OdsSubcategorias;
         
         /// <summary>
+        /// ODSVideosByUser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource ODSVideosByUser;
+        
+        /// <summary>
+        /// ODSObterAprovados control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource ODSObterAprovados;
+        
+        /// <summary>
+        /// ODSObterTodos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource ODSObterTodos;
+        
+        /// <summary>
+        /// ODSPorAprovar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource ODSPorAprovar;
+        
+        /// <summary>
+        /// idUserHide control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField idUserHide;
+        
+        /// <summary>
         /// panelFiltros control.
         /// </summary>
         /// <remarks>
@@ -83,6 +155,24 @@ namespace Lives.Users {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel panelFiltros;
+        
+        /// <summary>
+        /// ddlCategorias control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCategorias;
+        
+        /// <summary>
+        /// ddlSubcategorias control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSubcategorias;
         
         /// <summary>
         /// filtroVideos control.
@@ -121,22 +211,13 @@ namespace Lives.Users {
         protected global::System.Web.UI.WebControls.Label lblSubtitulo;
         
         /// <summary>
-        /// ListaVideos control.
+        /// GridViewListaVideos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView ListaVideos;
-        
-        /// <summary>
-        /// ODSVideosByUser control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ODSVideosByUser;
+        protected global::System.Web.UI.WebControls.GridView GridViewListaVideos;
         
         /// <summary>
         /// VideoEditView control.
@@ -146,15 +227,6 @@ namespace Lives.Users {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.View VideoEditView;
-        
-        /// <summary>
-        /// ODSVideoToEdit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ODSVideoToEdit;
         
         /// <summary>
         /// VideoDetailsView control.

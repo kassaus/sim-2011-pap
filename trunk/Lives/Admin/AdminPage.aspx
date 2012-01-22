@@ -69,6 +69,7 @@
 	<asp:ToolkitScriptManager ID="ScriptManager" runat="Server">
 	</asp:ToolkitScriptManager>
 	<asp:HiddenField ID="idVideoAprovacao" runat="server" />
+
 	<h3 class="titulo">
 		Administração</h3>
 	<asp:Panel ID="panelFiltros" CssClass="painelFiltros" runat="server">
