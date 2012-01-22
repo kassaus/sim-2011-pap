@@ -22,6 +22,15 @@ namespace Lives {
         protected global::System.Web.UI.WebControls.Literal Literal1;
         
         /// <summary>
+        /// painelRegisto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel painelRegisto;
+        
+        /// <summary>
         /// RegisterUser control.
         /// </summary>
         /// <remarks>
@@ -38,5 +47,14 @@ namespace Lives {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CreateUserWizardStep RegisterUserWizardStep;
+        
+        /// <summary>
+        /// painelRecuperacaoPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel painelRecuperacaoPassword;
     }
 }

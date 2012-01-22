@@ -1,734 +1,659 @@
 ﻿body
 {
-	margin: 0px;
-	padding: 0px;
-	font-family: "lucida grande" , tahoma, verdana, arial, sans-serif;
-	font-size: 12px;
-	color: #4e4a47;
+    margin: 0px;
+    padding: 0px;
+    font-family: "lucida grande" , tahoma, verdana, arial, sans-serif;
+    font-size: 12px;
+    color: #4e4a47;
 }
 
 html
 {
-	overflow-x: hidden;
+    overflow-x: hidden;
 }
 
 /* Alteração dos parâmetros da tag de link */
 .a
 {
-	color: #FFFFFF;
-	font-weight: bold;
-	text-align: right;
-	text-decoration: none;
+    color: #FFFFFF;
+    font-weight: bold;
+    text-align: right;
+    text-decoration: none;
 }
 
 .contentorLogo
 {
-	position: absolute;
-	top: 20px;
-	width: 85px;
-	height: 60px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
 }
 
 .contentorTopoDireita
 {
-	position: absolute;
-	top: 5px;
-	left: 867px;
-	width: 387px;
-	height: 80px; /*background-color:green;*/
+    position: absolute;
+    top: 5px;
+    right: 20px;
 }
 
 .userName
 {
-	position: absolute;
-	top: 0px;
-	left: 0;
-	width: 132px;
-	padding-bottom: 0px;
+    position: absolute;
+    top: 0px;
+    left: 0;
+    width: 132px;
+    padding-bottom: 0px;
 }
 .pass
 {
-	position: absolute;
-	top: 0;
-	left: 142px;
-	width: 150px; /*background-color:Red;*/
-}
-
-.boxLogin
-{
-	background-color: #FFF;
-	border: thin solid #000000;
-	width: 98%;
-	height: 18px;
-	font-size: 9pt;
-	font-family: Verdana;
-	margin-left: 0px;
-	padding-bottom: 0px;
+    position: absolute;
+    top: 0;
+    left: 142px;
+    width: 150px; /*background-color:Red;*/
 }
 
 .BoxForm
 {
-	height: 25px;
-	width: 200px;
-	left: 0px;
-	background-color: #FFF;
-	border: thin solid #a1afcb;
-	font-size: 12pt;
-	vertical-align: middle;
-	font-family: "lucida grande";
-	padding-left: 0px;
-	margin-left: 0px;
-	text-align: left;
-}
-
-.letraBrancoPeq
-{
-	font-size: xx-small;
-	color: #FFFFFF;
-}
-
-.letraAmareloPeq
-{
-	font-size: xx-small;
-	color: #FFFF00;
-	text-decoration: none;
-}
-
-.LetraAmarelaGrande
-{
-	font-size: large;
-	color: #FFFF00;
-	text-decoration: none;
-}
-
-.letraSiteMedia
-{
-	font-size: medium;
-	color: #4e4a47;
-	text-decoration: none;
+    height: 25px;
+    width: 200px;
+    left: 0px;
+    background-color: #FFF;
+    border: thin solid #a1afcb;
+    vertical-align: middle;
+    padding-left: 0px;
+    margin-left: 0px;
+    text-align: left;
 }
 
 .botaoLogin
 {
-	border-color: #000000;
-	height: 20px;
-	width: 95px;
-	font-size: 12px;
-	color: #FFFF00;
-	font-weight: bold;
-	text-align: center;
-	vertical-align: middle;
-	background-color: #4e4a47;
-	vertical-align: middle;
+    border: thin solid black;
+    color: #4e4a47;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    background-color: white;
+    padding: 0.2em 0.7em;
+}
+
+input[type='text'], input[type='password'] 
+{
+    border: thin solid black;
+    height: 1.2em;
+    color: #4e4a47;
+    background-color: White;
+    padding: 0.2em 0.3em;
 }
 
 .home_backoffice
 {
-	position: relative;
-	width: 100%; /*height:300px;*/ /*background-color:Blue;*/
+    position: relative;
+    width: 100%; /*height:300px;*/ /*background-color:Blue;*/
 }
 
 .home_backoffice_video
 {
-	position: absolute;
-	top: 0px;
-	left: 0;
-	width: 70%; /*height:600px;*/ /*background-color:Blue;*/
+    position: absolute;
+    top: 0px;
+    left: 0;
+    width: 70%; /*height:600px;*/ /*background-color:Blue;*/
 }
 
 .home_backoffice_registo
 {
-	position: absolute;
-	top: 0px;
-	right: 15px;
-	width: 30%; /*background-color:red;*/
+    position: absolute;
+    top: 0px;
+    right: 15px;
+    width: 30%; /*background-color:red;*/
 }
 
 .menuCabecalho
 {
-	position: relative;
-	top: 4px;
-	width: 100%;
-	padding: 5px;
-	text-align: right;
-	color: #FFFFFF;
-	border-top-style: solid;
-	border-right-style: solid;
-	border-left-style: solid;
-	border-top-width: thin;
-	border-right-width: thin;
-	border-left-width: thin;
-	border-top-color: #ffff00;
-	border-right-color: #ffff00;
-	border-left-color: #ffff00;
+    position: relative;
+    top: 4px;
+    width: 100%;
+    padding: 5px;
+    text-align: right;
+    color: #FFFFFF;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-left-style: solid;
+    border-top-width: thin;
+    border-right-width: thin;
+    border-left-width: thin;
+    border-top-color: #ffff00;
+    border-right-color: #ffff00;
+    border-left-color: #ffff00;
 }
 
 .menuCabecalho a
 {
-	color: #FFFFFF;
-	text-decoration: none;
-	outline-style: none;
-	padding: 5px;
+    color: #FFFFFF;
+    text-decoration: none;
+    outline-style: none;
+    padding: 5px;
 }
 
 .menuCabecalho a:hover
 {
-	background: #6D84B4;
-	text-decoration: none;
-	font-weight: bold;
-}
-
-div#contentorMainMenuCorpo
-{
-	text-align: right;
-	background-color: #FFFFFF;
-}
-
-div#ContentorCorpoInterior
-{
-	position: absolute;
-	left: 16%;
-	width: 80%;
+    background: #6D84B4;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 .corpoInterior
 {
-	position: relative;
-	border: thin solid #FFFF00;
-	text-align: left;
-	width: 100%;
-	margin-top: 0px;
-	margin-left: 10px;
-	margin-bottom: 10px;
-	padding-left: 10px;
+    position: relative;
+    border: thin solid #FFFF00;
+    text-align: left;
+    width: 100%;
+    margin-top: 0px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    padding-left: 10px;
 }
 
 .listaMenu
 {
-	width: 100%;
-	float: left;
+    width: 100%;
+    float: left;
 }
 
 .listaMenu a
 {
-	color: #4e4a47;
-	border-bottom: 1px thin #ccc;
-	font-weight: bold;
+    color: #4e4a47;
+    border-bottom: 1px thin #ccc;
+    font-weight: bold;
 }
 
 .listaMenu a:hover
 {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 .listaMenu H3
 {
-	font-size: 11px;
-	color: #FFFF00;
-	background: #4e4a47;
-	border-top: 1px solid #3B5998;
-	padding: 3px 10px;
-	margin: 0px;
+    color: #FFFF00;
+    background: #4e4a47;
+    border-top: 1px solid #3B5998;
+    padding: 3px 10px;
+    margin: 0px;
 }
 
 
 .listaMenu H3:hover
 {
-	background: #cfd7e4;
-	border-top: 1px solid #3B5998;
+    background: #cfd7e4;
+    border-top: 1px solid #3B5998;
 }
 
 .listaMenu li
 {
-	font-size: 11px;
-	font-weight: normal;
-	margin-left: 5px;
-	padding: 3px 0px;
-	list-style: none;
-	border-bottom: 1px solid #ccc;
-	width: 155px;
-	text-decoration: none;
+    font-weight: normal;
+    margin-left: 5px;
+    padding: 3px 0px;
+    list-style: none;
+    border-bottom: 1px solid #ccc;
+    width: 155px;
+    text-decoration: none;
 }
 
 .listaMenu img
 {
-	border: 0;
+    border: 0;
 }
 
 .userState
 {
-	width: 100%;
-	font-size: 11px;
-	font-weight: normal;
-	background: #f7f7f7;
-	color: #000;
-	float: left;
-	text-decoration: none;
+    width: 100%;
+    font-weight: normal;
+    background: #f7f7f7;
+    color: #000;
+    float: left;
+    text-decoration: none;
 }
 
 .imagemLogo
 {
-	position: relative;
-	left: 6px;
-	width: 100px;
-	top: 0px;
+    position: relative;
+    left: 6px;
+    width: 100px;
+    top: 0px;
 }
 
 .labelLogo
 {
-	position: absolute;
-	top: 120px;
-	width: 70px;
-	height: 48px;
-	left: 120px;
-	text-align: left;
-	font-family: verdana;
-	font-weight: bold;
+    position: absolute;
+    top: 120px;
+    width: 70px;
+    height: 48px;
+    left: 120px;
+    text-align: left;
+    font-family: verdana;
+    font-weight: bold;
 }
 
 .labelOnline
 {
-	position: relative;
-	top: 50px;
-	left: 130px;
-	font-weight: bold;
-	font-size: medium;
-	width: 24px;
+    position: relative;
+    top: 50px;
+    left: 130px;
+    font-weight: bold;
+    width: 24px;
 }
 
-hr
+input[type="checkbox"] 
 {
-	color: #4e4a47;
+    border: thin solid #4e4a47;
+    color:#4e4a47;
+    background-color: White;
+    border-image: none;
 }
 
 .hrLinha
 {
-	width: 900px;
+    width: 900px;
 }
 
 .entulho
 {
-	position: relative;
-	height: 100px;
+    position: relative;
+    height: 100px;
 }
 
 .contentorListagemVideosAdmin
 {
-	position: relative;
-	top: 0px;
-	width: 100%;
+    position: relative;
+    top: 0px;
+    width: 100%;
 }
 
 .imagemUserAprovacao
 {
-	position: relative;
-	top: 0px;
-	left: 10px;
-	width: 100%;
+    position: relative;
+    top: 0px;
+    left: 10px;
+    width: 100%;
 }
 
 .filmeUseraprovacao
 {
-	position: absolute;
-	top: 30px;
-	right: 195px;
+    position: absolute;
+    top: 30px;
+    right: 195px;
 }
 
 .drListCategoriaAprovacao
 {
-	position: absolute;
-	top: 200px;
-	right: 220px;
+    position: absolute;
+    top: 200px;
+    right: 220px;
 }
 
 .drListSubCategoriaAprovacao
 {
-	position: absolute;
-	top: 200px;
-	right: 0px;
+    position: absolute;
+    top: 200px;
+    right: 0px;
 }
 
 .botaoListagemAprovacao
 {
-	position: absolute;
-	top: 0px;
-	right: 398px;
-	height: 20px;
-	width: 95px;
-	font-size: 12px;
-	color: #70ab56;
-	font-weight: bold;
-	text-align: center;
-	vertical-align: middle;
-	text-decoration: none;
+    position: absolute;
+    top: 0px;
+    right: 398px;
+    height: 20px;
+    width: 95px;
+    color: #70ab56;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
 }
 
 .botaoListagemremover
 {
-	position: absolute;
-	top: 0px;
-	height: 20px;
-	right: 195px;
-	height: 20px;
-	width: 95px;
-	font-size: 12px;
-	color: #FF0000;
-	font-weight: bold;
-	text-align: center;
-	vertical-align: middle;
-	text-decoration: none;
+    position: absolute;
+    top: 0px;
+    height: 20px;
+    right: 195px;
+    height: 20px;
+    width: 95px;
+    color: #FF0000;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
 }
 
 .botaoRegisto
 {
-	font-size: 14px;
-	background-color: #666;
-	border: thin solid #333333;
-	color: #FFFFFF;
-	font-weight: bold;
-	text-align: center;
-	vertical-align: middle;
+    background-color: #4e4a47;
+    border: thin solid black;
+    color: #FFFFFF;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    padding: 0.2em 0.7em;
 }
 
 .botaoRemoverUser
 {
-	position: absolute;
-	top: 20px;
-	right: 200px;
-	width: 120px;
-	height: 25px;
-	font-size: 14px;
-	background-color: #FF0000;
-	border: thin solid #3b6e22;
-	color: #FFFFFF;
-	font-weight: bold;
-	text-align: center;
-	vertical-align: middle;
+    position: absolute;
+    top: 20px;
+    right: 200px;
+    width: 120px;
+    height: 25px;
+    font-size: 14px;
+    background-color: #FF0000;
+    border: thin solid #3b6e22;
+    color: #FFFFFF;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
 }
 
 .botaoPassUser
 {
-	position: absolute;
-	top: 20px;
-	right: 400px;
-	width: 120px;
-	font-size: 14px;
-	background-color: #70ab56;
-	border: thin solid #3b6e22;
-	color: #FFFFFF;
-	font-weight: bold;
-	text-align: center;
-	vertical-align: middle;
+    position: absolute;
+    top: 20px;
+    right: 400px;
+    width: 120px;
+    font-size: 14px;
+    background-color: #70ab56;
+    border: thin solid #3b6e22;
+    color: #FFFFFF;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
 }
 
 .letraCinzentoGrande
 {
-	color: #666;
-	font-size: 2.5em;
-	font-weight: bold;
+    color: #666;
+    font-size: 2.5em;
+    font-weight: bold;
 }
 
 .letraCinzentoPeq
 {
-	font-size: 0.8em;
-	color: #666;
+    font-size: 0.8em;
+    color: #666;
 }
 
 .letraCinzentoMedia
 {
-	font-size: 1em;
-	color: #666;
+    font-size: 1em;
+    color: #666;
 }
 
 .informacao
 {
-	font-size: 1.5em;
-	color: #666;
+    font-size: 1.5em;
+    color: #666;
 }
 
 .titulo
 {
-	color: #666;
-	font-size: 2em;
-	font-weight: bold;
-}
-
-.contentorRodaPe
-{
-	position: absolute;
-	width: 100%;
-	bottom: 0px;
-	border-top-style: solid;
-	border-top-width: thin;
-	border-top-color: #666;
-}
-.rodaPe
-{
-	position: relative;
-	bottom: 0px;
-	width: 100%;
-	height: 20px;
-	margin-left: 20px;
+    color: #666;
+    font-size: 2em;
+    font-weight: bold;
 }
 
 .failureNotification
 {
-	font-size: 1.2em;
-	color: Red;
+    font-size: 1.2em;
+    color: Red;
 }
 
 .labelChangePassword
 {
-	width: 300px;
+    width: 300px;
 }
 
 .changePassword
 {
-	width: 42%;
-	margin-left: 100px;
+    width: 42%;
+    margin-left: 100px;
 }
 
 .passAlteradaSucesso
 {
-	border: thin dashed #666;
-	width: 500px;
-	margin-left: auto;
-	margin-right: auto;
-	padding: 5px;
-	font-size: 1.8em;
-	text-align: center;
-	background: #ffebe8;
+    border: thin dashed #666;
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px;
+    font-size: 1.8em;
+    text-align: center;
+    background: #ffebe8;
 }
 
 .redError
 {
-	color: #333;
-	background: #ffebe8;
-	border: 1px solid #dd3c10;
-	text-align: center;
-	padding: 10px;
+    color: #333;
+    background: #ffebe8;
+    border: 1px solid #dd3c10;
+    text-align: center;
+    padding: 10px;
 }
 
 .error
 {
-	color: #333;
-	background: #ffebe8;
-	border: 1px solid #dd3c10;
-	text-align: center;
-	padding: 10px;
-	width: 60%;
-	height: 30%;
-	position: relative;
-	top: 35%;
-	left: 20%;
+    color: #333;
+    background: #ffebe8;
+    border: 1px solid #dd3c10;
+    text-align: center;
+    padding: 10px;
+    width: 60%;
+    height: 30%;
+    position: relative;
+    top: 35%;
+    left: 20%;
 }
 
 .errorMessage
 {
-	font-size: 3em;
-	font-weight: bold;
+    font-size: 3em;
+    font-weight: bold;
 }
 
 .errorNote
 {
-	font-size: 1.5em;
-}
-
-#contentorMain
-{
-	position: relative;
+    font-size: 1.5em;
 }
 
 .page
 {
-	position: absolute;
-	width: 100%;
-	height: 100%;
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
 
 .gridViewLineUsers
 {
-	padding-left: 10px;
-	margin: 5px;
-	text-align: left;
-	vertical-align: middle;
-	color: #666;
+    padding-left: 10px;
+    margin: 5px;
+    text-align: left;
+    vertical-align: middle;
+    color: #666;
 }
-
-
-
-
-
-
 
 .contentorTopo
 {
-	position: fixed !important;
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 20% !important;
-	height: 80px;
-	min-height: 80px;
-	max-height: 80px;
-	background-color: #4e4a47;
-	z-index: 4;
+    position: fixed !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 20% !important;
+    height: 80px;
+    min-height: 80px;
+    max-height: 80px;
+    background-color: #4e4a47;
+    z-index: 4;
 }
 .contentorMain
 {
-	clear: both;
-	margin: 0;
-	padding: 0;
-	width: 100%;
-	height: 100%; /*background-color: Red;*/
+    clear: both;
+    margin: 80px 0 30px 0;
+    padding: 0;
+    width: 100%;
 }
 
 .contentorRodaPe
 {
-	position: fixed !important;
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	height: 5% !important;
-	height: 30px;
-	min-height: 30px;
-	max-height: 100px;
-	background-color: #4e4a47;
-	z-index: 4;
+    position: fixed !important;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5% !important;
+    height: 30px;
+    min-height: 30px;
+    max-height: 30px;
+    background-color: #4e4a47;
+    z-index: 4;
+}
+
+.conteudoRodape {
+    position: absolute;
+    top:0;
+    left:20px;
+    color: white;
+    font-size: 0.8em;
+    font-style:italic;
 }
 
 .contentorMenu
 {
-	position: fixed !important;
-	position: absolute;
-	top: 80px;
-	left: 10px;
-	width: 15% !important;
-	width: 200px;
-	min-width: 200px;
-	max-width: 200px;
-	z-index: 4;
+    position: fixed !important;
+    position: absolute;
+    top: 80px;
+    left: 10px;
+    width: 15% !important;
+    width: 200px;
+    min-width: 200px;
+    max-width: 200px;
+    z-index: 4;
 }
 
 .contentorInterior
 {
-	position: absolute;
-	top: 80px;
-	left: 230px !important;
-	width: 100%;
-	height: 100%;
-	min-width: 640px;
+    position: absolute;
+    top: 80px;
+    left: 230px !important;
+    width: 100%;
+    height: 100%;
+    min-width: 640px;
 }
 
 .colunaFiltro
 {
-	float: left;
-	font-size: 1em;
-	color: #666;
-	height: 100%;
-	margin: 1em 1em 1em 0;
+    float: left;
+    font-size: 1em;
+    color: #666;
+    height: 100%;
+    margin: 1em 1em 1em 0;
 }
 
 .painelFiltros
 {
-	width: 100%;
-	border-top: thin solid #666;
-	border-bottom: thin solid #666;
-	height: 4em !important;
+    width: 100%;
+    border-top: thin solid #666;
+    border-bottom: thin solid #666;
+    height: 4em !important;
 }
 
 .subtitulo
 {
-	clear: both !important;
-	color: #666;
-	font-size: 1.5em;
-	font-weight: bold;
-	margin-bottom: 1em;
+    clear: both !important;
+    color: #666;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 1em;
 }
 
 .videoListagem
 {
-	float: left;
-	z-index: 0 !important;
-	height: 17em;
+    float: left;
+    z-index: 0 !important;
+    height: 17em;
 }
 
 .infoListagem
 {
-	float: left;
-	margin: 0 0 2em 0;
-	padding: 0 0 1em 0;
-	width: 100%;
-	border-bottom: thin solid #666;
+    float: left;
+    margin: 0 0 2em 0;
+    padding: 0 0 1em 0;
+    width: 100%;
+    border-bottom: thin solid #666;
 }
 
 .linhaLateralInfoListagemVideos
 {
-	position: relative;
-	margin: 0 0 1em 0;
+    position: relative;
+    margin: 0 0 1em 0;
 }
 
 .painelLateralInfoListagemVideos
 {
-	float: left !important;
-	position: relative;
-	margin: 0 0 0 0.5em;
-	height: 15.8em;
+    float: left !important;
+    position: relative;
+    margin: 0 0 0 0.5em;
+    height: 15.8em;
 }
 
 .painelInfoListagemVideos
 {
-	clear: both;
-	width: 100%;
-	word-wrap: break-word;
+    clear: both;
+    width: 100%;
+    word-wrap: break-word;
 }
 
 .linhaInfoListagemVideos
 {
-	margin: 0 0 0.5em 0;
+    margin: 0 0 0.5em 0;
 }
 
 .botao
 {
-	height: 20px;
-	width: 95px;
-	color: #FFF;
-	font-weight: bold;
-	text-align: center;
-	background-color: #4e4a47;
-	text-decoration: none;
-	padding: 0.45em 0 0 0;
+    height: 20px;
+    width: 95px;
+    color: #FFF;
+    font-weight: bold;
+    text-align: center;
+    background-color: #4e4a47;
+    text-decoration: none;
+    padding: 0.45em 0 0 0;
 }
 
 .editBorder
 {
-	border: thin solid yellow;
+    border: thin solid yellow;
 }
 
 .removeBorder
 {
-	border: thin solid red;
+    border: thin solid red;
 }
 
 .botoesLateralInfoListagemVideos
 {
-	position: absolute;
-	bottom: 3em;
+    position: absolute;
+    bottom: 3em;
 }
 
-.infoImage 
+.infoImage
 {
-	float: left;
-	background-color: Purple;
-	margin: 0.5em 0.5em 0;
+    float: left;
+    background-color: Purple;
+    margin: 0.5em 0.5em 0;
 }
 
-.field 
+.field
 {
-	float: left;
-	margin: 0 0 0 0;
+    float: left;
+    margin: 0 0 0 0;
 }
 
 .imagemBotaoTabela 
