@@ -42,7 +42,7 @@ namespace DAL
             List<Subcategoria> lista = null;
             try
             {
-                lista = (from subCat in DB.tabelas.Subcategoria where subCat.Categoria.id == cat select subCat).ToList<Subcategoria>();
+                lista = (from subCat in DB.tabelas.Subcategoria where subCat.Categoria.id == cat orderby subCat.nome select subCat).ToList<Subcategoria>();
             }
             catch { }
 

@@ -179,76 +179,90 @@
 					<div class="infoImage">
 						<asp:Image ID="Image5" runat="server" ImageUrl="~/images/informacao.png" ToolTip="Para repor o título original basta limpar a caixa de texto." />
 					</div>
-					<div class="letraCinzentoMedia field">
-						Título:
-						<asp:TextBox ID="txtBoxTitulo" runat="server" Columns="50" Width="200px"></asp:TextBox>
-					</div>
-					<asp:TextBoxWatermarkExtender ID="txtBoxTitulo_TextBoxWatermarkExtender" runat="server"
-						Enabled="True" TargetControlID="txtBoxTitulo" WatermarkText='<%# Eval("titulo") %>'>
-					</asp:TextBoxWatermarkExtender>
-					<div class="infoImage">
-						<asp:Image ID="Image6" runat="server" ImageUrl="~/images/informacao.png" ToolTip="Para repor a descrição original basta limpar a caixa de texto." />
-					</div>
-					<div class="letraCinzentoMedia field">
-						Descrição:
-						<asp:TextBox ID="txtBoxDescricao" runat="server" Columns="255" Width="200px"></asp:TextBox></div>
-					<asp:TextBoxWatermarkExtender ID="TextBoxDescricao_WatermarkExtender" runat="server"
-						Enabled="True" TargetControlID="txtBoxDescricao" WatermarkText='<%# Eval("descricao") %>'>
-					</asp:TextBoxWatermarkExtender>
-
-
-					<div>
+					<div style="position: absolute; top: 0; left: 0; z-index: 999999; width: 800px; height: 600px;
+						background-color: white">
+						<div>
+							<asp:Image ID="Image2" AlternateText="Informação do controlo" runat="server" ImageUrl="~/images/informacao.png"
+								ImageAlign="AbsMiddle" />&nbsp
+							<asp:ImageButton ID="btnInserirSubcategoria" runat="server" ImageAlign="Middle" ImageUrl="~/images/add.png"
+								OnClick="btnInserirSubcategoria_Click" />
+							&nbsp Etiquetas:
+							<asp:Repeater ID="RepeaterTag" runat="server" DataSource='<%# Eval("Subcategorias") %>'>
+								<ItemTemplate>
+									<asp:LinkButton ID="LinkButton1" runat="server" Text='<%# Eval("nome") %>' OnClick="labelClickEventHandler" />
+								</ItemTemplate>
+							</asp:Repeater>
+						</div>
+						<div>
+							<asp:Panel ID="PainelAdicionarSubcategoria" Style="width: 500px; height: 150px; background-color: red;"
+								runat="server" Visible="false">
+								Categorias:
+								<asp:DropDownList ID="ddlCategoriasEditarVideo" runat="server" DataSourceID="OdsCategorias"
+									OnDataBound="ddlEditarVideo_OnDataBound" DataTextField="nome" DataValueField="id"
+									Width="150px" AutoPostBack="True" OnSelectedIndexChanged="ddlCategoriasEditarVideo_SelectedIndexChanged">
+								</asp:DropDownList>
+								Subcategorias:
+								<asp:DropDownList ID="ddlSubcategoriasEditarVideo" OnDataBound="ddlEditarVideo_OnDataBound"
+									runat="server" Width="150px" AutoPostBack="true" DataSourceID="OdsSubcategorias"
+									Enabled="false" DataTextField="nome" DataValueField="id" OnSelectedIndexChanged="ddlSubcategoriasEditarVideo_OnSelectedIndexChanged">
+								</asp:DropDownList>
+							</asp:Panel>
+							<div class="letraCinzentoMedia field">
+								Título:
+								<asp:TextBox ID="txtBoxTituloEditarVideo" runat="server" Columns="50" Width="200px"></asp:TextBox>
+							</div>
+							<asp:TextBoxWatermarkExtender ID="txtBoxTitulo_TextBoxWatermarkExtender" runat="server"
+								Enabled="True" TargetControlID="txtBoxTituloEditarVideo" WatermarkText='<%# Eval("titulo") %>'>
+							</asp:TextBoxWatermarkExtender>
+							<div class="infoImage">
+								<asp:Image ID="Image9" runat="server" ImageUrl="~/images/informacao.png" ToolTip="Para repor a descrição original basta limpar a caixa de texto." />
+							</div>
+							<div class="letraCinzentoMedia field">
+								Descrição:
+								<asp:TextBox ID="txtBoxDescricaoEditarVideo" runat="server" Columns="255" Width="200px"></asp:TextBox></div>
+							<asp:TextBoxWatermarkExtender ID="TextBoxDescricao_WatermarkExtender" runat="server"
+								Enabled="True" TargetControlID="txtBoxDescricaoEditarVideo" WatermarkText='<%# Eval("descricao") %>'>
+							</asp:TextBoxWatermarkExtender>
+						</div>
 						<div>
 							<div>
 								<div>
-								</div>
-								<div>
-									Aprovado?<asp:CheckBox ID="chkbAprovado" OnCheckedChanged="aprovarVideo_check" AutoPostBack="true"
-										runat="server" Enabled="false" Checked='<%# (int) Eval("Estado.id") == 2 %>' />
-								</div>
-								<div>
-									<object classid="clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95" width="500" height="375"
-										codebase="http://www.microsoft.com/Windows/MediaPlayer/">
-										<param name="Filename" value='<%# Eval("url") %>'>
-										<param name="AutoStart" value="false">
-										<param name="ShowControls" value="true">
-										<param name="BufferingTime" value="2">
-										<param name="ShowStatusBar" value="false">
-										<param name="AutoSize" value="true">
-										<param name="InvokeURLs" value="false">
-										<embed src='<%# "/Videos/" + Eval("url") %>' type="application/x-mplayer2" autostart="0"
-											enabled="1" showstatusbar="0" showdisplay="1" showcontrols="1" pluginspage="http://www.microsoft.com/Windows/MediaPlayer/"
-											codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=6,0,0,0"
-											width="500" height="375"></embed>
-									</object>
+									<div>
+									</div>
+									<div>
+										Aprovado?<asp:CheckBox ID="chkbAprovado" OnCheckedChanged="aprovarVideo_check" AutoPostBack="true"
+											runat="server" Enabled="false" Checked='<%# (int) Eval("Estado.id") == 2 %>' />
+									</div>
+									<div>
+										<object classid="clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95" width="500" height="375"
+											codebase="http://www.microsoft.com/Windows/MediaPlayer/">
+											<param name="Filename" value='<%# Eval("url") %>'>
+											<param name="AutoStart" value="false">
+											<param name="ShowControls" value="true">
+											<param name="BufferingTime" value="2">
+											<param name="ShowStatusBar" value="false">
+											<param name="AutoSize" value="true">
+											<param name="InvokeURLs" value="false">
+											<embed src='<%# "/Videos/" + Eval("url") %>' type="application/x-mplayer2" autostart="0"
+												enabled="1" showstatusbar="0" showdisplay="1" showcontrols="1" pluginspage="http://www.microsoft.com/Windows/MediaPlayer/"
+												codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=6,0,0,0"
+												width="500" height="375"></embed>
+										</object>
+									</div>
+									<div>
+										<div>
+											<asp:Button ID="btnConfirmarEdicaoVideo" CssClass="botaoLogin" Height="40px" Width="133px"
+												runat="server" Text="Confirmar" OnClick="btnConfirmarEdicaoVideo_Click" />
+										</div>
+									</div>
 								</div>
 								<div>
 									<div>
-										<asp:Button ID="btnConfirmarEdicaoVideo" CssClass="botaoLogin" Height="40px" Width="133px"
-											runat="server" Text="Confirmar" OnClick="btnConfirmarEdicaoVideo_Click" />
+										<asp:Label ID="lblErroEditarVideos" CssClass="redError" runat="Server" Visible="true"></asp:Label>
 									</div>
 								</div>
 							</div>
-							<div>
-								<div>
-									<asp:Image ID="Image2" AlternateText="Informação do controlo" runat="server" ImageUrl="~/images/informacao.png"
-										ImageAlign="AbsMiddle" />&nbsp
-									<asp:ImageButton ID="btnInserirSubcategoria" runat="server" ImageAlign="Middle" ImageUrl="~/images/add.png"
-										OnClick="btnInserirSubcategoria_Click" />
-									&nbsp Etiquetas:
-									<asp:Repeater ID="RepeaterTag" runat="server" DataSource='<%# Eval("Subcategorias") %>'>
-										<ItemTemplate>
-											<asp:LinkButton ID="LinkButton1" runat="server" Text='<%# Eval("nome") %>' OnClick="labelClickEventHandler" />
-										</ItemTemplate>
-									</asp:Repeater>
-								</div>
-								<div>
-									<asp:Label ID="lblErroEditarVideos" CssClass="redError" runat="Server" Text="llllllllllllllllll"
-										Visible="true"></asp:Label>
-								</div>
-							</div>
 						</div>
-					</div>
 				</ItemTemplate>
 			</asp:Repeater>
 		</asp:View>
@@ -326,6 +340,7 @@
 										<ItemTemplate>
 											<%#DataBinder.Eval(Container, "DataItem.UserName")%>
 										</ItemTemplate>
+										<ItemStyle HorizontalAlign="left" Font-Bold="true" />
 									</asp:TemplateField>
 									<asp:TemplateField ItemStyle-CssClass="gridViewLineUsers">
 										<HeaderTemplate>
@@ -337,22 +352,13 @@
 									</asp:TemplateField>
 									<asp:TemplateField ItemStyle-CssClass="gridViewLineUsers">
 										<HeaderTemplate>
-											<b>Aprovado</b>
-										</HeaderTemplate>
-										<ItemTemplate>
-											<asp:CheckBox ID="chkbUserAprovado" runat="server" Text="" Checked='<%#DataBinder.Eval(Container, "DataItem.IsApproved")%>'
-												Enabled="False" />
-										</ItemTemplate>
-									</asp:TemplateField>
-									<asp:TemplateField ItemStyle-CssClass="gridViewLineUsers">
-										<HeaderTemplate>
 											<b>Bloqueado</b>
 										</HeaderTemplate>
 										<ItemTemplate>
 											<asp:CheckBox ID="chkbUserBloqueado" runat="server" Text="" Checked='<%#DataBinder.Eval(Container, "DataItem.IsLockedOut")%>'
 												Enabled="False" />
 										</ItemTemplate>
-										<ItemStyle HorizontalAlign="Center" Width="70px" />
+										<ItemStyle HorizontalAlign="Center" />
 									</asp:TemplateField>
 									<asp:TemplateField ItemStyle-CssClass="gridViewLineUsers">
 										<HeaderTemplate>
@@ -375,18 +381,19 @@
 											Comandos
 										</HeaderTemplate>
 										<ItemTemplate>
-											<asp:ImageButton ID="btnApagarUser" runat="server" ImageUrl="~/images/deleteUser.png"
-												AlternateText="Remover User" OnClick="imgbtnApagarUser_Click"></asp:ImageButton>&nbsp&nbsp
-											<asp:ImageButton ID="btnBloquearUser" runat="server" ImageUrl="~/images/locked.png"
-												AlternateText="Bloquear User" OnClick="imgbtnBloquearUser_Click"></asp:ImageButton>&nbsp&nbsp
-											<asp:ImageButton ID="btndesbloquearUser" runat="server" ImageUrl="~/images/unlocked.png"
-												AlternateText="Desbloquear User" OnClick="imgbtnDesbloquearUser_Click"></asp:ImageButton>&nbsp&nbsp
-											<asp:ImageButton ID="btndesAlterarPass" runat="server" ImageUrl="~/images/changePassword.png"
-												AlternateText="Alterar Pass User" OnClick="imgbtnAlterarPasswordUser_Click">
-											</asp:ImageButton>
+											<asp:ImageButton CssClass="imagemBotaoTabela" ID="btnApagarUser" runat="server" ImageUrl="~/images/deleteUser.png"
+												AlternateText="Remover User" OnClick="imgbtnApagarUser_Click" />
+											<asp:ImageButton CssClass="imagemBotaoTabela" ID="btnBloquearUser" runat="server"
+												ImageUrl="~/images/locked.png" AlternateText="Bloquear User" OnClick="imgbtnBloquearUser_Click"
+												Visible='<%# !((bool)DataBinder.Eval(Container, "DataItem.IsLockedOut")) %>' />
+											<asp:ImageButton CssClass="imagemBotaoTabela" ID="btndesbloquearUser" runat="server"
+												ImageUrl="~/images/unlocked.png" AlternateText="Desbloquear User" OnClick="imgbtnDesbloquearUser_Click"
+												Visible='<%#DataBinder.Eval(Container, "DataItem.IsLockedOut")%>' />
+											<asp:ImageButton CssClass="imagemBotaoTabela" ID="btndesAlterarPass" runat="server"
+												ImageUrl="~/images/changePassword.png" AlternateText="Alterar Pass User" OnClick="imgbtnAlterarPasswordUser_Click" />
 										</ItemTemplate>
 										<HeaderStyle />
-										<ItemStyle HorizontalAlign="Center" Width="130px" />
+										<ItemStyle HorizontalAlign="Center" />
 									</asp:TemplateField>
 								</Columns>
 								<EmptyDataTemplate>
