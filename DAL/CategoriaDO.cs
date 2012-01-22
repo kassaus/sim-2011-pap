@@ -29,7 +29,7 @@ namespace DAL
             List<Categoria> lista = null;
             try
             {
-                lista = (from cat in DB.tabelas.Categoria select cat).ToList<Categoria>();
+                lista = (from cat in DB.tabelas.Categoria orderby cat.nome select cat).ToList<Categoria>();
             }
             catch { }
 

@@ -22,7 +22,7 @@ namespace Lives
         {
             if (!Request.IsAuthenticated)
             {
-                Response.Redirect("Home.aspx", true);
+                Response.Redirect("~/Home.aspx", true);
             }
 
             lblNome.Text = Membership.GetUser().UserName;
@@ -62,6 +62,7 @@ namespace Lives
                 MultiViewVideos.ActiveViewIndex = int.Parse(Request.Params["view"]);
             }
 
+
             if (MultiViewVideos.ActiveViewIndex == 2 || MultiViewVideos.ActiveViewIndex == 3 || MultiViewVideos.ActiveViewIndex == 4)
             {
                 panelFiltros.Visible = false;
@@ -71,6 +72,7 @@ namespace Lives
             {
                 GridViewUser.DataSource = Membership.GetAllUsers();
                 GridViewUser.DataBind();
+
             }
         }
 
@@ -169,9 +171,10 @@ namespace Lives
         {
             string titulo = null;
             string descricao = null;
-            titulo = findControloTextBoxRepeater(RepeaterVideoDetails);
-            descricao = findControloTextBoxRepeater(RepeaterVideoDetails);
+            titulo = findControloTextBoxRepeater(RepeaterVideoDetails, "txtBoxTituloEditarVideo");
+            descricao = findControloTextBoxRepeater(RepeaterVideoDetails, "txtBoxDescricaoEditarVideo");
             gestorVideos.modificaVideo(descricao, titulo, null, int.Parse(idVideoAprovacao.Value));
+            Response.Redirect("AdminPage.aspx?view=0", true);
 
         }
 
@@ -191,7 +194,36 @@ namespace Lives
 
         protected void btnInserirSubcategoria_Click(object sender, EventArgs e)
         {
-            if (gestorVideos.associaEtiqueta(int.Parse(idVideoAprovacao.Value), int.Parse(ddlSubcategorias.SelectedValue)))
+            Panel p = ((ImageButton)sender).FindControl("PainelAdicionarSubcategoria") as Panel;
+            p.Visible = !p.Visible;
+        }
+
+        protected void ddlCategoriasEditarVideo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DropDownList ddl = ((DropDownList)sender);
+            DropDownList subcat = ddl.FindControl("ddlSubcategoriasEditarVideo") as DropDownList;
+
+            if (ddl.SelectedIndex == 0)
+            {
+                subcat.Enabled = false;
+            }
+            else
+            {
+                OdsSubcategorias.SelectMethod = "obterTodasSubCategoriasCategoria";
+                OdsSubcategorias.SelectParameters.Clear();
+                OdsSubcategorias.SelectParameters.Add("cat", TypeCode.Int32, ddl.SelectedValue);
+
+                subcat.Enabled = true;
+                subcat.DataBind();
+            }
+        }
+
+        protected void ddlSubcategoriasEditarVideo_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            DropDownList subcat = ((DropDownList)sender).FindControl("ddlSubcategoriasEditarVideo") as DropDownList;
+
+
+            if (gestorVideos.associaEtiqueta(int.Parse(idVideoAprovacao.Value), int.Parse(subcat.SelectedValue)))
             {
                 RepeaterVideoDetails.DataBind();
             }
@@ -211,8 +243,18 @@ namespace Lives
                     erro.Text = "Já inseriu essa subcategoria!";
                 }
             }
+
         }
 
+        protected void ddlEditarVideo_OnDataBound(object sender, EventArgs e)
+        {
+            DropDownList ddl = ((DropDownList)sender);
+            if (ddl.Items.FindByValue(null) == null)
+            {
+                ddl.Items.Insert(0, new ListItem(null, null));
+            }
+
+        }
 
 
         #endregion
@@ -364,14 +406,14 @@ namespace Lives
 
         #endregion
 
-        protected string findControloTextBoxRepeater(Repeater repeater)
+        protected string findControloTextBoxRepeater(Repeater repeater, string id)
         {
             string valor = null;
             foreach (RepeaterItem item in repeater.Items)
             {
                 if (item.ItemType == ListItemType.AlternatingItem || item.ItemType == ListItemType.Item)
                 {
-                    TextBox controlo = (TextBox)item.FindControl("txtBoxTitulo");
+                    TextBox controlo = (TextBox)item.FindControl(id);
                     valor = controlo.Text;
                 }
             } return valor;
@@ -383,12 +425,6 @@ namespace Lives
             OdsSubcategorias.SelectParameters.Clear();
             OdsSubcategorias.SelectParameters.Add("cat", TypeCode.Int32, ddlCategorias.SelectedValue);
             ddlSubcategorias.Enabled = true;
-            ddlSubcategorias.DataBind();
-
-            if (ddlSubcategorias.Items.Count == 0)
-            {
-                ddlSubcategorias.Enabled = false;
-            }
             ddlSubcategorias.DataBind();
         }
 

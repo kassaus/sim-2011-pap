@@ -172,17 +172,17 @@ namespace BLL
 		{
 			Video video = obterVideo(id_video);
 
-			if (descricao != null)
+			if (descricao != "" && descricao != null)
 			{
 				video.descricao = descricao;
 			}
 
-			if (url != null)
+			if (url != "" && url != null)
 			{
 				video.url = url;
 			}
 
-			if (titulo != null)
+			if (titulo != "" && titulo != null)
 			{
 				video.titulo = titulo;
 			}
