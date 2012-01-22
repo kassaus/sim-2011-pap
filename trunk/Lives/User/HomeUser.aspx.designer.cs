@@ -157,22 +157,22 @@ namespace Lives.Users {
         protected global::System.Web.UI.WebControls.Panel panelFiltros;
         
         /// <summary>
-        /// ddlCategorias control.
+        /// ddlCategoriasListagens control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCategorias;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCategoriasListagens;
         
         /// <summary>
-        /// ddlSubcategorias control.
+        /// ddlSubcategoriasListagens control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSubcategorias;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSubcategoriasListagens;
         
         /// <summary>
         /// filtroVideos control.
@@ -220,22 +220,22 @@ namespace Lives.Users {
         protected global::System.Web.UI.WebControls.GridView GridViewListaVideos;
         
         /// <summary>
-        /// VideoEditView control.
+        /// ViewVideoEdit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View VideoEditView;
+        protected global::System.Web.UI.WebControls.View ViewVideoEdit;
         
         /// <summary>
-        /// VideoDetailsView control.
+        /// RepeaterVideoDetails control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater VideoDetailsView;
+        protected global::System.Web.UI.WebControls.Repeater RepeaterVideoDetails;
         
         /// <summary>
         /// UploadVideos control.

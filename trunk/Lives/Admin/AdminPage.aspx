@@ -199,11 +199,11 @@
 								runat="server" Visible="false">
 								Categorias:
 								<asp:DropDownList ID="ddlCategoriasEditarVideo" runat="server" DataSourceID="OdsCategorias"
-									OnDataBound="ddlEditarVideo_OnDataBound" DataTextField="nome" DataValueField="id"
+									OnDataBound="ddlCategoriasEditarVideo_OnDataBound" DataTextField="nome" DataValueField="id"
 									Width="150px" AutoPostBack="True" OnSelectedIndexChanged="ddlCategoriasEditarVideo_SelectedIndexChanged">
 								</asp:DropDownList>
 								Subcategorias:
-								<asp:DropDownList ID="ddlSubcategoriasEditarVideo" OnDataBound="ddlEditarVideo_OnDataBound"
+								<asp:DropDownList ID="ddlSubcategoriasEditarVideo" OnDataBound="ddlCategoriasEditarVideo_OnDataBound"
 									runat="server" Width="150px" AutoPostBack="true" DataSourceID="OdsSubcategorias"
 									Enabled="false" DataTextField="nome" DataValueField="id" OnSelectedIndexChanged="ddlSubcategoriasEditarVideo_OnSelectedIndexChanged">
 								</asp:DropDownList>

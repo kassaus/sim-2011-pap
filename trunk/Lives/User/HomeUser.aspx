@@ -43,7 +43,7 @@
 	<asp:ObjectDataSource ID="OdsSubcategorias" runat="server" SelectMethod="obterTodasSubCategoriasCategoria"
 		TypeName="BLL.SubcategoriaBO">
 		<SelectParameters>
-			<asp:ControlParameter ControlID="ddlCategorias" Name="cat" PropertyName="SelectedValue"
+			<asp:ControlParameter ControlID="ddlCategoriasListagens" Name="cat" PropertyName="SelectedValue"
 				Type="Int32" />
 		</SelectParameters>
 	</asp:ObjectDataSource>
@@ -82,14 +82,14 @@
 	<asp:Panel ID="panelFiltros" CssClass="painelFiltros" runat="server">
 		<div class="colunaFiltro">
 			Categorias:
-			<asp:DropDownList ID="ddlCategorias" runat="server" DataSourceID="OdsCategorias"
-				DataTextField="nome" DataValueField="id" Width="150px" AutoPostBack="True" OnSelectedIndexChanged="ddlCategoria_SelectedIndexChanged">
+			<asp:DropDownList ID="ddlCategoriasListagens" runat="server" DataSourceID="OdsCategorias"
+				DataTextField="nome" DataValueField="id" Width="150px" AutoPostBack="True"  OnDataBound="ddlCategoriasListagens_OnDataBound" OnSelectedIndexChanged="ddlCategoriasListagens_SelectedIndexChanged">
 			</asp:DropDownList>
 		</div>
 		<div class="colunaFiltro">
 			Subcategorias:
-			<asp:DropDownList ID="ddlSubcategorias" runat="server" Width="150px" AutoPostBack="true"
-				DataSourceID="OdsSubcategorias" DataTextField="nome" DataValueField="id" OnSelectedIndexChanged="ddlSubcategorias_OnSelectedIndexChanged">
+			<asp:DropDownList ID="ddlSubcategoriasListagens" runat="server" Width="150px" AutoPostBack="true"
+				DataSourceID="OdsSubcategorias" DataTextField="nome" DataValueField="id" OnDataBound="ddlSubcategoriasListagens_OnDataBound" OnSelectedIndexChanged="ddlSubcategoriasListagens_OnSelectedIndexChanged">
 			</asp:DropDownList>
 		</div>
 		<div class="colunaFiltro">
@@ -172,68 +172,101 @@
 				</EmptyDataTemplate>
 			</asp:GridView>
 		</asp:View>
-		<asp:View ID="VideoEditView" runat="server">
-			<asp:Repeater ID="VideoDetailsView" runat="server" DataSourceID="ODSVideoToEdit">
+		<asp:View ID="ViewVideoEdit" runat="server">
+			<asp:Repeater ID="RepeaterVideoDetails" runat="server" DataSourceID="ODSVideoToEdit">
 				<ItemTemplate>
-					<div style="position: relative; width: 100%; padding-bottom: 10px; padding-left: 10px;">
-						<h3 class="subtitulo">
-							Editar Vídeos</h3>
+				<div class="subtitulo">
+						Editar Vídeos
 					</div>
-					<div style="position: relative; top: 0px; height: 530px; width: 100%; border-top-style: solid;
-						border-top-width: thin; border-top-color: #666;">
-						<div style="position: absolute; float: none; top: 0px; width: 100%">
-							<div style="position: relative; float: left; top: 0px; height: 530px; width: 44%;">
-								<div style="position: relative; float: left; width: 60%;">
-									<p class="letraCinzentoMedia" style="font-weight: bold">
-										<asp:Image ID="Image1" AlternateText="Informação do controlo" runat="server" ImageUrl="~/images/informacao.png" />&nbsp
-										Título:
-										<asp:TextBox ID="txtBoxTitulo" runat="server" Columns="50" Width="200px"></asp:TextBox></p>
-									<asp:TextBoxWatermarkExtender ID="txtBoxTitulo_TextBoxWatermarkExtender" runat="server"
-										Enabled="True" TargetControlID="txtBoxTitulo" WatermarkText='<%# Eval("titulo") %>'>
-									</asp:TextBoxWatermarkExtender>
-								</div>
-								<div style="position: relative; float: left; width: 100%; height: 380px;">
-									<object classid="clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95" width="500" height="375"
-										codebase="http://www.microsoft.com/Windows/MediaPlayer/">
-										<param name="Filename" value='<%# Eval("url") %>'>
-										<param name="AutoStart" value="false">
-										<param name="ShowControls" value="true">
-										<param name="BufferingTime" value="2">
-										<param name="ShowStatusBar" value="false">
-										<param name="AutoSize" value="true">
-										<param name="InvokeURLs" value="false">
-										<embed src='<%# "/Videos/" + Eval("url") %>' type="application/x-mplayer2" autostart="0"
-											enabled="1" showstatusbar="0" showdisplay="1" showcontrols="1" pluginspage="http://www.microsoft.com/Windows/MediaPlayer/"
-											codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=6,0,0,0"
-											width="500" height="375"></embed>
-									</object>
-								</div>
-								<div style="position: relative; float: right; margin-right: 5px; height: 20px; width: 400px;
-									text-align: right">
-									<span class="letraCinzentoPeq">Máximo 20Mb &nbsp&nbsp&nbsp<asp:FileUpload ID="FileUpload1"
-										runat="server" Font-Bold="True" Height="20px" Width="250px" ForeColor="#000666"
-										Font-Size="X-Small" BorderWidth="1" /></span>
-								</div>
-								<div style="position: relative; float: left; width: 100%; margin-top: 10px">
-									<asp:Button ID="btnApagarSubcat" CssClass="botaoLogin" Height="40px" Width="133px"
-										runat="server" Text="Cancelar" OnClick="btnCancelar_Click" />
-									<span style="margin-left: 10px;">
-										<asp:Button ID="btnConfirmarEdicaoVideo" CssClass="botaoLogin" Height="40px" Width="133px"
-											runat="server" Text="Confirmar" /></span>
-								</div>
-							</div>
-							<div style="position: relative; float: right; top: 0px; height: 530px; width: 56%;">
-								<div style="position: relative; float: left; top: 48px; width: 100%;">
-									<asp:Image ID="Image2" AlternateText="Informação do controlo" runat="server" ImageUrl="~/images/informacao.png"
-										ImageAlign="AbsMiddle" />&nbsp Etiquetas:
-									<asp:Repeater ID="TagRepeater" runat="server" DataSource='<%# Eval("Subcategorias") %>'>
-										<ItemTemplate>
-											<asp:LinkButton ID="LinkButton1" runat="server" Text='<%# Eval("nome") %>' OnClick="labelEditarVideoClickEventHandler" />
-										</ItemTemplate>
-									</asp:Repeater>
-								</div>
-							</div>
+					<div class="infoImage">
+						<asp:Image ID="Image5" runat="server" ImageUrl="~/images/informacao.png" ToolTip="Para repor o título original basta limpar a caixa de texto." />
+					</div>
+					<div style="position: absolute; top: 0; left: 0; z-index: 999999; width: 800px; height: 600px;
+						background-color: white">
+						<div>
+							<asp:Image ID="Image3" AlternateText="Informação do controlo" runat="server" ImageUrl="~/images/informacao.png"
+								ImageAlign="AbsMiddle" />&nbsp
+							<asp:ImageButton ID="btnInserirSubcategoria" runat="server" ImageAlign="Middle" ImageUrl="~/images/add.png"
+								OnClick="btnInserirSubcategoria_Click" />
+							&nbsp Etiquetas:
+							<asp:Repeater ID="RepeaterTag" runat="server" DataSource='<%# Eval("Subcategorias") %>'>
+								<ItemTemplate>
+									<asp:LinkButton ID="LinkButton1" runat="server" Text='<%# Eval("nome") %>' OnClick="labelClickEventHandler" />
+								</ItemTemplate>
+							</asp:Repeater>
 						</div>
+						<div>
+							<asp:Panel ID="PainelAdicionarSubcategoria" Style="width: 500px; height: 150px; background-color: red;"
+								runat="server" Visible="false">
+								Categorias:
+								<asp:DropDownList ID="ddlCategoriasEditarVideo" runat="server" DataSourceID="OdsCategorias"
+									OnDataBound="ddlCategoriasEditarVideo_OnDataBound" DataTextField="nome" DataValueField="id"
+									Width="150px" AutoPostBack="True" OnSelectedIndexChanged="ddlCategoriasEditarVideo_SelectedIndexChanged">
+								</asp:DropDownList>
+								Subcategorias:
+								<asp:DropDownList ID="ddlSubcategoriasEditarVideo" OnDataBound="ddlCategoriasEditarVideo_OnDataBound"
+									runat="server" Width="150px" AutoPostBack="true" DataSourceID="OdsSubcategorias"
+									Enabled="false" DataTextField="nome" DataValueField="id" OnSelectedIndexChanged="ddlSubcategoriasEditarVideo_OnSelectedIndexChanged">
+								</asp:DropDownList>
+							</asp:Panel>
+							<div class="letraCinzentoMedia field">
+								Título:
+								<asp:TextBox ID="txtBoxTituloEditarVideo" runat="server" Columns="50" Width="200px"></asp:TextBox>
+							</div>
+							<asp:TextBoxWatermarkExtender ID="TextBoxWatermarkExtender1" runat="server"
+								Enabled="True" TargetControlID="txtBoxTituloEditarVideo" WatermarkText='<%# Eval("titulo") %>'>
+							</asp:TextBoxWatermarkExtender>
+							<div class="infoImage">
+								<asp:Image ID="Image9" runat="server" ImageUrl="~/images/informacao.png" ToolTip="Para repor a descrição original basta limpar a caixa de texto." />
+							</div>
+							<div class="letraCinzentoMedia field">
+								Descrição:
+								<asp:TextBox ID="txtBoxDescricaoEditarVideo" runat="server" Columns="255" Width="200px"></asp:TextBox></div>
+							<asp:TextBoxWatermarkExtender ID="TextBoxDescricao_WatermarkExtender" runat="server"
+								Enabled="True" TargetControlID="txtBoxDescricaoEditarVideo" WatermarkText='<%# Eval("descricao") %>'>
+							</asp:TextBoxWatermarkExtender>
+						</div>
+						<div>
+							<div>
+								<div>
+									<div>
+									</div>									
+									<div>
+										<object classid="clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95" width="500" height="375"
+											codebase="http://www.microsoft.com/Windows/MediaPlayer/">
+											<param name="Filename" value='<%# Eval("url") %>'>
+											<param name="AutoStart" value="false">
+											<param name="ShowControls" value="true">
+											<param name="BufferingTime" value="2">
+											<param name="ShowStatusBar" value="false">
+											<param name="AutoSize" value="true">
+											<param name="InvokeURLs" value="false">
+											<embed src='<%# "/Videos/" + Eval("url") %>' type="application/x-mplayer2" autostart="0"
+												enabled="1" showstatusbar="0" showdisplay="1" showcontrols="1" pluginspage="http://www.microsoft.com/Windows/MediaPlayer/"
+												codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=6,0,0,0"
+												width="500" height="375"></embed>
+										</object>
+									</div>
+									<div>
+										<div>
+											<asp:Button ID="Button1" CssClass="botaoLogin" Height="40px" Width="133px"
+												runat="server" Text="Confirmar" OnClick="btnConfirmarEdicaoVideo_Click" />
+										</div>
+									</div>
+								</div>
+								<div>
+									<div>
+										<asp:Label ID="lblErroEditarVideos" CssClass="redError" runat="Server" Visible="true"></asp:Label>
+									</div>
+									<div>
+									<p>Máximo 4MB
+									<asp:FileUpload ID="FileUpload1"
+										runat="server" Font-Bold="True" Height="20px" Width="250px" ForeColor="#000666"
+										Font-Size="X-Small" BorderWidth="1" /></p>
+									</div>
+								</div>
+							</div>
+						</div>					
 				</ItemTemplate>
 			</asp:Repeater>
 		</asp:View>
@@ -299,7 +332,7 @@
 							&nbsp Etiquetas:
 							<asp:Repeater ID="TagInserirVideoRepeater" runat="server">
 								<ItemTemplate>
-									<asp:LinkButton ID="LinkButton1" runat="server" Text='<%# Eval("nome") %>' OnClick="labelInserirVideoClickEventHandler" />
+									
 								</ItemTemplate>
 							</asp:Repeater>
 						</div>
