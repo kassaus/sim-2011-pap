@@ -185,7 +185,7 @@ namespace Lives
 
         #endregion
 
-        #region //Editar Vídeos
+        #region Editar Vídeos
 
         protected void btnConfirmarEdicaoVideo_Click(object sender, EventArgs e)
         {
@@ -266,7 +266,7 @@ namespace Lives
 
         }
 
-        protected void ddlEditarVideo_OnDataBound(object sender, EventArgs e)
+        protected void ddlCategoriasEditarVideo_OnDataBound(object sender, EventArgs e)
         {
             DropDownList ddl = ((DropDownList)sender);
             if (ddl.Items.FindByValue(null) == null)
@@ -279,7 +279,7 @@ namespace Lives
 
         #endregion
 
-        #region //Editar Subcategorias
+        #region Editar Subcategorias
 
         protected void btnNovaSubcategoria_Click(object sender, EventArgs e)
         {
@@ -431,7 +431,7 @@ namespace Lives
             } return valor;
         }
 
-      
+
 
     }
 }
