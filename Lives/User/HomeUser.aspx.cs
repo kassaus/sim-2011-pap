@@ -181,8 +181,6 @@ namespace Lives.Users
 
 		#region Editar Vídeos
 
-		
-
 		protected void btnInserirSubcategoria_Click(object sender, EventArgs e)
 		{
 			Panel p = ((ImageButton)sender).FindControl("PainelAdicionarSubcategoria") as Panel;
@@ -250,10 +248,17 @@ namespace Lives.Users
 		{
 			string titulo = null;
 			string descricao = null;
+			string url = null;
+			FileUpload fileUpload = null;
 			titulo = findControloTextBoxRepeater(RepeaterVideoDetails, "txtBoxTituloEditarVideo");
 			descricao = findControloTextBoxRepeater(RepeaterVideoDetails, "txtBoxDescricaoEditarVideo");
+			fileUpload = findControloFileUploadRepeater(RepeaterVideoDetails, "FileUpload1");
+
+
+
+
 			gestorVideos.modificaVideo(descricao, titulo, null, int.Parse(idVideoToEdit.Value));
-			Response.Redirect("HomeUser.aspx?view=0", true);
+			Response.Redirect("?view=0", true);
 		}
 
 		protected void labelClickEventHandler(object sender, EventArgs e)
@@ -274,10 +279,12 @@ namespace Lives.Users
 		{
 
 		}
-		
+
 		#endregion
 
+		#region Upload Vídeo
 
+		#endregion
 
 		protected string findControloTextBoxRepeater(Repeater repeater, string id)
 		{
@@ -290,6 +297,19 @@ namespace Lives.Users
 					valor = controlo.Text;
 				}
 			} return valor;
+		}
+
+		protected FileUpload findControloFileUploadRepeater(Repeater repeater, string id)
+		{
+			FileUpload controlo = null;
+			foreach (RepeaterItem item in repeater.Items)
+			{
+				if (item.ItemType == ListItemType.AlternatingItem || item.ItemType == ListItemType.Item)
+				{
+					controlo = (FileUpload)item.FindControl(id);
+
+				}
+			} return controlo;
 		}
 
 
