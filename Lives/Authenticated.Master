@@ -1,0 +1,41 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Authenticated.Master.cs"
+    Inherits="Lives.Admin.Authenticated" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Lives</title>
+    <link href="Estilo.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form" runat="server">
+    <div class="page">
+        <div class="contentorTopo">
+            <div class="contentorLogo">
+                <asp:HyperLink ID="LogoLink" runat="server" ImageUrl="~/images/logo1.png" NavigateUrl="~/"></asp:HyperLink>
+            </div>
+            <div class="contentorTopoMenu">
+                <asp:LinkButton ID="btnPaginaInicial" CssClass="botaoLogin" runat="server" OnClick="btnPaginaInicial_Click">Home</asp:LinkButton>
+                <asp:LoginStatus ID="btnSair" CssClass="botaoLogin" runat="server" LogoutAction="RedirectToLoginPage" LogoutText="Sair" />
+            </div>
+        </div>
+        <div class="contentorMain">
+            <div class="contentorMenu">
+                <asp:ContentPlaceHolder ID="menu" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <div class="contentorCorpoInteriror">
+                <asp:ContentPlaceHolder ID="mainContent" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+        <div class="contentorRodaPe">
+            <p class="conteudoRodape">
+                Lifes &copy 2012 SIM</p>
+        </div>
+    </div>
+    </form>
+</body>
+</html>

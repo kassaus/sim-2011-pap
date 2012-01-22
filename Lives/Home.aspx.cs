@@ -10,6 +10,8 @@ namespace Lives
         private string UrlYouTube = "http://youtube.com/v/tnBccuIDTTw";
         protected void Page_Load(object sender, EventArgs e)
         {
+            RegisterUser.ContinueDestinationPageUrl = Request.QueryString["ReturnUrl"];
+
             int panel = -1;
 
             try

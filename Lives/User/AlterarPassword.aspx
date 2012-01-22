@@ -11,7 +11,7 @@
                 <%= Membership.MinRequiredPasswordLength %>
                 carateres no mínimo. </span>
         </div>
-        <asp:ChangePassword ID="ChangeUserPassword" runat="server" CancelDestinationPageUrl="~/User/HomeUser.aspx"
+        <asp:ChangePassword ID="ChangeUserPassword" runat="server" CancelDestinationPageUrl="~/User/"
             EnableViewState="false" RenderOuterTable="false" SuccessPageUrl="~/User/UserSucessoPassword.aspx" 
             ChangePasswordFailureText="Password incorreta ou  a nova password não respeita as políticas de segurança do site!">
             <ChangePasswordTemplate>

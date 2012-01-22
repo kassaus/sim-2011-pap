@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/CorpoAdministrador.master"
-	AutoEventWireup="true" EnableEventValidation="false" CodeBehind="AdminPage.aspx.cs"
-	Inherits="Lives.AdminPage" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Authenticated.Master"
+	AutoEventWireup="true" EnableEventValidation="false" CodeBehind="Default.aspx.cs"
+	Inherits="Lives.Admin.Default" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Menu" ContentPlaceHolderID="menu" runat="Server">
@@ -23,18 +23,18 @@
 		<li>
 			<asp:Image ID="Image1" runat="server" AlternateText="Users" Height="40px" ImageAlign="Middle"
 				ImageUrl="~/images/users.png" />
-			<a href="AdminPage.aspx?view=3" rel="nofollow" class="style1">Users</a></li>
+			<a href="Default.aspx?view=3" rel="nofollow" class="style1">Users</a></li>
 		<li>
 			<asp:Image ID="Image2" runat="server" AlternateText="Categorias" Height="40px" ImageAlign="Middle"
 				ImageUrl="~/images/categorias.png" />
-			<a class="style1" href="AdminPage.aspx?view=2" rel="nofollow">Subcategorias</a></li>
+			<a class="style1" href="Default.aspx?view=2" rel="nofollow">Subcategorias</a></li>
 		<li>
 			<asp:Image ID="Image3" runat="server" AlternateText="Listagens" Height="40px" ImageAlign="Middle"
 				ImageUrl="~/images/listagens.png" />
-			<a href="AdminPage.aspx?view=0" class="style1">Listagens</a></li>
+			<a href="Default.aspx?view=0" class="style1">Listagens</a></li>
 	</div>
 </asp:Content>
-<asp:Content ID="Content1" ContentPlaceHolderID="corpo" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="mainContent" runat="server">
 	<asp:ObjectDataSource ID="OdsCategorias" runat="server" SelectMethod="obterTodas"
 		TypeName="BLL.CategoriaBO"></asp:ObjectDataSource>
 	<asp:ObjectDataSource ID="OdsSubcategorias" runat="server" SelectMethod="obterTodasSubCategoriasCategoria"
@@ -199,11 +199,11 @@
 								runat="server" Visible="false">
 								Categorias:
 								<asp:DropDownList ID="ddlCategoriasEditarVideo" runat="server" DataSourceID="OdsCategorias"
-									OnDataBound="ddlCategoriasEditarVideo_OnDataBound" DataTextField="nome" DataValueField="id"
+									OnDataBound="ddlEditarVideo_OnDataBound" DataTextField="nome" DataValueField="id"
 									Width="150px" AutoPostBack="True" OnSelectedIndexChanged="ddlCategoriasEditarVideo_SelectedIndexChanged">
 								</asp:DropDownList>
 								Subcategorias:
-								<asp:DropDownList ID="ddlSubcategoriasEditarVideo" OnDataBound="ddlCategoriasEditarVideo_OnDataBound"
+								<asp:DropDownList ID="ddlSubcategoriasEditarVideo" OnDataBound="ddlEditarVideo_OnDataBound"
 									runat="server" Width="150px" AutoPostBack="true" DataSourceID="OdsSubcategorias"
 									Enabled="false" DataTextField="nome" DataValueField="id" OnSelectedIndexChanged="ddlSubcategoriasEditarVideo_OnSelectedIndexChanged">
 								</asp:DropDownList>

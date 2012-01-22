@@ -12,7 +12,6 @@ html
 	overflow-x: hidden;
 }
 
-/* Alteração dos parâmetros da tag de link */
 .a
 {
 	color: #FFFFFF;
@@ -28,11 +27,18 @@ html
 	left: 20px;
 }
 
-.contentorTopoDireita
+.contentorTopoMenu
 {
 	position: absolute;
-	top: 5px;
-	right: 20px;
+	margin: 2.5em 1.5em 0.5em 0;
+	right: 0;
+}
+
+.contentorTopoLogin
+{
+	position: absolute;
+	margin: 0.5em 1.5em 0.5em 0;
+	right: 0;
 }
 
 .userName
@@ -73,6 +79,7 @@ html
 	vertical-align: middle;
 	background-color: white;
 	padding: 0.2em 0.7em;
+	text-decoration: none;
 }
 
 input[type='text'], input[type='password']
@@ -206,8 +213,7 @@ input[type='text'], input[type='password']
 {
 	width: 100%;
 	font-weight: normal;
-	background: #f7f7f7;
-	color: #000;
+	color: #4e4a47;
 	float: left;
 	text-decoration: none;
 }
@@ -484,6 +490,7 @@ input[type='text'], input[type='password']
 	background-color: #4e4a47;
 	z-index: 4;
 }
+
 .contentorMain
 {
 	clear: both;
@@ -509,12 +516,12 @@ input[type='text'], input[type='password']
 
 .conteudoRodape
 {
-    position: absolute;
-    top: 0;
-    left: 20px;
-    color: white;
-    font-size: 0.8em;
-    font-style: italic;
+	position: absolute;
+	top: 0;
+	left: 20px;
+	color: white;
+	font-size: 0.8em;
+	font-style: italic;
 }
 
 .contentorMenu
@@ -522,22 +529,12 @@ input[type='text'], input[type='password']
 	position: fixed !important;
 	position: absolute;
 	top: 80px;
-	left: 10px;
+	margin: 0 0.5em 0 0.5em;
 	width: 15% !important;
-	width: 200px;
-	min-width: 200px;
-	max-width: 200px;
+	width: 17em;
+	min-width: 17em;
+	max-width: 17em;
 	z-index: 4;
-}
-
-.contentorInterior
-{
-	position: absolute;
-	top: 80px;
-	left: 230px !important;
-	width: 100%;
-	height: 100%;
-	min-width: 640px;
 }
 
 .colunaFiltro
@@ -651,10 +648,19 @@ input[type='text'], input[type='password']
 
 .imagemBotaoTabela
 {
-    margin-left: 0.2em;
+	margin-left: 0.2em;
 }
 
 input[type="button"], input[type="submit"], input[type="reset"]
 {
-    cursor: pointer;
+	cursor: pointer;
+}
+
+.contentorCorpoInteriror 
+{
+	float:left;
+	clear: both;
+	margin: 0 0 0 18em;
+	padding: 0;
+	width: 100%;
 }

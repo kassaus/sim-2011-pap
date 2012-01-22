@@ -15,7 +15,7 @@
             <div class="contentorLogo">
                 <asp:HyperLink ID="LogoLink" runat="server" ImageUrl="~/images/logo1.png" NavigateUrl="~/Home.aspx"></asp:HyperLink>
             </div>
-            <div class="contentorTopoDireita">
+            <div class="contentorTopoLogin">
                 <asp:Login ID="Login2" runat="server" DestinationPageUrl="~/Default.aspx" RenderOuterTable="False"
                     Style="margin-left: 0px; color: #FFF;" FailureText="O nome de utilizador ou a palavra-passe que introduziu estão incorretos.">
                     <LayoutTemplate>

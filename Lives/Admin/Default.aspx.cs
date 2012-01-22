@@ -10,9 +10,9 @@ using AjaxControlToolkit;
 using System.IO;
 using System.Net.Mail;
 
-namespace Lives
+namespace Lives.Admin
 {
-    public partial class AdminPage : System.Web.UI.Page
+    public partial class Default : System.Web.UI.Page
     {
         private VideoBO gestorVideos { get; set; }
         private SubcategoriaBO gestorSubcategorias { get; set; }
@@ -185,7 +185,7 @@ namespace Lives
 
         #endregion
 
-        #region Editar Vídeos
+        #region //Editar Vídeos
 
         protected void btnConfirmarEdicaoVideo_Click(object sender, EventArgs e)
         {
@@ -194,7 +194,7 @@ namespace Lives
             titulo = findControloTextBoxRepeater(RepeaterVideoDetails, "txtBoxTituloEditarVideo");
             descricao = findControloTextBoxRepeater(RepeaterVideoDetails, "txtBoxDescricaoEditarVideo");
             gestorVideos.modificaVideo(descricao, titulo, null, int.Parse(idVideoAprovacao.Value));
-            Response.Redirect("AdminPage.aspx?view=0", true);
+            Response.Redirect("Default.aspx?view=0", true);
 
         }
 
@@ -266,7 +266,7 @@ namespace Lives
 
         }
 
-        protected void ddlCategoriasEditarVideo_OnDataBound(object sender, EventArgs e)
+        protected void ddlEditarVideo_OnDataBound(object sender, EventArgs e)
         {
             DropDownList ddl = ((DropDownList)sender);
             if (ddl.Items.FindByValue(null) == null)
@@ -279,7 +279,7 @@ namespace Lives
 
         #endregion
 
-        #region Editar Subcategorias
+        #region //Editar Subcategorias
 
         protected void btnNovaSubcategoria_Click(object sender, EventArgs e)
         {
@@ -344,7 +344,7 @@ namespace Lives
 
             }
             GridViewUser.DataBind();
-            Response.Redirect("~/Admin/AdminPage.aspx?view=3", false);
+            Response.Redirect("~/Admin/Default.aspx?view=3", false);
         }
 
         protected void imgbtnApagarUser_Click(object sender, EventArgs e)
@@ -369,7 +369,7 @@ namespace Lives
                 Membership.DeleteUser(UserName);
             }
             GridViewUser.DataBind();
-            Response.Redirect("~/Admin/AdminPage.aspx?view=3", true);
+            Response.Redirect("~/Admin/Default.aspx?view=3", true);
         }
 
         protected void imgbtnAlterarPasswordUser_Click(object sender, EventArgs e)
@@ -431,7 +431,7 @@ namespace Lives
             } return valor;
         }
 
-
+      
 
     }
 }

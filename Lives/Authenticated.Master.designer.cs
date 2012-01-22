@@ -10,7 +10,7 @@
 namespace Lives.Admin {
     
     
-    public partial class Site1 {
+    public partial class Authenticated {
         
         /// <summary>
         /// head control.
@@ -22,22 +22,22 @@ namespace Lives.Admin {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
         
         /// <summary>
-        /// form1 control.
+        /// form control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form;
         
         /// <summary>
-        /// ImageBtnLogo control.
+        /// LogoLink control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageBtnLogo;
+        protected global::System.Web.UI.WebControls.HyperLink LogoLink;
         
         /// <summary>
         /// btnPaginaInicial control.
@@ -58,12 +58,21 @@ namespace Lives.Admin {
         protected global::System.Web.UI.WebControls.LoginStatus btnSair;
         
         /// <summary>
-        /// MainContent control.
+        /// menu control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder menu;
+        
+        /// <summary>
+        /// mainContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder mainContent;
     }
 }
