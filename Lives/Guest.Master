@@ -4,16 +4,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <link href="Estilo.css" rel="stylesheet" type="text/css" />
+    <title>Lives</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
+    <form id="form" runat="server">
     <div class="page">
         <div class="contentorTopo">
-            <form id="form1" runat="server">
             <div class="contentorLogo">
-                <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/logo1.png" Height="40px"
-                    Width="112px" />
+                <asp:HyperLink ID="LogoLink" runat="server" ImageUrl="~/images/logo1.png" NavigateUrl="~/Home.aspx"></asp:HyperLink>
             </div>
             <div class="contentorTopoDireita">
                 <asp:Login ID="Login2" runat="server" DestinationPageUrl="~/Default.aspx" RenderOuterTable="False"
@@ -22,10 +22,10 @@
                     <LayoutTemplate>
                         <table cellpadding="1" cellspacing="0" style="border-collapse: collapse;">
                             <tr>
-                                <td align="right" style="color: #FFFFFF; text-align: left;">
+                                <td align="left" style="padding-left: 5px">
                                     <asp:Label ID="UserNameLabel" runat="server" AssociatedControlID="UserName" ForeColor="White">User:</asp:Label>
                                 </td>
-                                <td align="left">
+                                <td align="left" style="padding-left: 5px">
                                     <asp:Label ID="PasswordLabel" runat="server" AssociatedControlID="Password" ForeColor="White">Password:</asp:Label>
                                 </td>
                                 <td>
@@ -48,12 +48,11 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>
-                                    <asp:CheckBox ID="RememberMe" runat="server" Text="Lembrar-me!" Style="color: #FFFF00" />
+                                <td valign="middle">
+                                    <asp:CheckBox ID="RememberMe" runat="server" Text="Lembrar-me!" ForeColor="white" />
                                 </td>
-                                <td>
-                                    <asp:LinkButton ID="LinkButton1" runat="server" Font-Underline="False" ForeColor="Yellow"
-                                        Style="color: #FFFF00">Esqueceste password?</asp:LinkButton>
+                                <td style="padding-left: 5px">
+                                    <asp:LinkButton ID="LinkButton1" runat="server" Font-Underline="False" ForeColor="white">Esqueceste password?</asp:LinkButton>
                                 </td>
                                 <td>
                                 </td>
@@ -70,8 +69,7 @@
                     </LayoutTemplate>
                 </asp:Login>
             </div>
-            </form>
-        </div>       
+        </div>
         <div class="contentorMain">
             <asp:ContentPlaceHolder ID="corpo_user" runat="server">
             </asp:ContentPlaceHolder>
@@ -81,5 +79,6 @@
                 Lifes &copy 2012 SIM</p>
         </div>
     </div>
+    </form>
 </body>
 </html>

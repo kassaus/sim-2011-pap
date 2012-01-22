@@ -7,6 +7,8 @@ using System.Web.UI;
 using System.Collections.Generic;
 using System.Text;
 using AjaxControlToolkit;
+using System.IO;
+using System.Net.Mail;
 
 namespace Lives
 {
@@ -383,25 +385,17 @@ namespace Lives
             }
         }
 
-        protected void enviaEmailNovaPass(string userName, string password, string email)
+        protected void enviaEmailNovaPass(string username, string password, string email)
         {
-            SendEmail email_pass = new SendEmail();
-            StringBuilder strData = new StringBuilder(string.Empty);
-            string from = "lives@gmail.com";
             string to = email;
-            string bcc = null;
-            string cc = "pppluis@gmail.com";
-            string subject = "Nova Password";
-            string body = null;
+            string subject = "Password";
 
-            strData.Append("<h4>Olá " + userName + " bem vindo ao Lives!</h4>");
-            strData.Append("Dados da sua conta:</br>");
-            strData.Append("<span style=" + @"""font-weight: bold;""><p>Nova Password: </span>" + password + "</ br>");
-            strData.Append("<p>Carregue na ligação para voltar ao Lives.</p><p><a href=" + @"""http://lives.pt"" target=" + @"""_blank"">http://lives.pt</a></p>");
-            strData.Append("<p style=" + @"""font-weight: bold;"">Até breve! </p>");
+            MailDefinition md = new MailDefinition();
+            md.BodyFileName = "~/Resources/PasswordRecoveryEmail.txt";
+            md.IsBodyHtml = true;
+            MailMessage ms = md.CreateMailMessage(to, new Dictionary<string, string>() {{"<%UserName%>", username}, {"<%Password%>", password }}, this);
 
-            body = strData.ToString();
-            email_pass.EnviarEmail(from, to, bcc, cc, subject, body);
+            SendEmail.EnviarEmail(to, subject, ms.Body);
         }
 
         #endregion

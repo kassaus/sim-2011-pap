@@ -4,15 +4,11 @@ namespace Lives
 {
     public partial class Default : System.Web.UI.Page
     {
-        // Boolean teste;
         protected void Page_Load(object sender, EventArgs e)
-        {
-            // teste = Membership.ValidateUser("pauloluis", "123456");
-
+        {   
             if (!Request.IsAuthenticated)
             {
                 Response.Redirect("Home.aspx");
-                // "~/Account/Login.aspx"
             }
 
             if (User.IsInRole("admin"))
@@ -23,10 +19,8 @@ namespace Lives
 
             if (User.IsInRole("user"))
             {
-                Response.Redirect("~/user/HomeUser.aspx", true);
+                Response.Redirect("~/User/HomeUser.aspx", true);
             }
-
-
         }
     }
 }

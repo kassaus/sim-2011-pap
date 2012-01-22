@@ -19,7 +19,7 @@
             <div id="ContentorMenuCabecalho">
                 <div class="menuCabecalho">
                     <asp:LinkButton ID="btnPaginaInicial" runat="server" OnClick="btnPaginaInicial_Click">Home</asp:LinkButton>
-                    <asp:LinkButton ID="btnSair" runat="server" OnClick="btnSair_Click">Sair</asp:LinkButton>
+                    <asp:LoginStatus ID="btnSair" runat="server" LogoutAction="RedirectToLoginPage" LogoutText="Sair"/>
                 </div>
             </div>
         </div>

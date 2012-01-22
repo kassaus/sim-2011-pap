@@ -18,8 +18,9 @@ namespace Lives.Users
         {
             if (!Request.IsAuthenticated)
             {
-                Response.Redirect("Home.aspx");
+                Response.Redirect("~/Home.aspx");
             }
+
             MembershipUser user;
             user = Membership.GetUser();
             Guid idUser = new Guid(user.ProviderUserKey.ToString());

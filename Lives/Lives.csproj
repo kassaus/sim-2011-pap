@@ -96,6 +96,7 @@
     <Content Include="images\deleteUser.png" />
     <Content Include="images\locked.png" />
     <Content Include="images\unlocked.png" />
+    <Content Include="Resources\PasswordRecoveryEmail.txt" />
     <Content Include="Silverlight.js" />
     <Content Include="Videos\1.wmv" />
     <Content Include="Videos\2.wmv" />
@@ -121,6 +122,8 @@
     <Content Include="User\UserSucessoPassword.aspx" />
     <Content Include="VideoViewerTestPage.aspx" />
     <Content Include="Web.config" />
+    <Content Include="zengarden-sample.css" />
+    <Content Include="zengarden-sample.html" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account\RecoverPass.aspx.cs">
@@ -205,16 +208,16 @@
     <Compile Include="User\UserSucessoPassword.aspx.designer.cs">
       <DependentUpon>UserSucessoPassword.aspx</DependentUpon>
     </Compile>
-    <Compile Include="TopoAutenticacao.Master.cs">
-      <DependentUpon>TopoAutenticacao.Master</DependentUpon>
+    <Compile Include="Guest.Master.cs">
+      <DependentUpon>Guest.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="TopoAutenticacao.Master.designer.cs">
-      <DependentUpon>TopoAutenticacao.Master</DependentUpon>
+    <Compile Include="Guest.Master.designer.cs">
+      <DependentUpon>Guest.Master</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TopoAutenticacao.Master" />
+    <Content Include="Guest.Master" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="TopoComumAutenticado.Master" />
@@ -261,7 +264,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>54465</DevelopmentServerPort>
           <DevelopmentServerVPath>/Lives</DevelopmentServerVPath>
-          <IISUrl>http://localhost</IISUrl>
+          <IISUrl>http://localhost/Lives</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

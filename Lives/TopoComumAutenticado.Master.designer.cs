@@ -55,7 +55,7 @@ namespace Lives.Admin {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnSair;
+        protected global::System.Web.UI.WebControls.LoginStatus btnSair;
         
         /// <summary>
         /// MainContent control.
