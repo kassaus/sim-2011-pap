@@ -81,6 +81,24 @@ namespace Lives
 
         #region //Listagem dos videos
 
+        protected void ddlCategoria_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            OdsSubcategorias.SelectMethod = "obterTodasSubCategoriasCategoria";
+            OdsSubcategorias.SelectParameters.Clear();
+            OdsSubcategorias.SelectParameters.Add("cat", TypeCode.Int32, ddlCategorias.SelectedValue);
+            ddlSubcategorias.Enabled = true;
+            ddlSubcategorias.DataBind();
+        }
+
+        protected void ddlSubcategorias_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            Subcategoria subcategoria = gestorSubcategorias.obterSubCategoriaId(int.Parse(ddlSubcategorias.SelectedValue));
+
+            GridViewListaVideos.DataSource = gestorVideos.obterTodosVideosSubcategoria(subcategoria.id);
+            GridViewListaVideos.DataBind();
+            lblSubtitulo.Text = "Listagem de vídeos da Subcategoria " + subcategoria.nome;
+        }
+
         protected void GridViewListaVideos_OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
             GridViewRow row = e.Row;
@@ -393,7 +411,7 @@ namespace Lives
             MailDefinition md = new MailDefinition();
             md.BodyFileName = "~/Resources/PasswordRecoveryEmail.txt";
             md.IsBodyHtml = true;
-            MailMessage ms = md.CreateMailMessage(to, new Dictionary<string, string>() {{"<%UserName%>", username}, {"<%Password%>", password }}, this);
+            MailMessage ms = md.CreateMailMessage(to, new Dictionary<string, string>() { { "<%UserName%>", username }, { "<%Password%>", password } }, this);
 
             SendEmail.EnviarEmail(to, subject, ms.Body);
         }
@@ -413,23 +431,7 @@ namespace Lives
             } return valor;
         }
 
-        protected void ddlCategoria_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            OdsSubcategorias.SelectMethod = "obterTodasSubCategoriasCategoria";
-            OdsSubcategorias.SelectParameters.Clear();
-            OdsSubcategorias.SelectParameters.Add("cat", TypeCode.Int32, ddlCategorias.SelectedValue);
-            ddlSubcategorias.Enabled = true;
-            ddlSubcategorias.DataBind();
-        }
-
-        protected void ddlSubcategorias_OnSelectedIndexChanged(object sender, EventArgs e)
-        {
-            Subcategoria subcategoria = gestorSubcategorias.obterSubCategoriaId(int.Parse(ddlSubcategorias.SelectedValue));
-
-            GridViewListaVideos.DataSource = gestorVideos.obterTodosVideosSubcategoria(subcategoria.id);
-            GridViewListaVideos.DataBind();
-            lblSubtitulo.Text = "Listagem de vídeos da Subcategoria " + subcategoria.nome;
-        }
+      
 
     }
 }
