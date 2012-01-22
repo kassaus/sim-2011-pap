@@ -8,7 +8,7 @@ namespace Lives
         {
             if (!Request.IsAuthenticated)
             {
-                Response.Redirect("Home.aspx");
+                Response.Redirect("~/Home.aspx");
             }
 
             if (User.IsInRole("admin"))

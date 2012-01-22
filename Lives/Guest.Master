@@ -17,8 +17,7 @@
             </div>
             <div class="contentorTopoDireita">
                 <asp:Login ID="Login2" runat="server" DestinationPageUrl="~/Default.aspx" RenderOuterTable="False"
-                    Style="margin-left: 0px; color: #FFF;" FailureText="O nome de utilizador ou a palavra-passe que introduziu estão incorretos."
-                    PasswordRecoveryText="sbgfnhmj">
+                    Style="margin-left: 0px; color: #FFF;" FailureText="O nome de utilizador ou a palavra-passe que introduziu estão incorretos.">
                     <LayoutTemplate>
                         <table cellpadding="1" cellspacing="0" style="border-collapse: collapse;">
                             <tr>
@@ -49,10 +48,10 @@
                             </tr>
                             <tr>
                                 <td valign="middle">
-                                    <asp:CheckBox ID="RememberMe" runat="server" Text="Lembrar-me!" ForeColor="white" />
+                                    &nbsp;
                                 </td>
                                 <td style="padding-left: 5px">
-                                    <asp:LinkButton ID="LinkButton1" runat="server" Font-Underline="False" ForeColor="white">Esqueceste password?</asp:LinkButton>
+                                    <asp:LinkButton ID="passwordRecovery" runat="server" Font-Underline="False" ForeColor="white" PostBackUrl="~/Home.aspx?p=1">Esqueceste password?</asp:LinkButton>
                                 </td>
                                 <td>
                                 </td>

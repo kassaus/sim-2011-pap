@@ -14,7 +14,7 @@
                 <asp:Literal ID="Literal1" runat="server"></asp:Literal>
             </div>
         </div>
-        <asp:Panel ID="painelRegisto" runat="server" Visible="false">
+        <asp:Panel ID="painelRegisto" runat="server">
             <div class="home_backoffice_registo">
                 <div style="text-align: left; width: 100%">
                     <p class="letraCinzentoGrande">
@@ -153,7 +153,7 @@
                 </div>
             </div>
         </asp:Panel>
-        <asp:Panel ID="painelRecuperacaoPassword" runat="server" Visible="true">
+        <asp:Panel ID="painelRecuperacaoPassword" runat="server" Visible="false">
             <div class="home_backoffice_registo">
                 <div style="text-align: left; width: 100%">
                     <p class="letraCinzentoGrande">
