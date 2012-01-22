@@ -15,28 +15,12 @@ namespace BLL
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class SendEmail
+    public static class SendEmail
     {
-        public SendEmail()
+        public static void EnviarEmail(string to, string subject, string body)
         {
-
-        }
-
-        public void EnviarEmail(string from, string to, string bcc, string cc, string subject, string body)
-        {
-            // Criar uma nova instância do objecto
             MailMessage mMailMessage = new MailMessage();
-            mMailMessage.From = new MailAddress(from);
             mMailMessage.To.Add(new MailAddress(to));
-            if ((bcc != null) && (bcc != string.Empty))
-            {
-                mMailMessage.Bcc.Add(new MailAddress(bcc));
-            }
-
-            if ((cc != null) && (cc != string.Empty))
-            {
-                mMailMessage.CC.Add(new MailAddress(cc));
-            }
             mMailMessage.Subject = subject;
 
             mMailMessage.Body = body;
@@ -44,13 +28,7 @@ namespace BLL
             mMailMessage.Priority = MailPriority.Normal;
 
             // Instantiate a new instance of SmtpClient
-            SmtpClient mSmtpClient = new SmtpClient("smtp.gmail.com", 587);
-            //SmtpClient mSmtpClient = new SmtpClient();
-            //mSmtpClient.Credentials = CredentialCache.DefaultNetworkCredentials;
-            mSmtpClient.Credentials = new System.Net.NetworkCredential("lusofonosonline@gmail.com", "AntonioPaulo");
-            //mSmtpClient.UseDefaultCredentials = false;
-            mSmtpClient.EnableSsl = true;
-
+            SmtpClient mSmtpClient = new SmtpClient();          
             mSmtpClient.Send(mMailMessage);
 
         }
