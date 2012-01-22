@@ -14,12 +14,12 @@ namespace Lives
             if (User.IsInRole("admin"))
             {
 
-                Response.Redirect("~/Admin/AdminPage.aspx?view=0", true);
+                Response.Redirect("~/Admin/?view=0", true);
             }
 
             if (User.IsInRole("user"))
             {
-                Response.Redirect("~/User/HomeUser.aspx?view=0", true);
+                Response.Redirect("~/User/?view=0", true);
             }
         }
     }

@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Lives {
+namespace Lives.Users {
     
     
-    public partial class AdminPage {
+    public partial class HomeUser {
         
         /// <summary>
         /// lblNome control.
@@ -31,49 +31,58 @@ namespace Lives {
         protected global::System.Web.UI.WebControls.Image imagemLogo;
         
         /// <summary>
-        /// lblOnline control.
+        /// ImgAlterarPass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOnline;
+        protected global::System.Web.UI.WebControls.Image ImgAlterarPass;
         
         /// <summary>
-        /// Image4 control.
+        /// ImgGerirVideos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image4;
+        protected global::System.Web.UI.WebControls.Image ImgGerirVideos;
         
         /// <summary>
-        /// Image1 control.
+        /// ImgUploadFile control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image1;
+        protected global::System.Web.UI.WebControls.Image ImgUploadFile;
         
         /// <summary>
-        /// Image2 control.
+        /// idVideoToEdit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image2;
+        protected global::System.Web.UI.WebControls.HiddenField idVideoToEdit;
         
         /// <summary>
-        /// Image3 control.
+        /// ScriptManager control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image3;
+        protected global::AjaxControlToolkit.ToolkitScriptManager ScriptManager;
+        
+        /// <summary>
+        /// ODSVideoToEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource ODSVideoToEdit;
         
         /// <summary>
         /// OdsCategorias control.
@@ -94,76 +103,49 @@ namespace Lives {
         protected global::System.Web.UI.WebControls.ObjectDataSource OdsSubcategorias;
         
         /// <summary>
-        /// ObjectDataSource1 control.
+        /// ODSVideosByUser control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSource1;
+        protected global::System.Web.UI.WebControls.ObjectDataSource ODSVideosByUser;
         
         /// <summary>
-        /// ODSVideoToEdit control.
+        /// ODSObterAprovados control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ODSVideoToEdit;
+        protected global::System.Web.UI.WebControls.ObjectDataSource ODSObterAprovados;
         
         /// <summary>
-        /// ODSObterVideosPorAprovar control.
+        /// ODSObterTodos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ODSObterVideosPorAprovar;
+        protected global::System.Web.UI.WebControls.ObjectDataSource ODSObterTodos;
         
         /// <summary>
-        /// ODSObterTodosVideos control.
+        /// ODSPorAprovar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ODSObterTodosVideos;
+        protected global::System.Web.UI.WebControls.ObjectDataSource ODSPorAprovar;
         
         /// <summary>
-        /// ODSObterVideosAprovados control.
+        /// idUserHide control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ODSObterVideosAprovados;
-        
-        /// <summary>
-        /// ODSObterSubcategoriasCategoria control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ODSObterSubcategoriasCategoria;
-        
-        /// <summary>
-        /// ScriptManager control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.ToolkitScriptManager ScriptManager;
-        
-        /// <summary>
-        /// idVideoAprovacao control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField idVideoAprovacao;
+        protected global::System.Web.UI.WebControls.HiddenField idUserHide;
         
         /// <summary>
         /// panelFiltros control.
@@ -211,13 +193,13 @@ namespace Lives {
         protected global::System.Web.UI.WebControls.MultiView MultiViewVideos;
         
         /// <summary>
-        /// ViewListagensVideos control.
+        /// View1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View ViewListagensVideos;
+        protected global::System.Web.UI.WebControls.View View1;
         
         /// <summary>
         /// lblSubtitulo control.
@@ -238,147 +220,129 @@ namespace Lives {
         protected global::System.Web.UI.WebControls.GridView GridViewListaVideos;
         
         /// <summary>
-        /// ViewEditVideo control.
+        /// VideoEditView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View ViewEditVideo;
+        protected global::System.Web.UI.WebControls.View VideoEditView;
         
         /// <summary>
-        /// RepeaterVideoDetails control.
+        /// VideoDetailsView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater RepeaterVideoDetails;
+        protected global::System.Web.UI.WebControls.Repeater VideoDetailsView;
         
         /// <summary>
-        /// ViewEditarsubCategorias control.
+        /// UploadVideos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View ViewEditarsubCategorias;
+        protected global::System.Web.UI.WebControls.View UploadVideos;
         
         /// <summary>
-        /// lblErro control.
+        /// Image1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblErro;
+        protected global::System.Web.UI.WebControls.Image Image1;
         
         /// <summary>
-        /// categoriasDropBox control.
+        /// txtBoxTitulo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList categoriasDropBox;
+        protected global::System.Web.UI.WebControls.TextBox txtBoxTitulo;
         
         /// <summary>
-        /// RepeaterTag control.
+        /// txtBoxTitulo_TextBoxWatermarkExtender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater RepeaterTag;
+        protected global::AjaxControlToolkit.TextBoxWatermarkExtender txtBoxTitulo_TextBoxWatermarkExtender;
         
         /// <summary>
-        /// ImageButton2 control.
+        /// txtBoxDescricao control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageButton2;
+        protected global::System.Web.UI.WebControls.TextBox txtBoxDescricao;
         
         /// <summary>
-        /// txtBoxNovaSubcategoria control.
+        /// TextBoxDescricao_WatermarkExtender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBoxNovaSubcategoria;
+        protected global::AjaxControlToolkit.TextBoxWatermarkExtender TextBoxDescricao_WatermarkExtender;
         
         /// <summary>
-        /// txtBoxNovaSubcategoria_TextBoxWatermarkExtender control.
+        /// FileUpload1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.TextBoxWatermarkExtender txtBoxNovaSubcategoria_TextBoxWatermarkExtender;
+        protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
         
         /// <summary>
-        /// lbtnInserirSubcategoria control.
+        /// btnApagarSubcat control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton lbtnInserirSubcategoria;
+        protected global::System.Web.UI.WebControls.Button btnApagarSubcat;
         
         /// <summary>
-        /// ImageButton1 control.
+        /// btnConfirmarEdicaoVideo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageButton1;
+        protected global::System.Web.UI.WebControls.Button btnConfirmarEdicaoVideo;
         
         /// <summary>
-        /// ViewUsers control.
+        /// Image2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View ViewUsers;
+        protected global::System.Web.UI.WebControls.Image Image2;
         
         /// <summary>
-        /// Label4 control.
+        /// btnInserirSubcategoria control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
+        protected global::System.Web.UI.WebControls.ImageButton btnInserirSubcategoria;
         
         /// <summary>
-        /// GridViewUser control.
+        /// TagInserirVideoRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewUser;
-        
-        /// <summary>
-        /// lblErroResetPassword control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblErroResetPassword;
-        
-        /// <summary>
-        /// lblSucessoAlterarPass control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSucessoAlterarPass;
+        protected global::System.Web.UI.WebControls.Repeater TagInserirVideoRepeater;
     }
 }

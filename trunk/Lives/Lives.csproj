@@ -83,9 +83,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Account\RecoverPass.aspx" />
     <Content Include="images\add.png" />
-    <Content Include="Admin\AdminPage.aspx" />
+    <Content Include="Admin\Default.aspx" />
     <Content Include="images\informacao.png" />
     <Content Include="ClientBin\Debug\VideoViewer.xap" />
     <Content Include="ErrorPages\Error.aspx" />
@@ -118,7 +117,7 @@
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
     <Content Include="User\AlterarPassword.aspx" />
-    <Content Include="User\HomeUser.aspx" />
+    <Content Include="User\Default.aspx" />
     <Content Include="User\UserSucessoPassword.aspx" />
     <Content Include="VideoViewerTestPage.aspx" />
     <Content Include="Web.config" />
@@ -126,26 +125,12 @@
     <Content Include="zengarden-sample.html" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account\RecoverPass.aspx.cs">
-      <DependentUpon>RecoverPass.aspx</DependentUpon>
+    <Compile Include="Admin\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Account\RecoverPass.aspx.designer.cs">
-      <DependentUpon>RecoverPass.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\CorpoAdministrador.master.cs">
-      <DependentUpon>CorpoAdministrador.master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\CorpoAdministrador.master.designer.cs">
-      <DependentUpon>CorpoAdministrador.master</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\AdminPage.aspx.cs">
-      <DependentUpon>AdminPage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\AdminPage.aspx.designer.cs">
-      <DependentUpon>AdminPage.aspx</DependentUpon>
+    <Compile Include="Admin\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -164,13 +149,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Handlers\ErrorHandler.cs" />
-    <Compile Include="TopoComumAutenticado.Master.cs">
-      <DependentUpon>TopoComumAutenticado.Master</DependentUpon>
+    <Compile Include="Authenticated.Master.cs">
+      <DependentUpon>Authenticated.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="TopoComumAutenticado.Master.designer.cs">
-      <DependentUpon>TopoComumAutenticado.Master</DependentUpon>
+    <Compile Include="Authenticated.Master.designer.cs">
+      <DependentUpon>Authenticated.Master</DependentUpon>
     </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
@@ -180,13 +164,6 @@
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="User\CorpoUtilizador.master.cs">
-      <DependentUpon>CorpoUtilizador.master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="User\CorpoUtilizador.master.designer.cs">
-      <DependentUpon>CorpoUtilizador.master</DependentUpon>
-    </Compile>
     <Compile Include="User\AlterarPassword.aspx.cs">
       <DependentUpon>AlterarPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -194,12 +171,12 @@
     <Compile Include="User\AlterarPassword.aspx.designer.cs">
       <DependentUpon>AlterarPassword.aspx</DependentUpon>
     </Compile>
-    <Compile Include="User\HomeUser.aspx.cs">
-      <DependentUpon>HomeUser.aspx</DependentUpon>
+    <Compile Include="User\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="User\HomeUser.aspx.designer.cs">
-      <DependentUpon>HomeUser.aspx</DependentUpon>
+    <Compile Include="User\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\UserSucessoPassword.aspx.cs">
       <DependentUpon>UserSucessoPassword.aspx</DependentUpon>
@@ -220,10 +197,7 @@
     <Content Include="Guest.Master" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TopoComumAutenticado.Master" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Admin\CorpoAdministrador.master" />
+    <Content Include="Authenticated.Master" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj">
@@ -241,9 +215,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\Web.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="User\CorpoUtilizador.master" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="User\Web.config" />
