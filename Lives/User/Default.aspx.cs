@@ -4,6 +4,7 @@ using System.Web.UI.WebControls;
 using BLL;
 using BO;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Lives.Users
 {
@@ -250,18 +251,22 @@ namespace Lives.Users
 		{
 			string titulo = null;
 			string descricao = null;
-			string url = null;
-			FileUpload fileUpload = null;
+			FileUpload filme = null;
+			Label msg = null;
+
 			titulo = findControloTextBoxRepeater(RepeaterVideoDetails, "txtBoxTituloEditarVideo");
 			descricao = findControloTextBoxRepeater(RepeaterVideoDetails, "txtBoxDescricaoEditarVideo");
-			fileUpload = findControloFileUploadRepeater(RepeaterVideoDetails, "FileUpload1");
+			filme = findControloFileUploadRepeater(RepeaterVideoDetails, "UploadVideo");
+			msg = findControloLabelRepeater(RepeaterVideoDetails, "lblErroEditarVideos");
+
+			msg.Text = actualizaVideo(filme, msg, descricao, titulo);
+			RepeaterVideoDetails.DataBind();
 
 
-
-
-			gestorVideos.modificaVideo(descricao, titulo, null, int.Parse(idVideoToEdit.Value));
-			Response.Redirect("?view=0", true);
 		}
+
+		
+
 
 		protected void labelClickEventHandler(object sender, EventArgs e)
 		{
@@ -276,8 +281,6 @@ namespace Lives.Users
 				throw new NotImplementedException();
 			}
 		}
-
-
 
 		#endregion
 
@@ -311,7 +314,83 @@ namespace Lives.Users
 			} return controlo;
 		}
 
+		protected Label findControloLabelRepeater(Repeater repeater, string id)
+		{
+			Label controlo = null;
+			foreach (RepeaterItem item in repeater.Items)
+			{
+				if (item.ItemType == ListItemType.AlternatingItem || item.ItemType == ListItemType.Item)
+				{
+					controlo = (Label)item.FindControl(id);
 
+				}
+			} return controlo;
+		}
+
+		private string actualizaVideo(FileUpload filme, Label msg, string descricao, string titulo)
+		{
+			string url = null;
+			string ficheiroVideo = null;
+			string nomeAleatorio = null;
+
+			if ((filme.PostedFile != null) && (filme.PostedFile.ContentLength > 0))
+			{
+				if ((filme.PostedFile.ContentLength / 1024) < 20480)
+				{
+					nomeAleatorio = criaNomeVideo(3);
+					ficheiroVideo = System.IO.Path.GetFileName(filme.PostedFile.FileName);
+					string SaveLocation = Server.MapPath("~/Videos") + "\\" + nomeAleatorio + ficheiroVideo;
+					try
+					{
+						filme.PostedFile.SaveAs(SaveLocation);
+						url = nomeAleatorio + ficheiroVideo;
+					}
+					catch (Exception ex)
+					{
+						msg.Visible = true;
+						msg.Text = ex.Message;
+					}
+				}
+				else
+				{
+					msg.Visible = true;
+					return msg.Text = "O Tamanho do ficheiro deve ser inferior a 4 MB";
+				}
+			}
+			else
+			{
+				msg.Visible = true;
+				return msg.Text = "Primeiro escolha o ficheiro.";
+
+			}
+			if (gestorVideos.modificaVideo(descricao, titulo, url, int.Parse(idVideoToEdit.Value)))
+			{
+				return msg.Text = "Video Atualizado!";
+			}
+			else
+			{
+				return msg.Text = "Não foi possivel atualizar a nossa base de dados";
+			}
+
+		}
+
+
+		
+
+		public string criaNomeVideo(int tamanho)
+		{
+			string caracteres = "abcoqsujhkvy246890";
+			int valormaximo = caracteres.Length;
+
+			Random random = new Random(DateTime.Now.Millisecond);
+
+			StringBuilder nome = new StringBuilder(tamanho);
+
+			for (int indice = 0; indice < tamanho; indice++)
+				nome.Append(caracteres + random.Next(0, valormaximo));
+
+			return nome.ToString();
+		}
 
 
 

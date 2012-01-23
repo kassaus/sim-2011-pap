@@ -1,9 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Guest.Master" AutoEventWireup="true"
     CodeBehind="Home.aspx.cs" Inherits="Lives.Home" %>
-
+   
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="~/Estilo.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="corpo_user" runat="server">
+
     <div class="home_backoffice">
         <div class="home_backoffice_video">
             <div style="text-align: center; width: 100%">

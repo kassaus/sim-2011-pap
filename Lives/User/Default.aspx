@@ -260,7 +260,7 @@
 									</div>
 									<div>
 									<p>Máximo 4MB
-									<asp:FileUpload ID="FileUpload1"
+									<asp:FileUpload ID="UploadVideo"
 										runat="server" Font-Bold="True" Height="20px" Width="250px" ForeColor="#000666"
 										Font-Size="X-Small" BorderWidth="1" /></p>
 									</div>
@@ -311,7 +311,7 @@
 						</div>
 						<div style="position: relative; float: right; margin-right: 5px; height: 20px; width: 400px;
 							text-align: right">
-							<span class="letraCinzentoPeq">Máximo 20Mb &nbsp&nbsp&nbsp<asp:FileUpload ID="FileUpload1"
+							<span class="letraCinzentoPeq">Máximo 20Mb &nbsp&nbsp&nbsp<asp:FileUpload ID="UploadVideo"
 								runat="server" Font-Bold="True" Height="20px" Width="250px" ForeColor="#000666"
 								Font-Size="X-Small" BorderWidth="1" /></span>
 						</div>
