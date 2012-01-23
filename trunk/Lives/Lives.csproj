@@ -55,6 +55,9 @@
     <Reference Include="AntiXSSLibrary">
       <HintPath>..\packages\AjaxControlToolkit.4.1.50927\lib\40\SanitizerProviders\AntiXSSLibrary.dll</HintPath>
     </Reference>
+    <Reference Include="EO.Web, Version=9.0.37.2, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="HtmlSanitizationLibrary">
       <HintPath>..\packages\AjaxControlToolkit.4.1.50927\lib\40\SanitizerProviders\HtmlSanitizationLibrary.dll</HintPath>
     </Reference>
