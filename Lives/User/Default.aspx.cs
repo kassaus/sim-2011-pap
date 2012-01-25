@@ -14,6 +14,7 @@ namespace Lives.Users
 		private SubcategoriaBO gestorSubcategorias { get; set; }
 		private CategoriaBO gestorCategorias { get; set; }
 		private List<Subcategoria> listaEtiquetas = new List<Subcategoria>();
+		private string DIRETORIO_VIDEOS = "~/Videos";
 
 		protected void Page_Load(object sender, EventArgs e)
 		{
@@ -251,6 +252,7 @@ namespace Lives.Users
 		{
 			string titulo = null;
 			string descricao = null;
+			string nome_video = null;
 			FileUpload filme = null;
 			Label msg = null;
 
@@ -259,13 +261,24 @@ namespace Lives.Users
 			filme = findControloFileUploadRepeater(RepeaterVideoDetails, "UploadVideo");
 			msg = findControloLabelRepeater(RepeaterVideoDetails, "lblErroEditarVideos");
 
-			msg.Text = actualizaVideo(filme, msg, descricao, titulo);
-			RepeaterVideoDetails.DataBind();
+			nome_video = uploadVideo(filme, msg, descricao, titulo);
+			if (nome_video != null)
+			{
+				if (gestorVideos.modificaVideo(descricao, titulo, nome_video, int.Parse(idVideoToEdit.Value)))
+				{
+					msg.Text = "Video Atualizado!";
+					RepeaterVideoDetails.DataBind();
+				}
+				else
+				{
+					apagaFicheiroDiretorioVideos(nome_video);
+					msg.Visible = true;
+					msg.Text = "Não foi possivel atualizar a basde de dados, tente novamente!";
 
-
+				}
+			}
 		}
 
-		
 
 
 		protected void labelClickEventHandler(object sender, EventArgs e)
@@ -327,11 +340,12 @@ namespace Lives.Users
 			} return controlo;
 		}
 
-		private string actualizaVideo(FileUpload filme, Label msg, string descricao, string titulo)
+		private string uploadVideo(FileUpload filme, Label msg, string descricao, string titulo)
 		{
 			string url = null;
 			string ficheiroVideo = null;
 			string nomeAleatorio = null;
+			string SaveLocation = null;
 
 			if ((filme.PostedFile != null) && (filme.PostedFile.ContentLength > 0))
 			{
@@ -339,43 +353,39 @@ namespace Lives.Users
 				{
 					nomeAleatorio = criaNomeVideo(3);
 					ficheiroVideo = System.IO.Path.GetFileName(filme.PostedFile.FileName);
-					string SaveLocation = Server.MapPath("~/Videos") + "\\" + nomeAleatorio + ficheiroVideo;
+					SaveLocation = Server.MapPath(DIRETORIO_VIDEOS) + "\\" + nomeAleatorio + ficheiroVideo;
 					try
 					{
 						filme.PostedFile.SaveAs(SaveLocation);
 						url = nomeAleatorio + ficheiroVideo;
+
 					}
-					catch (Exception ex)
+					catch
 					{
 						msg.Visible = true;
-						msg.Text = ex.Message;
+						msg.Text = "Não foi possivel carregar o ficheiro, tente de novo.";
+						return null;
 					}
 				}
 				else
 				{
 					msg.Visible = true;
-					return msg.Text = "O Tamanho do ficheiro deve ser inferior a 4 MB";
+					msg.Text = "O Tamanho do ficheiro deve ser inferior a 20 MB";
+					return null;
 				}
 			}
 			else
 			{
 				msg.Visible = true;
-				return msg.Text = "Primeiro escolha o ficheiro.";
+				msg.Text = "Primeiro escolha o ficheiro.";
+				return null;
 
 			}
-			if (gestorVideos.modificaVideo(descricao, titulo, url, int.Parse(idVideoToEdit.Value)))
-			{
-				return msg.Text = "Video Atualizado!";
-			}
-			else
-			{
-				return msg.Text = "Não foi possivel atualizar a nossa base de dados";
-			}
-
+			return url;
 		}
 
 
-		
+
 
 		public string criaNomeVideo(int tamanho)
 		{
@@ -390,6 +400,19 @@ namespace Lives.Users
 				nome.Append(caracteres + random.Next(0, valormaximo));
 
 			return nome.ToString();
+		}
+
+		private void apagaFicheiroDiretorioVideos(string nome_ficheiro)
+		{
+
+			if (System.IO.File.Exists(Server.MapPath(DIRETORIO_VIDEOS) + "\\" + nome_ficheiro))
+			{
+				try
+				{
+					System.IO.File.Delete(Server.MapPath(DIRETORIO_VIDEOS) + "\\" + nome_ficheiro);
+				}
+				catch { }
+			}
 		}
 
 

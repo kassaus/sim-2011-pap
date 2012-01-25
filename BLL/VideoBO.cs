@@ -198,23 +198,30 @@ namespace BLL
 		public bool modificaVideo(string descricao, string titulo, string url, int id_video)
 		{
 			Video video = obterVideo(id_video);
-
-			if (descricao != "" && descricao != null)
+			if (video != null)
 			{
-				video.descricao = descricao;
-			}
 
-			if (url != "" && url != null)
+				if (descricao != "" && descricao != null)
+				{
+					video.descricao = descricao;
+				}
+
+				if (url != "" && url != null)
+				{
+					video.url = url;
+				}
+
+				if (titulo != "" && titulo != null)
+				{
+					video.titulo = titulo;
+				}
+
+				return videosDataManager.actualizaVideo(video);
+			}
+			else
 			{
-				video.url = url;
+				return false;
 			}
-
-			if (titulo != "" && titulo != null)
-			{
-				video.titulo = titulo;
-			}
-
-			return videosDataManager.actualizaVideo(video);
 		}
 
 		public bool removeVideo(int id_video)
