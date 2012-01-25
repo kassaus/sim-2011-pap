@@ -255,8 +255,8 @@
 									</div>
 								</div>
 								<div>
-									<div>
-										<asp:Label ID="lblErroEditarVideos" CssClass="redError" runat="Server" Visible="true"></asp:Label>
+									<div style="position:absolute; left:100px">
+										<asp:Label ID="lblErroEditarVideos" CssClass="redError" runat="Server" Visible="False"></asp:Label>
 									</div>
 									<div>
 									<p>Máximo 4MB
