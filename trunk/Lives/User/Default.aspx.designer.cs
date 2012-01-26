@@ -247,40 +247,94 @@ namespace Lives.Users {
         protected global::System.Web.UI.WebControls.View UploadVideos;
         
         /// <summary>
-        /// Image1 control.
+        /// btnInserirSubcategoria control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image1;
+        protected global::System.Web.UI.WebControls.ImageButton btnInserirSubcategoria;
         
         /// <summary>
-        /// txtBoxTitulo control.
+        /// RepeaterNewTag control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBoxTitulo;
+        protected global::System.Web.UI.WebControls.Repeater RepeaterNewTag;
         
         /// <summary>
-        /// txtBoxTitulo_TextBoxWatermarkExtender control.
+        /// PainelAdicionarSubcategoria control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.TextBoxWatermarkExtender txtBoxTitulo_TextBoxWatermarkExtender;
+        protected global::System.Web.UI.WebControls.Panel PainelAdicionarSubcategoria;
         
         /// <summary>
-        /// txtBoxDescricao control.
+        /// ddlCategoriasEditUploadVideo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBoxDescricao;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCategoriasEditUploadVideo;
+        
+        /// <summary>
+        /// ddlSubcategoriasEditUploadVideo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSubcategoriasEditUploadVideo;
+        
+        /// <summary>
+        /// txtBoxTituloVideo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBoxTituloVideo;
+        
+        /// <summary>
+        /// rftTitulo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rftTitulo;
+        
+        /// <summary>
+        /// TextBoxWatermarkExtender1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.TextBoxWatermarkExtender TextBoxWatermarkExtender1;
+        
+        /// <summary>
+        /// txtBoxDescricaoVideo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBoxDescricaoVideo;
+        
+        /// <summary>
+        /// RequiredFieldValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
         
         /// <summary>
         /// TextBoxDescricao_WatermarkExtender control.
@@ -292,48 +346,39 @@ namespace Lives.Users {
         protected global::AjaxControlToolkit.TextBoxWatermarkExtender TextBoxDescricao_WatermarkExtender;
         
         /// <summary>
-        /// UploadVideo control.
+        /// VideoUpload control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload UploadVideo;
+        protected global::System.Web.UI.WebControls.FileUpload VideoUpload;
         
         /// <summary>
-        /// btnConfirmarEdicaoVideo control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnConfirmarEdicaoVideo;
+        protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
-        /// Image2 control.
+        /// lblErro control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image2;
+        protected global::System.Web.UI.WebControls.Label lblErro;
         
         /// <summary>
-        /// btnInserirSubcategoria control.
+        /// ValidationSummary1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnInserirSubcategoria;
-        
-        /// <summary>
-        /// TagInserirVideoRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater TagInserirVideoRepeater;
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
     }
 }
