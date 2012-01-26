@@ -239,7 +239,7 @@
 											<param name="ShowStatusBar" value="false">
 											<param name="AutoSize" value="true">
 											<param name="InvokeURLs" value="false">
-											<embed src='<%# "/Videos/" + Eval("url") %>' type="application/x-mplayer2" autostart="0"
+											<embed src='<%# "~/Videos/" + Eval("url") %>' type="application/x-mplayer2" autostart="0"
 												enabled="1" showstatusbar="0" showdisplay="1" showcontrols="1" pluginspage="http://www.microsoft.com/Windows/MediaPlayer/"
 												codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=6,0,0,0"
 												width="500" height="375"></embed>
@@ -307,7 +307,7 @@
 					<asp:TextBoxWatermarkExtender ID="TextBoxWatermarkExtender1" runat="server" Enabled="True"
 						TargetControlID="txtBoxTituloVideo" WatermarkText="Título do Vídeo">
 					</asp:TextBoxWatermarkExtender>
-				</div>				
+				</div>
 				<div class="letraCinzentoMedia field">
 					Descrição:
 					<asp:TextBox ID="txtBoxDescricaoVideo" runat="server" Columns="255" Width="200px"></asp:TextBox>
@@ -317,38 +317,31 @@
 						Enabled="True" TargetControlID="txtBoxDescricaoVideo" WatermarkText="Descrição do vídeo">
 					</asp:TextBoxWatermarkExtender>
 				</div>
+				<table border="0" cellspacing="0" cellpadding="0" width="100%">
+					<tr>
+						<td>
+
+							<asp:Literal ID="Literal1" runat="server"></asp:Literal>
+						</td>
+					</tr>
+				</table>
 				<div>
-					<div>
-						<object classid="clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95" width="500" height="375"
-							codebase="http://www.microsoft.com/Windows/MediaPlayer/">
-							<param name="Filename" value='<%# Eval("url") %>'>
-							<param name="AutoStart" value="false">
-							<param name="ShowControls" value="true">
-							<param name="BufferingTime" value="2">
-							<param name="ShowStatusBar" value="false">
-							<param name="AutoSize" value="true">
-							<param name="InvokeURLs" value="false">
-							<embed src='<%# "/Videos/" + Eval("url") %>' type="application/x-mplayer2" autostart="0"
-								enabled="1" showstatusbar="0" showdisplay="1" showcontrols="1" pluginspage="http://www.microsoft.com/Windows/MediaPlayer/"
-								codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=6,0,0,0"
-								width="500" height="375"></embed>
-						</object>
-					</div>
-					<div>
-						<p>
-							Máximo 20MB
-							<asp:FileUpload ID="VideoUpload" runat="server" Font-Bold="True" Height="20px" Width="250px"
-								ForeColor="#000666" Font-Size="X-Small" BorderWidth="1" /></p>
-					</div>
-					<div>
-						<asp:Button ID="Button1" CssClass="botaoLogin" Height="40px" Width="133px" runat="server"
-							Text="Confirmar" OnClick="btnConfirmarEdicaoVideo_Click" ValidationGroup="grupo1" />
-					</div>
-					<div style="position: absolute; left: 100px">
-						<asp:Label ID="lblErro" CssClass="redError" runat="Server" Visible="False"></asp:Label>
-						<asp:ValidationSummary CssClass="redError" ID="ValidationSummary1" runat="server"
-							ValidationGroup="grupo1" />
-					</div>
+					<p>
+						Máximo 20MB
+						<asp:FileUpload ID="VideoUpload" runat="server" Font-Bold="True" Height="20px" Width="250px"
+							ForeColor="#000666" Font-Size="X-Small" BorderWidth="1" /></p>
+					<asp:Button ID="btnAnexarVideo" runat="server" Text="Anexar" CssClass="botaoLogin"
+						OnClick="btnAnexarVideo_Click" />
+				</div>
+				<div>
+					<asp:Button ID="btnConfirmarEdicaoVideo" Visible="false" CssClass="botaoLogin" Height="40px"
+						Width="133px" runat="server" Text="Confirmar" OnClick="btnConfirmarEdicaoVideo_Click"
+						ValidationGroup="grupo1" />
+				</div>
+				<div style="position: absolute; left: 100px">
+					<asp:Label ID="lblErro" CssClass="redError" runat="Server" Visible="False"></asp:Label>
+					<asp:ValidationSummary CssClass="redError" ID="ValidationSummary1" runat="server"
+						ValidationGroup="grupo1" />
 				</div>
 			</div>
 		</asp:View>

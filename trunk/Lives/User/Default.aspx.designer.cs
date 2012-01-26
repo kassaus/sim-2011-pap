@@ -346,6 +346,15 @@ namespace Lives.Users {
         protected global::AjaxControlToolkit.TextBoxWatermarkExtender TextBoxDescricao_WatermarkExtender;
         
         /// <summary>
+        /// Literal1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal Literal1;
+        
+        /// <summary>
         /// VideoUpload control.
         /// </summary>
         /// <remarks>
@@ -355,13 +364,22 @@ namespace Lives.Users {
         protected global::System.Web.UI.WebControls.FileUpload VideoUpload;
         
         /// <summary>
-        /// Button1 control.
+        /// btnAnexarVideo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button btnAnexarVideo;
+        
+        /// <summary>
+        /// btnConfirmarEdicaoVideo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnConfirmarEdicaoVideo;
         
         /// <summary>
         /// lblErro control.
