@@ -191,10 +191,10 @@ namespace Lives.Users
 			p.Visible = !p.Visible;
 		}
 
-		protected void ddlCategoriasEditarVideo_SelectedIndexChanged(object sender, EventArgs e)
+		protected void ddlCategoriasEditUploadVideo_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			DropDownList ddl = ((DropDownList)sender);
-			DropDownList subcat = ddl.FindControl("ddlSubcategoriasEditarVideo") as DropDownList;
+			DropDownList subcat = ddl.FindControl("ddlSubcategoriasEditUploadVideo") as DropDownList;
 
 			if (ddl.SelectedIndex == 0)
 			{
@@ -208,17 +208,20 @@ namespace Lives.Users
 
 				subcat.Enabled = true;
 				subcat.DataBind();
+
 			}
 		}
 
-		protected void ddlSubcategoriasEditarVideo_OnSelectedIndexChanged(object sender, EventArgs e)
+		protected void ddlSubcategoriasEdituploadVideo_OnSelectedIndexChanged(object sender, EventArgs e)
 		{
-			DropDownList subcat = ((DropDownList)sender).FindControl("ddlSubcategoriasEditarVideo") as DropDownList;
+			DropDownList subcat = ((DropDownList)sender).FindControl("ddlSubcategoriasEditUploadVideo") as DropDownList;
+			Panel subcategorias_panel = (Panel)subcat.Parent.FindControl("PainelAdicionarSubcategoria");
 
 
 			if (gestorVideos.associaEtiqueta(int.Parse(idVideoToEdit.Value), int.Parse(subcat.SelectedValue)))
 			{
 				RepeaterVideoDetails.DataBind();
+
 			}
 			else
 			{
@@ -227,7 +230,7 @@ namespace Lives.Users
 				{
 					if (item.ItemType == ListItemType.AlternatingItem || item.ItemType == ListItemType.Item)
 					{
-						erro = (Label)item.FindControl("lblErroEditarVideos");
+						erro = (Label)item.FindControl("lblErro");
 					}
 				}
 				if (erro != null)
@@ -236,10 +239,11 @@ namespace Lives.Users
 					erro.Text = "Já inseriu essa subcategoria!";
 				}
 			}
+			subcategorias_panel.Visible = false;
 
 		}
 
-		protected void ddlCategoriasEditarVideo_OnDataBound(object sender, EventArgs e)
+		protected void ddlCategoriasEditUploadVideo_OnDataBound(object sender, EventArgs e)
 		{
 			DropDownList ddl = ((DropDownList)sender);
 			if (ddl.Items.FindByValue(null) == null)
@@ -259,7 +263,7 @@ namespace Lives.Users
 			titulo = findControloTextBoxRepeater(RepeaterVideoDetails, "txtBoxTituloEditarVideo");
 			descricao = findControloTextBoxRepeater(RepeaterVideoDetails, "txtBoxDescricaoEditarVideo");
 			filme = findControloFileUploadRepeater(RepeaterVideoDetails, "UploadVideo");
-			msg = findControloLabelRepeater(RepeaterVideoDetails, "lblErroEditarVideos");
+			msg = findControloLabelRepeater(RepeaterVideoDetails, "lblErro");
 
 			nome_video = uploadVideo(filme, msg, descricao, titulo);
 			if (nome_video != null)

@@ -199,14 +199,14 @@
 							<asp:Panel ID="PainelAdicionarSubcategoria" Style="width: 500px; height: 150px; background-color: red;"
 								runat="server" Visible="false">
 								Categorias:
-								<asp:DropDownList ID="ddlCategoriasEditarVideo" runat="server" DataSourceID="OdsCategorias"
-									OnDataBound="ddlCategoriasEditarVideo_OnDataBound" DataTextField="nome" DataValueField="id"
-									Width="150px" AutoPostBack="True" OnSelectedIndexChanged="ddlCategoriasEditarVideo_SelectedIndexChanged">
+								<asp:DropDownList ID="ddlCategoriasEditUploadVideo" runat="server" DataSourceID="OdsCategorias"
+									OnDataBound="ddlCategoriasEditUploadVideo_OnDataBound" DataTextField="nome" DataValueField="id"
+									Width="150px" AutoPostBack="True" OnSelectedIndexChanged="ddlCategoriasEditUploadVideo_SelectedIndexChanged">
 								</asp:DropDownList>
 								Subcategorias:
-								<asp:DropDownList ID="ddlSubcategoriasEditarVideo" OnDataBound="ddlCategoriasEditarVideo_OnDataBound"
+								<asp:DropDownList ID="ddlSubcategoriasEditUploadVideo" OnDataBound="ddlCategoriasEditUploadVideo_OnDataBound"
 									runat="server" Width="150px" AutoPostBack="true" DataSourceID="OdsSubcategorias"
-									Enabled="false" DataTextField="nome" DataValueField="id" OnSelectedIndexChanged="ddlSubcategoriasEditarVideo_OnSelectedIndexChanged">
+									Enabled="false" DataTextField="nome" DataValueField="id" OnSelectedIndexChanged="ddlSubcategoriasEdituploadVideo_OnSelectedIndexChanged">
 								</asp:DropDownList>
 							</asp:Panel>
 							<div class="letraCinzentoMedia field">
@@ -256,10 +256,10 @@
 								</div>
 								<div>
 									<div style="position:absolute; left:100px">
-										<asp:Label ID="lblErroEditarVideos" CssClass="redError" runat="Server" Visible="False"></asp:Label>
+										<asp:Label ID="lblErro" CssClass="redError" runat="Server" Visible="False"></asp:Label>
 									</div>
 									<div>
-									<p>Máximo 4MB
+									<p>Máximo 20MB
 									<asp:FileUpload ID="UploadVideo"
 										runat="server" Font-Bold="True" Height="20px" Width="250px" ForeColor="#000666"
 										Font-Size="X-Small" BorderWidth="1" /></p>
