@@ -191,6 +191,7 @@ namespace BLL
 			video.id_user = id_user;
 			video.url = url;
 			video.titulo = titulo;
+			video.Estado = estadosDataManager.getById(1);
 
 			return videosDataManager.inserirVideo(video);
 		}

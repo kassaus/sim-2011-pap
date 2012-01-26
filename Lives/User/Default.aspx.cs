@@ -66,7 +66,7 @@ namespace Lives.Users
 			if (MultiViewVideos.ActiveViewIndex == 1 || MultiViewVideos.ActiveViewIndex == 2)
 			{
 				panelFiltros.Visible = false;
-				TagInserirVideoRepeater.DataSource = listaEtiquetas;
+				RepeaterNewTag.DataSource = listaEtiquetas;
 			}
 		}
 
@@ -217,28 +217,37 @@ namespace Lives.Users
 			DropDownList subcat = ((DropDownList)sender).FindControl("ddlSubcategoriasEditUploadVideo") as DropDownList;
 			Panel subcategorias_panel = (Panel)subcat.Parent.FindControl("PainelAdicionarSubcategoria");
 
-
-			if (gestorVideos.associaEtiqueta(int.Parse(idVideoToEdit.Value), int.Parse(subcat.SelectedValue)))
+			if (MultiViewVideos.ActiveViewIndex == 1)
 			{
-				RepeaterVideoDetails.DataBind();
-
-			}
-			else
-			{
-				Label erro = null;
-				foreach (RepeaterItem item in RepeaterVideoDetails.Items)
+				if (gestorVideos.associaEtiqueta(int.Parse(idVideoToEdit.Value), int.Parse(subcat.SelectedValue)))
 				{
-					if (item.ItemType == ListItemType.AlternatingItem || item.ItemType == ListItemType.Item)
+					RepeaterVideoDetails.DataBind();
+				}
+				else
+				{
+					Label erro = null;
+					foreach (RepeaterItem item in RepeaterVideoDetails.Items)
 					{
-						erro = (Label)item.FindControl("lblErro");
+						if (item.ItemType == ListItemType.AlternatingItem || item.ItemType == ListItemType.Item)
+						{
+							erro = (Label)item.FindControl("lblErro");
+						}
+					}
+					if (erro != null)
+					{
+						erro.Visible = true;
+						erro.Text = "Já inseriu essa subcategoria!";
 					}
 				}
-				if (erro != null)
-				{
-					erro.Visible = true;
-					erro.Text = "Já inseriu essa subcategoria!";
-				}
 			}
+
+			if (MultiViewVideos.ActiveViewIndex == 2)
+			{
+				Subcategoria subcategoria = gestorSubcategorias.obterSubCategoriaId(int.Parse(subcat.SelectedValue));
+				listaEtiquetas.Add(subcategoria);
+				RepeaterNewTag.DataBind();
+			}
+
 			subcategorias_panel.Visible = false;
 
 		}
@@ -260,27 +269,60 @@ namespace Lives.Users
 			FileUpload filme = null;
 			Label msg = null;
 
-			titulo = findControloTextBoxRepeater(RepeaterVideoDetails, "txtBoxTituloEditarVideo");
-			descricao = findControloTextBoxRepeater(RepeaterVideoDetails, "txtBoxDescricaoEditarVideo");
-			filme = findControloFileUploadRepeater(RepeaterVideoDetails, "UploadVideo");
-			msg = findControloLabelRepeater(RepeaterVideoDetails, "lblErro");
-
-			nome_video = uploadVideo(filme, msg, descricao, titulo);
-			if (nome_video != null)
+			if (MultiViewVideos.ActiveViewIndex == 1)
 			{
-				if (gestorVideos.modificaVideo(descricao, titulo, nome_video, int.Parse(idVideoToEdit.Value)))
+				titulo = findControloTextBoxRepeater(RepeaterVideoDetails, "txtBoxTituloVideo");
+				descricao = findControloTextBoxRepeater(RepeaterVideoDetails, "txtBoxDescricaoVideo");
+				filme = findControloFileUploadRepeater(RepeaterVideoDetails, "VideoUpload");
+				msg = findControloLabelRepeater(RepeaterVideoDetails, "lblErro");
+				if (filme.PostedFile.ContentLength > 0)
 				{
-					msg.Text = "Video Atualizado!";
-					RepeaterVideoDetails.DataBind();
+					nome_video = uploadVideo(filme, msg);
+					if (nome_video != null)
+					{
+						if (gestorVideos.modificaVideo(descricao, titulo, nome_video, int.Parse(idVideoToEdit.Value)))
+						{
+							msg.Text = "Video Atualizado!";
+							RepeaterVideoDetails.DataBind();
+						}
+						else
+						{
+							apagaFicheiroDiretorioVideos(nome_video);
+							msg.Visible = true;
+							msg.Text = "Não foi possivel atualizar a basde de dados, tente novamente!";
+
+						}
+					}
 				}
 				else
 				{
-					apagaFicheiroDiretorioVideos(nome_video);
-					msg.Visible = true;
-					msg.Text = "Não foi possivel atualizar a basde de dados, tente novamente!";
-
+					Response.Redirect("?view=0", true);
 				}
 			}
+			if (MultiViewVideos.ActiveViewIndex == 2)
+			{
+				nome_video = uploadVideo(VideoUpload, lblErro);
+
+				if (nome_video != null)
+				{
+					Guid idUser = Guid.Parse(idUserHide.Value);
+					if (gestorVideos.criarVideo(txtBoxDescricaoVideo.Text, idUser, txtBoxTituloVideo.Text, nome_video))
+					{
+						lblErro.Text = "Video Atualizado!";
+						// RESOLVER A QUESTÂO DE COLOCAR LOGO O VIDEO......
+						//RepeaterVideoDetails.DataBind();
+					}
+					else
+					{
+						apagaFicheiroDiretorioVideos(nome_video);
+						lblErro.Visible = true;
+						lblErro.Text = "Não foi possivel atualizar a base de dados, tente novamente!";
+
+					}
+				}
+
+			}
+
 		}
 
 
@@ -288,15 +330,25 @@ namespace Lives.Users
 		protected void labelClickEventHandler(object sender, EventArgs e)
 		{
 			LinkButton etiqueta = (LinkButton)sender;
+			if (MultiViewVideos.ActiveViewIndex == 1)
+			{
+				if (gestorVideos.desassociaEtiqueta(int.Parse(idVideoToEdit.Value), etiqueta.Text))
+				{
+					etiqueta.Parent.DataBind();
+				}
+				else
+				{
+					throw new NotImplementedException();
+				}
+			}
+			if (MultiViewVideos.ActiveViewIndex == 2)
+			{
+				Subcategoria etiqueta_Remover = gestorSubcategorias.obterSubCategoriaNome(etiqueta.Text);
+				listaEtiquetas.Remove(etiqueta_Remover);
+				RepeaterNewTag.DataBind();
+			}
 
-			if (gestorVideos.desassociaEtiqueta(int.Parse(idVideoToEdit.Value), etiqueta.Text))
-			{
-				etiqueta.Parent.DataBind();
-			}
-			else
-			{
-				throw new NotImplementedException();
-			}
+
 		}
 
 		#endregion
@@ -344,7 +396,7 @@ namespace Lives.Users
 			} return controlo;
 		}
 
-		private string uploadVideo(FileUpload filme, Label msg, string descricao, string titulo)
+		private string uploadVideo(FileUpload filme, Label msg)
 		{
 			string url = null;
 			string ficheiroVideo = null;
