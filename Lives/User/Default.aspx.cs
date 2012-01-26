@@ -14,7 +14,8 @@ namespace Lives.Users
 		private SubcategoriaBO gestorSubcategorias { get; set; }
 		private CategoriaBO gestorCategorias { get; set; }
 		private List<Subcategoria> listaEtiquetas = new List<Subcategoria>();
-		private string DIRETORIO_VIDEOS = "~/Videos";
+		private string DIRETORIO_VIDEOS = "/Videos";
+		private string nome_video = null;
 
 		protected void Page_Load(object sender, EventArgs e)
 		{
@@ -265,7 +266,6 @@ namespace Lives.Users
 		{
 			string titulo = null;
 			string descricao = null;
-			string nome_video = null;
 			FileUpload filme = null;
 			Label msg = null;
 
@@ -301,8 +301,6 @@ namespace Lives.Users
 			}
 			if (MultiViewVideos.ActiveViewIndex == 2)
 			{
-				nome_video = uploadVideo(VideoUpload, lblErro);
-
 				if (nome_video != null)
 				{
 					Guid idUser = Guid.Parse(idUserHide.Value);
@@ -325,6 +323,49 @@ namespace Lives.Users
 
 		}
 
+		protected void btnAnexarVideo_Click(object sender, EventArgs e)
+		{
+			int height = 375;
+			int width = 500;
+			string url = null;
+			nome_video = uploadVideo(VideoUpload, lblErro);
+
+			if (nome_video != null)
+			{
+				btnConfirmarEdicaoVideo.Visible = false;
+				url = DIRETORIO_VIDEOS + "/" + nome_video;
+
+				Literal1.Text = "<object classid='clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95' width='" + width + "' height='" + height + "' " +
+					"codebase='http://www.microsoft.com/Windows/MediaPlayer/'>" +
+					   "<param name='allowFullScreen' value='true'>" +
+					   "<param name='allowScriptAccess' value='always'>" +
+					   "<param name='Filename' value='" + url + "'>" +
+							"<param name='AutoStart' value='true'>" +
+							"<param name='ShowControls' value='true'>" +
+							"<param name='BufferingTime' value='2'>" +
+							"<param name='ShowStatusBar' value='false'>" +
+							"<param name='AutoSize' value='true'>" +
+							"<param name='InvokeURLs' value='false'>" +
+
+							"<embed src='" + url + "' type='application/x-mplayer2' autostart='0'" +
+								"enabled='1' showstatusbar='0' showdisplay='1' showcontrols='1' pluginspage='http://www.microsoft.com/Windows/MediaPlayer/'" +
+								"codebase='http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=6,0,0,0'" +
+								"width='" + width + "' height='" + height + "'>" + "</embed>" + "</object>";
+
+
+
+
+
+
+
+
+
+
+
+
+
+			}
+		}
 
 
 		protected void labelClickEventHandler(object sender, EventArgs e)
@@ -407,13 +448,14 @@ namespace Lives.Users
 			{
 				if ((filme.PostedFile.ContentLength / 1024) < 20480)
 				{
-					nomeAleatorio = criaNomeVideo(3);
+					nomeAleatorio = criaNomeVideo(18);
 					ficheiroVideo = System.IO.Path.GetFileName(filme.PostedFile.FileName);
-					SaveLocation = Server.MapPath(DIRETORIO_VIDEOS) + "\\" + nomeAleatorio + ficheiroVideo;
+					string novoNome = nomeAleatorio + ficheiroVideo.Substring(ficheiroVideo.Length - 4);
+					SaveLocation = Server.MapPath(DIRETORIO_VIDEOS) + "\\" + novoNome;
 					try
 					{
 						filme.PostedFile.SaveAs(SaveLocation);
-						url = nomeAleatorio + ficheiroVideo;
+						url = novoNome;
 
 					}
 					catch
@@ -453,7 +495,7 @@ namespace Lives.Users
 			StringBuilder nome = new StringBuilder(tamanho);
 
 			for (int indice = 0; indice < tamanho; indice++)
-				nome.Append(caracteres + random.Next(0, valormaximo));
+				nome.Append(caracteres[random.Next(0, valormaximo)]);
 
 			return nome.ToString();
 		}
