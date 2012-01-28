@@ -13,9 +13,10 @@ namespace Lives.Users
 		private VideoBO gestorVideos { get; set; }
 		private SubcategoriaBO gestorSubcategorias { get; set; }
 		private CategoriaBO gestorCategorias { get; set; }
-		private List<Subcategoria> listaEtiquetas = new List<Subcategoria>();
+		private static List<Subcategoria> listaEtiquetas = null;
 		private string DIRETORIO_VIDEOS = "/Videos";
-		private string nome_video = null;
+		private string novo_video = null;
+		private static Video videoOriginal = null;
 
 		protected void Page_Load(object sender, EventArgs e)
 		{
@@ -67,7 +68,6 @@ namespace Lives.Users
 			if (MultiViewVideos.ActiveViewIndex == 1 || MultiViewVideos.ActiveViewIndex == 2)
 			{
 				panelFiltros.Visible = false;
-				RepeaterNewTag.DataSource = listaEtiquetas;
 			}
 		}
 
@@ -155,10 +155,24 @@ namespace Lives.Users
 			GridViewRow row = (GridViewRow)(sender as LinkButton).NamingContainer;
 			idVideoToEdit.Value = ((GridView)row.NamingContainer).DataKeys[row.RowIndex].Value.ToString();
 			MultiViewVideos.ActiveViewIndex = 1;
-			filtroVideos.Visible = false;
+			panelFiltros.Visible = false;
 			filtroVideos.SelectedIndex = 0;
 			ddlCategoriasListagens.ClearSelection();
-			ddlSubcategoriasListagens.ClearSelection();
+			videoOriginal = gestorVideos.obterVideo(int.Parse(idVideoToEdit.Value));
+			TextBoxWatermarkExtenderTituloEditarVideo.WatermarkText = videoOriginal.titulo;
+			TextBoxWatermarkExtenderDescricaoEditarVideo.WatermarkText = videoOriginal.descricao;
+			reproduzVideo(videoOriginal.url, LiteralVisualizaEditarVideo);
+
+			Repeater tagsRepeater = MultiViewVideos.Views[1].FindControl("RepeaterTagEditarVideo") as Repeater;
+			Subcategoria[] aux = new Subcategoria[videoOriginal.Subcategorias.Count];
+			videoOriginal.Subcategorias.CopyTo(aux, 0);
+			listaEtiquetas = new List<Subcategoria>(aux);
+
+			tagsRepeater.DataSource = listaEtiquetas;
+			tagsRepeater.DataBind();
+
+
+
 		}
 
 		protected void FiltroVideos_OnSelectedIndexChanged(object sender, EventArgs e)
@@ -188,18 +202,21 @@ namespace Lives.Users
 
 		protected void btnInserirSubcategoria_Click(object sender, EventArgs e)
 		{
-			Panel p = ((ImageButton)sender).FindControl("PainelAdicionarSubcategoria") as Panel;
-			p.Visible = !p.Visible;
+			PainelAdicionarSubcategoriaEditarVideo.Visible = !PainelAdicionarSubcategoriaEditarVideo.Visible;
+			ddlCategoriasEditarVideo.ClearSelection();
+			ddlSubcategoriasEditarVideo.ClearSelection();
+			ddlSubcategoriasEditarVideo.Enabled = false;
 		}
 
 		protected void ddlCategoriasEditUploadVideo_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			DropDownList ddl = ((DropDownList)sender);
-			DropDownList subcat = ddl.FindControl("ddlSubcategoriasEditUploadVideo") as DropDownList;
+			DropDownList subcat = ddl.FindControl("ddlSubcategoriasEditarVideo") as DropDownList;
 
 			if (ddl.SelectedIndex == 0)
 			{
 				subcat.Enabled = false;
+				subcat.ClearSelection();
 			}
 			else
 			{
@@ -213,35 +230,33 @@ namespace Lives.Users
 			}
 		}
 
-		protected void ddlSubcategoriasEdituploadVideo_OnSelectedIndexChanged(object sender, EventArgs e)
+		protected void ddlSubcategoriasEditarVideo_OnSelectedIndexChanged(object sender, EventArgs e)
 		{
-			DropDownList subcat = ((DropDownList)sender).FindControl("ddlSubcategoriasEditUploadVideo") as DropDownList;
-			Panel subcategorias_panel = (Panel)subcat.Parent.FindControl("PainelAdicionarSubcategoria");
+			DropDownList subcat = (DropDownList)sender;
 
 			if (MultiViewVideos.ActiveViewIndex == 1)
 			{
-				if (gestorVideos.associaEtiqueta(int.Parse(idVideoToEdit.Value), int.Parse(subcat.SelectedValue)))
+				Subcategoria subCat = gestorSubcategorias.obterSubCategoriaId(int.Parse(subcat.SelectedValue));
+
+				if (!listaEtiquetas.Contains(subCat))
 				{
-					RepeaterVideoDetails.DataBind();
+					listaEtiquetas.Add(subCat);
+
+					((DropDownList)PainelAdicionarSubcategoriaEditarVideo.FindControl("ddlCategoriasEditUploadVideo")).ClearSelection();
+
+					RepeaterTagEditarVideo.DataSource = listaEtiquetas;
+					RepeaterTagEditarVideo.DataBind();
+					LabelerroEditarVideo.Visible = false;
+					PainelAdicionarSubcategoriaEditarVideo.Visible = false;
 				}
 				else
 				{
-					Label erro = null;
-					foreach (RepeaterItem item in RepeaterVideoDetails.Items)
-					{
-						if (item.ItemType == ListItemType.AlternatingItem || item.ItemType == ListItemType.Item)
-						{
-							erro = (Label)item.FindControl("lblErro");
-						}
-					}
-					if (erro != null)
-					{
-						erro.Visible = true;
-						erro.Text = "Já inseriu essa subcategoria!";
-					}
+					LabelerroEditarVideo.Visible = true;
+					LabelerroEditarVideo.Text = "Já inseriu essa subcategoria!";
 				}
 			}
 
+			//TODO Tirar daqui.
 			if (MultiViewVideos.ActiveViewIndex == 2)
 			{
 				Subcategoria subcategoria = gestorSubcategorias.obterSubCategoriaId(int.Parse(subcat.SelectedValue));
@@ -249,7 +264,7 @@ namespace Lives.Users
 				RepeaterNewTag.DataBind();
 			}
 
-			subcategorias_panel.Visible = false;
+
 
 		}
 
@@ -262,141 +277,192 @@ namespace Lives.Users
 			}
 		}
 
-		protected void btnConfirmarEdicaoVideo_Click(object sender, EventArgs e)
-		{
-			string titulo = null;
-			string descricao = null;
-			FileUpload filme = null;
-			Label msg = null;
-
-			if (MultiViewVideos.ActiveViewIndex == 1)
-			{
-				titulo = findControloTextBoxRepeater(RepeaterVideoDetails, "txtBoxTituloVideo");
-				descricao = findControloTextBoxRepeater(RepeaterVideoDetails, "txtBoxDescricaoVideo");
-				filme = findControloFileUploadRepeater(RepeaterVideoDetails, "VideoUpload");
-				msg = findControloLabelRepeater(RepeaterVideoDetails, "lblErro");
-				if (filme.PostedFile.ContentLength > 0)
-				{
-					nome_video = uploadVideo(filme, msg);
-					if (nome_video != null)
-					{
-						if (gestorVideos.modificaVideo(descricao, titulo, nome_video, int.Parse(idVideoToEdit.Value)))
-						{
-							msg.Text = "Video Atualizado!";
-							RepeaterVideoDetails.DataBind();
-						}
-						else
-						{
-							apagaFicheiroDiretorioVideos(nome_video);
-							msg.Visible = true;
-							msg.Text = "Não foi possivel atualizar a basde de dados, tente novamente!";
-
-						}
-					}
-				}
-				else
-				{
-					Response.Redirect("?view=0", true);
-				}
-			}
-			if (MultiViewVideos.ActiveViewIndex == 2)
-			{
-				if (nome_video != null)
-				{
-					Guid idUser = Guid.Parse(idUserHide.Value);
-					if (gestorVideos.criarVideo(txtBoxDescricaoVideo.Text, idUser, txtBoxTituloVideo.Text, nome_video))
-					{
-						lblErro.Text = "Video Atualizado!";
-						// RESOLVER A QUESTÂO DE COLOCAR LOGO O VIDEO......
-						//RepeaterVideoDetails.DataBind();
-					}
-					else
-					{
-						apagaFicheiroDiretorioVideos(nome_video);
-						lblErro.Visible = true;
-						lblErro.Text = "Não foi possivel atualizar a base de dados, tente novamente!";
-
-					}
-				}
-
-			}
-
-		}
-
-		protected void btnAnexarVideo_Click(object sender, EventArgs e)
-		{
-			int height = 375;
-			int width = 500;
-			string url = null;
-			nome_video = uploadVideo(VideoUpload, lblErro);
-
-			if (nome_video != null)
-			{
-				btnConfirmarEdicaoVideo.Visible = false;
-				url = DIRETORIO_VIDEOS + "/" + nome_video;
-
-				Literal1.Text = "<object classid='clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95' width='" + width + "' height='" + height + "' " +
-					"codebase='http://www.microsoft.com/Windows/MediaPlayer/'>" +
-					   "<param name='allowFullScreen' value='true'>" +
-					   "<param name='allowScriptAccess' value='always'>" +
-					   "<param name='Filename' value='" + url + "'>" +
-							"<param name='AutoStart' value='true'>" +
-							"<param name='ShowControls' value='true'>" +
-							"<param name='BufferingTime' value='2'>" +
-							"<param name='ShowStatusBar' value='false'>" +
-							"<param name='AutoSize' value='true'>" +
-							"<param name='InvokeURLs' value='false'>" +
-
-							"<embed src='" + url + "' type='application/x-mplayer2' autostart='0'" +
-								"enabled='1' showstatusbar='0' showdisplay='1' showcontrols='1' pluginspage='http://www.microsoft.com/Windows/MediaPlayer/'" +
-								"codebase='http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=6,0,0,0'" +
-								"width='" + width + "' height='" + height + "'>" + "</embed>" + "</object>";
-
-
-
-
-
-
-
-
-
-
-
-
-
-			}
-		}
-
-
 		protected void labelClickEventHandler(object sender, EventArgs e)
 		{
 			LinkButton etiqueta = (LinkButton)sender;
-			if (MultiViewVideos.ActiveViewIndex == 1)
-			{
-				if (gestorVideos.desassociaEtiqueta(int.Parse(idVideoToEdit.Value), etiqueta.Text))
-				{
-					etiqueta.Parent.DataBind();
-				}
-				else
-				{
-					throw new NotImplementedException();
-				}
-			}
-			if (MultiViewVideos.ActiveViewIndex == 2)
-			{
-				Subcategoria etiqueta_Remover = gestorSubcategorias.obterSubCategoriaNome(etiqueta.Text);
-				listaEtiquetas.Remove(etiqueta_Remover);
-				RepeaterNewTag.DataBind();
-			}
+			Subcategoria subCat = gestorSubcategorias.obterSubCategoriaNome(etiqueta.Text);
 
+			listaEtiquetas.Remove(subCat);
+			RepeaterTagEditarVideo.DataSource = listaEtiquetas;
+			RepeaterTagEditarVideo.DataBind();
+		}
+
+
+		protected void ButtonCancelaredicaoVideo_Click(object sender, EventArgs e)
+		{
+		}
+
+		protected void btnConfirmarEdicaoVideo_Click(object sender, EventArgs e)
+		{
+			//string titulo = null;
+			//string descricao = null;
+			//FileUpload filme = null;
+			//Label msg = null;
+
+			//if (MultiViewVideos.ActiveViewIndex == 1)
+			//{
+			//    titulo = findControloTextBoxRepeater(RepeaterVideoDetails, "txtBoxTituloVideo");
+			//    descricao = findControloTextBoxRepeater(RepeaterVideoDetails, "txtBoxDescricaoVideo");
+			//    msg = findControloLabelRepeater(RepeaterVideoDetails, "lblErro");
+
+			//    if (gestorVideos.modificaVideo(descricao, titulo, null, int.Parse(idVideoToEdit.Value)))
+			//    {
+
+			//        Response.Redirect("?view=0", true);
+			//    }
+			//    else
+			//    {
+			//        apagaFicheiroDiretorioVideos(novo_video);
+			//        msg.Visible = true;
+			//        msg.Text = "Não foi possivel atualizar a basde de dados, tente novamente!";
+
+			//    }
+			//}
+			//if (MultiViewVideos.ActiveViewIndex == 2)
+			//{
+			//    if (novo_video != null)
+			//    {
+			//        Guid idUser = Guid.Parse(idUserHide.Value);
+			//        if (gestorVideos.criarVideo(txtBoxDescricaoVideo.Text, idUser, txtBoxTituloVideo.Text, novo_video))
+			//        {
+			//            lblErro.Text = "Video Atualizado!";
+			//        }
+			//        else
+			//        {
+			//            apagaFicheiroDiretorioVideos(novo_video);
+			//            lblErro.Visible = true;
+			//            lblErro.Text = "Não foi possivel atualizar a base de dados, tente novamente!";
+
+			//        }
+			//    }
+
+			//}
 
 		}
+
+		protected void btnAnexarVideoEditar_Click(object sender, EventArgs e)
+		{
+			//FileUpload filme = null;
+			//Label msg = null;
+
+			//filme = findControloFileUploadRepeater(RepeaterVideoDetails, "VideoUploadEdit");
+			//msg = findControloLabelRepeater(RepeaterVideoDetails, "lblErro1");
+
+			//novo_video = uploadVideo(filme, msg);
+
+			//if (novo_video != null)
+			//{
+			//    if (gestorVideos.modificaVideo(null, null, novo_video, int.Parse(idVideoToEdit.Value)))
+			//    {
+
+			//        Response.Redirect("?view=0", false);
+			//    }
+			//    else
+			//    {
+			//        apagaFicheiroDiretorioVideos(novo_video);
+			//        msg.Visible = true;
+			//        msg.Text = "Não foi possivel atualizar a basde de dados, tente novamente!";
+
+			//    }
+			//}
+		}
+
+		protected void btnAnexarVideoUpload_Click(object sender, EventArgs e)
+		{
+			string url = null;
+			novo_video = uploadVideo(VideoUpload, lblErro);
+
+			if (novo_video != null)
+			{
+				url = DIRETORIO_VIDEOS + "/" + novo_video;
+
+				//reproduzVideo(url);
+			}
+
+		}
+
+		protected void ddlSubcategoriasUploadVideo_OnSelectedIndexChanged(object sender, EventArgs e)
+		{
+		}
+
+
+
+		private void reproduzVideo(string url, Literal literal)
+		{
+			int height = 375;
+			int width = 500;
+
+			url = DIRETORIO_VIDEOS + "/" + url;
+			literal.Text = "<object classid='clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95' width='" + width + "' height='" + height + "' " +
+				"codebase='http://www.microsoft.com/Windows/MediaPlayer/'>" +
+				   "<param name='allowFullScreen' value='true'>" +
+				   "<param name='allowScriptAccess' value='always'>" +
+				   "<param name='Filename' value='" + url + "'>" +
+						"<param name='AutoStart' value='true'>" +
+						"<param name='ShowControls' value='true'>" +
+						"<param name='BufferingTime' value='2'>" +
+						"<param name='ShowStatusBar' value='false'>" +
+						"<param name='AutoSize' value='true'>" +
+						"<param name='InvokeURLs' value='false'>" +
+
+						"<embed src='" + url + "' type='application/x-mplayer2' autostart='0'" +
+							"enabled='1' showstatusbar='0' showdisplay='1' showcontrols='1' pluginspage='http://www.microsoft.com/Windows/MediaPlayer/'" +
+							"codebase='http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=6,0,0,0'" +
+							"width='" + width + "' height='" + height + "'>" + "</embed>" + "</object>";
+			literal.DataBind();
+
+		}
+
+
 
 		#endregion
 
 		#region Upload Vídeo
 
 		#endregion
+
+		private string uploadVideo(FileUpload filme, Label msg)
+		{
+			string url = null;
+			string ficheiroVideo = null;
+			string nomeAleatorio = null;
+			string SaveLocation = null;
+
+			if ((filme.PostedFile != null) && (filme.PostedFile.ContentLength > 0))
+			{
+				if ((filme.PostedFile.ContentLength / 1024) < 20480)
+				{
+					nomeAleatorio = criaNomeVideo(18);
+					ficheiroVideo = System.IO.Path.GetFileName(filme.PostedFile.FileName);
+					string novoNome = nomeAleatorio + ficheiroVideo.Substring(ficheiroVideo.Length - 4);
+					SaveLocation = Server.MapPath(DIRETORIO_VIDEOS) + "\\" + novoNome;
+					try
+					{
+						filme.PostedFile.SaveAs(SaveLocation);
+						url = novoNome;
+					}
+					catch
+					{
+						msg.Visible = true;
+						msg.Text = "Não foi possivel carregar o ficheiro, tente de novo.";
+						return null;
+					}
+				}
+				else
+				{
+					msg.Visible = true;
+					msg.Text = "O Tamanho do ficheiro deve ser inferior a 20 MB";
+					return null;
+				}
+			}
+			else
+			{
+				msg.Visible = true;
+				msg.Text = "Primeiro escolha o ficheiro.";
+				return null;
+			}
+			return url;
+		}
 
 		protected string findControloTextBoxRepeater(Repeater repeater, string id)
 		{
@@ -437,50 +503,20 @@ namespace Lives.Users
 			} return controlo;
 		}
 
-		private string uploadVideo(FileUpload filme, Label msg)
+		protected Button findControloButtonRepeater(Repeater repeater, string id)
 		{
-			string url = null;
-			string ficheiroVideo = null;
-			string nomeAleatorio = null;
-			string SaveLocation = null;
-
-			if ((filme.PostedFile != null) && (filme.PostedFile.ContentLength > 0))
+			Button controlo = null;
+			foreach (RepeaterItem item in repeater.Items)
 			{
-				if ((filme.PostedFile.ContentLength / 1024) < 20480)
+				if (item.ItemType == ListItemType.AlternatingItem || item.ItemType == ListItemType.Item)
 				{
-					nomeAleatorio = criaNomeVideo(18);
-					ficheiroVideo = System.IO.Path.GetFileName(filme.PostedFile.FileName);
-					string novoNome = nomeAleatorio + ficheiroVideo.Substring(ficheiroVideo.Length - 4);
-					SaveLocation = Server.MapPath(DIRETORIO_VIDEOS) + "\\" + novoNome;
-					try
-					{
-						filme.PostedFile.SaveAs(SaveLocation);
-						url = novoNome;
+					controlo = (Button)item.FindControl(id);
 
-					}
-					catch
-					{
-						msg.Visible = true;
-						msg.Text = "Não foi possivel carregar o ficheiro, tente de novo.";
-						return null;
-					}
 				}
-				else
-				{
-					msg.Visible = true;
-					msg.Text = "O Tamanho do ficheiro deve ser inferior a 20 MB";
-					return null;
-				}
-			}
-			else
-			{
-				msg.Visible = true;
-				msg.Text = "Primeiro escolha o ficheiro.";
-				return null;
-
-			}
-			return url;
+			} return controlo;
 		}
+
+
 
 
 

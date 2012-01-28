@@ -175,93 +175,83 @@
                 Editar Vídeos
             </div>
             <div class="row left erroTopoPagina">
-                <asp:Label ID="Label1" CssClass="redError" runat="Server" Visible="false"></asp:Label>
+                <asp:Label ID="LabelerroEditarVideo" CssClass="redError" runat="Server" Visible="false"></asp:Label>
             </div>
-            <asp:Repeater ID="RepeaterVideoDetails" runat="server" DataSourceID="ODSVideoToEdit">
-                <ItemTemplate>
-                    <div class='editPanel'>
-                        <div class='row left'>
-                            <div class="infoImage">
-                                <asp:Image ID="Image5" runat="server" ImageUrl="~/images/informacao.png" ToolTip="Para repor o título original basta limpar a caixa de texto." />
+            <div class='editPanel'>
+                <div class='row left'>
+                    <div class="infoImage">
+                        <asp:Image ID="Image5" runat="server" ImageUrl="~/images/informacao.png" ToolTip="Para repor o título original basta limpar a caixa de texto." />
+                    </div>
+                    <div class="letraCinzentoMedia field">
+                        Título:
+                        <asp:TextBox ID="txtBoxTituloEditarVideo" runat="server" Columns="50" Width="200px"></asp:TextBox>
+                    </div>
+                    <asp:TextBoxWatermarkExtender ID="TextBoxWatermarkExtenderTituloEditarVideo" runat="server"
+                        Enabled="True" TargetControlID="txtBoxTituloEditarVideo">
+                    </asp:TextBoxWatermarkExtender>
+                </div>
+                <div class='row left'>
+                    <div class="infoImage">
+                        <asp:Image ID="Image9" runat="server" ImageUrl="~/images/informacao.png" ToolTip="Para repor a descrição original basta limpar a caixa de texto." />
+                    </div>
+                    <div class="letraCinzentoMedia field">
+                        Descrição:
+                        <asp:TextBox ID="txtBoxDescricaoEditarVideo" runat="server" Columns="255" Width="200px"></asp:TextBox></div>
+                    <asp:TextBoxWatermarkExtender ID="TextBoxWatermarkExtenderDescricaoEditarVideo" runat="server"
+                        Enabled="True" TargetControlID="txtBoxDescricaoEditarVideo">
+                    </asp:TextBoxWatermarkExtender>
+                </div>
+                <div class="row left">
+                    <asp:Literal ID="LiteralVisualizaEditarVideo" runat="server"></asp:Literal>
+                </div>
+                <div class='column left'>
+                    <div class="column left">
+                        <asp:Image ID="Image3" CssClass="infoImage" AlternateText="Informação do controlo"
+                            runat="server" ImageUrl="~/images/informacao.png" ImageAlign="AbsMiddle" />&nbsp
+                        <asp:ImageButton ID="btnInserirSubcategoriaEditarVideo" runat="server" ImageAlign="Middle"
+                            ImageUrl="~/images/add.png" OnClick="btnInserirSubcategoria_Click" />
+                        Etiquetas:
+                    </div>
+                    <div class='column left painelEtiquetasActuais'>
+                        <asp:Repeater ID="RepeaterTagEditarVideo" runat="server">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="LinkButtonTagEditarVideo" runat="server" Text='<%# Eval("nome") %>'
+                                    OnClick="labelClickEventHandler" />
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </div>
+                    <div class="row right extraTopSpace">
+                        <asp:Panel ID="PainelAdicionarSubcategoriaEditarVideo" runat="server" Visible="false">
+                            <div class='row right'>
+                                Categorias:
+                                <asp:DropDownList ID="ddlCategoriasEditarVideo" runat="server" DataSourceID="OdsCategorias"
+                                    OnDataBound="ddlCategoriasEditUploadVideo_OnDataBound" DataTextField="nome" DataValueField="id"
+                                    Width="150px" AutoPostBack="True" OnSelectedIndexChanged="ddlCategoriasEditUploadVideo_SelectedIndexChanged">
+                                </asp:DropDownList>
                             </div>
-                            <div class="letraCinzentoMedia field">
-                                Título:
-                                <asp:TextBox ID="txtBoxTituloVideo" runat="server" Columns="50" Width="200px"></asp:TextBox>
+                            <div class='row right'>
+                                Subcategorias:
+                                <asp:DropDownList ID="ddlSubcategoriasEditarVideo" OnDataBound="ddlCategoriasEditUploadVideo_OnDataBound"
+                                    runat="server" Width="150px" AutoPostBack="true" DataSourceID="OdsSubcategorias"
+                                    Enabled="false" DataTextField="nome" DataValueField="id" OnSelectedIndexChanged="ddlSubcategoriasEditarVideo_OnSelectedIndexChanged">
+                                </asp:DropDownList>
                             </div>
-                            <asp:TextBoxWatermarkExtender ID="TextBoxWatermarkExtender1" runat="server" Enabled="True"
-                                TargetControlID="txtBoxTituloVideo" WatermarkText='<%# Eval("titulo") %>'>
-                            </asp:TextBoxWatermarkExtender>
-                        </div>
-                        <div class='row left'>
-                            <div class="infoImage">
-                                <asp:Image ID="Image9" runat="server" ImageUrl="~/images/informacao.png" ToolTip="Para repor a descrição original basta limpar a caixa de texto." />
-                            </div>
-                            <div class="letraCinzentoMedia field">
-                                Descrição:
-                                <asp:TextBox ID="txtBoxDescricaoVideo" runat="server" Columns="255" Width="200px"></asp:TextBox></div>
-                            <asp:TextBoxWatermarkExtender ID="TextBoxDescricao_WatermarkExtender" runat="server"
-                                Enabled="True" TargetControlID="txtBoxDescricaoVideo" WatermarkText='<%# Eval("descricao") %>'>
-                            </asp:TextBoxWatermarkExtender>
-                        </div>
-                        <div class="row left">
-                            <object classid="clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95" width="500" height="375"
-                                codebase="http://www.microsoft.com/Windows/MediaPlayer/">
-                                <param name="Filename" value='<%# Eval("url") %>'>
-                                <param name="AutoStart" value="false">
-                                <param name="ShowControls" value="true">
-                                <param name="BufferingTime" value="2">
-                                <param name="ShowStatusBar" value="false">
-                                <param name="AutoSize" value="true">
-                                <param name="InvokeURLs" value="false">
-                                <embed src='<%# "~/Videos/" + Eval("url") %>' type="application/x-mplayer2" autostart="0"
-                                    enabled="1" showstatusbar="0" showdisplay="1" showcontrols="1" pluginspage="http://www.microsoft.com/Windows/MediaPlayer/"
-                                    codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=6,0,0,0"
-                                    width="500" height="375"></embed>
-                            </object>
-                        </div>
-                        <div class='column left'>
-                            <div class="column left">
-                                <asp:Image ID="Image3" CssClass="infoImage" AlternateText="Informação do controlo"
-                                    runat="server" ImageUrl="~/images/informacao.png" ImageAlign="AbsMiddle" />&nbsp
-                                <asp:ImageButton ID="btnInserirSubcategoria" runat="server" ImageAlign="Middle" ImageUrl="~/images/add.png"
-                                    OnClick="btnInserirSubcategoria_Click" />
-                                Etiquetas:
-                            </div>
-                            <div class='column left painelEtiquetasActuais'>
-                                <asp:Repeater ID="RepeaterTag" runat="server" DataSource='<%# Eval("Subcategorias") %>'>
-                                    <ItemTemplate>
-                                        <asp:LinkButton ID="LinkButton1" runat="server" Text='<%# Eval("nome") %>' OnClick="labelClickEventHandler" />
-                                    </ItemTemplate>
-                                </asp:Repeater>
-                            </div>
-                            <div class="row right extraTopSpace">
-                                <asp:Panel ID="PainelAdicionarSubcategoria" runat="server" Visible="false">
-                                    <div class='row right'>
-                                        Categorias:
-                                        <asp:DropDownList ID="ddlCategoriasEditUploadVideo" runat="server" DataSourceID="OdsCategorias"
-                                            OnDataBound="ddlCategoriasEditUploadVideo_OnDataBound" DataTextField="nome" DataValueField="id"
-                                            Width="150px" AutoPostBack="True" OnSelectedIndexChanged="ddlCategoriasEditUploadVideo_SelectedIndexChanged">
-                                        </asp:DropDownList>
-                                    </div>
-                                    <div class='row right'>
-                                        Subcategorias:
-                                        <asp:DropDownList ID="ddlSubcategoriasEditUploadVideo" OnDataBound="ddlCategoriasEditUploadVideo_OnDataBound"
-                                            runat="server" Width="150px" AutoPostBack="true" DataSourceID="OdsSubcategorias"
-                                            Enabled="false" DataTextField="nome" DataValueField="id" OnSelectedIndexChanged="ddlSubcategoriasEdituploadVideo_OnSelectedIndexChanged">
-                                        </asp:DropDownList>
-                                    </div>
-                                </asp:Panel>
-                            </div>
-                        </div>
-                        <div class="row left extraTopSpace">
-                            Máximo 20MB
-                            <asp:FileUpload CssClass="fileUpload" ID="VideoUpload" runat="server" />
-                        </div>
-                        <div class="column left extraTopSpace">
-                            <asp:Button ID="Button1" CssClass="botaoLogin" runat="server" Text="Confirmar" OnClick="btnConfirmarEdicaoVideo_Click" />
-                        </div>
-                </ItemTemplate>
-            </asp:Repeater>
+                        </asp:Panel>
+                    </div>
+                </div>
+                <div class="row left extraTopSpace">
+                    Máximo 20MB
+                    <asp:FileUpload CssClass="fileUpload" ID="UploadEditarVideo" runat="server" />
+                </div>
+                <div class="column left extraTopSpace">
+                    <asp:Button ID="ButtonConfirmarEditarVideo" CssClass="botaoLogin" runat="server"
+                        Text="Confirmar" OnClick="btnConfirmarEdicaoVideo_Click" />
+                </div>
+                <div class="column left extraTopSpace">
+                    <asp:Button ID="ButtonCancelaredicaoVideo" CssClass="botaoLogin" runat="server"
+                        Text="Cancelar" OnClick="ButtonCancelaredicaoVideo_Click" />
+                </div>
+            </div>
         </asp:View>
         <asp:View ID="UploadVideos" runat="server">
             <div class="subtitulo">
@@ -290,7 +280,7 @@
                         Subcategorias:
                         <asp:DropDownList ID="ddlSubcategoriasEditUploadVideo" OnDataBound="ddlCategoriasEditUploadVideo_OnDataBound"
                             runat="server" Width="150px" AutoPostBack="true" DataSourceID="OdsSubcategorias"
-                            Enabled="false" DataTextField="nome" DataValueField="id" OnSelectedIndexChanged="ddlSubcategoriasEdituploadVideo_OnSelectedIndexChanged">
+                            Enabled="false" DataTextField="nome" DataValueField="id" OnSelectedIndexChanged="ddlSubcategoriasUploadVideo_OnSelectedIndexChanged">
                         </asp:DropDownList>
                     </asp:Panel>
                 </div>
