@@ -207,7 +207,7 @@
                 <div class='column left'>
                     <div class="column left">
                         <asp:Image ID="Image3" CssClass="infoImage" AlternateText="Informação do controlo"
-                            runat="server" ImageUrl="~/images/informacao.png" ImageAlign="AbsMiddle" />&nbsp
+                            runat="server" ImageUrl="~/images/informacao.png" ToolTip="Para remover uma Tag clique na respetiva tag!" ImageAlign="AbsMiddle" />&nbsp
                         <asp:ImageButton ID="btnInserirSubcategoriaEditarVideo" runat="server" ImageAlign="Middle"
                             ImageUrl="~/images/add.png" OnClick="btnInserirSubcategoria_Click" />
                         Etiquetas:
@@ -244,12 +244,18 @@
                     <asp:FileUpload CssClass="fileUpload" ID="UploadEditarVideo" runat="server" />
                 </div>
                 <div class="column left extraTopSpace">
-                    <asp:Button ID="ButtonConfirmarEditarVideo" CssClass="botaoLogin" runat="server"
-                        Text="Confirmar" OnClick="btnConfirmarEdicaoVideo_Click" />
+                    <asp:Button ID="ButtonAnexarEditarVideo" CssClass="botaoLogin" runat="server" Text="Anexar"
+                        OnClick="ButtonAnexarEditarVideo_Click" />
                 </div>
-                <div class="column left extraTopSpace">
-                    <asp:Button ID="ButtonCancelaredicaoVideo" CssClass="botaoLogin" runat="server"
-                        Text="Cancelar" OnClick="ButtonCancelaredicaoVideo_Click" />
+                <div class="row left extraTopSpace painelBotoes">                    
+                    <div class="column right">
+                        <asp:Button ID="ButtonCancelaredicaoVideo" CssClass="botaoLogin" runat="server" Text="Cancelar"
+                            OnClick="ButtonCancelarEdicaoVideo_Click" />
+                    </div>
+                    <div class="column right">
+                        <asp:Button ID="ButtonConfirmarEditarVideo" CssClass="botaoLogin" runat="server"
+                            Text="Confirmar" OnClick="btnConfirmarEdicaoVideo_Click" />
+                    </div>
                 </div>
             </div>
         </asp:View>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using BO;
 using DAL;
+using System.Linq;
 
 namespace BLL
 {
@@ -196,8 +197,9 @@ namespace BLL
 			return videosDataManager.inserirVideo(video);
 		}
 
-		public bool modificaVideo(string descricao, string titulo, string url, int id_video)
+		public bool modificaVideo(string descricao, string titulo, string url, int id_video, List<Subcategoria> subcat)
 		{
+
 			Video video = obterVideo(id_video);
 			if (video != null)
 			{
@@ -215,6 +217,26 @@ namespace BLL
 				if (titulo != "" && titulo != null)
 				{
 					video.titulo = titulo;
+				}
+
+				if (subcat == null)
+				{
+					subcat = new List<Subcategoria>();
+				}
+
+				List<Subcategoria> subCatsAdicionar = subcat.FindAll(i => !video.Subcategorias.Contains(i));
+				List<Subcategoria> subCatsRemover = video.Subcategorias.Where(i => !subcat.Contains(i)).ToList<Subcategoria>();
+
+				// subCatsAdicionar.ForEach(i => associaEtiqueta(i, video));
+				foreach (Subcategoria subCat in subCatsAdicionar)
+				{
+					associaEtiqueta(subCat, video);
+				}
+
+				// subCatsRemover.ForEach(i => desassociaEtiqueta(i, video));
+				foreach (Subcategoria subCat in subCatsRemover)
+				{
+					desassociaEtiqueta(subCat, video);
 				}
 
 				return videosDataManager.actualizaVideo(video);
@@ -258,6 +280,11 @@ namespace BLL
 			Subcategoria subcategoria = subcategoriasDataManager.obterSubCategoriaId(subcat);
 			Video video = videosDataManager.obterVideo(id_video);
 
+			return associaEtiqueta(subcategoria, video);
+		}
+
+		private bool associaEtiqueta(Subcategoria subcategoria, Video video)
+		{
 			bool ret = videosDataManager.inserirSubcategoriaVideo(video, subcategoria);
 
 			actualizaRelacao(subcategoria, video);
@@ -270,6 +297,11 @@ namespace BLL
 			Subcategoria subcategoria = subcategoriasDataManager.obterSubCategoriaNome(subcat);
 			Video video = videosDataManager.obterVideo(id_video);
 
+			return desassociaEtiqueta(subcategoria, video);
+		}
+
+		private bool desassociaEtiqueta(Subcategoria subcategoria, Video video)
+		{
 			bool ret = videosDataManager.removerSubcategoriaVideo(video, subcategoria);
 
 			actualizaRelacao(subcategoria, video);

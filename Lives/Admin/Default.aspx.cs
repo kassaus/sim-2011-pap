@@ -193,7 +193,7 @@ namespace Lives.Admin
             string descricao = null;
             titulo = findControloTextBoxRepeater(RepeaterVideoDetails, "txtBoxTituloEditarVideo");
             descricao = findControloTextBoxRepeater(RepeaterVideoDetails, "txtBoxDescricaoEditarVideo");
-            gestorVideos.modificaVideo(descricao, titulo, null, int.Parse(idVideoAprovacao.Value));
+            //gestorVideos.modificaVideo(descricao, titulo, null, int.Parse(idVideoAprovacao.Value));
             Response.Redirect("Default.aspx?view=0", true);
 
         }
@@ -431,7 +431,7 @@ namespace Lives.Admin
             } return valor;
         }
 
-      
+
 
     }
 }
