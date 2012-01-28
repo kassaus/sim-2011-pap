@@ -605,6 +605,11 @@ input[type='text'], input[type='password']
     margin-top: 2em;
 }
 
+.painelBotoes
+{
+    width:500px;
+}
+
 .erroTopoPagina
 {
     margin: 1em 0 3em 0;

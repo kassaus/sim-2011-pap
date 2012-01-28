@@ -15,7 +15,7 @@ namespace Lives.Users
 		private CategoriaBO gestorCategorias { get; set; }
 		private static List<Subcategoria> listaEtiquetas = null;
 		private string DIRETORIO_VIDEOS = "/Videos";
-		private string novo_video = null;
+		private static Video novoVideo = new Video();
 		private static Video videoOriginal = null;
 
 		protected void Page_Load(object sender, EventArgs e)
@@ -134,8 +134,6 @@ namespace Lives.Users
 			}
 		}
 
-
-
 		protected void lbtnApagarVideo_Click(object sender, EventArgs e)
 		{
 			LinkButton apagar = sender as LinkButton;
@@ -162,6 +160,7 @@ namespace Lives.Users
 			TextBoxWatermarkExtenderTituloEditarVideo.WatermarkText = videoOriginal.titulo;
 			TextBoxWatermarkExtenderDescricaoEditarVideo.WatermarkText = videoOriginal.descricao;
 			reproduzVideo(videoOriginal.url, LiteralVisualizaEditarVideo);
+			novoVideo = new Video();
 
 			Repeater tagsRepeater = MultiViewVideos.Views[1].FindControl("RepeaterTagEditarVideo") as Repeater;
 			Subcategoria[] aux = new Subcategoria[videoOriginal.Subcategorias.Count];
@@ -255,17 +254,6 @@ namespace Lives.Users
 					LabelerroEditarVideo.Text = "Já inseriu essa subcategoria!";
 				}
 			}
-
-			//TODO Tirar daqui.
-			if (MultiViewVideos.ActiveViewIndex == 2)
-			{
-				Subcategoria subcategoria = gestorSubcategorias.obterSubCategoriaId(int.Parse(subcat.SelectedValue));
-				listaEtiquetas.Add(subcategoria);
-				RepeaterNewTag.DataBind();
-			}
-
-
-
 		}
 
 		protected void ddlCategoriasEditUploadVideo_OnDataBound(object sender, EventArgs e)
@@ -288,104 +276,78 @@ namespace Lives.Users
 		}
 
 
-		protected void ButtonCancelaredicaoVideo_Click(object sender, EventArgs e)
+		protected void ButtonCancelarEdicaoVideo_Click(object sender, EventArgs e)
 		{
+			if (novoVideo.url != null)
+			{
+				apagaFicheiroDiretorioVideos(novoVideo.url);
+			}
+			Response.Redirect("?view=0", true);
 		}
 
 		protected void btnConfirmarEdicaoVideo_Click(object sender, EventArgs e)
 		{
-			//string titulo = null;
-			//string descricao = null;
-			//FileUpload filme = null;
-			//Label msg = null;
-
-			//if (MultiViewVideos.ActiveViewIndex == 1)
-			//{
-			//    titulo = findControloTextBoxRepeater(RepeaterVideoDetails, "txtBoxTituloVideo");
-			//    descricao = findControloTextBoxRepeater(RepeaterVideoDetails, "txtBoxDescricaoVideo");
-			//    msg = findControloLabelRepeater(RepeaterVideoDetails, "lblErro");
-
-			//    if (gestorVideos.modificaVideo(descricao, titulo, null, int.Parse(idVideoToEdit.Value)))
-			//    {
-
-			//        Response.Redirect("?view=0", true);
-			//    }
-			//    else
-			//    {
-			//        apagaFicheiroDiretorioVideos(novo_video);
-			//        msg.Visible = true;
-			//        msg.Text = "Não foi possivel atualizar a basde de dados, tente novamente!";
-
-			//    }
-			//}
-			//if (MultiViewVideos.ActiveViewIndex == 2)
-			//{
-			//    if (novo_video != null)
-			//    {
-			//        Guid idUser = Guid.Parse(idUserHide.Value);
-			//        if (gestorVideos.criarVideo(txtBoxDescricaoVideo.Text, idUser, txtBoxTituloVideo.Text, novo_video))
-			//        {
-			//            lblErro.Text = "Video Atualizado!";
-			//        }
-			//        else
-			//        {
-			//            apagaFicheiroDiretorioVideos(novo_video);
-			//            lblErro.Visible = true;
-			//            lblErro.Text = "Não foi possivel atualizar a base de dados, tente novamente!";
-
-			//        }
-			//    }
-
-			//}
-
+			if (novoVideo.url == null)
+			{
+				if (gestorVideos.modificaVideo(txtBoxDescricaoEditarVideo.Text, txtBoxTituloEditarVideo.Text, videoOriginal.url, int.Parse(idVideoToEdit.Value), listaEtiquetas))
+				{
+					Response.Redirect("?view=0", true);
+				}
+				else
+				{
+					LabelerroEditarVideo.Visible = true;
+					LabelerroEditarVideo.Text = "Não foi possivel atualizar a base de dados, tente novamente!";
+				}
+			}
+			else
+			{
+				string videoAnterior = videoOriginal.url;
+				if (gestorVideos.modificaVideo(txtBoxDescricaoEditarVideo.Text, txtBoxTituloEditarVideo.Text, novoVideo.url, int.Parse(idVideoToEdit.Value), listaEtiquetas))
+				{
+					apagaFicheiroDiretorioVideos(videoAnterior);
+					Response.Redirect("?view=0", true);
+				}
+				else
+				{
+					LabelerroEditarVideo.Visible = true;
+					LabelerroEditarVideo.Text = "Não foi possivel atualizar a basde de dados, tente novamente!";
+				}
+			}
 		}
 
-		protected void btnAnexarVideoEditar_Click(object sender, EventArgs e)
+		protected void ButtonAnexarEditarVideo_Click(object sender, EventArgs e)
 		{
-			//FileUpload filme = null;
-			//Label msg = null;
+			if ((UploadEditarVideo.PostedFile != null) && (UploadEditarVideo.PostedFile.ContentLength > 0))
+			{
+				if (novoVideo.url != null)
+				{
+					apagaFicheiroDiretorioVideos(novoVideo.url);
+				}
 
-			//filme = findControloFileUploadRepeater(RepeaterVideoDetails, "VideoUploadEdit");
-			//msg = findControloLabelRepeater(RepeaterVideoDetails, "lblErro1");
-
-			//novo_video = uploadVideo(filme, msg);
-
-			//if (novo_video != null)
-			//{
-			//    if (gestorVideos.modificaVideo(null, null, novo_video, int.Parse(idVideoToEdit.Value)))
-			//    {
-
-			//        Response.Redirect("?view=0", false);
-			//    }
-			//    else
-			//    {
-			//        apagaFicheiroDiretorioVideos(novo_video);
-			//        msg.Visible = true;
-			//        msg.Text = "Não foi possivel atualizar a basde de dados, tente novamente!";
-
-			//    }
-			//}
+				uploadVideo(UploadEditarVideo, LabelerroEditarVideo);
+				reproduzVideo(novoVideo.url, LiteralVisualizaEditarVideo);
+			}
+			else
+			{
+				LabelerroEditarVideo.Visible = true;
+				LabelerroEditarVideo.Text = "Primeiro escolha o ficheiro.";
+			}
 		}
 
+		#endregion
+		
+
+		#region Upload vídeo
 		protected void btnAnexarVideoUpload_Click(object sender, EventArgs e)
 		{
-			string url = null;
-			novo_video = uploadVideo(VideoUpload, lblErro);
 
-			if (novo_video != null)
-			{
-				url = DIRETORIO_VIDEOS + "/" + novo_video;
-
-				//reproduzVideo(url);
-			}
 
 		}
 
 		protected void ddlSubcategoriasUploadVideo_OnSelectedIndexChanged(object sender, EventArgs e)
 		{
 		}
-
-
+		#endregion
 
 		private void reproduzVideo(string url, Literal literal)
 		{
@@ -413,56 +375,36 @@ namespace Lives.Users
 
 		}
 
-
-
-		#endregion
-
-		#region Upload Vídeo
-
-		#endregion
-
-		private string uploadVideo(FileUpload filme, Label msg)
+		private void uploadVideo(FileUpload filme, Label msg)
 		{
-			string url = null;
 			string ficheiroVideo = null;
 			string nomeAleatorio = null;
 			string SaveLocation = null;
-
-			if ((filme.PostedFile != null) && (filme.PostedFile.ContentLength > 0))
+			
+			if ((filme.PostedFile.ContentLength / 1024) < 20480)
 			{
-				if ((filme.PostedFile.ContentLength / 1024) < 20480)
+				nomeAleatorio = criaNomeVideo(18);
+				ficheiroVideo = System.IO.Path.GetFileName(filme.PostedFile.FileName);
+				string novoNome = nomeAleatorio + ficheiroVideo.Substring(ficheiroVideo.Length - 4);
+				SaveLocation = Server.MapPath(DIRETORIO_VIDEOS) + "\\" + novoNome;
+				try
 				{
-					nomeAleatorio = criaNomeVideo(18);
-					ficheiroVideo = System.IO.Path.GetFileName(filme.PostedFile.FileName);
-					string novoNome = nomeAleatorio + ficheiroVideo.Substring(ficheiroVideo.Length - 4);
-					SaveLocation = Server.MapPath(DIRETORIO_VIDEOS) + "\\" + novoNome;
-					try
-					{
-						filme.PostedFile.SaveAs(SaveLocation);
-						url = novoNome;
-					}
-					catch
-					{
-						msg.Visible = true;
-						msg.Text = "Não foi possivel carregar o ficheiro, tente de novo.";
-						return null;
-					}
+					filme.PostedFile.SaveAs(SaveLocation);
+					novoVideo.url = novoNome;
 				}
-				else
+				catch
 				{
 					msg.Visible = true;
-					msg.Text = "O Tamanho do ficheiro deve ser inferior a 20 MB";
-					return null;
+					msg.Text = "Não foi possivel carregar o ficheiro, tente de novo.";
 				}
 			}
 			else
 			{
 				msg.Visible = true;
-				msg.Text = "Primeiro escolha o ficheiro.";
-				return null;
+				msg.Text = "O Tamanho do ficheiro deve ser inferior a 20 MB";
 			}
-			return url;
 		}
+
 
 		protected string findControloTextBoxRepeater(Repeater repeater, string id)
 		{

@@ -364,13 +364,13 @@ namespace Lives.Users {
         protected global::System.Web.UI.WebControls.FileUpload UploadEditarVideo;
         
         /// <summary>
-        /// ButtonConfirmarEditarVideo control.
+        /// ButtonAnexarEditarVideo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonConfirmarEditarVideo;
+        protected global::System.Web.UI.WebControls.Button ButtonAnexarEditarVideo;
         
         /// <summary>
         /// ButtonCancelaredicaoVideo control.
@@ -380,6 +380,15 @@ namespace Lives.Users {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button ButtonCancelaredicaoVideo;
+        
+        /// <summary>
+        /// ButtonConfirmarEditarVideo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonConfirmarEditarVideo;
         
         /// <summary>
         /// UploadVideos control.
