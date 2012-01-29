@@ -13,8 +13,8 @@
     <RootNamespace>Lives</RootNamespace>
     <AssemblyName>Lives</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <UseIISExpress>true</UseIISExpress>
-    <SilverlightApplicationList>{FA0FC5E5-EF18-4BA5-B9BD-FF7A62A1E611}|..\VideoViewer\VideoViewer.csproj|ClientBin|True</SilverlightApplicationList>
+    <UseIISExpress>false</UseIISExpress>
+    <SilverlightApplicationList>{00DD0BC1-FB9D-48A4-BAD0-B96947C53B1F}|..\SilverlightApplication\SilverlightApplication.csproj|ClientBin|False</SilverlightApplicationList>
     <JSLintSkip>\Scripts\jquery-1.4.1-vsdoc.js|\Scripts\jquery-1.4.1.js|\Scripts\jquery-1.4.1.min.js|\Silverlight.js</JSLintSkip>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -82,10 +82,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ClientBin\SilverlightApplication.xap" />
     <Content Include="images\add.png" />
     <Content Include="Admin\Default.aspx" />
     <Content Include="images\informacao.png" />
-    <Content Include="ClientBin\Debug\VideoViewer.xap" />
     <Content Include="ErrorPages\Error.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Default.aspx" />
@@ -96,6 +96,8 @@
     <Content Include="images\unlocked.png" />
     <Content Include="Resources\PasswordRecoveryEmail.txt" />
     <Content Include="Silverlight.js" />
+    <Content Include="SilverlightApplicationTestPage.aspx" />
+    <Content Include="SilverlightApplicationTestPage.html" />
     <Content Include="Videos\1.wmv" />
     <Content Include="Videos\2.wmv" />
     <Content Include="Videos\3.wmv" />
@@ -118,7 +120,6 @@
     <Content Include="User\AlterarPassword.aspx" />
     <Content Include="User\Default.aspx" />
     <Content Include="User\UserSucessoPassword.aspx" />
-    <Content Include="VideoViewerTestPage.aspx" />
     <Content Include="Web.config" />
     <Content Include="zengarden-sample.css" />
     <Content Include="zengarden-sample.html" />
@@ -224,6 +225,7 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>
@@ -234,7 +236,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>54465</DevelopmentServerPort>
           <DevelopmentServerVPath>/Lives</DevelopmentServerVPath>
-          <IISUrl>http://localhost:54465/</IISUrl>
+          <IISUrl>http://localhost/Lives</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
