@@ -183,6 +183,7 @@
           <Parameter Name="estado" Type="int" Mode="In" />
           <Parameter Name="id_user" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="titulo" Type="nvarchar" Mode="In" />
+          <Parameter Name="rows" Type="int" Mode="InOut" />
         </Function>
         <Function Name="RemoverSubcategoriaDeVideo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_video" Type="int" Mode="In" />
@@ -244,7 +245,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ConcurrencyMode="None" />
           <Property Name="descricao" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="url" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
           <Property Name="data" Type="DateTime" Nullable="false" />
@@ -365,7 +366,7 @@
                   </AssociationEnd>
                   <ScalarProperty Name="id" ParameterName="id" />
                 </DeleteFunction>
-                <InsertFunction FunctionName="livesModel.Store.InsereVideo">
+                <InsertFunction FunctionName="livesModel.Store.InsereVideo" RowsAffectedParameter="rows">
                   <AssociationEnd AssociationSet="EstadoVideo" From="Video" To="Estado">
                     <ScalarProperty Name="id" ParameterName="estado" />
                   </AssociationEnd>
@@ -373,6 +374,7 @@
                   <ScalarProperty Name="id_user" ParameterName="id_user" />
                   <ScalarProperty Name="url" ParameterName="url" />
                   <ScalarProperty Name="descricao" ParameterName="descricao" />
+                  <ResultBinding Name="id" ColumnName="rows" />
                 </InsertFunction>
               </ModificationFunctionMapping>
             </EntityTypeMapping>
