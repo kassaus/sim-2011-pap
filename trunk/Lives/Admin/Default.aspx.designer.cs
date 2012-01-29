@@ -283,22 +283,13 @@ namespace Lives.Admin {
         protected global::System.Web.UI.WebControls.DropDownList categoriasDropBox;
         
         /// <summary>
-        /// RepeaterTag control.
+        /// lbtnInserirSubcategoria control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater RepeaterTag;
-        
-        /// <summary>
-        /// ImageButton2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageButton2;
+        protected global::System.Web.UI.WebControls.ImageButton lbtnInserirSubcategoria;
         
         /// <summary>
         /// txtBoxNovaSubcategoria control.
@@ -319,15 +310,6 @@ namespace Lives.Admin {
         protected global::AjaxControlToolkit.TextBoxWatermarkExtender txtBoxNovaSubcategoria_TextBoxWatermarkExtender;
         
         /// <summary>
-        /// lbtnInserirSubcategoria control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton lbtnInserirSubcategoria;
-        
-        /// <summary>
         /// ImageButton1 control.
         /// </summary>
         /// <remarks>
@@ -335,6 +317,15 @@ namespace Lives.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton ImageButton1;
+        
+        /// <summary>
+        /// RepeaterTag control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater RepeaterTag;
         
         /// <summary>
         /// ViewUsers control.
