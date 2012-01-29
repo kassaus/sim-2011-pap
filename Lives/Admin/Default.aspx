@@ -1,6 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Authenticated.Master"
-	AutoEventWireup="true" EnableEventValidation="false" CodeBehind="Default.aspx.cs"
-	Inherits="Lives.Admin.Default" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Authenticated.Master" AutoEventWireup="true"
+	EnableEventValidation="false" CodeBehind="Default.aspx.cs" Inherits="Lives.Admin.Default" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Menu" ContentPlaceHolderID="menu" runat="Server">
@@ -69,7 +68,6 @@
 	<asp:ToolkitScriptManager ID="ScriptManager" runat="Server">
 	</asp:ToolkitScriptManager>
 	<asp:HiddenField ID="idVideoAprovacao" runat="server" />
-
 	<h3 class="titulo">
 		Administração</h3>
 	<asp:Panel ID="panelFiltros" CssClass="painelFiltros" runat="server">
@@ -268,49 +266,50 @@
 			</asp:Repeater>
 		</asp:View>
 		<asp:View ID="ViewEditarsubCategorias" runat="server">
-			<div>
-				<h3 class="subtitulo">
-					Editar Subcategorias</h3>
-				<div>
-					<div>
-						<asp:Label ID="lblErro" CssClass="redError" runat="Server" Visible="false"></asp:Label>
-					</div>
-				</div>
+			<div class="subtitulo">
+				Editar Subcategorias</h3>
 			</div>
-			<div>
-				<p class="letraCinzentoMedia">
-					Categorias:
-					<asp:DropDownList ID="categoriasDropBox" runat="server" DataSourceID="OdsCategorias"
-						DataTextField="nome" DataValueField="id" Width="150px" AutoPostBack="True">
-					</asp:DropDownList>
-				</p>
-				<div class="letraCinzentoMedia">
-					<span>Etiquetas: </span>
-					<asp:Repeater ID="RepeaterTag" runat="server" DataSourceID="ODSObterSubcategoriasCategoria">
-						<ItemTemplate>
-							<asp:LinkButton runat="server" Text='<%# Eval("nome") %>' OnClick="labelSubCatEditClickEventHandler" />
-						</ItemTemplate>
-					</asp:Repeater>
-				</div>
-				<div>
-					<asp:ImageButton ID="ImageButton2" runat="server" ImageAlign="Middle" ImageUrl="~/images/informacao.png" />
-				</div>
-				<div>
-					<p class="letraCinzentoMedia">
-						Nova Subcategoria:
-						<asp:TextBox ID="txtBoxNovaSubcategoria" runat="server" Columns="30" Width="150px"></asp:TextBox></p>
-					<asp:TextBoxWatermarkExtender ID="txtBoxNovaSubcategoria_TextBoxWatermarkExtender"
-						runat="server" Enabled="True" TargetControlID="txtBoxNovaSubcategoria" WatermarkText="Nova subcategoria!">
-					</asp:TextBoxWatermarkExtender>
-					<div>
-						<asp:ImageButton ID="lbtnInserirSubcategoria" runat="server" ImageAlign="Middle"
-							ImageUrl="~/images/add.png" OnClick="btnNovaSubcategoria_Click" />
+			<div class="row left erroTopoPagina">
+				<asp:Label ID="lblErro" CssClass="redError" runat="Server" Visible="false"></asp:Label>
+			</div>
+			<div class="editPanel">
+				<div class="row left extraRightSpace">					
+					<div class="letraCinzentoMedia field">
+						Categorias:
+						<asp:DropDownList ID="categoriasDropBox" runat="server" DataSourceID="OdsCategorias"
+							DataTextField="nome" DataValueField="id" Width="150px" AutoPostBack="True">
+						</asp:DropDownList>
 					</div>
 				</div>
-				<div>
+				<div class="column left">
+					<div class='row left'>
+						<div class="letraCinzentoMedia field">
+							<asp:ImageButton ID="lbtnInserirSubcategoria" runat="server" ImageAlign="AbsMiddle"
+								ImageUrl="~/images/add.png" OnClick="btnNovaSubcategoria_Click" />
+							Nova Subcategoria:
+							<asp:TextBox ID="txtBoxNovaSubcategoria" runat="server" Columns="30" Width="150px"></asp:TextBox></p>
+							<asp:TextBoxWatermarkExtender ID="txtBoxNovaSubcategoria_TextBoxWatermarkExtender"
+								runat="server" Enabled="True" TargetControlID="txtBoxNovaSubcategoria" WatermarkText="Nova subcategoria!">
+							</asp:TextBoxWatermarkExtender>
+						</div>
+					</div>
 				</div>
-				<div>
-					<asp:ImageButton ID="ImageButton1" runat="server" ImageAlign="Middle" ImageUrl="~/images/informacao.png" />
+				<div class="row left infoImageExtraTopoButtom">
+					<div class="infoImage">
+						<asp:ImageButton ID="ImageButton1" runat="server" ToolTip="Para remover uma subcategoria clique na subcategoria." ImageUrl="~/images/informacao.png" />
+					</div>					
+				</div>
+				<div class="column left">
+					<div class='row left  extraTopSpace'>
+					<div class="letraCinzentoMedia field">
+						Etiquetas:
+					</div>
+						<asp:Repeater ID="RepeaterTag" runat="server" DataSourceID="ODSObterSubcategoriasCategoria">
+							<ItemTemplate>
+								<asp:LinkButton runat="server" Text='<%# Eval("nome") %>' OnClick="labelSubCatEditClickEventHandler" />
+							</ItemTemplate>
+						</asp:Repeater>
+					</div>
 				</div>
 			</div>
 		</asp:View>

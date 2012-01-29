@@ -606,6 +606,11 @@ input[type='text'], input[type='password']
 	margin-top: 2em;
 }
 
+.extraRightSpace
+{
+	margin-right: 2em;
+}
+
 .painelBotoes
 {
 	width: 500px;
@@ -724,6 +729,14 @@ input[type='text'], input[type='password']
 {
 	float: left;
 	margin: 0.5em 0.5em 0;
+	vertical-align:top;	
+}
+
+.infoImageExtraTopoButtom
+{
+	
+	margin-top:17px;
+	
 }
 
 .field
