@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web.Security;
 
 namespace Lives.User
 {
@@ -6,6 +7,12 @@ namespace Lives.User
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Request.IsAuthenticated)
+            {
+                Response.Redirect("~/", true);
+            }
+
+            lblNome.Text = Membership.GetUser().UserName;
 
         }
     }
