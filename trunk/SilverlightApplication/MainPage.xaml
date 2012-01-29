@@ -1,0 +1,29 @@
+<UserControl
+	x:Class="SilverlightApplication.MainPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d"
+	d:DesignWidth="962" d:DesignHeight="488" TabNavigation="Once">
+
+	<Grid x:Name="LayoutRoot">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+
+		<Border x:Name="LinksBorder" Style="{StaticResource NavLinksBorderStyle}" Height="30" Grid.Row="0" Margin="5 5 5 0">
+			<StackPanel x:Name="LinksStackPanel" Style="{StaticResource LinksStackPanelStyle}">
+				<HyperlinkButton Style="{StaticResource LinkStyle}" NavigateUri="Listagem" TargetName="ContentFrame" Content="Listagem" />
+				<HyperlinkButton Style="{StaticResource LinkStyle}" NavigateUri="Mosaico" TargetName="ContentFrame" Content="Mosaico" />
+			</StackPanel>
+		</Border>
+
+		<Border x:Name="ContentBorder" Style="{StaticResource NavContentBorderStyle}" Grid.Row="1" Margin="5 0 5 5">
+			<navigation:Frame x:Name="ContentFrame" Style="{StaticResource NavContentFrameStyle}" Source="Listagem"  Navigated="ContentFrame_Navigated" NavigationFailed="ContentFrame_NavigationFailed" Margin="0" />
+		</Border>
+
+	</Grid>
+
+</UserControl>
