@@ -154,6 +154,19 @@ namespace DAL
 
 		}
 
+		public Video obterVideoMaisRecenteUser(int estado, Guid idUser)
+		{
+			Video aux = null;
+			try
+			{
+				aux = (from video in DB.tabelas.Video where video.Estado.id == estado && video.id_user == idUser && video.Estado.id != 3 orderby video.data descending select video).FirstOrDefault<Video>();
+			}
+			catch { }
+
+			return aux;
+
+		}
+
 		public List<Video> obterVideosSubcategoriaUser(int idSubcat, Guid idUser)
 		{
 			List<Video> lista = null;
@@ -172,14 +185,16 @@ namespace DAL
 		#region // INSERT, DELETE, UPDATE
 		public bool inserirVideo(Video video)
 		{
-			bool sucesso = false;
+			bool ret = false;
+
 			try
 			{
 				DB.tabelas.AddToVideo(video);
-				sucesso = (DB.tabelas.SaveChanges() != 0);
+				ret = DB.tabelas.SaveChanges() != 0;
 			}
 			catch { }
-			return sucesso;
+
+			return ret;
 		}
 
 		public bool actualizaVideo(Video video)

@@ -32,6 +32,11 @@ namespace Lives.Users
 			Guid idUser = new Guid(user.ProviderUserKey.ToString());
 			idUserHide.Value = idUser.ToString();
 
+			if (listaEtiquetas == null)
+			{
+				listaEtiquetas = new List<Subcategoria>();
+			}
+
 			if (gestorSubcategorias == null)
 			{
 				gestorSubcategorias = new SubcategoriaBO();
@@ -62,6 +67,12 @@ namespace Lives.Users
 				catch
 				{
 					MultiViewVideos.ActiveViewIndex = 0;
+				}
+
+				if (MultiViewVideos.ActiveViewIndex == 1 || MultiViewVideos.ActiveViewIndex == 2)
+				{
+					novoVideo = new Video();
+					listaEtiquetas = new List<Subcategoria>();
 				}
 			}
 
@@ -146,6 +157,7 @@ namespace Lives.Users
 			VideoBO videoBO = new VideoBO();
 			bool teste = videoBO.removeVideo(int.Parse(VideoId));
 			GridViewListaVideos.DataBind();
+			Response.Redirect("?view=0", true);
 		}
 
 		protected void lbtnEditarVideo_Click(object sender, EventArgs e)
@@ -169,9 +181,6 @@ namespace Lives.Users
 
 			tagsRepeater.DataSource = listaEtiquetas;
 			tagsRepeater.DataBind();
-
-
-
 		}
 
 		protected void FiltroVideos_OnSelectedIndexChanged(object sender, EventArgs e)
@@ -207,7 +216,7 @@ namespace Lives.Users
 			ddlSubcategoriasEditarVideo.Enabled = false;
 		}
 
-		protected void ddlCategoriasEditUploadVideo_SelectedIndexChanged(object sender, EventArgs e)
+		protected void ddlCategoriasEditVideo_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			DropDownList ddl = ((DropDownList)sender);
 			DropDownList subcat = ddl.FindControl("ddlSubcategoriasEditarVideo") as DropDownList;
@@ -225,7 +234,6 @@ namespace Lives.Users
 
 				subcat.Enabled = true;
 				subcat.DataBind();
-
 			}
 		}
 
@@ -233,35 +241,23 @@ namespace Lives.Users
 		{
 			DropDownList subcat = (DropDownList)sender;
 
-			if (MultiViewVideos.ActiveViewIndex == 1)
+			Subcategoria subCat = gestorSubcategorias.obterSubCategoriaId(int.Parse(subcat.SelectedValue));
+
+			if (!listaEtiquetas.Contains(subCat))
 			{
-				Subcategoria subCat = gestorSubcategorias.obterSubCategoriaId(int.Parse(subcat.SelectedValue));
+				listaEtiquetas.Add(subCat);
 
-				if (!listaEtiquetas.Contains(subCat))
-				{
-					listaEtiquetas.Add(subCat);
+				((DropDownList)PainelAdicionarSubcategoriaEditarVideo.FindControl("ddlCategoriasEditarVideo")).ClearSelection();
 
-					((DropDownList)PainelAdicionarSubcategoriaEditarVideo.FindControl("ddlCategoriasEditUploadVideo")).ClearSelection();
-
-					RepeaterTagEditarVideo.DataSource = listaEtiquetas;
-					RepeaterTagEditarVideo.DataBind();
-					LabelerroEditarVideo.Visible = false;
-					PainelAdicionarSubcategoriaEditarVideo.Visible = false;
-				}
-				else
-				{
-					LabelerroEditarVideo.Visible = true;
-					LabelerroEditarVideo.Text = "Já inseriu essa subcategoria!";
-				}
+				RepeaterTagEditarVideo.DataSource = listaEtiquetas;
+				RepeaterTagEditarVideo.DataBind();
+				LabelerroEditarVideo.Visible = false;
+				PainelAdicionarSubcategoriaEditarVideo.Visible = false;
 			}
-		}
-
-		protected void ddlCategoriasEditUploadVideo_OnDataBound(object sender, EventArgs e)
-		{
-			DropDownList ddl = ((DropDownList)sender);
-			if (ddl.Items.FindByValue(null) == null)
+			else
 			{
-				ddl.Items.Insert(0, new ListItem(null, null));
+				LabelerroEditarVideo.Visible = true;
+				LabelerroEditarVideo.Text = "Já inseriu essa subcategoria!";
 			}
 		}
 
@@ -274,7 +270,6 @@ namespace Lives.Users
 			RepeaterTagEditarVideo.DataSource = listaEtiquetas;
 			RepeaterTagEditarVideo.DataBind();
 		}
-
 
 		protected void ButtonCancelarEdicaoVideo_Click(object sender, EventArgs e)
 		{
@@ -315,6 +310,7 @@ namespace Lives.Users
 			}
 		}
 
+
 		protected void ButtonAnexarEditarVideo_Click(object sender, EventArgs e)
 		{
 			if ((UploadEditarVideo.PostedFile != null) && (UploadEditarVideo.PostedFile.ContentLength > 0))
@@ -333,21 +329,162 @@ namespace Lives.Users
 				LabelerroEditarVideo.Text = "Primeiro escolha o ficheiro.";
 			}
 		}
-
 		#endregion
-		
+
 
 		#region Upload vídeo
-		protected void btnAnexarVideoUpload_Click(object sender, EventArgs e)
+
+		protected void btnInserirSubcategoriaUpload_Click(object sender, EventArgs e)
 		{
+			PainelAdicionarSubcategoriaUploadVideo.Visible = !PainelAdicionarSubcategoriaUploadVideo.Visible;
+			ddlCategoriasUploadVideo.ClearSelection();
+			ddlSubcategoriasUploadVideo.ClearSelection();
+			ddlSubcategoriasUploadVideo.Enabled = false;
+		}
 
+		protected void ddlCategoriasUploadVideo_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			DropDownList ddl = ((DropDownList)sender);
+			DropDownList subcat = ddl.FindControl("ddlSubcategoriasUploadVideo") as DropDownList;
 
+			if (ddl.SelectedIndex == 0)
+			{
+				subcat.Enabled = false;
+				subcat.ClearSelection();
+			}
+			else
+			{
+				OdsSubcategorias.SelectMethod = "obterTodasSubCategoriasCategoria";
+				OdsSubcategorias.SelectParameters.Clear();
+				OdsSubcategorias.SelectParameters.Add("cat", TypeCode.Int32, ddl.SelectedValue);
+
+				subcat.Enabled = true;
+				subcat.DataBind();
+
+			}
 		}
 
 		protected void ddlSubcategoriasUploadVideo_OnSelectedIndexChanged(object sender, EventArgs e)
 		{
+			DropDownList subcat = (DropDownList)sender;
+
+			Subcategoria subCat = gestorSubcategorias.obterSubCategoriaId(int.Parse(subcat.SelectedValue));
+
+
+			if (!listaEtiquetas.Contains(subCat))
+			{
+				listaEtiquetas.Add(subCat);
+
+				((DropDownList)PainelAdicionarSubcategoriaUploadVideo.FindControl("ddlCategoriasUploadVideo")).ClearSelection();
+
+				RepeaterTagUploadVideo.DataSource = listaEtiquetas;
+				RepeaterTagUploadVideo.DataBind();
+				LabelerroUploadVideo.Visible = false;
+				PainelAdicionarSubcategoriaUploadVideo.Visible = false;
+			}
+			else
+			{
+				LabelerroUploadVideo.Visible = true;
+				LabelerroUploadVideo.Text = "Já inseriu essa subcategoria!";
+			}
 		}
+
+
+		protected void labelClickUploadVideoEventHandler(object sender, EventArgs e)
+		{
+			LinkButton etiqueta = (LinkButton)sender;
+			Subcategoria subCat = gestorSubcategorias.obterSubCategoriaNome(etiqueta.Text);
+
+			listaEtiquetas.Remove(subCat);
+			RepeaterTagUploadVideo.DataSource = listaEtiquetas;
+			RepeaterTagUploadVideo.DataBind();
+		}
+
+
+		protected void ButtonCancelarUploadVideo_Click(object sender, EventArgs e)
+		{
+			if (novoVideo.url != null)
+			{
+				apagaFicheiroDiretorioVideos(novoVideo.url);
+			}
+			listaEtiquetas = null;
+			Response.Redirect("?view=0", true);
+		}
+
+
+		protected void btnConfirmarUploadVideo_Click(object sender, EventArgs e)
+		{
+			Video videoMaisRecente = null;
+			if (novoVideo.url != null)
+			{
+				if (listaEtiquetas.Count > 0)
+				{
+					if (gestorVideos.criarVideo(txtBoxDescricaoUploadVideo.Text, Guid.Parse(idUserHide.Value), txtBoxTituloUploadVideo.Text, novoVideo.url))
+					{
+						videoMaisRecente = gestorVideos.obterVideoMaisRecenteUser(Guid.Parse(idUserHide.Value));
+
+						if (gestorVideos.modificaVideo(null, null, null, videoMaisRecente.id, listaEtiquetas))
+						{
+							Response.Redirect("?view=0", true);
+						}
+						else
+						{
+							LabelerroUploadVideo.Visible = true;
+							LabelerroUploadVideo.Text = "Não foi possivel atualizar a base de dados, tente novamente!";
+						}
+					}
+					else
+					{
+						LabelerroUploadVideo.Visible = true;
+						LabelerroUploadVideo.Text = "Não foi possivel atualizar a base de dados, tente novamente!";
+					}
+				}
+				else
+				{
+					LabelerroUploadVideo.Visible = true;
+					LabelerroUploadVideo.Text = "Precisa de adicionar etiquetas!!";
+				}
+			}
+			else
+			{
+				LabelerroUploadVideo.Visible = true;
+				LabelerroUploadVideo.Text = "Primeiro precisa de anexar o vídeo!!";
+			}
+
+		}
+
+		protected void ButtonAnexarUploadVideo_Click(object sender, EventArgs e)
+		{
+			novoVideo = new Video();
+			if ((UploadVideo.PostedFile != null) && (UploadVideo.PostedFile.ContentLength > 0))
+			{
+				if (novoVideo.url != null)
+				{
+					LabelerroUploadVideo.Visible = false;
+					apagaFicheiroDiretorioVideos(novoVideo.url);
+				}
+
+				uploadVideo(UploadVideo, LabelerroUploadVideo);
+				reproduzVideo(novoVideo.url, LiteralVisualizaUploadVideo);
+			}
+			else
+			{
+				LabelerroUploadVideo.Visible = true;
+				LabelerroUploadVideo.Text = "Primeiro escolha o ficheiro.";
+			}
+		}
+
 		#endregion
+
+
+		protected void ddlCategoriasEditUploadVideo_OnDataBound(object sender, EventArgs e)
+		{
+			DropDownList ddl = ((DropDownList)sender);
+			if (ddl.Items.FindByValue(null) == null)
+			{
+				ddl.Items.Insert(0, new ListItem(null, null));
+			}
+		}
 
 		private void reproduzVideo(string url, Literal literal)
 		{
@@ -380,7 +517,7 @@ namespace Lives.Users
 			string ficheiroVideo = null;
 			string nomeAleatorio = null;
 			string SaveLocation = null;
-			
+
 			if ((filme.PostedFile.ContentLength / 1024) < 20480)
 			{
 				nomeAleatorio = criaNomeVideo(18);

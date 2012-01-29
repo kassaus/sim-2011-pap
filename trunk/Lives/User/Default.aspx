@@ -207,7 +207,8 @@
                 <div class='column left'>
                     <div class="column left">
                         <asp:Image ID="Image3" CssClass="infoImage" AlternateText="Informação do controlo"
-                            runat="server" ImageUrl="~/images/informacao.png" ToolTip="Para remover uma Tag clique na respetiva tag!" ImageAlign="AbsMiddle" />&nbsp
+                            runat="server" ImageUrl="~/images/informacao.png" ToolTip="Para remover uma Tag clique na respetiva tag!"
+                            ImageAlign="AbsMiddle" />&nbsp
                         <asp:ImageButton ID="btnInserirSubcategoriaEditarVideo" runat="server" ImageAlign="Middle"
                             ImageUrl="~/images/add.png" OnClick="btnInserirSubcategoria_Click" />
                         Etiquetas:
@@ -226,7 +227,7 @@
                                 Categorias:
                                 <asp:DropDownList ID="ddlCategoriasEditarVideo" runat="server" DataSourceID="OdsCategorias"
                                     OnDataBound="ddlCategoriasEditUploadVideo_OnDataBound" DataTextField="nome" DataValueField="id"
-                                    Width="150px" AutoPostBack="True" OnSelectedIndexChanged="ddlCategoriasEditUploadVideo_SelectedIndexChanged">
+                                    Width="150px" AutoPostBack="True" OnSelectedIndexChanged="ddlCategoriasEditVideo_SelectedIndexChanged">
                                 </asp:DropDownList>
                             </div>
                             <div class='row right'>
@@ -247,7 +248,7 @@
                     <asp:Button ID="ButtonAnexarEditarVideo" CssClass="botaoLogin" runat="server" Text="Anexar"
                         OnClick="ButtonAnexarEditarVideo_Click" />
                 </div>
-                <div class="row left extraTopSpace painelBotoes">                    
+                <div class="row left extraTopSpace painelBotoes">
                     <div class="column right">
                         <asp:Button ID="ButtonCancelaredicaoVideo" CssClass="botaoLogin" runat="server" Text="Cancelar"
                             OnClick="ButtonCancelarEdicaoVideo_Click" />
@@ -263,82 +264,98 @@
             <div class="subtitulo">
                 Upload Vídeo
             </div>
-            <div style="position: absolute; top: 0; left: 0; z-index: 999999; width: 800px; height: 600px;
-                background-color: white">
-                <div>
-                    <asp:ImageButton ID="btnInserirSubcategoria" runat="server" ImageAlign="Middle" ImageUrl="~/images/add.png"
-                        OnClick="btnInserirSubcategoria_Click" />
-                    &nbsp Etiquetas:
-                    <asp:Repeater ID="RepeaterNewTag" runat="server">
-                        <ItemTemplate>
-                            <asp:LinkButton ID="LinkButton1" runat="server" Text='<%# Eval("nome") %>' OnClick="labelClickEventHandler" />
-                        </ItemTemplate>
-                    </asp:Repeater>
-                </div>
-                <div>
-                    <asp:Panel ID="PainelAdicionarSubcategoria" Style="width: 500px; height: 150px; background-color: red;"
-                        runat="server" Visible="false">
-                        Categorias:
-                        <asp:DropDownList ID="ddlCategoriasEditUploadVideo" runat="server" DataSourceID="OdsCategorias"
-                            OnDataBound="ddlCategoriasEditUploadVideo_OnDataBound" DataTextField="nome" DataValueField="id"
-                            Width="150px" AutoPostBack="True" OnSelectedIndexChanged="ddlCategoriasEditUploadVideo_SelectedIndexChanged">
-                        </asp:DropDownList>
-                        Subcategorias:
-                        <asp:DropDownList ID="ddlSubcategoriasEditUploadVideo" OnDataBound="ddlCategoriasEditUploadVideo_OnDataBound"
-                            runat="server" Width="150px" AutoPostBack="true" DataSourceID="OdsSubcategorias"
-                            Enabled="false" DataTextField="nome" DataValueField="id" OnSelectedIndexChanged="ddlSubcategoriasUploadVideo_OnSelectedIndexChanged">
-                        </asp:DropDownList>
-                    </asp:Panel>
-                </div>
-                <div class="letraCinzentoMedia field">
-                    Título:
-                    <asp:TextBox ID="txtBoxTituloVideo" runat="server" Columns="50" Width="200px"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="rftTitulo" runat="server" ControlToValidate="txtBoxTituloVideo"
-                        ErrorMessage="Campo obrigatório" ForeColor="Red" ValidationGroup="grupo1">*</asp:RequiredFieldValidator>
-                    <asp:TextBoxWatermarkExtender ID="TextBoxWatermarkExtender1" runat="server" Enabled="True"
-                        TargetControlID="txtBoxTituloVideo" WatermarkText="Título do Vídeo">
+            <div class="row left erroTopoPagina">
+                <asp:Label ID="LabelerroUploadVideo" CssClass="redError" runat="Server" Visible="false"></asp:Label>
+                <asp:ValidationSummary CssClass="redError" ID="ValidationSummary1" runat="server"
+                    ForeColor="Red" ValidationGroup="grupo1" />
+            </div>
+            <div class='editPanel'>
+                <div class='row left'>
+                    <div class="infoImage">
+                        <asp:Image ID="Image1" runat="server" ImageUrl="~/images/informacao.png" ToolTip="Para repor o título original basta limpar a caixa de texto." />
+                    </div>
+                    <div class="letraCinzentoMedia field">
+                        Título:
+                        <asp:TextBox ID="txtBoxTituloUploadVideo" runat="server" Columns="50"
+                            Width="200px"></asp:TextBox> 
+                             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtBoxTituloUploadVideo"
+                            ErrorMessage="Campo obrigatório" ForeColor="Red" ValidationGroup="grupo1">*</asp:RequiredFieldValidator>                      
+                             <asp:TextBoxWatermarkExtender ID="TextBoxWatermarkExtenderTituloUploadVideo" runat="server"
+                        Enabled="True" TargetControlID="txtBoxTituloUploadVideo" WatermarkText="Escreva aqui o título">
                     </asp:TextBoxWatermarkExtender>
+                    </div>
+                   
                 </div>
-                <div class="letraCinzentoMedia field">
-                    Descrição:
-                    <asp:TextBox ID="txtBoxDescricaoVideo" runat="server" Columns="255" Width="200px"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtBoxDescricaoVideo"
-                        ErrorMessage="Campo obrigatório" ForeColor="Red" ValidationGroup="grupo1">*</asp:RequiredFieldValidator>
-                    <asp:TextBoxWatermarkExtender ID="TextBoxDescricao_WatermarkExtender" runat="server"
-                        Enabled="True" TargetControlID="txtBoxDescricaoVideo" WatermarkText="Descrição do vídeo">
-                    </asp:TextBoxWatermarkExtender>
+                <div class='row left'>
+                    <div class="infoImage">
+                        <asp:Image ID="Image2" runat="server" ImageUrl="~/images/informacao.png" ToolTip="Para repor a descrição original basta limpar a caixa de texto." />
+                    </div>
+                    <div class="letraCinzentoMedia field">
+                        Descrição:
+                        <asp:TextBox ID="txtBoxDescricaoUploadVideo" runat="server" Columns="255"
+                            Width="200px"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtBoxDescricaoUploadVideo"
+                            ErrorMessage="Campo obrigatório" ForeColor="Red" ValidationGroup="grupo1">*</asp:RequiredFieldValidator>
+                        <asp:TextBoxWatermarkExtender ID="TextBoxWatermarkExtenderDescricaoUploadVideo" runat="server"
+                            Enabled="True" TargetControlID="txtBoxDescricaoUploadVideo" WatermarkText="Escreva aqui a descrição">
+                        </asp:TextBoxWatermarkExtender>
+                    </div>
                 </div>
-                <div>
-                    <div>
-                        <object classid="clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95" width="500" height="375"
-                            codebase="http://www.microsoft.com/Windows/MediaPlayer/">
-                            <param name="Filename" value='<%# Eval("url") %>'>
-                            <param name="AutoStart" value="false">
-                            <param name="ShowControls" value="true">
-                            <param name="BufferingTime" value="2">
-                            <param name="ShowStatusBar" value="false">
-                            <param name="AutoSize" value="true">
-                            <param name="InvokeURLs" value="false">
-                            <embed src='<%# "/Videos/" + Eval("url") %>' type="application/x-mplayer2" autostart="0"
-                                enabled="1" showstatusbar="0" showdisplay="1" showcontrols="1" pluginspage="http://www.microsoft.com/Windows/MediaPlayer/"
-                                codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=6,0,0,0"
-                                width="500" height="375"></embed>
-                        </object>
+                <div class="row left videoPlaceHolder">
+                    <asp:Literal ID="LiteralVisualizaUploadVideo" runat="server"></asp:Literal>
+                </div>
+                <div class='column left'>
+                    <div class="column left">
+                        <asp:Image ID="Image4" CssClass="infoImage" AlternateText="Informação do controlo"
+                            runat="server" ImageUrl="~/images/informacao.png" ToolTip="Para remover uma Tag clique na respetiva tag!"
+                            ImageAlign="AbsMiddle" />&nbsp
+                        <asp:ImageButton ID="btnInserirSubcategoriaUploadVideo" runat="server" ImageAlign="Middle"
+                            ImageUrl="~/images/add.png" OnClick="btnInserirSubcategoriaUpload_Click" />
+                        Etiquetas:
                     </div>
-                    <div>
-                        <p>
-                            Máximo 20MB
-                            <asp:FileUpload ID="VideoUpload" runat="server" Font-Bold="True" Height="20px" Width="250px"
-                                ForeColor="#000666" Font-Size="X-Small" BorderWidth="1" /></p>
+                    <div class='column left painelEtiquetasActuais'>
+                        <asp:Repeater ID="RepeaterTagUploadVideo" runat="server">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="LinkButtonTagEditarVideo" runat="server" Text='<%# Eval("nome") %>'
+                                    OnClick="labelClickUploadVideoEventHandler" />
+                            </ItemTemplate>
+                        </asp:Repeater>
                     </div>
-                    <div>
-                        <asp:Button ID="Button1" CssClass="botaoLogin" Height="40px" Width="133px" runat="server"
-                            Text="Confirmar" OnClick="btnConfirmarEdicaoVideo_Click" ValidationGroup="grupo1" />
+                    <div class="row right extraTopSpace">
+                        <asp:Panel ID="PainelAdicionarSubcategoriaUploadVideo" runat="server" Visible="false">
+                            <div class='row right'>
+                                Categorias:
+                                <asp:DropDownList ID="ddlCategoriasUploadVideo" runat="server" DataSourceID="OdsCategorias"
+                                    OnDataBound="ddlCategoriasEditUploadVideo_OnDataBound" DataTextField="nome" DataValueField="id"
+                                    Width="150px" AutoPostBack="True" OnSelectedIndexChanged="ddlCategoriasUploadVideo_SelectedIndexChanged">
+                                </asp:DropDownList>
+                            </div>
+                            <div class='row right'>
+                                Subcategorias:
+                                <asp:DropDownList ID="ddlSubcategoriasUploadVideo" OnDataBound="ddlCategoriasEditUploadVideo_OnDataBound"
+                                    runat="server" Width="150px" AutoPostBack="true" DataSourceID="OdsSubcategorias"
+                                    Enabled="false" DataTextField="nome" DataValueField="id" OnSelectedIndexChanged="ddlSubcategoriasUploadVideo_OnSelectedIndexChanged">
+                                </asp:DropDownList>
+                            </div>
+                        </asp:Panel>
                     </div>
-                    <div style="position: absolute; left: 100px">
-                        <asp:Label ID="lblErro" CssClass="redError" runat="Server" Visible="False"></asp:Label>
-                        <asp:ValidationSummary CssClass="redError" ID="ValidationSummary1" runat="server"
-                            ValidationGroup="grupo1" />
+                </div>
+                <div class="row left extraTopSpace">
+                    Máximo 20MB
+                    <asp:FileUpload CssClass="fileUpload" ID="UploadVideo" runat="server" />
+                </div>
+                <div class="column left extraTopSpace">
+                    <asp:Button ID="ButtonAnexarUploadVideo" CssClass="botaoLogin" runat="server" Text="Anexar"
+                        OnClick="ButtonAnexarUploadVideo_Click" />
+                </div>
+                <div class="row left extraTopSpace painelBotoes">
+                    <div class="column right">
+                        <asp:Button ID="ButtonCancelarUploadVideo" CssClass="botaoLogin" runat="server" Text="Cancelar"
+                            OnClick="ButtonCancelarUploadVideo_Click" />
+                    </div>
+                    <div class="column right">
+                        <asp:Button ID="ButtonConfirmaruploadVideo" CssClass="botaoLogin" runat="server"
+                            Text="Confirmar" OnClick="btnConfirmarUploadVideo_Click" ValidationGroup="grupo1" />
                     </div>
                 </div>
             </div>

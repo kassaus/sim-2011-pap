@@ -607,7 +607,14 @@ input[type='text'], input[type='password']
 
 .painelBotoes
 {
-    width:500px;
+    width: 500px;
+}
+
+.videoPlaceHolder
+{
+    width: 500px;
+    height: 375px;
+    border: thin dashed #4e4a47;
 }
 
 .erroTopoPagina

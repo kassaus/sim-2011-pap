@@ -178,6 +178,11 @@ namespace BLL
 			return videosDataManager.obterVideoMaisRecente(estado);
 		}
 
+		public Video obterVideoMaisRecenteUser(Guid idUser)
+		{
+			return videosDataManager.obterVideoMaisRecente(1);
+		}
+
 		public List<Video> GetByUser(Guid idUser)
 		{
 			return videosDataManager.obterVideosPorUser(idUser);
