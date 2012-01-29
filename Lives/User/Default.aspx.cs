@@ -1,18 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Web.Security;
 using System.Web.UI.WebControls;
 using BLL;
 using BO;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Lives.Users
 {
 	public partial class HomeUser : System.Web.UI.Page
 	{
 		private VideoBO gestorVideos { get; set; }
+
 		private SubcategoriaBO gestorSubcategorias { get; set; }
+
 		private CategoriaBO gestorCategorias { get; set; }
+
 		private static List<Subcategoria> listaEtiquetas = null;
 		private string DIRETORIO_VIDEOS = "/Videos";
 		private static Video novoVideo = new Video();
@@ -76,7 +79,7 @@ namespace Lives.Users
 				}
 			}
 
-			if (MultiViewVideos.ActiveViewIndex == 1 || MultiViewVideos.ActiveViewIndex == 2)
+			if (MultiViewVideos.ActiveViewIndex != 0)
 			{
 				panelFiltros.Visible = false;
 			}
@@ -87,12 +90,10 @@ namespace Lives.Users
 
 		protected void ddlCategoriasListagens_OnDataBound(object sender, EventArgs e)
 		{
-
 			if (ddlCategoriasListagens.Items.FindByValue(null) == null)
 			{
 				ddlCategoriasListagens.Items.Insert(0, new ListItem(null, null));
 			}
-
 		}
 
 		protected void ddlCategoriasListagens_SelectedIndexChanged(object sender, EventArgs e)
@@ -127,7 +128,6 @@ namespace Lives.Users
 			{
 				ddlSubcategoriasListagens.Items.Insert(0, new ListItem(null, null));
 			}
-
 		}
 
 		protected void GridViewListaVideos_OnRowDataBound(object sender, GridViewRowEventArgs e)
@@ -204,7 +204,7 @@ namespace Lives.Users
 			GridViewListaVideos.DataBind();
 		}
 
-		#endregion
+		#endregion Listagens de Vídeos
 
 		#region Editar Vídeos
 
@@ -329,7 +329,8 @@ namespace Lives.Users
 				LabelerroEditarVideo.Text = "Primeiro escolha o ficheiro.";
 			}
 		}
-		#endregion
+
+		#endregion Editar Vídeos
 
 
 		#region Upload vídeo
@@ -360,7 +361,6 @@ namespace Lives.Users
 
 				subcat.Enabled = true;
 				subcat.DataBind();
-
 			}
 		}
 
@@ -450,7 +450,6 @@ namespace Lives.Users
 				LabelerroUploadVideo.Visible = true;
 				LabelerroUploadVideo.Text = "Primeiro precisa de anexar o vídeo!!";
 			}
-
 		}
 
 		protected void ButtonAnexarUploadVideo_Click(object sender, EventArgs e)
@@ -474,7 +473,7 @@ namespace Lives.Users
 			}
 		}
 
-		#endregion
+		#endregion Upload vídeo
 
 
 		protected void ddlCategoriasEditUploadVideo_OnDataBound(object sender, EventArgs e)
@@ -509,7 +508,6 @@ namespace Lives.Users
 							"codebase='http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=6,0,0,0'" +
 							"width='" + width + "' height='" + height + "'>" + "</embed>" + "</object>";
 			literal.DataBind();
-
 		}
 
 		private void uploadVideo(FileUpload filme, Label msg)
@@ -564,7 +562,6 @@ namespace Lives.Users
 				if (item.ItemType == ListItemType.AlternatingItem || item.ItemType == ListItemType.Item)
 				{
 					controlo = (FileUpload)item.FindControl(id);
-
 				}
 			} return controlo;
 		}
@@ -577,7 +574,6 @@ namespace Lives.Users
 				if (item.ItemType == ListItemType.AlternatingItem || item.ItemType == ListItemType.Item)
 				{
 					controlo = (Label)item.FindControl(id);
-
 				}
 			} return controlo;
 		}
@@ -590,19 +586,13 @@ namespace Lives.Users
 				if (item.ItemType == ListItemType.AlternatingItem || item.ItemType == ListItemType.Item)
 				{
 					controlo = (Button)item.FindControl(id);
-
 				}
 			} return controlo;
 		}
 
-
-
-
-
-
 		public string criaNomeVideo(int tamanho)
 		{
-			string caracteres = "abcoqsujhkvy246890";
+			string caracteres = "abcdefghijklmnopqrstuvwyxzABCDEFGHIJKLMNOPQRSTUVWYXZ0123456789";
 			int valormaximo = caracteres.Length;
 
 			Random random = new Random(DateTime.Now.Millisecond);
@@ -617,7 +607,6 @@ namespace Lives.Users
 
 		private void apagaFicheiroDiretorioVideos(string nome_ficheiro)
 		{
-
 			if (System.IO.File.Exists(Server.MapPath(DIRETORIO_VIDEOS) + "\\" + nome_ficheiro))
 			{
 				try
@@ -627,20 +616,5 @@ namespace Lives.Users
 				catch { }
 			}
 		}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	}
 }
