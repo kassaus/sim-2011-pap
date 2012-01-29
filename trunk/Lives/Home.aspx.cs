@@ -58,7 +58,7 @@ namespace Lives
             
             if (string.IsNullOrEmpty(continueUrl))
             {
-                continueUrl = "~/Default.aspx";
+                continueUrl = "~/HomeAdmin.aspx";
             }
             
             Response.Redirect(continueUrl);

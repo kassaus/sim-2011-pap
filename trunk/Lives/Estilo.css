@@ -403,14 +403,17 @@ input[type='text'], input[type='password']
 
 .passAlteradaSucesso
 {
-	border: thin dashed #666;
-	width: 500px;
-	margin-left: auto;
-	margin-right: auto;
-	padding: 5px;
-	font-size: 1.8em;
+	color: #333;
+	background: #e0f8d6;
+	border: 1px solid #3b6e22;
 	text-align: center;
-	background: #ffebe8;
+	padding: 10px;
+}
+
+.celulaCentrada
+{
+	text-align: center;
+	margin: 0 0.5em 0 0.5em;
 }
 
 .redError
@@ -436,7 +439,7 @@ input[type='text'], input[type='password']
 	left: 20%;
 }
 
-.painelBotoes
+.errorMessage
 {
 	font-size: 3em;
 	font-weight: bold;
@@ -456,11 +459,15 @@ input[type='text'], input[type='password']
 
 .gridViewLineUsers
 {
-	padding-left: 10px;
-	margin: 5px;
 	text-align: left;
 	vertical-align: middle;
 	color: #666;
+}
+
+.gridViewLineUsers > td
+{
+	padding: 0.5em;
+	vertical-align: middle;
 }
 
 .contentorTopo
@@ -583,7 +590,6 @@ input[type='text'], input[type='password']
 .column
 {
 	margin: 0 0.5em 0.5em 0;
-   
 }
 
 .left
@@ -614,7 +620,6 @@ input[type='text'], input[type='password']
 .painelBotoes
 {
 	width: 500px;
-	
 }
 
 
@@ -659,7 +664,7 @@ input[type='text'], input[type='password']
 	border: thin dashed #4e4a47;
 }
 
-.erroTopoPagina
+.infoTopoPagina
 {
 	margin: 1em 0 3em 0;
 }
@@ -729,14 +734,11 @@ input[type='text'], input[type='password']
 {
 	float: left;
 	margin: 0.5em 0.5em 0;
-	vertical-align:top;	
 }
 
 .infoImageExtraTopoButtom
 {
-	
 	margin-top:17px;
-	
 }
 
 .field
@@ -770,4 +772,24 @@ input[type="button"], input[type="submit"], input[type="reset"], .botaoLogin
 	margin: 0 0 0 18em;
 	padding: 0;
 	width: 100%;
+}
+
+a, a:hover, a:link, a:visited
+{
+	text-decoration: none;
+}
+
+a, a:link
+{
+	color: #666;
+}
+
+a:visited
+{
+	color: #999;
+}
+
+a:hover
+{
+	color: #4e4a47;
 }
