@@ -48,5 +48,10 @@ namespace SilverlightApplication
 			errorWin.Show();
 		}
 
+		private void ElementMedia_Open(object sender, RoutedEventArgs e)
+		{
+			//sliderVolume.Value = VideoElement.Volume;
+		}
+
 	}
 }
