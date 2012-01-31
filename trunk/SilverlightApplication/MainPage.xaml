@@ -6,8 +6,8 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d"
 	d:DesignWidth="962" d:DesignHeight="488" TabNavigation="Once">
-
-	<Grid x:Name="LayoutRoot">
+	<Canvas Name="Main" Width="1024" Margin="0,0,0,0">
+		<Grid x:Name="LayoutRoot" Canvas.Left="0" Width="1024" Height="488">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="*"/>
@@ -23,7 +23,30 @@
 		<Border x:Name="ContentBorder" Style="{StaticResource NavContentBorderStyle}" Grid.Row="1" Margin="5 0 5 5">
 			<navigation:Frame x:Name="ContentFrame" Style="{StaticResource NavContentFrameStyle}" Source="Listagem"  Navigated="ContentFrame_Navigated" NavigationFailed="ContentFrame_NavigationFailed" Margin="0" />
 		</Border>
+			
+		</Grid>
+		<Grid x:Name="Player" Canvas.Top="100" Canvas.Left="20" Background="#FF1D1919" Height="331" Width="500">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="285" />
+				<RowDefinition Height="46" />
+			</Grid.RowDefinitions>
 
-	</Grid>
+			<Grid Grid.Row="0" Background="Black">
+				<MediaElement x:Name="VideoElement" MediaOpened="ElementMedia_Open" AutoPlay="True" Margin="0,14,0,8" />
+			</Grid>
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1" Width="500">
+				<ToggleButton x:Name="btnPlayPause" Margin="0,0,0,0" Grid.Row="1">
+					<Image Height="44" Name="btnPlayPause_img" Stretch="Fill" Width="48" Source="/SilverlightApplication;component/images/play.png" />
+
+				</ToggleButton>
+			</StackPanel>
+		</Grid>
+
+
+
+	</Canvas>
+
+
+
 
 </UserControl>
