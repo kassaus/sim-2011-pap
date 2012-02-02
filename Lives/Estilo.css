@@ -485,6 +485,14 @@ input[type='text'], input[type='password']
 	z-index: 4;
 }
 
+.formularioRegisto
+{ 
+	margin-top: 2em;	
+	border-top: thin solid #4e4a47;
+	border-bottom: thin solid #4e4a47;
+	width: 100%;
+}
+
 .contentorMain
 {
 	clear: both;
@@ -493,7 +501,8 @@ input[type='text'], input[type='password']
 	height: 573px !important;
 	min-width: 100%;
 	z-index: 0;
-}
+ }
+
 
 .contentorRodaPe
 {
@@ -618,6 +627,10 @@ input[type='text'], input[type='password']
 {
 	margin-right: 2em;
 }
+.extraLeftSpacce 
+{
+	margin-left: 2em;
+}
 
 .painelBotoes
 {
@@ -711,14 +724,14 @@ input[type='text'], input[type='password']
 	color: #FFF;
 	font-weight: bold;
 	text-align: center;
-	background-color: #4e4a47;
 	text-decoration: none;
 	padding: 0.45em 0 0 0;
+	border-top-style: none;
 }
 
 .editBorder
 {
-	border: thin solid yellow;
+	border: thin solid #4e4a47;
 }
 
 .removeBorder
@@ -803,9 +816,12 @@ a:hover
 	color: #4e4a47;
 }
 
+
+
 .barraEsquerda
 {
 	margin-left: 1em;
 	width: 280px !important;
 	height: 552px !important;
 }
+
