@@ -7,31 +7,7 @@ namespace Lives
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-			RegisterUser.ContinueDestinationPageUrl = Request.QueryString["ReturnUrl"];
 
-			int panel = -1;
-
-			try
-			{
-				panel = int.Parse(Request.QueryString["p"]);
-			}
-			catch { }
-
-			switch (panel)
-			{
-				case 0:
-					painelRegisto.Visible = true;
-					painelRecuperacaoPassword.Visible = false;
-					break;
-				case 1:
-					painelRecuperacaoPassword.Visible = true;
-					painelRegisto.Visible = false;
-					break;
-				default:
-					painelRegisto.Visible = false;
-					painelRecuperacaoPassword.Visible = false;
-					break;
-			}
 
 			Video.Text = "<object data='data:application/x-silverlight-2,' type='application/x-silverlight-2'>" +
 			"<param name='source' value='ClientBin/SilverlightApplication.xap' />" +
@@ -49,25 +25,5 @@ namespace Lives
 			"border: 0px'></iframe>";
 		}
 
-		protected void RegisterUser_CreatedUser(object sender, EventArgs e)
-		{
-			FormsAuthentication.SetAuthCookie(RegisterUser.UserName, false);
-
-			string continueUrl = RegisterUser.ContinueDestinationPageUrl;
-
-			try
-			{
-				MembershipUser user = Membership.GetUser(RegisterUser.UserName);
-				Roles.AddUserToRole(user.UserName, "user");
-			}
-			catch { }
-
-			if (string.IsNullOrEmpty(continueUrl))
-			{
-				continueUrl = "~/HomeAdmin.aspx";
-			}
-
-			Response.Redirect(continueUrl);
-		}
 	}
 }

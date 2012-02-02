@@ -20,50 +20,5 @@ namespace Lives {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal Video;
-        
-        /// <summary>
-        /// painelRegisto control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel painelRegisto;
-        
-        /// <summary>
-        /// RegisterUser control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CreateUserWizard RegisterUser;
-        
-        /// <summary>
-        /// RegisterUserWizardStep control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CreateUserWizardStep RegisterUserWizardStep;
-        
-        /// <summary>
-        /// painelRecuperacaoPassword control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel painelRecuperacaoPassword;
-        
-        /// <summary>
-        /// PasswordRecovery1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.PasswordRecovery PasswordRecovery1;
     }
 }
