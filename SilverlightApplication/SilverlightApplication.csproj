@@ -65,6 +65,7 @@
     <Reference Include="mscorlib" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
@@ -106,6 +107,11 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Service References\WebServiceLive\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Views\Mosaico.xaml.cs">
       <DependentUpon>Mosaico.xaml</DependentUpon>
     </Compile>
@@ -122,6 +128,36 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <None Include="Service References\WebServiceLive\SilverlightApplication.WebServiceLive.Categoria.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WebServiceLive\SilverlightApplication.WebServiceLive.Subcategoria.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WebServiceLive\SilverlightApplication.WebServiceLive.Video.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WebServiceLive\WebService.wsdl" />
+    <None Include="Service References\WebServiceLive\WebService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WebServiceLive\WebService1.wsdl" />
+    <None Include="Service References\WebServiceLive\WebService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WebServiceLive\WebService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WebServiceLive\WebService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WebServiceLive\WebService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Resource Include="images\pause.png" />
+    <Resource Include="images\mute.png" />
+    <Resource Include="images\unmuted.png" />
+    <Content Include="ServiceReferences.ClientConfig" />
     <Page Include="Assets\Brushes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -168,13 +204,22 @@
     <None Include="Properties\AppManifest.xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Service References\WebServiceLive\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\WebServiceLive\configuration.svcinfo" />
+    <None Include="Service References\WebServiceLive\configuration91.svcinfo" />
+    <None Include="Service References\WebServiceLive\WebService.disco" />
     <Resource Include="images\play.png" />
     <Content Include="readme.txt" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\WebServiceLive\" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
