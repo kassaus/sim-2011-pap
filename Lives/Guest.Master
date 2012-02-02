@@ -49,11 +49,11 @@
 							<tr>
 								<td style="padding-left: 5px">
 									<asp:LinkButton ID="registerUser" runat="server" Font-Underline="False" ForeColor="white"
-										PostBackUrl="~/Home.aspx?p=0">Registar utilizador</asp:LinkButton>
+										PostBackUrl="~/Reg.aspx?p=0">Registar utilizador</asp:LinkButton>
 								</td>
 								<td style="padding-left: 5px">
 									<asp:LinkButton ID="passwordRecovery" runat="server" Font-Underline="False" ForeColor="white"
-										PostBackUrl="~/Home.aspx?p=1">Esqueceste password?</asp:LinkButton>
+										PostBackUrl="~/Reg.aspx?p=1">Esqueceste password?</asp:LinkButton>
 								</td>
 								<td>
 								</td>
