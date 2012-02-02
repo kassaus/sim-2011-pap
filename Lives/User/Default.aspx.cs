@@ -139,8 +139,8 @@ namespace Lives.Users
 				LinkButton editar = (LinkButton)e.Row.FindControl("lbtnEditarVideo");
 				if (aprovado.Checked)
 				{
-					apagar.Visible = false;
-					editar.Visible = false;
+					apagar.Enabled = false;
+					editar.Enabled = false;
 				}
 			}
 		}

@@ -146,9 +146,9 @@
 									</div>
 									<div class="botoesLateralInfoListagemVideos">
 										<div class="linhaLateralInfoListagemVideos botao editBorder">
-											<asp:LinkButton ID="lbtnEditarVideo" CssClass="botao" runat="server" OnClick="lbtnEditarVideo_Click">Editar</asp:LinkButton></div>
-										<div class="linhaLateralInfoListagemVideos botao removeBorder">
-											<asp:LinkButton ID="lbtnApagarVideo" CssClass="botao" runat="server" OnClick="lbtnApagarVideo_Click">Remover</asp:LinkButton></div>
+											<asp:LinkButton ID="lbtnEditarVideo" runat="server" CssClass="botao" OnClick="lbtnEditarVideo_Click">Editar</asp:LinkButton></div>
+										<div class="linhaLateralInfoListagemVideos botao editBorder">
+											<asp:LinkButton ID="lbtnApagarVideo" runat="server" CssClass="botao"  OnClick="lbtnApagarVideo_Click">remover</asp:LinkButton></div>
 									</div>
 								</div>
 								<div class="painelInfoListagemVideos">
