@@ -1,0 +1,17 @@
+<configuration>
+    <system.serviceModel>
+        <bindings>
+            <customBinding>
+                <binding name="CustomBinding_WebService">
+                    <binaryMessageEncoding />
+                    <httpTransport maxReceivedMessageSize="2147483647" maxBufferSize="2147483647" />
+                </binding>
+            </customBinding>
+        </bindings>
+        <client>
+            <endpoint address="http://localhost/Lives/WebService.svc" binding="customBinding"
+                bindingConfiguration="CustomBinding_WebService" contract="WebServiceLives.WebService"
+                name="CustomBinding_WebService" />
+        </client>
+    </system.serviceModel>
+</configuration>

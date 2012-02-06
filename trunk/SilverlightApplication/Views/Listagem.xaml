@@ -1,14 +1,77 @@
-<navigation:Page x:Class="SilverlightApplication.Listagem"
+<navigation:Page
+    x:Class="SilverlightApplication.Listagem"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+    xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
-    d:DesignWidth="640" d:DesignHeight="300" mc:Ignorable="d"
+    xmlns:local="clr-namespace:Player;assembly=VideoPlayerLibrary"   
+    xmlns:data="clr-namespace:SilverlightApplication"             
+    d:DesignWidth="1154" d:DesignHeight="743" mc:Ignorable="d"
     Style="{StaticResource PageStyle}">
 
-    <Grid x:Name="LayoutRoot">
-        <ScrollViewer x:Name="PageScrollViewer" Style="{StaticResource PageScrollViewerStyle}">
-        </ScrollViewer>
+   
+
+    <Grid x:Name="LayoutRoot" Margin="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="400" />
+        </Grid.ColumnDefinitions>
+
+        <local:Video Name="Video" HasControls="true" AutoPlay="true" Grid.Column="0" />
+
+        <Grid Grid.Column="1" x:Name="PainelNavegacao">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="40" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Background="#4e4a47" Orientation="Horizontal" Grid.Row="0">
+                <sdk:Label Content="Categoria:" Margin="20,0,5,0" Target="{Binding ElementName=Categorias}" Foreground="White" FontSize="14" Height="20" VerticalAlignment="Center" />
+                <ComboBox Margin="0,0,10,0" Height="25" ItemsSource="{Binding}" Name="Categorias" Width="120" VerticalAlignment="Center">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox x:Name="Check" Content="{Binding nome}" Tag="{Binding id}" IsChecked="false" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <HyperlinkButton Content="Actualizar" Foreground="White" Height="20" Name="btnAtualizar" Margin="5,0,10,0" Click="btnAtualizar_Click" />
+                <HyperlinkButton Content="Limpar Filtro" Foreground="White" Height="20" Name="btnRemoveFiltro" Margin="5,0,10,0" Click="btnRemoveFiltro_Click" />
+            </StackPanel>
+
+            <ListBox Name="ListaVideos" Grid.Row="1" ItemsSource="{Binding}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <local:Video Name="VideoPreview" HasControls="false" Mute="True" AutoPlay="False" DataContextChanged="VideoPreview_DataContextChanged" MouseLeftButtonDown="VideoPreview_MouseLeftButtonDown"  Height="150" Width="200" />
+                            <StackPanel Orientation="Vertical" Margin="5, 0, 0, 0"   Width="160">
+                                <StackPanel Orientation="Horizontal">
+                                    <sdk:Label Content="T&#237;tulo: " FontWeight="Bold" />
+                                    <sdk:Label Content="{Binding titulo}" Width="160" />
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <sdk:Label Content="Descri&#231;&#227;o: " FontWeight="Bold" />
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding descricao}" Width="160" />
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <sdk:Label Content="Data: " FontWeight="Bold" />
+                                    <sdk:Label Content="{Binding data}" Width="160" />
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+
+            </ListBox>
+
+            <sdk:DataPager HorizontalAlignment="Center" Name="paginador" VerticalAlignment="Center" BorderThickness="0" DisplayMode="FirstLastPreviousNextNumeric" FontSize="10" AutoEllipsis="True" Grid.Row="2" />
+        </Grid>
     </Grid>
 </navigation:Page>
