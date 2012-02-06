@@ -146,17 +146,11 @@ namespace Lives
 				playList += "<Entry><REF HREF = \"" + u + "\" /></Entry>";
 			playList += "</ASX>";
 
-			var id = "";
 
-			if (cats.Count == 1)
-			{
-				id = cats.First<int>().ToString();
-			}
-
-			HttpContext.Current.Session["PlayList" + id] = playList;
+			HttpContext.Current.Session["PlayList"] = playList;
 
 			string url = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority)
-					+ HttpContext.Current.Request.ApplicationPath + "/PlayList.aspx" + (id.Count() != 0 ? "?id=" + id : "");
+					+ HttpContext.Current.Request.ApplicationPath + "/PlayList.aspx";
 			return url;
 
 		}
