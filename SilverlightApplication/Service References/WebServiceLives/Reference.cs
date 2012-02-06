@@ -85,7 +85,7 @@ namespace SilverlightApplication.WebServiceLives {
             set {
                 if ((this.dataField.Equals(value) != true)) {
                     this.dataField = value;
-                    this.RaisePropertyChanged("sourceVideo");
+                    this.RaisePropertyChanged("data");
                 }
             }
         }
