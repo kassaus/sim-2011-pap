@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{30C67D79-E0CC-4908-9423-897C4E74FEA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverlightApplication", "SilverlightApplication\SilverlightApplication.csproj", "{00DD0BC1-FB9D-48A4-BAD0-B96947C53B1F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,10 +31,6 @@ Global
 		{30C67D79-E0CC-4908-9423-897C4E74FEA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30C67D79-E0CC-4908-9423-897C4E74FEA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30C67D79-E0CC-4908-9423-897C4E74FEA0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{00DD0BC1-FB9D-48A4-BAD0-B96947C53B1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{00DD0BC1-FB9D-48A4-BAD0-B96947C53B1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{00DD0BC1-FB9D-48A4-BAD0-B96947C53B1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{00DD0BC1-FB9D-48A4-BAD0-B96947C53B1F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
