@@ -278,5 +278,18 @@ namespace DAL
 
 
 
+
+		public List<Video> obterVideosSubcategoriaAprovados(int idSubcat)
+		{
+			List<Video> lista = null;
+
+			try
+			{
+				lista = (from video in DB.tabelas.Video from subCat in DB.tabelas.Subcategoria where subCat.id == idSubcat && video.Subcategorias.Contains(subCat) && video.Estado.id != 3 && video.Estado.id != 1 select video).ToList<Video>();
+			}
+			catch { }
+
+			return lista;
+		}
 	}
 }
