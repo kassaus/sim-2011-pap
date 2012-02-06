@@ -32,24 +32,13 @@ namespace SilverlightApplication
 				List<int> idsCategorias = (from categoria in listaCategorias select categoria.id).ToList<int>();
 				cliente.obtemPlayListAsync(idsCategorias);
 
-				cliente.obtemPlayListCompleted += new EventHandler<WebServiceLives.obtemPlayListCompletedEventArgs>(cliente_obtemPlayListMosaicoCompleted1);
-				cliente.obtemPlayListAsync(new List<int>() { 1 });
 
-				cliente.obtemPlayListCompleted += new EventHandler<WebServiceLives.obtemPlayListCompletedEventArgs>(cliente_obtemPlayListMosaicoCompleted2);
-				cliente.obtemPlayListAsync(new List<int>() { 2 });
-
-				cliente.obtemPlayListCompleted += new EventHandler<WebServiceLives.obtemPlayListCompletedEventArgs>(cliente_obtemPlayListMosaicoCompleted3);
-				cliente.obtemPlayListAsync(new List<int>() { 3 });
-
-				cliente.obtemPlayListCompleted += new EventHandler<WebServiceLives.obtemPlayListCompletedEventArgs>(cliente_obtemPlayListMosaicoCompleted4);
-				cliente.obtemPlayListAsync(new List<int>() { 4 });
-
-				cliente.obtemPlayListCompleted += new EventHandler<WebServiceLives.obtemPlayListCompletedEventArgs>(cliente_obtemPlayListMosaicoCompleted5);
-				cliente.obtemPlayListAsync(new List<int>() { 5 });
-
-				cliente.obtemPlayListCompleted += new EventHandler<WebServiceLives.obtemPlayListCompletedEventArgs>(cliente_obtemPlayListMosaicoCompleted6);
-				cliente.obtemPlayListAsync(new List<int>() { 6 });
-
+				//VideoUm.Source = new Uri("http://localhost/Lives/PlayListGeneric.ashx?cat=1").ToString();
+				//VideoDois.Source = new Uri("http://localhost/Lives/PlayListGeneric.ashx?cat=2").ToString();
+				//VideoTres.Source = new Uri("http://localhost/Lives/PlayListGeneric.ashx?cat=3").ToString();
+				//VideoQuatro.Source = new Uri("http://localhost/Lives/PlayListGeneric.ashx?cat=4").ToString();
+				//VideoCinco.Source = new Uri("http://localhost/Lives/PlayListGeneric.ashx?cat=5").ToString();
+				//VideoSeis.Source = new Uri("http://localhost/Lives/PlayListGeneric.ashx?cat=6").ToString();
 			}
 		}
 
@@ -64,122 +53,6 @@ namespace SilverlightApplication
 				try
 				{
 					Video.Source = e.Result;
-				}
-				catch (Exception ex)
-				{
-					MessageBox.Show(ex.StackTrace);
-				}
-			}
-		}
-
-		private void cliente_obtemPlayListMosaicoCompleted1(object sender, SilverlightApplication.WebServiceLives.obtemPlayListCompletedEventArgs e)
-		{
-			if (e.Result == null || e.Result.Length == 0)
-			{
-				MessageBox.Show("Não existem Vídeos");
-			}
-			else
-			{
-				try
-				{
-					VideoUm.Source = e.Result;
-				}
-				catch (Exception ex)
-				{
-					MessageBox.Show(ex.StackTrace);
-				}
-			}
-		}
-
-		private void cliente_obtemPlayListMosaicoCompleted2(object sender, SilverlightApplication.WebServiceLives.obtemPlayListCompletedEventArgs e)
-		{
-			if (e.Result == null || e.Result.Length == 0)
-			{
-				MessageBox.Show("Não existem Vídeos");
-			}
-			else
-			{
-				try
-				{
-					VideoDois.Source = e.Result;
-				}
-				catch (Exception ex)
-				{
-					MessageBox.Show(ex.StackTrace);
-				}
-			}
-		}
-
-		private void cliente_obtemPlayListMosaicoCompleted3(object sender, SilverlightApplication.WebServiceLives.obtemPlayListCompletedEventArgs e)
-		{
-			if (e.Result == null || e.Result.Length == 0)
-			{
-				MessageBox.Show("Não existem Vídeos");
-			}
-			else
-			{
-				try
-				{
-					VideoTres.Source = e.Result;
-				}
-				catch (Exception ex)
-				{
-					MessageBox.Show(ex.StackTrace);
-				}
-			}
-		}
-
-		private void cliente_obtemPlayListMosaicoCompleted4(object sender, SilverlightApplication.WebServiceLives.obtemPlayListCompletedEventArgs e)
-		{
-			if (e.Result == null || e.Result.Length == 0)
-			{
-				MessageBox.Show("Não existem Vídeos");
-			}
-			else
-			{
-				try
-				{
-					VideoQuatro.Source = e.Result;
-				}
-				catch (Exception ex)
-				{
-					MessageBox.Show(ex.StackTrace);
-				}
-			}
-		}
-
-		private void cliente_obtemPlayListMosaicoCompleted5(object sender, SilverlightApplication.WebServiceLives.obtemPlayListCompletedEventArgs e)
-		{
-			if (e.Result == null || e.Result.Length == 0)
-			{
-				MessageBox.Show("Não existem Vídeos");
-			}
-			else
-			{
-				try
-				{
-					VideoCinco.Source = e.Result;
-				}
-				catch (Exception ex)
-				{
-					MessageBox.Show(ex.StackTrace);
-				}
-			}
-		}
-
-
-		void cliente_obtemPlayListMosaicoCompleted6(object sender, WebServiceLives.obtemPlayListCompletedEventArgs e)
-		{
-			if (e.Result == null || e.Result.Length == 0)
-			{
-				MessageBox.Show("Não existem Vídeos");
-			}
-			else
-			{
-				try
-				{
-					VideoSeis.Source = e.Result;
-
 				}
 				catch (Exception ex)
 				{
