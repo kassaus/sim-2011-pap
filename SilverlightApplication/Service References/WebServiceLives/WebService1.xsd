@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/BO" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/BO" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost/Lives/WebService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" />
+  <xs:import schemaLocation="http://localhost/Lives/WebService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfVideo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Video" nillable="true" type="tns:Video" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfVideo" nillable="true" type="tns:ArrayOfVideo" />
+  <xs:complexType name="Video">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q1:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Estado" nillable="true" type="tns:Estado" />
+          <xs:element minOccurs="0" name="EstadoReference" nillable="true" type="q1:EntityReferenceOfEstadofncFJpV1" />
+          <xs:element minOccurs="0" name="Subcategorias" nillable="true" type="tns:ArrayOfSubcategoria" />
+          <xs:element minOccurs="0" name="data" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="descricao" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="id" type="xs:int" />
+          <xs:element minOccurs="0" name="id_user" type="ser:guid" />
+          <xs:element minOccurs="0" name="titulo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="url" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Video" nillable="true" type="tns:Video" />
+  <xs:complexType name="Estado">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q2:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Videos" nillable="true" type="tns:ArrayOfVideo" />
+          <xs:element minOccurs="0" name="estado" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="id" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Estado" nillable="true" type="tns:Estado" />
+  <xs:complexType name="ArrayOfSubcategoria">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Subcategoria" nillable="true" type="tns:Subcategoria" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSubcategoria" nillable="true" type="tns:ArrayOfSubcategoria" />
+  <xs:complexType name="Subcategoria">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q3:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Categoria" nillable="true" type="tns:Categoria" />
+          <xs:element minOccurs="0" name="CategoriaReference" nillable="true" type="q3:EntityReferenceOfCategoriafncFJpV1" />
+          <xs:element minOccurs="0" name="Videos" nillable="true" type="tns:ArrayOfVideo" />
+          <xs:element minOccurs="0" name="id" type="xs:int" />
+          <xs:element minOccurs="0" name="nome" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Subcategoria" nillable="true" type="tns:Subcategoria" />
+  <xs:complexType name="Categoria">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q4="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q4:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Subcategorias" nillable="true" type="tns:ArrayOfSubcategoria" />
+          <xs:element minOccurs="0" name="id" type="xs:int" />
+          <xs:element minOccurs="0" name="nome" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Categoria" nillable="true" type="tns:Categoria" />
+  <xs:complexType name="ArrayOfCategoria">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Categoria" nillable="true" type="tns:Categoria" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCategoria" nillable="true" type="tns:ArrayOfCategoria" />
+</xs:schema>

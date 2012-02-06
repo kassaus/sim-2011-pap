@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="86117595-05a6-40a4-8350-b4997ac40903" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/Lives/WebService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="WebService.xsd" MetadataType="Schema" ID="94fa138f-0092-44e6-b776-6200304938c1" SourceId="1" SourceUrl="http://localhost/Lives/WebService.svc?xsd=xsd5" />
+    <MetadataFile FileName="WebService1.xsd" MetadataType="Schema" ID="5145a7c5-a4a3-4c13-8c03-75df61010dee" SourceId="1" SourceUrl="http://localhost/Lives/WebService.svc?xsd=xsd2" />
+    <MetadataFile FileName="WebService.disco" MetadataType="Disco" ID="e99ae824-7649-4bd7-92ec-d628ac6c0dc0" SourceId="1" SourceUrl="http://localhost/Lives/WebService.svc?disco" />
+    <MetadataFile FileName="WebService2.xsd" MetadataType="Schema" ID="c9b56661-c61d-4fe8-8c87-b07bf33da0fb" SourceId="1" SourceUrl="http://localhost/Lives/WebService.svc?xsd=xsd0" />
+    <MetadataFile FileName="WebService3.xsd" MetadataType="Schema" ID="c28fbeb2-bf5b-461c-924c-e4185391070c" SourceId="1" SourceUrl="http://localhost/Lives/WebService.svc?xsd=xsd1" />
+    <MetadataFile FileName="WebService4.xsd" MetadataType="Schema" ID="2ffcf67e-32bc-4159-8f0b-82e835eced86" SourceId="1" SourceUrl="http://localhost/Lives/WebService.svc?xsd=xsd4" />
+    <MetadataFile FileName="WebService.wsdl" MetadataType="Wsdl" ID="f77637fb-0be6-4785-ae9d-28308434ddb5" SourceId="1" SourceUrl="http://localhost/Lives/WebService.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="WebService5.xsd" MetadataType="Schema" ID="aac18b5f-17f0-4f24-b6cf-cec8a0c1c315" SourceId="1" SourceUrl="http://localhost/Lives/WebService.svc?xsd=xsd3" />
+    <MetadataFile FileName="WebService1.wsdl" MetadataType="Wsdl" ID="4166877f-51d4-48c7-a546-7add27f7ba48" SourceId="1" SourceUrl="http://localhost/Lives/WebService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
