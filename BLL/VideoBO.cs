@@ -132,6 +132,20 @@ namespace BLL
 
 		}
 
+		public List<Video> obterTodosVideosSubcategoriaAprovados(int idSubcat)
+		{
+			List<Video> lista = null;
+			lista = videosDataManager.obterVideosSubcategoriaAprovados(idSubcat);
+
+			if (lista == null)
+			{
+				lista = new List<Video>();
+			}
+
+			return lista;
+
+		}
+
 		public List<Video> obterTodosVideosSubcategoriaUser(int idSubcat, Guid idUser)
 		{
 			List<Video> lista = null;
