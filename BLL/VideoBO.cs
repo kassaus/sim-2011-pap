@@ -80,6 +80,18 @@ namespace BLL
 			return lista;
 		}
 
+		public List<Video> obterTodosVideosPorCategorias(List<int> categorias)
+		{
+			List<Video> lista = new List<Video>();
+
+			foreach (int cat in categorias)
+			{
+				lista.AddRange(obterAprovadosCategoria(cat));
+			}
+
+			return lista;
+		}
+
 		public List<Video> obterAprovadosCategoria(int cat)
 		{
 			List<Video> lista = null;
