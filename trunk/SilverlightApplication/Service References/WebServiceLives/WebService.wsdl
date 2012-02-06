@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="/Imports">
+      <xsd:import schemaLocation="http://localhost/Lives/WebService.svc?xsd=xsd0" />
+      <xsd:import schemaLocation="http://localhost/Lives/WebService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost/Lives/WebService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/BO" />
+      <xsd:import schemaLocation="http://localhost/Lives/WebService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" />
+      <xsd:import schemaLocation="http://localhost/Lives/WebService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
+      <xsd:import schemaLocation="http://localhost/Lives/WebService.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="WebService_obtemTodosVideos_InputMessage">
+    <wsdl:part name="parameters" element="obtemTodosVideos" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obtemTodosVideos_OutputMessage">
+    <wsdl:part name="parameters" element="obtemTodosVideosResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obtemVideosAprovados_InputMessage">
+    <wsdl:part name="parameters" element="obtemVideosAprovados" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obtemVideosAprovados_OutputMessage">
+    <wsdl:part name="parameters" element="obtemVideosAprovadosResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obtemVideosPorAprovar_InputMessage">
+    <wsdl:part name="parameters" element="obtemVideosPorAprovar" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obtemVideosPorAprovar_OutputMessage">
+    <wsdl:part name="parameters" element="obtemVideosPorAprovarResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obtemVideo_InputMessage">
+    <wsdl:part name="parameters" element="obtemVideo" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obtemVideo_OutputMessage">
+    <wsdl:part name="parameters" element="obtemVideoResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obtemAprovadosCategoria_InputMessage">
+    <wsdl:part name="parameters" element="obtemAprovadosCategoria" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obtemAprovadosCategoria_OutputMessage">
+    <wsdl:part name="parameters" element="obtemAprovadosCategoriaResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obtemVideosCategoriaUser_InputMessage">
+    <wsdl:part name="parameters" element="obtemVideosCategoriaUser" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obtemVideosCategoriaUser_OutputMessage">
+    <wsdl:part name="parameters" element="obtemVideosCategoriaUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obtemTodosVideosSubcategoria_InputMessage">
+    <wsdl:part name="parameters" element="obtemTodosVideosSubcategoria" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obtemTodosVideosSubcategoria_OutputMessage">
+    <wsdl:part name="parameters" element="obtemTodosVideosSubcategoriaResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obtemTodosVideosSubcategoriaUser_InputMessage">
+    <wsdl:part name="parameters" element="obtemTodosVideosSubcategoriaUser" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obtemTodosVideosSubcategoriaUser_OutputMessage">
+    <wsdl:part name="parameters" element="obtemTodosVideosSubcategoriaUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obtemVideosAprovadosUser_InputMessage">
+    <wsdl:part name="parameters" element="obtemVideosAprovadosUser" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obtemVideosAprovadosUser_OutputMessage">
+    <wsdl:part name="parameters" element="obtemVideosAprovadosUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obtemVideosPorAprovarUser_InputMessage">
+    <wsdl:part name="parameters" element="obtemVideosPorAprovarUser" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obtemVideosPorAprovarUser_OutputMessage">
+    <wsdl:part name="parameters" element="obtemVideosPorAprovarUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obtemVideosUser_InputMessage">
+    <wsdl:part name="parameters" element="obtemVideosUser" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obtemVideosUser_OutputMessage">
+    <wsdl:part name="parameters" element="obtemVideosUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obtemVideoMaisRecente_InputMessage">
+    <wsdl:part name="parameters" element="obtemVideoMaisRecente" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obtemVideoMaisRecente_OutputMessage">
+    <wsdl:part name="parameters" element="obtemVideoMaisRecenteResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obtemTodosVideosPorCategorias_InputMessage">
+    <wsdl:part name="parameters" element="obtemTodosVideosPorCategorias" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obtemTodosVideosPorCategorias_OutputMessage">
+    <wsdl:part name="parameters" element="obtemTodosVideosPorCategoriasResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obtemCategoriaId_InputMessage">
+    <wsdl:part name="parameters" element="obtemCategoriaId" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obtemCategoriaId_OutputMessage">
+    <wsdl:part name="parameters" element="obtemCategoriaIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obterTodas_InputMessage">
+    <wsdl:part name="parameters" element="obterTodas" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obterTodas_OutputMessage">
+    <wsdl:part name="parameters" element="obterTodasResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obtemSubCategoriaNome_InputMessage">
+    <wsdl:part name="parameters" element="obtemSubCategoriaNome" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obtemSubCategoriaNome_OutputMessage">
+    <wsdl:part name="parameters" element="obtemSubCategoriaNomeResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obtemSubCategoriaId_InputMessage">
+    <wsdl:part name="parameters" element="obtemSubCategoriaId" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obtemSubCategoriaId_OutputMessage">
+    <wsdl:part name="parameters" element="obtemSubCategoriaIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obtemTodasSubcatCategoria_InputMessage">
+    <wsdl:part name="parameters" element="obtemTodasSubcatCategoria" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obtemTodasSubcatCategoria_OutputMessage">
+    <wsdl:part name="parameters" element="obtemTodasSubcatCategoriaResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obtemTodasSubcatVideos_InputMessage">
+    <wsdl:part name="parameters" element="obtemTodasSubcatVideos" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obtemTodasSubcatVideos_OutputMessage">
+    <wsdl:part name="parameters" element="obtemTodasSubcatVideosResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obtemPlayList_InputMessage">
+    <wsdl:part name="parameters" element="obtemPlayList" />
+  </wsdl:message>
+  <wsdl:message name="WebService_obtemPlayList_OutputMessage">
+    <wsdl:part name="parameters" element="obtemPlayListResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WebService">
+    <wsdl:operation name="obtemTodosVideos">
+      <wsdl:input wsaw:Action="urn:WebService/obtemTodosVideos" message="WebService_obtemTodosVideos_InputMessage" />
+      <wsdl:output wsaw:Action="urn:WebService/obtemTodosVideosResponse" message="WebService_obtemTodosVideos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="obtemVideosAprovados">
+      <wsdl:input wsaw:Action="urn:WebService/obtemVideosAprovados" message="WebService_obtemVideosAprovados_InputMessage" />
+      <wsdl:output wsaw:Action="urn:WebService/obtemVideosAprovadosResponse" message="WebService_obtemVideosAprovados_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="obtemVideosPorAprovar">
+      <wsdl:input wsaw:Action="urn:WebService/obtemVideosPorAprovar" message="WebService_obtemVideosPorAprovar_InputMessage" />
+      <wsdl:output wsaw:Action="urn:WebService/obtemVideosPorAprovarResponse" message="WebService_obtemVideosPorAprovar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="obtemVideo">
+      <wsdl:input wsaw:Action="urn:WebService/obtemVideo" message="WebService_obtemVideo_InputMessage" />
+      <wsdl:output wsaw:Action="urn:WebService/obtemVideoResponse" message="WebService_obtemVideo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="obtemAprovadosCategoria">
+      <wsdl:input wsaw:Action="urn:WebService/obtemAprovadosCategoria" message="WebService_obtemAprovadosCategoria_InputMessage" />
+      <wsdl:output wsaw:Action="urn:WebService/obtemAprovadosCategoriaResponse" message="WebService_obtemAprovadosCategoria_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="obtemVideosCategoriaUser">
+      <wsdl:input wsaw:Action="urn:WebService/obtemVideosCategoriaUser" message="WebService_obtemVideosCategoriaUser_InputMessage" />
+      <wsdl:output wsaw:Action="urn:WebService/obtemVideosCategoriaUserResponse" message="WebService_obtemVideosCategoriaUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="obtemTodosVideosSubcategoria">
+      <wsdl:input wsaw:Action="urn:WebService/obtemTodosVideosSubcategoria" message="WebService_obtemTodosVideosSubcategoria_InputMessage" />
+      <wsdl:output wsaw:Action="urn:WebService/obtemTodosVideosSubcategoriaResponse" message="WebService_obtemTodosVideosSubcategoria_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="obtemTodosVideosSubcategoriaUser">
+      <wsdl:input wsaw:Action="urn:WebService/obtemTodosVideosSubcategoriaUser" message="WebService_obtemTodosVideosSubcategoriaUser_InputMessage" />
+      <wsdl:output wsaw:Action="urn:WebService/obtemTodosVideosSubcategoriaUserResponse" message="WebService_obtemTodosVideosSubcategoriaUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="obtemVideosAprovadosUser">
+      <wsdl:input wsaw:Action="urn:WebService/obtemVideosAprovadosUser" message="WebService_obtemVideosAprovadosUser_InputMessage" />
+      <wsdl:output wsaw:Action="urn:WebService/obtemVideosAprovadosUserResponse" message="WebService_obtemVideosAprovadosUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="obtemVideosPorAprovarUser">
+      <wsdl:input wsaw:Action="urn:WebService/obtemVideosPorAprovarUser" message="WebService_obtemVideosPorAprovarUser_InputMessage" />
+      <wsdl:output wsaw:Action="urn:WebService/obtemVideosPorAprovarUserResponse" message="WebService_obtemVideosPorAprovarUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="obtemVideosUser">
+      <wsdl:input wsaw:Action="urn:WebService/obtemVideosUser" message="WebService_obtemVideosUser_InputMessage" />
+      <wsdl:output wsaw:Action="urn:WebService/obtemVideosUserResponse" message="WebService_obtemVideosUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="obtemVideoMaisRecente">
+      <wsdl:input wsaw:Action="urn:WebService/obtemVideoMaisRecente" message="WebService_obtemVideoMaisRecente_InputMessage" />
+      <wsdl:output wsaw:Action="urn:WebService/obtemVideoMaisRecenteResponse" message="WebService_obtemVideoMaisRecente_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="obtemTodosVideosPorCategorias">
+      <wsdl:input wsaw:Action="urn:WebService/obtemTodosVideosPorCategorias" message="WebService_obtemTodosVideosPorCategorias_InputMessage" />
+      <wsdl:output wsaw:Action="urn:WebService/obtemTodosVideosPorCategoriasResponse" message="WebService_obtemTodosVideosPorCategorias_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="obtemCategoriaId">
+      <wsdl:input wsaw:Action="urn:WebService/obtemCategoriaId" message="WebService_obtemCategoriaId_InputMessage" />
+      <wsdl:output wsaw:Action="urn:WebService/obtemCategoriaIdResponse" message="WebService_obtemCategoriaId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="obterTodas">
+      <wsdl:input wsaw:Action="urn:WebService/obterTodas" message="WebService_obterTodas_InputMessage" />
+      <wsdl:output wsaw:Action="urn:WebService/obterTodasResponse" message="WebService_obterTodas_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="obtemSubCategoriaNome">
+      <wsdl:input wsaw:Action="urn:WebService/obtemSubCategoriaNome" message="WebService_obtemSubCategoriaNome_InputMessage" />
+      <wsdl:output wsaw:Action="urn:WebService/obtemSubCategoriaNomeResponse" message="WebService_obtemSubCategoriaNome_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="obtemSubCategoriaId">
+      <wsdl:input wsaw:Action="urn:WebService/obtemSubCategoriaId" message="WebService_obtemSubCategoriaId_InputMessage" />
+      <wsdl:output wsaw:Action="urn:WebService/obtemSubCategoriaIdResponse" message="WebService_obtemSubCategoriaId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="obtemTodasSubcatCategoria">
+      <wsdl:input wsaw:Action="urn:WebService/obtemTodasSubcatCategoria" message="WebService_obtemTodasSubcatCategoria_InputMessage" />
+      <wsdl:output wsaw:Action="urn:WebService/obtemTodasSubcatCategoriaResponse" message="WebService_obtemTodasSubcatCategoria_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="obtemTodasSubcatVideos">
+      <wsdl:input wsaw:Action="urn:WebService/obtemTodasSubcatVideos" message="WebService_obtemTodasSubcatVideos_InputMessage" />
+      <wsdl:output wsaw:Action="urn:WebService/obtemTodasSubcatVideosResponse" message="WebService_obtemTodasSubcatVideos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="obtemPlayList">
+      <wsdl:input wsaw:Action="urn:WebService/obtemPlayList" message="WebService_obtemPlayList_InputMessage" />
+      <wsdl:output wsaw:Action="urn:WebService/obtemPlayListResponse" message="WebService_obtemPlayList_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>
